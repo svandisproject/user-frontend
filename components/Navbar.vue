@@ -13,6 +13,7 @@
         <li><router-link to="#">Data marketplace</router-link></li>
     </ul>
     <ul class="uk-navbar-nav" slot="right">
+        <li><router-link :to="{name: 'settings'}"><ui-icon i="settings" />&nbsp;Settings</router-link></li>
         <li><k-logout /></li>
     </ul>
     </ui-navbar>
