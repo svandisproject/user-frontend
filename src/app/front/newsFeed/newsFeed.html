@@ -1,3 +1,257 @@
-<h2>Im the new feed page component</h2>
-<h4>Lets get render a class field: {{imAPropertyThatIsVisibleInTemplate}}</h4>
-<button (click)="onClickIllCallAUiKitMethod()">Lets call a UIKIT method</button>
+<div class="news-feed-wrapper">
+    <h2>Im the new feed page component</h2>
+    <h4>Lets get render a class field: {{imAPropertyThatIsVisibleInTemplate}}</h4>
+    <button (click)="onClickIllCallAUiKitMethod()">Lets call a UIKIT method</button>
+    <div class="uk-container uk-container-large">
+        <div class="uk-child-width-1-1@s uk-child-width-1-1@m uk-child-width-1-1@l uk-grid-small uk-grid-match" uk-grid>
+            <div class="uk-card uk-card-secondary uk-card-body">
+                <div class="uk-child-width-1-2 uk-grid-small uk-grid-match rates uk-grid">
+                  <h3 class="uk-card-title">News feed</h3>
+                    <div>
+                     <span class="uk-margin-small-right " uk-icon="check"></span>
+                     <span class="uk-margin-small-right uk-flex-right" uk-icon="check"></span>
+                    </div>
+                </div>
+                <hr>
+                <!--body-card-first-line-->
+                <div>
+                    <div class="uk-panel">
+                        <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX//
+                             /8AAAD8/PyYmJiwsLD09PTLy8vR0dHCwsLt7e3a2tqfn595eXmqqqqOjo6FhYVtbW1RUVFYWFi2trZ0dHQuLi6/v7
+                             /m5uajo6MpKSlnZ2ff39+SkpJiYmLW1tbx8fERERFERERMTEw2NjYcHBxGRkYhISE7OzuIiIgWFha1nsn6AAAKxElEQ
+                             VR4nO1d63qiMBAtiHdd79dqq63dtu//grtoqQRIcmZImPT7en6D5EjI3E4mDw++EfcHnWQ7We5n76vLKYqi02X1Ptsv
+                             J9ukM+jH3p/vFYPFYb+LzFhND4tH6YFyMEhG7xZuebxPkoH0kAkYtGYEcnfMhz+BZXu9ZLHLsFwH/WW2k5da9G6YLdr
+                             SRKoRJ7y5WYX5Irw32dk7o3fDtCtNKY94eHHML8VuG8qLfBx5oHfDZCNN7j+6c2/8UhylDUiHYtZ5eJH8IBvgd+X4JM
+                             Rv4ML4YZhLeK591+bBjGXjXkCrUX4pto3y6/qwfzasmltW46kAvxSjhlyAhRC/FL0G+MV+LbwNU+8Ee6L8Unh2APy5o
+                             Dj+eOS3+SvN7or3Z18EJZcYFR0/BCfSvHJoeeAXu8tRuMDROcHNSZpTASvHjmpHmlAFnDpx4awxeThcb4bSXDRYuCJ4
+                             kGaixdgNwZCsRBFDFwRDcNT0cGAYwybogGLoBGtP1D/S4wdQa7kJ1UyoqGE0wjT0ZbCD4q70yGEwCzgb6XETwHLD29K
+                             jpmDFYXiWHjUJezrB8A2hCrJZ/CnL6B3EBfUnrTIZaKuNROWlLt4oBG2ll+M2SYaTY1O5m8/jZLhItrZ6wgEnaP0Isx
+                             pQf1FP44VgtMgSwFb7BX+Kz7ZfUlJ5HZ8kR8qgrUUhlKG1Pr9Wr4/HKzd8ClglhYFZ59YSIzi2PrpcqOy8OeGUx7w85
+                             +xuFpR+s87RaF51W9dtTvxYqb6wqz8QhvYKqEYz8OTuPerUJfZ4dWInuLY/X5ts7n06YBdFO+1cA+I5eyYcGIHhbm1q
+                             dfcyHX0MxzcMP0bTF63E3SArie2De7URBBIzZ9P9/cIkf1u21l3NnoO43123loW5PTU6X6/24RUX4OIA7b8Qjcw/8V3
+                             pPw57ffOl2UN7rePXPSeL0UZsr1mScrT/gDW3FU+jz9GCmljYpO6R1Z5tgfEZ6/xQZsZuc7ilPfsrB9bBKDL9DKSmlN
+                             S0PiEDNGhuMLGMNyUEACxu1X8hmHspqS/H0mPaIj80yWUZAgYxhU5wa9tm9nMYal4iKln7AQw1XyIqS/8JDCsNK1ylk
+                             Nx3BecAqxZ8xJ25QnLHJ2QPU1RkpRCP9AZPsjkIuLy1fC9e7XUk8WAB8UtvKJdN4VuRMNob8LxeKcYDrX3lvQ0CNNkp
+                             issFJY8kwu0KSk3zQ70VX2ci71pyA0g6evVWkujCp5TcDFJRU13zSUnrv0L8KMthVAgTH0m3cqUPtUGsaubdS9pOtLV
+                             2CL5BWPEjdQsRaZISynTOQZK65qYp6e3P5Pg90KxabjW1V5tykN0kj4ZPV9zNGuWPkfS7U1B2DXwbfcr/AtYgPYJQcv
+                             5WSlH+FvlGDpT3kcXBBJmspezRCBJ8uFkIhfcNYAnknAMPML6KSITX3sQ2XDtwu//lX+KfYRivkPISbx8i7rI524VTE
+                             /iXeLNt+OZsYWJ3wCM+0C7/sDy3OcAbla7CGDy8D6c13gAec3o1nBnYSfPKAVaHpvVgOAUpGTUVAU/TdKmB/byQ2ovB
+                             Fi5NXwMSlRukWeUBeylp+hq9liQy9g40KzEjJFnlcohVQPOKF8LCG4pDcwOclojxb1a6NZwKuJ77jP8ZYbXchP2UJ9z
+                             vluakAl5MO/AnG0rklAHd65FYN49keJemVABqLrZwJrFSvi4INPXyB3ZpQmOINm0cwV66+5Y39YDG7VPYaQvtHaIM9z
+                             +WIb5+oAxfpCkVgH6HbzBDSY1JFdC1dAUztO7UaBioDfiEGYaUpUkBt//Dc4nSlArAxw1fKV9XywMvtsAerOgmhDLg6
+                             OkTn89hRcCwlPYvnmoLo7KWAa6wvcKWs+Fu0zbAeewZLu+WFM6WAWv49nAEHJhjCk+9JaGjnjQpBfCoJwRlaUjmAi8J
+                             DgmKL2k1VB64WDghXOujdy8XuASog5tOYVGiijM86gFFwy5N6w6CBKhNuTicD5Gg2X8gBFoB1ddwE5em6mGnRlCjXwQ
+                             85Gsftw/88lDkJoSGjqm8gtCZLZRpSthYktZ1cfVNMKspYcTptKNobsOIESn9AK83EHa8hZEWhoP2rCZI6UYWQiqDIk
+                             u/iYQpuy1CCBLPhPHeBCSUpSaAl0g6puFrDxrlFnllFGmP1tc9pL1EchvXbiDsRbiXdWldu2Vz37TuxtnGetKHKLwvi
+                             NbZ79vNJN0lavbxjgMpTt/3Ec/Cw3qU+QBttuX6rhHbIl+kPkVqi/H7qmhvd6lCymQQ3LUrcm/iTLyV0R/cAai9NfMO
+                             GGmbbAr/xxCWQT66Nq/5JTWNuKJxiVR8Jo9RUcTSm6uem11u+vQO42qUQJ6m/41Nk1kbzqloqjCdddRDczVT1nE3hd/
+                             Ac4o5zJopRz1SrcQVRe+SeTheA9WamHkORem4cmaP/IvvaIrmid5R1qWzD9p+9+mJj9mHE5Q7kmnWmllr0VsczHLVi6
+                             dd+v06h/ZV/F5lgPGdluma44+J+/xNr9bh0VXKkarIJO9/ts0Fn13LJcnaBy5URnhVfp/iuGzOlp9drl1sHRqMWaZLQ
+                             XVoUGUwCvlR+4exGy0e+f5cv9Nyc7C5Zj5VGdZC8R6Tk72Otj0iz01nPCIHD1roEteVteOL6n5SzmLDt0bXn5YqStY+
+                             Q7V3pFYNcYqUAMvN3MygV41oXLedsjChSR2a9N3pOS6GVV0XJiob1UGZAM0rp8fgepgmj1Y+pAhNoP+bGlqxvcYyjC0
+                             BtZ98/i0iPQjpmxecHRNmFsLqJ0v+WwT8RXrIQSq5mGAxU9poWnkp1v/7RCZIrS1oYW1zrL0zHzNbs+ucyJgg7DHAvl
+                             9ZLxnLrza2ghyn/yexxagGgP+v9y/yV5mDKd42MBdrjeUQnCv0aTfFuTEW8njiKRcHg0IP0i9qihE3+ZI8nSat/2olw
+                             IyK9vWoU8Dg2/DCxPpHg6LlFP08VSNn/aLEIujAXsBP0k6XgrsQV7/GV26GkZX5zYHQ50mbJSn6C88lD2F34NczasZQ
+                             pFZdOml0hT/dPXzH5q+jpFYj7HqLKW0vtu6jP1Vf3u4/bvr1s1B18qPkPT26ONdrL6VaERTZQulmjA9mGWjiLBUMT/h
+                             c/UuIW8QFtwoT8bQTOqvosRDDZ8hzhHWrjb/qNp8hc5XTVU29qb7YDNk2Sreg+hIKcxnW6Fmpe6Qnm8FkWGs0urSNnx
+                             WVZy1qnj+ldaR8vEYWw9piCS3FnXuOHIYOOuMaqrETx21pGQydyF2MBefpuJs3HvGmt51Gw8YYcp9UgLUUczrPj8f98
+                             SVLlnHlYGTP25kIhPrkphg6XAmIQvCGGDrdeU2TvXG/DhpDx/7xhiK/aoLhynlP3JggI26AoRcVNp4n4jLE8zSeVJ/w
+                             esN9PszQW3eHDVgd8szwzac0Gdsh5ZehZ10yNFO5Y4AE61q9kyu0gR2AXH8fYNjIZh27aMIfw4b2PrZtQjtfDEfN7dP
+                             pmT0cLkOzGmPl/QtUYHQ/uAyNYVrjh9o97/WD4XZ5MTCcSOxb7Z5dM9T6hXuprccdTUNmxwxnkr2Nqjk6ZThvdoEpo1
+                             vhAXAZVliLfQi9qR5Lzio3f1LyJSZS52MX0W6p9pG77qkNnVbjoNpPd3Ivkr9hL/cSPeykqos4+foi6/iOX6HLUbpHj
+                             A7t3nhRd+XrJONeWAcv/eIXv/iFFf8ARhOdlEfN9S4AAAAASUVORK5CYII="
+                             width="153" height="148" alt="Example image">
+                        <h5 class>EU Markets Watchdog Sets Leverage Limits On CFDs, Cryptocurrencies</h5>
+                        <ul class="label-tag">
+                            <li>Important</li>
+                            <li>1 min</li>
+                            <li>NYTimes</li>
+                            <li>Business</li>
+                            <li>ETH</li>
+                        </ul>
+                        <p>The European Securities and Markets Authority (ESMA) has announced leverage limits as
+                            temporary product intervention measures on the provision of contracts for differences
+                            (CFDs), including those using cryptocurrencies, for retail investors in the European
+                            Union (EU). ESMA also announced measures for binary options.
+                        </p>
+                        <a>Continue on NYTimes</a>
+                    </div>
+                    <hr>
+                </div>
+                <!--End-body-card-->
+                <!--Second-line-->
+                <div>
+                    <div class="uk-panel">
+                        <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX//
+                             /8AAAD8/PyYmJiwsLD09PTLy8vR0dHCwsLt7e3a2tqfn595eXmqqqqOjo6FhYVtbW1RUVFYWFi2trZ0dHQuLi6/v7
+                             /m5uajo6MpKSlnZ2ff39+SkpJiYmLW1tbx8fERERFERERMTEw2NjYcHBxGRkYhISE7OzuIiIgWFha1nsn6AAAKxElEQ
+                             VR4nO1d63qiMBAtiHdd79dqq63dtu//grtoqQRIcmZImPT7en6D5EjI3E4mDw++EfcHnWQ7We5n76vLKYqi02X1Ptsv
+                             J9ukM+jH3p/vFYPFYb+LzFhND4tH6YFyMEhG7xZuebxPkoH0kAkYtGYEcnfMhz+BZXu9ZLHLsFwH/WW2k5da9G6YLdr
+                             SRKoRJ7y5WYX5Irw32dk7o3fDtCtNKY94eHHML8VuG8qLfBx5oHfDZCNN7j+6c2/8UhylDUiHYtZ5eJH8IBvgd+X4JM
+                             Rv4ML4YZhLeK591+bBjGXjXkCrUX4pto3y6/qwfzasmltW46kAvxSjhlyAhRC/FL0G+MV+LbwNU+8Ee6L8Unh2APy5o
+                             Dj+eOS3+SvN7or3Z18EJZcYFR0/BCfSvHJoeeAXu8tRuMDROcHNSZpTASvHjmpHmlAFnDpx4awxeThcb4bSXDRYuCJ4
+                             kGaixdgNwZCsRBFDFwRDcNT0cGAYwybogGLoBGtP1D/S4wdQa7kJ1UyoqGE0wjT0ZbCD4q70yGEwCzgb6XETwHLD29K
+                             jpmDFYXiWHjUJezrB8A2hCrJZ/CnL6B3EBfUnrTIZaKuNROWlLt4oBG2ll+M2SYaTY1O5m8/jZLhItrZ6wgEnaP0Isx
+                             pQf1FP44VgtMgSwFb7BX+Kz7ZfUlJ5HZ8kR8qgrUUhlKG1Pr9Wr4/HKzd8ClglhYFZ59YSIzi2PrpcqOy8OeGUx7w85
+                             +xuFpR+s87RaF51W9dtTvxYqb6wqz8QhvYKqEYz8OTuPerUJfZ4dWInuLY/X5ts7n06YBdFO+1cA+I5eyYcGIHhbm1q
+                             dfcyHX0MxzcMP0bTF63E3SArie2De7URBBIzZ9P9/cIkf1u21l3NnoO43123loW5PTU6X6/24RUX4OIA7b8Qjcw/8V3
+                             pPw57ffOl2UN7rePXPSeL0UZsr1mScrT/gDW3FU+jz9GCmljYpO6R1Z5tgfEZ6/xQZsZuc7ilPfsrB9bBKDL9DKSmlN
+                             S0PiEDNGhuMLGMNyUEACxu1X8hmHspqS/H0mPaIj80yWUZAgYxhU5wa9tm9nMYal4iKln7AQw1XyIqS/8JDCsNK1ylk
+                             Nx3BecAqxZ8xJ25QnLHJ2QPU1RkpRCP9AZPsjkIuLy1fC9e7XUk8WAB8UtvKJdN4VuRMNob8LxeKcYDrX3lvQ0CNNkp
+                             issFJY8kwu0KSk3zQ70VX2ci71pyA0g6evVWkujCp5TcDFJRU13zSUnrv0L8KMthVAgTH0m3cqUPtUGsaubdS9pOtLV
+                             2CL5BWPEjdQsRaZISynTOQZK65qYp6e3P5Pg90KxabjW1V5tykN0kj4ZPV9zNGuWPkfS7U1B2DXwbfcr/AtYgPYJQcv
+                             5WSlH+FvlGDpT3kcXBBJmspezRCBJ8uFkIhfcNYAnknAMPML6KSITX3sQ2XDtwu//lX+KfYRivkPISbx8i7rI524VTE
+                             /iXeLNt+OZsYWJ3wCM+0C7/sDy3OcAbla7CGDy8D6c13gAec3o1nBnYSfPKAVaHpvVgOAUpGTUVAU/TdKmB/byQ2ovB
+                             Fi5NXwMSlRukWeUBeylp+hq9liQy9g40KzEjJFnlcohVQPOKF8LCG4pDcwOclojxb1a6NZwKuJ77jP8ZYbXchP2UJ9z
+                             vluakAl5MO/AnG0rklAHd65FYN49keJemVABqLrZwJrFSvi4INPXyB3ZpQmOINm0cwV66+5Y39YDG7VPYaQvtHaIM9z
+                             +WIb5+oAxfpCkVgH6HbzBDSY1JFdC1dAUztO7UaBioDfiEGYaUpUkBt//Dc4nSlArAxw1fKV9XywMvtsAerOgmhDLg6
+                             OkTn89hRcCwlPYvnmoLo7KWAa6wvcKWs+Fu0zbAeewZLu+WFM6WAWv49nAEHJhjCk+9JaGjnjQpBfCoJwRlaUjmAi8J
+                             DgmKL2k1VB64WDghXOujdy8XuASog5tOYVGiijM86gFFwy5N6w6CBKhNuTicD5Gg2X8gBFoB1ddwE5em6mGnRlCjXwQ
+                             85Gsftw/88lDkJoSGjqm8gtCZLZRpSthYktZ1cfVNMKspYcTptKNobsOIESn9AK83EHa8hZEWhoP2rCZI6UYWQiqDIk
+                             u/iYQpuy1CCBLPhPHeBCSUpSaAl0g6puFrDxrlFnllFGmP1tc9pL1EchvXbiDsRbiXdWldu2Vz37TuxtnGetKHKLwvi
+                             NbZ79vNJN0lavbxjgMpTt/3Ec/Cw3qU+QBttuX6rhHbIl+kPkVqi/H7qmhvd6lCymQQ3LUrcm/iTLyV0R/cAai9NfMO
+                             GGmbbAr/xxCWQT66Nq/5JTWNuKJxiVR8Jo9RUcTSm6uem11u+vQO42qUQJ6m/41Nk1kbzqloqjCdddRDczVT1nE3hd/
+                             Ac4o5zJopRz1SrcQVRe+SeTheA9WamHkORem4cmaP/IvvaIrmid5R1qWzD9p+9+mJj9mHE5Q7kmnWmllr0VsczHLVi6
+                             dd+v06h/ZV/F5lgPGdluma44+J+/xNr9bh0VXKkarIJO9/ts0Fn13LJcnaBy5URnhVfp/iuGzOlp9drl1sHRqMWaZLQ
+                             XVoUGUwCvlR+4exGy0e+f5cv9Nyc7C5Zj5VGdZC8R6Tk72Otj0iz01nPCIHD1roEteVteOL6n5SzmLDt0bXn5YqStY+
+                             Q7V3pFYNcYqUAMvN3MygV41oXLedsjChSR2a9N3pOS6GVV0XJiob1UGZAM0rp8fgepgmj1Y+pAhNoP+bGlqxvcYyjC0
+                             BtZ98/i0iPQjpmxecHRNmFsLqJ0v+WwT8RXrIQSq5mGAxU9poWnkp1v/7RCZIrS1oYW1zrL0zHzNbs+ucyJgg7DHAvl
+                             9ZLxnLrza2ghyn/yexxagGgP+v9y/yV5mDKd42MBdrjeUQnCv0aTfFuTEW8njiKRcHg0IP0i9qihE3+ZI8nSat/2olw
+                             IyK9vWoU8Dg2/DCxPpHg6LlFP08VSNn/aLEIujAXsBP0k6XgrsQV7/GV26GkZX5zYHQ50mbJSn6C88lD2F34NczasZQ
+                             pFZdOml0hT/dPXzH5q+jpFYj7HqLKW0vtu6jP1Vf3u4/bvr1s1B18qPkPT26ONdrL6VaERTZQulmjA9mGWjiLBUMT/h
+                             c/UuIW8QFtwoT8bQTOqvosRDDZ8hzhHWrjb/qNp8hc5XTVU29qb7YDNk2Sreg+hIKcxnW6Fmpe6Qnm8FkWGs0urSNnx
+                             WVZy1qnj+ldaR8vEYWw9piCS3FnXuOHIYOOuMaqrETx21pGQydyF2MBefpuJs3HvGmt51Gw8YYcp9UgLUUczrPj8f98
+                             SVLlnHlYGTP25kIhPrkphg6XAmIQvCGGDrdeU2TvXG/DhpDx/7xhiK/aoLhynlP3JggI26AoRcVNp4n4jLE8zSeVJ/w
+                             esN9PszQW3eHDVgd8szwzac0Gdsh5ZehZ10yNFO5Y4AE61q9kyu0gR2AXH8fYNjIZh27aMIfw4b2PrZtQjtfDEfN7dP
+                             pmT0cLkOzGmPl/QtUYHQ/uAyNYVrjh9o97/WD4XZ5MTCcSOxb7Z5dM9T6hXuprccdTUNmxwxnkr2Nqjk6ZThvdoEpo1
+                             vhAXAZVliLfQi9qR5Lzio3f1LyJSZS52MX0W6p9pG77qkNnVbjoNpPd3Ivkr9hL/cSPeykqos4+foi6/iOX6HLUbpHj
+                             A7t3nhRd+XrJONeWAcv/eIXv/iFFf8ARhOdlEfN9S4AAAAASUVORK5CYII="
+                             width="153" height="148" alt="Example image">
+                        <h5 class>Bitcoin Price Notches 6% Increase as Cryptocurrency Market Jumps $20 Billion</h5>
+                        <ul class="label-tag">
+                            <li>Bullish</li>
+                            <li>1 min</li>
+                            <li>Bloomberg</li>
+                            <li>Economy</li>
+                            <li>BTC</li>
+                        </ul>
+                        <p>The European Securities and Markets Authority (ESMA) has announced leverage limits as
+                            temporary product intervention measures on the provision of contracts for differences
+                            (CFDs), including those using cryptocurrencies, for retail investors in the European Union
+                            (EU). ESMA also announced measures for binary options.
+                        </p>
+                        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                            <div class="uk-navbar-left">
+                                <ul class="uk-navbar-nav">
+                                    <li class=""><a>Continue on Bloomberg</a></li>
+                                </ul>
+                            </div>
+                            <div class="uk-navbar-right">
+                                <ul class="uk-navbar-nav">
+                                    <li class="uk-active"><a href="#">Active</a></li>
+                                    <li><a href="#"><span uk-icon="heart"></span>Bullish</a></li>
+                                    <li><a href="#"><span uk-icon="heart"></span>Bearish</a></li>
+                                    <li><a href="#"><span uk-icon="heart"></span>Important</a></li>
+                                    <li><a href="#"><span uk-icon="heart"></span>Toxic</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                    <hr>
+                </div>
+                <!--End-Second-line-->
+
+                <!--Third-line-->
+                <div>
+                    <div class="uk-panel">
+                        <h5 class>‘Crypto Hour’ To Draw Attention To Rising Crypto</h5>
+                        <ul class="label-tag">
+                            <li>Toxic</li>
+                            <li>1 min</li>
+                            <li>NYTimes</li>
+                            <li>Exchange listing</li>
+                            <li>GNT</li>
+                        </ul>
+                        <p>The European Securities and Markets Authority (ESMA) has announced leverage limits as
+                            temporary product intervention measures on the provision of contracts for differences
+                            (CFDs), including those using cryptocurrencies, for retail investors in the European Union
+                            (EU). ESMA also announced measures for binary options.
+                        </p>
+                        <a>Continue on NYTimes</a>
+                    </div>
+                    <hr>
+                </div>
+                <!--End-Third-line-->
+                <!--Fourth-line-->
+                <div>
+                    <div class="uk-panel">
+                        <img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAflBMVEX//
+                             /8AAAD8/PyYmJiwsLD09PTLy8vR0dHCwsLt7e3a2tqfn595eXmqqqqOjo6FhYVtbW1RUVFYWFi2trZ0dHQuLi6/v7
+                             /m5uajo6MpKSlnZ2ff39+SkpJiYmLW1tbx8fERERFERERMTEw2NjYcHBxGRkYhISE7OzuIiIgWFha1nsn6AAAKxElEQ
+                             VR4nO1d63qiMBAtiHdd79dqq63dtu//grtoqQRIcmZImPT7en6D5EjI3E4mDw++EfcHnWQ7We5n76vLKYqi02X1Ptsv
+                             J9ukM+jH3p/vFYPFYb+LzFhND4tH6YFyMEhG7xZuebxPkoH0kAkYtGYEcnfMhz+BZXu9ZLHLsFwH/WW2k5da9G6YLdr
+                             SRKoRJ7y5WYX5Irw32dk7o3fDtCtNKY94eHHML8VuG8qLfBx5oHfDZCNN7j+6c2/8UhylDUiHYtZ5eJH8IBvgd+X4JM
+                             Rv4ML4YZhLeK591+bBjGXjXkCrUX4pto3y6/qwfzasmltW46kAvxSjhlyAhRC/FL0G+MV+LbwNU+8Ee6L8Unh2APy5o
+                             Dj+eOS3+SvN7or3Z18EJZcYFR0/BCfSvHJoeeAXu8tRuMDROcHNSZpTASvHjmpHmlAFnDpx4awxeThcb4bSXDRYuCJ4
+                             kGaixdgNwZCsRBFDFwRDcNT0cGAYwybogGLoBGtP1D/S4wdQa7kJ1UyoqGE0wjT0ZbCD4q70yGEwCzgb6XETwHLD29K
+                             jpmDFYXiWHjUJezrB8A2hCrJZ/CnL6B3EBfUnrTIZaKuNROWlLt4oBG2ll+M2SYaTY1O5m8/jZLhItrZ6wgEnaP0Isx
+                             pQf1FP44VgtMgSwFb7BX+Kz7ZfUlJ5HZ8kR8qgrUUhlKG1Pr9Wr4/HKzd8ClglhYFZ59YSIzi2PrpcqOy8OeGUx7w85
+                             +xuFpR+s87RaF51W9dtTvxYqb6wqz8QhvYKqEYz8OTuPerUJfZ4dWInuLY/X5ts7n06YBdFO+1cA+I5eyYcGIHhbm1q
+                             dfcyHX0MxzcMP0bTF63E3SArie2De7URBBIzZ9P9/cIkf1u21l3NnoO43123loW5PTU6X6/24RUX4OIA7b8Qjcw/8V3
+                             pPw57ffOl2UN7rePXPSeL0UZsr1mScrT/gDW3FU+jz9GCmljYpO6R1Z5tgfEZ6/xQZsZuc7ilPfsrB9bBKDL9DKSmlN
+                             S0PiEDNGhuMLGMNyUEACxu1X8hmHspqS/H0mPaIj80yWUZAgYxhU5wa9tm9nMYal4iKln7AQw1XyIqS/8JDCsNK1ylk
+                             Nx3BecAqxZ8xJ25QnLHJ2QPU1RkpRCP9AZPsjkIuLy1fC9e7XUk8WAB8UtvKJdN4VuRMNob8LxeKcYDrX3lvQ0CNNkp
+                             issFJY8kwu0KSk3zQ70VX2ci71pyA0g6evVWkujCp5TcDFJRU13zSUnrv0L8KMthVAgTH0m3cqUPtUGsaubdS9pOtLV
+                             2CL5BWPEjdQsRaZISynTOQZK65qYp6e3P5Pg90KxabjW1V5tykN0kj4ZPV9zNGuWPkfS7U1B2DXwbfcr/AtYgPYJQcv
+                             5WSlH+FvlGDpT3kcXBBJmspezRCBJ8uFkIhfcNYAnknAMPML6KSITX3sQ2XDtwu//lX+KfYRivkPISbx8i7rI524VTE
+                             /iXeLNt+OZsYWJ3wCM+0C7/sDy3OcAbla7CGDy8D6c13gAec3o1nBnYSfPKAVaHpvVgOAUpGTUVAU/TdKmB/byQ2ovB
+                             Fi5NXwMSlRukWeUBeylp+hq9liQy9g40KzEjJFnlcohVQPOKF8LCG4pDcwOclojxb1a6NZwKuJ77jP8ZYbXchP2UJ9z
+                             vluakAl5MO/AnG0rklAHd65FYN49keJemVABqLrZwJrFSvi4INPXyB3ZpQmOINm0cwV66+5Y39YDG7VPYaQvtHaIM9z
+                             +WIb5+oAxfpCkVgH6HbzBDSY1JFdC1dAUztO7UaBioDfiEGYaUpUkBt//Dc4nSlArAxw1fKV9XywMvtsAerOgmhDLg6
+                             OkTn89hRcCwlPYvnmoLo7KWAa6wvcKWs+Fu0zbAeewZLu+WFM6WAWv49nAEHJhjCk+9JaGjnjQpBfCoJwRlaUjmAi8J
+                             DgmKL2k1VB64WDghXOujdy8XuASog5tOYVGiijM86gFFwy5N6w6CBKhNuTicD5Gg2X8gBFoB1ddwE5em6mGnRlCjXwQ
+                             85Gsftw/88lDkJoSGjqm8gtCZLZRpSthYktZ1cfVNMKspYcTptKNobsOIESn9AK83EHa8hZEWhoP2rCZI6UYWQiqDIk
+                             u/iYQpuy1CCBLPhPHeBCSUpSaAl0g6puFrDxrlFnllFGmP1tc9pL1EchvXbiDsRbiXdWldu2Vz37TuxtnGetKHKLwvi
+                             NbZ79vNJN0lavbxjgMpTt/3Ec/Cw3qU+QBttuX6rhHbIl+kPkVqi/H7qmhvd6lCymQQ3LUrcm/iTLyV0R/cAai9NfMO
+                             GGmbbAr/xxCWQT66Nq/5JTWNuKJxiVR8Jo9RUcTSm6uem11u+vQO42qUQJ6m/41Nk1kbzqloqjCdddRDczVT1nE3hd/
+                             Ac4o5zJopRz1SrcQVRe+SeTheA9WamHkORem4cmaP/IvvaIrmid5R1qWzD9p+9+mJj9mHE5Q7kmnWmllr0VsczHLVi6
+                             dd+v06h/ZV/F5lgPGdluma44+J+/xNr9bh0VXKkarIJO9/ts0Fn13LJcnaBy5URnhVfp/iuGzOlp9drl1sHRqMWaZLQ
+                             XVoUGUwCvlR+4exGy0e+f5cv9Nyc7C5Zj5VGdZC8R6Tk72Otj0iz01nPCIHD1roEteVteOL6n5SzmLDt0bXn5YqStY+
+                             Q7V3pFYNcYqUAMvN3MygV41oXLedsjChSR2a9N3pOS6GVV0XJiob1UGZAM0rp8fgepgmj1Y+pAhNoP+bGlqxvcYyjC0
+                             BtZ98/i0iPQjpmxecHRNmFsLqJ0v+WwT8RXrIQSq5mGAxU9poWnkp1v/7RCZIrS1oYW1zrL0zHzNbs+ucyJgg7DHAvl
+                             9ZLxnLrza2ghyn/yexxagGgP+v9y/yV5mDKd42MBdrjeUQnCv0aTfFuTEW8njiKRcHg0IP0i9qihE3+ZI8nSat/2olw
+                             IyK9vWoU8Dg2/DCxPpHg6LlFP08VSNn/aLEIujAXsBP0k6XgrsQV7/GV26GkZX5zYHQ50mbJSn6C88lD2F34NczasZQ
+                             pFZdOml0hT/dPXzH5q+jpFYj7HqLKW0vtu6jP1Vf3u4/bvr1s1B18qPkPT26ONdrL6VaERTZQulmjA9mGWjiLBUMT/h
+                             c/UuIW8QFtwoT8bQTOqvosRDDZ8hzhHWrjb/qNp8hc5XTVU29qb7YDNk2Sreg+hIKcxnW6Fmpe6Qnm8FkWGs0urSNnx
+                             WVZy1qnj+ldaR8vEYWw9piCS3FnXuOHIYOOuMaqrETx21pGQydyF2MBefpuJs3HvGmt51Gw8YYcp9UgLUUczrPj8f98
+                             SVLlnHlYGTP25kIhPrkphg6XAmIQvCGGDrdeU2TvXG/DhpDx/7xhiK/aoLhynlP3JggI26AoRcVNp4n4jLE8zSeVJ/w
+                             esN9PszQW3eHDVgd8szwzac0Gdsh5ZehZ10yNFO5Y4AE61q9kyu0gR2AXH8fYNjIZh27aMIfw4b2PrZtQjtfDEfN7dP
+                             pmT0cLkOzGmPl/QtUYHQ/uAyNYVrjh9o97/WD4XZ5MTCcSOxb7Z5dM9T6hXuprccdTUNmxwxnkr2Nqjk6ZThvdoEpo1
+                             vhAXAZVliLfQi9qR5Lzio3f1LyJSZS52MX0W6p9pG77qkNnVbjoNpPd3Ivkr9hL/cSPeykqos4+foi6/iOX6HLUbpHj
+                             A7t3nhRd+XrJONeWAcv/eIXv/iFFf8ARhOdlEfN9S4AAAAASUVORK5CYII="
+                             width="153" height="148" alt="Example image">
+                        <h5 class>Cryptocurrency Market Retreats Under $300 Billion as Bitcoin and Ethereum Decline</h5>
+                        <ul class="label-tag">
+                            <li>Bearish</li>
+                            <li>1 min</li>
+                            <li>NYTimes</li>
+                            <li>Exchange listing</li>
+                            <li>GNT</li>
+                        </ul>
+                        <p>The European Securities and Markets Authority (ESMA) has announced leverage limits as
+                            temporary product intervention measures on the provision of contracts for differences
+                            (CFDs), including those using cryptocurrencies, for retail investors in the European Union
+                            (EU). ESMA also announced measures for binary options.
+                        </p>
+                        <a>Continue on NYTimes</a>
+                    </div>
+                    <hr>
+                </div>
+                <!--End-fourth-line-->
+            </div>
+        </div>
+    </div>
+</div>

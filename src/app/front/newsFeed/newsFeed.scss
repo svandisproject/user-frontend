@@ -2,3 +2,24 @@
 news-feed {
     // Styles encapsulated in the component
 }
+$mainHeaderTextColor: #ffffff;
+$paragraphTextColor: #c2c2c2;
+$subTextColor: #9c9c9c;
+$MainHeaderTextSize: 20px;
+$HeaderTextSize: 16px;
+$subTextSize: 13px;
+
+.news-feed-wrapper{
+    background: #1c1c1c;
+    width: 100%;
+    height: 100%;
+}
+.label-tag{
+    display: flex;
+    li{
+        margin-left: 20px;
+    }
+}
+.uk-navbar-nav > li > a{
+    text-transform: none;
+}
