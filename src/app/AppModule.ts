@@ -1,7 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './AppComponent';
-import {UserFrontModule} from './user-front/UserFrontModule';
+import {FrontModule} from './front/FrontModule';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import {UserFrontModule} from './user-front/UserFrontModule';
     ],
     imports: [
         BrowserModule,
-        UserFrontModule
+        RouterModule.forRoot([]),
+        FrontModule
     ],
     providers: [],
     bootstrap: [AppComponent]
