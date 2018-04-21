@@ -1,107 +1,108 @@
 // Encapsulation using the component tag
 news-feed {
     // Styles encapsulated in the component
-}
-$mainHeaderTextColor: #ffffff;
-$paragraphTextColor: #c2c2c2;
-$subTextColor: #9c9c9c;
-$MainHeaderTextSize: 20px;
-$HeaderTextSize: 16px;
-$subTextSize: 13px;
+    $mainHeaderTextColor: #ffffff;
+    $paragraphTextColor: #c2c2c2;
+    $subTextColor: #9c9c9c;
+    $MainHeaderTextSize: 20px;
+    $HeaderTextSize: 16px;
+    $subTextSize: 13px;
 
-.news-feed-wrapper{
-    background: #1c1c1c;
-    width: 100%;
-    height: 100%;
-}
-.label-tag{
-    display: flex;
-    margin-left: 0;
-    padding-left: 0;
-    li{
-        margin-left: 20px;
-        margin-right: 20px;
-        line-height: 38px;
-        list-style: none;
-        color: $subTextColor;
-        font-size: $subTextSize;
+    .news-feed-wrapper{
+        background: #1c1c1c;
+        width: 100%;
+        height: 100%;
+    }
+    .label-tag{
+        display: flex;
+        margin-left: 0;
+        padding-left: 0;
+        li{
+            margin-left: 20px;
+            margin-right: 20px;
+            line-height: 38px;
+            list-style: none;
+            color: $subTextColor;
+            font-size: $subTextSize;
 
+        }
+        .dotted::before {
+            content: "•";
+            color: #829ab9;
+            margin-right: 6px;
+        }
+        .main-header-text{
+            font-size: $MainHeaderTextSize;
+            color: $mainHeaderTextColor;
+        }
     }
-    .dotted::before {
-        content: "•";
-        color: #829ab9;
-        margin-right: 6px;
-    }
-    .main-header-text{
+    .uk-navbar-left .uk-navbar-nav li .continue-link,
+    .uk-light .continue-link,
+    .uk-section-primary:not(.uk-preserve-color) .continue-link,
+    .uk-section-secondary:not(.uk-preserve-color) .continue-link,
+    .uk-tile-primary:not(.uk-preserve-color) .continue-link,
+    .uk-tile-secondary:not(.uk-preserve-color) .continue-link,
+    .uk-card-primary.uk-card-body .continue-link,
+    .uk-card-primary > :not([class*='uk-card-media']) .continue-link,
+    .uk-card-secondary.uk-card-body .continue-link,
+    .uk-card-secondary > :not([class*='uk-card-media']) .continue-link,
+    .uk-overlay-primary .continue-link,
+    .uk-offcanvas-bar .continue-link,
+    .uk-light .uk-link,
+    .uk-section-primary:not(.uk-preserve-color) .uk-link,
+    .uk-section-secondary:not(.uk-preserve-color) .uk-link,
+    .uk-tile-primary:not(.uk-preserve-color) .uk-link,
+    .uk-tile-secondary:not(.uk-preserve-color) .uk-link,
+    .uk-card-primary.uk-card-body .uk-link,
+    .uk-card-primary > :not([class*='uk-card-media']) .uk-link,
+    .uk-card-secondary.uk-card-body .uk-link,
+    .uk-card-secondary > :not([class*='uk-card-media']) .uk-link,
+    .uk-overlay-primary .uk-link,
+    .uk-offcanvas-bar .uk-link .continue-link{
         font-size: $MainHeaderTextSize;
-        color: $mainHeaderTextColor;
+        color: $subTextColor;
+        text-decoration: none;
+        font-style: italic;
+    }
+    .continue-link:hover{
+        color: rgba(255, 255, 255, 0.7);
+    }
+    .label-tag li:first-child{
+        padding: 6px 10px;
+        margin-left: 0;
+        list-style: none;
+        line-height: normal;
+    }
+    .important{
+        border: 1px solid #ffe119;
+    }
+    .bullish{
+        border: 1px solid #00d982;
+    }
+    .toxic{
+        border: 1px solid #923dff;
+    }
+    .bearish{
+        border: 1px solid #e65542;
+    }
+    .uk-navbar-nav > li > a{
+        text-transform: none;
+    }
+    .control-header-card-icon{
+        text-align: right;
+        display: flex;
+    }
+    .control-header-card-icon a{
+        padding: 3px 6px 0 6px;
+        background: #2f2f2f;
+        margin-left: 22px;
+    }
+    .uk-panel p{
+        font-size: $HeaderTextSize;
+        color: $paragraphTextColor;
+    }
+    .uk-navbar-container.uk-navbar-transparent.subnav-nav{
+        width: 100%;
     }
 }
-.uk-navbar-left .uk-navbar-nav li .continue-link,
-.uk-light .continue-link,
-.uk-section-primary:not(.uk-preserve-color) .continue-link,
-.uk-section-secondary:not(.uk-preserve-color) .continue-link,
-.uk-tile-primary:not(.uk-preserve-color) .continue-link,
-.uk-tile-secondary:not(.uk-preserve-color) .continue-link,
-.uk-card-primary.uk-card-body .continue-link,
-.uk-card-primary > :not([class*='uk-card-media']) .continue-link,
-.uk-card-secondary.uk-card-body .continue-link,
-.uk-card-secondary > :not([class*='uk-card-media']) .continue-link,
-.uk-overlay-primary .continue-link,
-.uk-offcanvas-bar .continue-link,
-.uk-light .uk-link,
-.uk-section-primary:not(.uk-preserve-color) .uk-link,
-.uk-section-secondary:not(.uk-preserve-color) .uk-link,
-.uk-tile-primary:not(.uk-preserve-color) .uk-link,
-.uk-tile-secondary:not(.uk-preserve-color) .uk-link,
-.uk-card-primary.uk-card-body .uk-link,
-.uk-card-primary > :not([class*='uk-card-media']) .uk-link,
-.uk-card-secondary.uk-card-body .uk-link,
-.uk-card-secondary > :not([class*='uk-card-media']) .uk-link,
-.uk-overlay-primary .uk-link,
-.uk-offcanvas-bar .uk-link .continue-link{
-    font-size: $MainHeaderTextSize;
-    color: $subTextColor;
-    text-decoration: none;
-    font-style: italic;
-}
-.continue-link:hover{
-    color: rgba(255, 255, 255, 0.7);
-}
-.label-tag li:first-child{
-    padding: 6px 10px;
-    margin-left: 0;
-    list-style: none;
-    line-height: normal;
-}
-.important{
-    border: 1px solid #ffe119;
-}
-.bullish{
-    border: 1px solid #00d982;
-}
-.toxic{
-    border: 1px solid #923dff;
-}
-.bearish{
-    border: 1px solid #e65542;
-}
-.uk-navbar-nav > li > a{
-    text-transform: none;
-}
-.control-header-card-icon{
-    text-align: right;
-    display: flex;
-}
-.control-header-card-icon a{
-    padding: 3px 6px 0 6px;
-    background: #2f2f2f;
-    margin-left: 22px;
-}
-.uk-panel p{
-    font-size: $HeaderTextSize;
-    color: $paragraphTextColor;
-}
-.uk-navbar-container.uk-navbar-transparent.subnav-nav{
-    width: 100%;
-}
+
