@@ -4,8 +4,8 @@ export interface Post {
     id: string;
     title: string;
     url: string;
-    content;
-    source;
+    content: string;
+    source: string;
     publishedAt: Date;
     createdAt: Date;
     tags: Tag[];

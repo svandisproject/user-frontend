@@ -4,9 +4,13 @@ import {RouterModule} from '@angular/router';
 import {FrontRouterConfig} from './FrontRouterConfig';
 import {TranslateModule} from '@ngx-translate/core';
 import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
+import {CommonModule} from '@angular/common';
+import {SvandisApiModule} from '../svandisApi/SvandisApiModule';
 
 @NgModule({
     imports: [
+        CommonModule,
+        SvandisApiModule,
         RouterModule.forChild(FrontRouterConfig),
         TranslateModule
     ],

@@ -7,13 +7,4 @@ import {Component, ViewEncapsulation} from '@angular/core';
     encapsulation: ViewEncapsulation.None
 })
 export class NewsFeedComponent {
-    public imAPropertyThatIsVisibleInTemplate: string;
-
-    constructor() {
-        this.imAPropertyThatIsVisibleInTemplate = 'Yo how are you ?';
-    }
-
-    public onClickIllCallAUiKitMethod() {
-        UIkit.modal.alert('Hey its working');
-    }
 }

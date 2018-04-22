@@ -1,5 +1,7 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import {Post} from '../../../svandisApi/dataModels/Post';
+import {PostService} from '../../../svandisApi/services/PostService';
 
 @Component({
     selector: 'app-feed-list',
@@ -7,5 +9,9 @@ import {Observable} from 'rxjs/Observable';
     encapsulation: ViewEncapsulation.None
 })
 export class FeedListComponent {
-    @Input() feeds: Observable<Feed[]>;
+    public posts: Observable<Post[]>;
+
+    constructor(private postService: PostService) {
+        this.posts = this.postService.findAll();
+    }
 }

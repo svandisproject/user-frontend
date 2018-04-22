@@ -1,43 +1,20 @@
-<ul class="uk-list uk-list-divider list-alerts">
-    <li class="list-alerts-list">
+<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts | async as feeds; else listLoading">
+    <li class="list-alerts-list" *ngFor="let feed of feeds">
         <div class="uk-float-left uk-flex">
             <a href="" class="news-feed-header-link">
-                <h6 class="news-feed-header">
-                    EU Markets Watchdog Toughens Rules on Crypto Derivatives
-                </h6>
+                <h6 class="news-feed-header">{{feed.title}}</h6>
             </a>
-            <p class="news-feed-header-link-paragraph">
-                In an announcement Tuesday, the EU markets watchdog said
-            </p>
+            <p class="news-feed-header-link-paragraph">{{feed.content}}</p>
         </div>
         <div class="uk-float-right uk-flex">
-            <span class="news-feed-header-link-date uk-float-right">7:20:35 PM</span>
+            <!--TODO: What time should be shown createdAt or publishedAt ?-->
+            <span class="news-feed-header-link-date uk-float-right">{{feed.createdAt}}</span>
+            <!--TODO: Are those tags ?-->
             <span class="news-feed-header-link-channel uk-float-right channel-red">BTC ETH</span>
         </div>
     </li>
-    <li class="list-alerts-list">
-        <div class="uk-float-left uk-flex">
-            <a href="" class="news-feed-header-link">
-                <h6 class="news-feed-header">Twitter to ban cryptocurrency ads</h6>
-            </a>
-            <p class="news-feed-header-link-paragraph">
-                Twitter Inc (TWTR.N) will start banning
-                cryptocurrency advertising from Tuesday, joining
-            </p>
-        </div>
-        <div class="uk-float-right uk-flex">
-            <span class="news-feed-header-link-date uk-float-right">7:20:18 PM</span>
-            <span class="news-feed-header-link-channel uk-float-right channel-red">BTC ETH</span>
-        </div>
-    </li>
-    <li>List item 3</li>
-    <li>List item 1</li>
-    <li>List item 2</li>
-    <li>List item 3</li>
-    <li>List item 1</li>
-    <li>List item 2</li>
-    <li>List item 3</li>
-    <li>List item 1</li>
-    <li>List item 2</li>
-    <li>List item 3</li>
 </ul>
+
+<ng-template #listLoading>
+    <h5 translate>APP.LOADING</h5>
+</ng-template>
