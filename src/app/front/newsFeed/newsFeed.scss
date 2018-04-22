@@ -1,5 +1,5 @@
 // Encapsulation using the component tag
-news-feed {
+app-news-feed {
     // Styles encapsulated in the component
     $mainHeaderTextColor: #ffffff;
     $paragraphTextColor: #c2c2c2;
@@ -7,6 +7,8 @@ news-feed {
     $MainHeaderTextSize: 20px;
     $HeaderTextSize: 16px;
     $subTextSize: 13px;
+    $redChannel: #e65542;
+    $greenChannel: #02cd7c;
 
     .news-feed-wrapper{
         background: #1c1c1c;
@@ -36,36 +38,15 @@ news-feed {
             color: $mainHeaderTextColor;
         }
     }
-    .uk-navbar-left .uk-navbar-nav li .continue-link,
-    .uk-light .continue-link,
-    .uk-section-primary:not(.uk-preserve-color) .continue-link,
-    .uk-section-secondary:not(.uk-preserve-color) .continue-link,
-    .uk-tile-primary:not(.uk-preserve-color) .continue-link,
-    .uk-tile-secondary:not(.uk-preserve-color) .continue-link,
-    .uk-card-primary.uk-card-body .continue-link,
-    .uk-card-primary > :not([class*='uk-card-media']) .continue-link,
-    .uk-card-secondary.uk-card-body .continue-link,
-    .uk-card-secondary > :not([class*='uk-card-media']) .continue-link,
-    .uk-overlay-primary .continue-link,
-    .uk-offcanvas-bar .continue-link,
-    .uk-light .uk-link,
-    .uk-section-primary:not(.uk-preserve-color) .uk-link,
-    .uk-section-secondary:not(.uk-preserve-color) .uk-link,
-    .uk-tile-primary:not(.uk-preserve-color) .uk-link,
-    .uk-tile-secondary:not(.uk-preserve-color) .uk-link,
-    .uk-card-primary.uk-card-body .uk-link,
-    .uk-card-primary > :not([class*='uk-card-media']) .uk-link,
-    .uk-card-secondary.uk-card-body .uk-link,
-    .uk-card-secondary > :not([class*='uk-card-media']) .uk-link,
-    .uk-overlay-primary .uk-link,
-    .uk-offcanvas-bar .uk-link .continue-link{
-        font-size: $MainHeaderTextSize;
-        color: $subTextColor;
-        text-decoration: none;
+
+    .continue-link{
+        font-size: $HeaderTextSize;
+        color: #8c8c8c !important;
+        text-decoration: none !important;
         font-style: italic;
     }
     .continue-link:hover{
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(140, 140, 140, 0.7);
     }
     .label-tag li:first-child{
         padding: 6px 10px;
@@ -103,6 +84,44 @@ news-feed {
     }
     .uk-navbar-container.uk-navbar-transparent.subnav-nav{
         width: 100%;
+    }
+//News-feed-list
+    .after-header-line{
+        margin-bottom: 0;
+    }
+    .list-alerts{
+        margin: 0;
+
+       .news-feed-header,
+       .news-feed-header-linh,
+       .news-feed-header-link-paragraph,
+       .news-feed-header-link-date,
+       .news-feed-header-link-channel{
+           margin: 0;
+           padding: 0;
+           line-height: 20px;
+           font-size: $HeaderTextSize;
+       }
+        li{
+            margin-top: 8px;
+        }
+        .news-feed-header-linh{
+            color: #dbdbdb;
+        }
+        .news-feed-header-link-paragraph{
+            margin-left: 10px;
+            color: #b5b5b5;
+        }
+        .news-feed-header-link-date,
+        .news-feed-header-link-channel{
+            color: #b5b5b5;
+        }
+        .news-feed-header-link-channel{
+            margin-left: 10px;
+        }
+        .channel-red{
+            color: $redChannel;
+        }
     }
 }
 
