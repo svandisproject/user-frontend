@@ -10,7 +10,9 @@
             <!--TODO: What time should be shown createdAt or publishedAt ?-->
             <span class="news-feed-header-link-date uk-float-right">{{feed.createdAt}}</span>
             <!--TODO: Are those tags ?-->
-            <span class="news-feed-header-link-channel uk-float-right channel-red">BTC ETH</span>
+            <span class="news-feed-header-link-channel uk-float-right channel-red" *ngIf="feed.tags">
+                <ng-container *ngFor="let tag of feed.tags">{{tag.title}}</ng-container>
+            </span>
         </div>
     </li>
 </ul>
