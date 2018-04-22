@@ -1,14 +1,15 @@
-// Encapsulation using the component tag
+@import "../colors";
+
+$mainHeaderTextColor: #ffffff;
+$paragraphTextColor: #c2c2c2;
+$subTextColor: #9c9c9c;
+$redChannel: $red-orange;
+$greenChannel: #02cd7c;
+
 app-news-feed {
-    // Styles encapsulated in the component
-    $mainHeaderTextColor: #ffffff;
-    $paragraphTextColor: #c2c2c2;
-    $subTextColor: #9c9c9c;
     $MainHeaderTextSize: 20px;
     $HeaderTextSize: 16px;
     $subTextSize: 13px;
-    $redChannel: #e65542;
-    $greenChannel: #02cd7c;
 
     .news-feed-wrapper{
         background: #1c1c1c;
@@ -19,6 +20,7 @@ app-news-feed {
         display: flex;
         margin-left: 0;
         padding-left: 0;
+
         li{
             margin-left: 20px;
             margin-right: 20px;
@@ -55,16 +57,16 @@ app-news-feed {
         line-height: normal;
     }
     .important{
-        border: 1px solid #ffe119;
+        border: 1px solid $yellow-light;
     }
     .bullish{
-        border: 1px solid #00d982;
+        border: 1px solid $green-light;
     }
     .toxic{
-        border: 1px solid #923dff;
+        border: 1px solid $violet;
     }
     .bearish{
-        border: 1px solid #e65542;
+        border: 1px solid $red-orange;
     }
     .uk-navbar-nav > li > a{
         text-transform: none;
@@ -85,7 +87,7 @@ app-news-feed {
     .uk-navbar-container.uk-navbar-transparent.subnav-nav{
         width: 100%;
     }
-//News-feed-list
+    //News-feed-list
     .after-header-line{
         margin-bottom: 0;
     }
@@ -120,7 +122,7 @@ app-news-feed {
             margin-left: 10px;
         }
         .channel-red{
-            color: $redChannel;
+            color: $red-orange;
         }
     }
 }
