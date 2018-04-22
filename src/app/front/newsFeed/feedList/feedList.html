@@ -1,0 +1,22 @@
+<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts | async as feeds; else listLoading">
+    <li class="list-alerts-list" *ngFor="let feed of feeds">
+        <div class="uk-float-left uk-flex">
+            <a href="" class="news-feed-header-link">
+                <h6 class="news-feed-header">{{feed.title}}</h6>
+            </a>
+            <p class="news-feed-header-link-paragraph">{{feed.content}}</p>
+        </div>
+        <div class="uk-float-right uk-flex">
+            <!--TODO: What time should be shown createdAt or publishedAt ?-->
+            <span class="news-feed-header-link-date uk-float-right">{{feed.createdAt}}</span>
+            <!--TODO: Are those tags ?-->
+            <span class="news-feed-header-link-channel uk-float-right channel-red" *ngIf="feed.tags">
+                <ng-container *ngFor="let tag of feed.tags">{{tag.title}}</ng-container>
+            </span>
+        </div>
+    </li>
+</ul>
+
+<ng-template #listLoading>
+    <h5 translate>APP.LOADING</h5>
+</ng-template>
