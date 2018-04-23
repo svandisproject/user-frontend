@@ -4,7 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import * as _ from 'lodash';
 import {Channel, Pusher} from 'pusher-js';
-import pusher = require('pusher-js');
+import * as pusher from 'lodash';
 
 @Injectable()
 export class PusherService {
