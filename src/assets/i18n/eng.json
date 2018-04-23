@@ -1,5 +1,13 @@
 {
     "APP.LOADING": "Loading...",
     "APP.PAGES.LOGIN.TITLE": "Login",
+    "NAVIGATION.FRONT.ITEM.DASHBOARD": "Dashboard",
+    "NAVIGATION.FRONT.ITEM.ICO_SCR": "ICO scr",
+    "NAVIGATION.FRONT.ITEM.ALT_COIN": "Alt coins scr",
+    "NAVIGATION.FRONT.ITEM.INDEX_BUILDER": "Index builder",
+    "NAVIGATION.FRONT.ITEM.VIS_TOOLS": "Visualization tools",
+    "NAVIGATION.FRONT.ITEM.MARKET_CAPS": "Market caps",
+    "NAVIGATION.FRONT.ITEM.DATA_MARKET": "Data marketplace",
+    "NAVIGATION.FRONT.ITEM.NEWS": "Newsfeed",
     "NEWS_FEED.TITLE": "News feed"
 }

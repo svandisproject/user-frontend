@@ -7,14 +7,13 @@
                         <img src="../../../assets/image/logo.png" alt="">
                     </a>
                     <ul class="uk-navbar-nav uk-tab left-nav-bar" uk-tab>
-                        <li><a href="#" class="image-menu dashboard">Dashboard</a></li>
-                        <li><a href="#" class="image-menu iso">ICO scr</a></li>
-                        <li><a href="#" class="image-menu alt">Alt coins scr</a></li>
-                        <li><a href="#" class="image-menu index">Index builder</a></li>
-                        <li><a href="#" class="image-menu visualization">Visualization tools</a></li>
-                        <li><a href="#" class="image-menu market">Market caps</a></li>
-                        <li><a href="#" class="image-menu data">Data marketplace</a></li>
-                        <li><a href="#" class="image-menu newsfeed">Newsfeed</a></li>
+                        <li *ngFor="let item of navItems">
+                            <a routerLinkActive="active-link"
+                               [routerLink]="[item.path]"
+                               [class]="'image-menu ' + item.cssClass">
+                                {{item.text | translate}}
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div class="uk-navbar-right">
