@@ -1,6 +1,8 @@
 import {NgModule} from '@angular/core';
 import {HttpService} from './http/HttpService';
 import {HttpClientModule} from '@angular/common/http';
+import {AuthResource} from './auth/AuthResource';
+import {AuthService} from './auth/AuthService';
 
 /**
  * TODO: Remove comment when all understand this shit
@@ -9,10 +11,12 @@ import {HttpClientModule} from '@angular/common/http';
  */
 @NgModule({
     imports: [
-        HttpClientModule
+        HttpClientModule,
     ],
     providers: [
-        HttpService
+        HttpService,
+        AuthResource,
+        AuthService
     ]
 })
 export class AppCommonProvidersModule {
