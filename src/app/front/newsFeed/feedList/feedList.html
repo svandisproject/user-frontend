@@ -1,10 +1,10 @@
-<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts | async as feeds; else listLoading">
-    <li class="list-alerts-list" *ngFor="let feed of feeds">
+<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts; else listLoading">
+    <li class="list-alerts-list" *ngFor="let feed of posts | listReverse">
         <div class="uk-float-left uk-flex">
-            <a href="" class="news-feed-header-link">
-                <h6 class="news-feed-header">{{feed.title}}</h6>
+            <a [href]="feed.url" class="news-feed-header-link">
+                <h6 class="news-feed-header">{{feed.title | truncate:[50, '...']}}</h6>
             </a>
-            <p class="news-feed-header-link-paragraph">{{feed.content}}</p>
+            <p class="news-feed-header-link-paragraph">{{feed.content | truncate}}</p>
         </div>
         <div class="uk-float-right uk-flex">
             <!--TODO: What time should be shown createdAt or publishedAt ?-->

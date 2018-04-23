@@ -1,4 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
+import {NavigationItem} from '../NavigationItem';
+import {FrontNavigation} from '../../config/FrontNavigation';
 
 @Component({
     selector: 'app-front-navigation',
@@ -8,4 +10,5 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 
 export class FrontNavigationComponent {
+    public navItems: NavigationItem[] = FrontNavigation;
 }

@@ -6,9 +6,11 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 import {SvandisApiModule} from '../svandisApi/SvandisApiModule';
+import {AppCommonModule} from '../common/AppCommonModule';
 
 @NgModule({
     imports: [
+        AppCommonModule,
         CommonModule,
         SvandisApiModule,
         RouterModule.forChild(FrontRouterConfig),
