@@ -1,79 +1,41 @@
-<header>
-    <div class="uk-container uk-container-large">
-        <div class="uk-child-width-1-1@s uk-child-width-1-1@m uk-child-width-1-1@l uk-grid-small uk-grid-match" uk-grid>
-            <div class="uk-card uk-card-secondary uk-card-body">
-                <nav class="uk-navbar-container navbar-header" uk-navbar>
-                    <div class="uk-navbar-left left-nav">
-                        <a href="#" class="logo">
-                            <img src="../../../assets/image/logo.png" alt="">
-                        </a>
-                        <ul class="uk-navbar-nav uk-tab left-nav-bar" uk-tab>
-                            <li><a href="#" class="image-menu dashboard">Dashboard</a></li>
-                            <li><a href="#" class="image-menu iso">ICO scr</a></li>
-                            <li><a href="#" class="image-menu alt">Alt coins scr</a></li>
-                            <li><a href="#" class="image-menu index">Index builder</a></li>
-                            <li><a href="#" class="image-menu visualization">Visualization tools</a></li>
-                            <li><a href="#" class="image-menu market">Market caps</a></li>
-                            <li><a href="#" class="image-menu data">Data marketplace</a></li>
-                            <li><a href="#" class="image-menu newsfeed">Newsfeed</a></li>
-                        </ul>
-                    </div>
-                    <div class="uk-navbar-right">
-                        <ul class="uk-navbar-nav right-nav-bar">
-                            <li><a href="#" class="image-menu sun"></a></li>
-                            <li><a href="#" class="image-menu logout"></a></li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-</header>
-<div class="news-feed-wrapper">
-    <div class="uk-container uk-container-large">
-        <div class="uk-margin-top uk-child-width-1-1@s uk-child-width-1-1@m uk-child-width-1-1@l uk-grid-small uk-grid-match main-section-offset"
-             uk-grid>
-            <div class="uk-card uk-card-secondary uk-card-body">
-                <div class="uk-child-width-1-2 uk-grid-small rates uk-grid">
-                    <h3 class="uk-card-title main-header-text" translate>NEWS_FEED.TITLE</h3>
-                    <div class="control-header-card-icon uk-flex-right">
-                        <a href="#"><span uk-icon="credit-card"></span></a>
-                        <div class="uk-inline">
-                            <a href="#" class="uk-button uk-button-default" type="button">
-                                <span uk-icon="settings"></span>
-                            </a>
-                            <div class="uk-dropdown-grid uk-width-1-1@m"
-                                 uk-dropdown="pos: bottom-right"
-                                 uk-dropdown="mode: click"
-                                 uk-grid>
-                                <div class="uk-nav uk-dropdown-nav">
-                                    <div class="uk-margin">
-                                        <form action="">
-                                            <div class="uk-inline">
+<div class="uk-card uk-card-secondary uk-card-body">
+    <div class="uk-child-width-1-2 uk-grid-small rates uk-grid">
+        <h3 class="uk-card-title main-header-text" translate>NEWS_FEED.TITLE</h3>
+        <div class="control-header-card-icon uk-flex-right">
+            <a href="#"><span uk-icon="credit-card"></span></a>
+            <div class="uk-inline">
+                <a href="#" class="uk-button uk-button-default" type="button">
+                    <span uk-icon="settings"></span>
+                </a>
+                <div class="uk-dropdown-grid uk-width-1-1@m"
+                     uk-dropdown="pos: bottom-right"
+                     uk-dropdown="mode: click"
+                     uk-grid>
+                    <div class="uk-nav uk-dropdown-nav">
+                        <div class="uk-margin">
+                            <form action="">
+                                <div class="uk-inline">
                                                 <span class="uk-form-icon uk-form-icon-flip"
                                                       uk-icon="icon: search"></span>
-                                                <input class="uk-input" type="text">
-                                            </div>
-                                            <div class="uk-margin">
-                                                <div class="uk-inline">
+                                    <input class="uk-input" type="text">
+                                </div>
+                                <div class="uk-margin">
+                                    <div class="uk-inline">
                                                     <span class="uk-form-icon uk-form-icon-flip"
                                                           uk-icon="icon: lock"></span>
-                                                    <input class="uk-input" type="text">
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <input class="uk-input" type="text">
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
-
                     </div>
                 </div>
-                <hr class="after-header-line">
-                <!--News-Feed-List-->
-                <app-feed-list></app-feed-list>
-                <!--End-News-Feed-List-->
             </div>
+
         </div>
     </div>
+    <hr class="after-header-line">
+    <!--News-Feed-List-->
+    <app-feed-list></app-feed-list>
+    <!--End-News-Feed-List-->
 </div>

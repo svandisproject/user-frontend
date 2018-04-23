@@ -8,6 +8,7 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
+import {NavigationModule} from './navigation/NavigationModule';
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import {AppCommonModule} from './common/AppCommonModule';
     imports: [
         AppCommonModule,
         AppCommonProvidersModule,
+        NavigationModule,
         BrowserModule,
         HttpClientModule,
         RouterModule.forRoot([]),

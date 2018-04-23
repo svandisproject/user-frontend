@@ -1,0 +1,14 @@
+$app-background-color: #1c1c1c;
+$app-header-color: #212121;
+
+app-root {
+    .app-wrapper {
+        background: #1c1c1c;
+        width: 100%;
+        height: 100%;
+    }
+
+    header {
+        background: $app-header-color;
+    }
+}
