@@ -44,10 +44,14 @@ app-front-navigation {
     .sun,
     .logout {
         width: 40px;
-        height: 40px;
+        //height: 40px !important;
         padding-top: 5px;
         background-color: #2f2f2f;
         background-position: 50% 50%;
+    }
+    .uk-navbar-nav > li > .sun,
+    .uk-navbar-nav > li > .logout{
+        height: 40px
     }
     .left-nav-bar {
         height: 54px;
