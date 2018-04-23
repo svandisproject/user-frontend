@@ -11,6 +11,14 @@ app-news-feed {
     $HeaderTextSize: 16px;
     $subTextSize: 13px;
 
+    .switcher-img{
+        padding-top: 8px;
+    }
+     .uk-inline .dropdown-filter{
+        border: none;
+        background: #2f2f2f !important;
+         padding-top: 0;
+    }
     .label-tag {
         display: flex;
         margin-left: 0;
