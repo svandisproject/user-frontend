@@ -28,6 +28,7 @@ export class FeedListComponent {
         this.pusherChannel = this.pusherService.connectToChannel(this.PUSHER_CHANNEL);
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
             .subscribe((eventData: NewsFeedPusherEvent) => {
+                // TODO: Can a duplicated news be send ?
                 this.posts.push(eventData.message);
             });
     }
