@@ -3,10 +3,14 @@ import {LoginPageComponent} from './pages/login/LoginPageComponent';
 import {TranslateModule} from '@ngx-translate/core';
 import {ListReversePipe} from './pipes/ListReversePipe';
 import {TruncatePipe} from './pipes/TruncatePipe';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
-    imports: [TranslateModule],
+    imports: [
+        FormsModule,
+        TranslateModule
+    ],
     declarations: [
         ListReversePipe,
         TruncatePipe,

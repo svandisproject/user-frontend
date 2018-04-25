@@ -1,9 +1,11 @@
 import {NgModule} from '@angular/core';
 import {HttpService} from './http/HttpService';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthResource} from './auth/AuthResource';
 import {AuthService} from './auth/AuthService';
 import {PusherModule} from './pusher/PusherModule';
+import {UserService} from './user/UserService';
+import {AuthInterceptor} from './http/AuthInterceptor';
 
 @NgModule({
     imports: [
@@ -12,8 +14,14 @@ import {PusherModule} from './pusher/PusherModule';
     ],
     providers: [
         HttpService,
+        UserService,
         AuthResource,
-        AuthService
+        AuthService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
     ]
 })
 export class AppCommonProvidersModule {

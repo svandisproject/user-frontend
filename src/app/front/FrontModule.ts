@@ -7,6 +7,8 @@ import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 import {SvandisApiModule} from '../svandisApi/SvandisApiModule';
 import {AppCommonModule} from '../common/AppCommonModule';
+import {FilterBlockComponent} from './newsFeed/filterBlock/FilterBlockComponent';
+import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 
 @NgModule({
     imports: [
@@ -18,7 +20,11 @@ import {AppCommonModule} from '../common/AppCommonModule';
     ],
     declarations: [
         NewsFeedComponent,
+        FilterBlockComponent,
         FeedListComponent
+    ],
+    providers: [
+        CanActivateRouteGuard
     ]
 })
 export class FrontModule {

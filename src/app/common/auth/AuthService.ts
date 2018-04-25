@@ -12,7 +12,7 @@ export class AuthService {
     public static readonly AUTH_TOKEN_KEY: string = 'authToken';
     public static readonly REFRESH_TOKEN_KEY: string = 'refreshToken';
 
-    private authToken: AuthToken;
+    private authToken: AuthToken = <AuthToken>{};
 
     constructor(private authResource: AuthResource) {
     }
