@@ -46,24 +46,37 @@
                         </h3>
                     </div>
                     <div class="uk-card-body">
-                        <form class="login">
+                        <form class="login" #form="ngForm" (submit)="login(form)">
                             <div class="uk-margin">
                                 <div class="uk-inline">
                                     <span uk-icon="mail" class="uk-form-icon uk-icon"></span>
-                                    <input type="email" name="email" placeholder="Email"
-                                           class="uk-input uk-form-width-large dark-input" aria-required="true"
+                                    <input type="email"
+                                           name="email"
+                                           [(ngModel)]="email"
+                                           placeholder="Email"
+                                           required
+                                           class="uk-input uk-form-width-large dark-input"
+                                           aria-required="true"
                                            aria-invalid="false">
                                 </div>
                             </div>
                             <div class="uk-margin">
                                 <div class="uk-inline">
                                     <span uk-icon="lock" class="uk-form-icon uk-icon"></span>
-                                    <input type="password" name="password" placeholder="Password"
-                                           class="uk-input uk-form-width-large dark-input" aria-required="true"
+                                    <input type="password"
+                                           name="password"
+                                           [(ngModel)]="password"
+                                           required
+                                           placeholder="Password"
+                                           class="uk-input uk-form-width-large dark-input"
+                                           aria-required="true"
                                            aria-invalid="false">
                                 </div>
                             </div>
-                            <button class="uk-button uk-button-dark dark-input" translate>APP.PAGES.LOGIN.TITLE</button>
+                            <button type="submit"
+                                    class="uk-button uk-button-dark dark-input"
+                                    translate>APP.PAGES.LOGIN.TITLE
+                            </button>
                         </form>
                     </div>
                 </div>
