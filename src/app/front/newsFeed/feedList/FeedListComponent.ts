@@ -31,7 +31,7 @@ export class FeedListComponent {
             .subscribe((eventData: NewsFeedPusherEvent) => {
                 // TODO: Can a duplicated news be send ?
                 this.zone.run(() => {
-                    this.posts.push(eventData.message);
+                    this.posts.unshift(eventData.message);
                 });
             });
     }
