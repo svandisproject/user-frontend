@@ -6,11 +6,13 @@ import {Observable} from 'rxjs/Observable';
 import {RefreshTokenRequest} from './RefreshRequest';
 import {TokenRequest} from './TokenRequest';
 import 'rxjs/add/operator/do';
+import {AuthNoTokenException} from './AuthNoTokenException';
 
 @Injectable()
 export class AuthService {
     public static readonly AUTH_TOKEN_KEY: string = 'authToken';
     public static readonly REFRESH_TOKEN_KEY: string = 'refreshToken';
+    public static readonly SESSION_STORAGE_KEY: string = 'accessToken';
 
     private authToken: AuthToken = <AuthToken>{};
 
@@ -23,7 +25,7 @@ export class AuthService {
     }
 
     public getCurrentAuthToken(): string {
-        return this.authToken.token;
+        return this.authToken.token || this.getSessionToken();
     }
 
     public getAuthHeader(): HttpHeaders {
@@ -37,6 +39,18 @@ export class AuthService {
     }
 
     public isTokenExpired(): void {
+    }
+
+    public getSessionToken(): string {
+        const token: string = sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
+        if (!token) {
+            throw new AuthNoTokenException();
+        }
+        return sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
+    }
+
+    public setSessionToken(token: string): void {
+        sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, token);
     }
 
     public refreshToken(): Observable<AuthToken> {

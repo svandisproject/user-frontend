@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, NgZone, ViewEncapsulation} from '@angular/core';
 import {Post} from '../../../svandisApi/dataModels/Post';
 import {PostService} from '../../../svandisApi/services/PostService';
 import {PusherService} from '../../../common/pusher/services/PusherService';
@@ -18,6 +18,7 @@ export class FeedListComponent {
     private readonly PUSHER_CHANNEL = 'news-feed';
 
     constructor(private postService: PostService,
+                private zone: NgZone,
                 private pusherService: PusherService) {
 
         this.postService.findAll().subscribe((posts) => this.posts = posts);
@@ -29,7 +30,9 @@ export class FeedListComponent {
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
             .subscribe((eventData: NewsFeedPusherEvent) => {
                 // TODO: Can a duplicated news be send ?
-                this.posts.push(eventData.message);
+                this.zone.run(() => {
+                    this.posts.push(eventData.message);
+                });
             });
     }
 }
