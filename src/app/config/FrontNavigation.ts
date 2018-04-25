@@ -10,4 +10,3 @@ export const FrontNavigation: NavigationItem[] = [
     // {cssClass: 'data', path: '#', text: 'NAVIGATION.FRONT.ITEM.DATA_MARKET'},
     {cssClass: 'newsfeed', path: '', text: 'NAVIGATION.FRONT.ITEM.NEWS'},
 ];
-d;
