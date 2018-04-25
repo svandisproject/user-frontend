@@ -19,7 +19,12 @@
                 <div class="uk-navbar-right">
                     <ul class="uk-navbar-nav right-nav-bar">
                         <li><a href="#" class="image-menu sun"></a></li>
-                        <li><a href="#" class="image-menu logout"></a></li>
+                        <li>
+                            <a href="#"
+                               *ngIf="isLoggedIn()"
+                               (click)="logout()"
+                               class="image-menu logout"></a>
+                        </li>
                     </ul>
                 </div>
             </nav>

@@ -6,7 +6,6 @@ import {Observable} from 'rxjs/Observable';
 import {RefreshTokenRequest} from './RefreshRequest';
 import {TokenRequest} from './TokenRequest';
 import 'rxjs/add/operator/do';
-import {AuthNoTokenException} from './AuthNoTokenException';
 
 @Injectable()
 export class AuthService {
@@ -44,13 +43,13 @@ export class AuthService {
     public getSessionToken(): string {
         const token: string = sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
         if (!token) {
-            throw new AuthNoTokenException();
+            console.warn('Unauthorized');
         }
-        return sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
+        return token;
     }
 
     public setSessionToken(token: string): void {
-        sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, token);
+        sessionStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
     }
 
     public refreshToken(): Observable<AuthToken> {
