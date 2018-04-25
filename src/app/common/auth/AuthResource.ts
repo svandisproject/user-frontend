@@ -8,7 +8,7 @@ import {SvandisApi} from '../../svandisApi/config/SvandisApi';
 
 @Injectable()
 export class AuthResource {
-    private static readonly ENDPOINT: string = SvandisApi.API_URL + 'api/login_check';
+    private static readonly ENDPOINT: string = SvandisApi.API_URL + '/login_check';
 
     constructor(private httpService: HttpService) {
     }
