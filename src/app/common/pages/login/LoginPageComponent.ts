@@ -22,7 +22,7 @@ export class LoginPageComponent {
             this.userService.signIn({
                 username: this.email,
                 password: this.password
-            }).subscribe(res => this.router.navigate(['']);
+            }).subscribe(res => this.router.navigate(['']));
         }
     }
 }
