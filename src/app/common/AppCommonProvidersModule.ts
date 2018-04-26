@@ -5,7 +5,7 @@ import {AuthResource} from './auth/AuthResource';
 import {AuthService} from './auth/AuthService';
 import {PusherModule} from './pusher/PusherModule';
 import {UserService} from './user/UserService';
-import {AuthInterceptor} from './http/AuthInterceptor';
+import {AuthInterceptor} from './auth/AuthInterceptor';
 
 @NgModule({
     imports: [

@@ -11,4 +11,11 @@ app-root {
     header {
         background: $app-header-color;
     }
+
+    form.ng-touched {
+        input.ng-invalid {
+            color: #b50500;
+            border-color: #b50500;
+        }
+    }
 }

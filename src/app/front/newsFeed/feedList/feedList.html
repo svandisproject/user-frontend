@@ -1,7 +1,7 @@
 <ul class="uk-list uk-list-divider list-alerts" *ngIf="posts; else listLoading">
     <li class="list-alerts-list" *ngFor="let feed of posts | listReverse">
         <div class="uk-float-left uk-flex">
-            <a [href]="feed.url" class="news-feed-header-link">
+            <a [href]="feed.url" class="news-feed-header-link" target="_blank">
                 <h6 class="news-feed-header">{{feed.title | truncate:[50, '...']}}</h6>
             </a>
             <p class="news-feed-header-link-paragraph">{{feed.content | truncate}}</p>

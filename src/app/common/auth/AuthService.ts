@@ -11,6 +11,7 @@ import 'rxjs/add/operator/do';
 export class AuthService {
     public static readonly AUTH_TOKEN_KEY: string = 'authToken';
     public static readonly REFRESH_TOKEN_KEY: string = 'refreshToken';
+    public static readonly SESSION_STORAGE_KEY: string = 'accessToken';
 
     private authToken: AuthToken = <AuthToken>{};
 
@@ -23,7 +24,7 @@ export class AuthService {
     }
 
     public getCurrentAuthToken(): string {
-        return this.authToken.token;
+        return this.authToken.token || this.getSessionToken();
     }
 
     public getAuthHeader(): HttpHeaders {
@@ -37,6 +38,18 @@ export class AuthService {
     }
 
     public isTokenExpired(): void {
+    }
+
+    public getSessionToken(): string {
+        const token: string = sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
+        if (!token) {
+            console.warn('Unauthorized');
+        }
+        return token;
+    }
+
+    public setSessionToken(token: string): void {
+        sessionStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
     }
 
     public refreshToken(): Observable<AuthToken> {
