@@ -49,6 +49,10 @@ export class AuthService {
     }
 
     public setSessionToken(token: string): void {
+        sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, token);
+    }
+
+    public removeToken(): void {
         sessionStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
     }
 

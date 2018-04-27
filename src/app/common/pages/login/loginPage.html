@@ -51,6 +51,7 @@
                                 <div class="uk-inline">
                                     <span uk-icon="mail" class="uk-form-icon uk-icon"></span>
                                     <input type="email"
+                                           id="user-email"
                                            name="email"
                                            [(ngModel)]="email"
                                            placeholder="Email"
@@ -64,6 +65,7 @@
                                 <div class="uk-inline">
                                     <span uk-icon="lock" class="uk-form-icon uk-icon"></span>
                                     <input type="password"
+                                           id="user-password"
                                            name="password"
                                            [(ngModel)]="password"
                                            required
@@ -74,6 +76,7 @@
                                 </div>
                             </div>
                             <button type="submit"
+                                    id="login-submit"
                                     class="uk-button uk-button-dark dark-input"
                                     translate>APP.PAGES.LOGIN.TITLE
                             </button>

@@ -21,17 +21,17 @@ export class UserService {
         return this.user;
     }
 
-    public signIn(tokenRequest: TokenRequest): Observable<any> {
+    public signIn(tokenRequest: TokenRequest): Observable<void> {
         return this.authService.requestToken(tokenRequest)
             .map((token) => {
                 this.setUser({});
                 this.authService.setSessionToken(token.token);
+                // console.log(sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY));
             });
     }
 
     public signOut(): void {
-        // TODO: if user is saved on backend , logout
-        this.authService.setSessionToken(null);
+        this.authService.removeToken();
     }
 
     public isUserSignedIn(): boolean {

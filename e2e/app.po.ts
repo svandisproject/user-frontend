@@ -1,11 +1,7 @@
-import {$, browser} from 'protractor';
+import {$} from 'protractor';
 
 export class AppPage {
-  navigateTo() {
-    return browser.get('/');
-  }
-
-    getLoginText() {
+    public static getLoginText() {
         return $('app-root #login-title').getText();
-  }
+    }
 }

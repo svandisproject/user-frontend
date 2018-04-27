@@ -9,11 +9,13 @@ import {SvandisApiModule} from '../svandisApi/SvandisApiModule';
 import {AppCommonModule} from '../common/AppCommonModule';
 import {FilterBlockComponent} from './newsFeed/filterBlock/FilterBlockComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         AppCommonModule,
         CommonModule,
+        FormsModule,
         SvandisApiModule,
         RouterModule.forChild(FrontRouterConfig),
         TranslateModule
