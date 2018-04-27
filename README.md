@@ -1,4 +1,4 @@
-# SvandisClient
+# SvandisClient [![Build Status](https://travis-ci.com/svandisproject/user-frontend.svg?token=4WZkMyT9vwWPyzZBkMtR&branch=master)](https://travis-ci.com/svandisproject/user-frontend)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 

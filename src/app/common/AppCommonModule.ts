@@ -17,6 +17,7 @@ import {FormsModule} from '@angular/forms';
         LoginPageComponent
     ],
     exports: [
+        FormsModule,
         LoginPageComponent,
         TruncatePipe,
         ListReversePipe

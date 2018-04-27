@@ -8,23 +8,24 @@
          uk-dropdown="mode: click"
          uk-grid>
         <div class="wrapper-filter">
-            <h4 class="filter-text">Filter</h4>
+            <h4 class="filter-text" translate>NEWS_FEED.FILTER.TITLE</h4>
             <div class="uk-nav uk-dropdown-nav">
                 <div class="uk-margin">
                     <form action="" class="filter-form">
                         <div class="uk-inline inline-search">
-                                                    <span class="uk-form-icon uk-form-icon-flip"
-                                                          uk-icon="icon: search"></span>
+                            <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
                             <input class="uk-input" type="text">
                         </div>
                         <div class="uk-margin">
                             <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
-                                <select>
+                                <select [(ngModel)]="selectedSettings.selectedAsset"
+                                        name="assets-filter"
+                                        id="assets-filter">
                                     <option value="">Asset</option>
-                                    <option value="1">Option 01</option>
-                                    <option value="2">Option 02</option>
-                                    <option value="3">Option 03</option>
-                                    <option value="4">Option 04</option>
+                                    <option *ngFor="let option of settings.assets"
+                                            [value]="option.value">
+                                        {{ option.label}}
+                                    </option>
                                 </select>
                                 <button class="uk-button uk-button-default dropdown-filter-style-button"
                                         type="button"

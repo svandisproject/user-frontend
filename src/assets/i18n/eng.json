@@ -9,5 +9,6 @@
     "NAVIGATION.FRONT.ITEM.MARKET_CAPS": "Market caps",
     "NAVIGATION.FRONT.ITEM.DATA_MARKET": "Data marketplace",
     "NAVIGATION.FRONT.ITEM.NEWS": "Newsfeed",
-    "NEWS_FEED.TITLE": "News feed"
+  "NEWS_FEED.TITLE": "News feed",
+  "NEWS_FEED.FILTER.TITLE": "Filter"
 }

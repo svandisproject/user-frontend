@@ -1,4 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
+import {FilterSettings} from '../dataModels/FilterSettings';
+import {FilterSettingsRequest} from '../dataModels/FilterSettingsRequest';
 
 @Component({
     selector: 'app-filter-block',
@@ -8,4 +10,6 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 
 export class FilterBlockComponent {
+    public settings: FilterSettings = <FilterSettings> {};
+    public selectedSettings: FilterSettingsRequest = <FilterSettingsRequest> {};
 }
