@@ -18,13 +18,12 @@
                         </div>
                         <div class="uk-margin">
                             <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
-                                <select [(ngModel)]="selectedSettings.selectedAsset"
+                                <select (change)="changeDropDownFilter($event, 'assets')"
                                         name="assets-filter"
                                         id="assets-filter">
-                                    <option value="">Asset</option>
                                     <option *ngFor="let option of settings.assets"
-                                            [selected]="selectedSettings.selectedAsset == option"
-                                            [value]="option.value">
+                                            [selected]="option.selected"
+                                            [value]="option.id">
                                         {{ option.label}}
                                     </option>
                                 </select>
@@ -39,12 +38,11 @@
 
                         <div class="uk-margin">
                             <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
-                                <select [(ngModel)]="selectedSettings.selectedRegion" name="region-filter">
-                                    <option value="">Region</option>
+                                <select (change)="changeDropDownFilter($event, 'region')" name="region-filter">
                                     <option *ngFor="let option of settings.region"
-                                            [selected]="selectedSettings.selectedRegion == option"
-                                            [value]="option.value">
-                                        {{ option.label}}
+                                            [selected]="option.selected"
+                                            [value]="option.id">
+                                        {{ option.label }}
                                 </select>
                                 <button class="uk-button uk-button-default dropdown-filter-style-button"
                                         type="button"
@@ -60,7 +58,8 @@
                         <div class="uk-margin filter-text" *ngFor="let activity of settings.activityFields">
                             <label>
                                 <input class="uk-checkbox"
-                                       [value]="activity.selected"
+                                       (click)="selectMultiFilter(activity, 'activityFields')"
+                                       [value]="activity.id"
                                        type="checkbox"
                                        [checked]="activity.selected">
                                 {{activity.label}}
@@ -70,9 +69,9 @@
                     <div class="uk-margin filter-text uk-clearfix">
                         <h5 class="filter-text">Importance</h5>
                         <div class="uk-margin filter-text">
-                            <button class="uk-button uk-button-default uk-float-left btn-importance"
-                                    (click)="selectImportanceFilter(importance)"
-                                    *ngFor="let importance of settings.importanceFilters">
+                            <button *ngFor="let importance of settings.importanceFilters"
+                                    [class]="getButtonCss(importance.selected)"
+                                    (click)="selectMultiFilter(importance, 'importanceFilters')">
                                 {{importance.label}}
                             </button>
                         </div>
@@ -80,9 +79,9 @@
                     <div class="uk-margin filter-text uk-clearfix">
                         <h5 class="filter-text">Voting</h5>
                         <div class="uk-margin filter-text">
-                            <button class="uk-button uk-button-default uk-float-left btn-importance"
-                                    (click)="selectVoteFilter(vote)"
-                                    *ngFor="let vote of settings.votingFilters">
+                            <button *ngFor="let vote of settings.votingFilters"
+                                    [class]="getButtonCss(vote.selected)"
+                                    (click)="selectMultiFilter(vote, 'votingFilters')">
                                 {{vote.label}}
                             </button>
                         </div>

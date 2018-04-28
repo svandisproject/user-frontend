@@ -7,7 +7,7 @@ import {StorageConfig} from '../../config/StorageConfig';
 
 @Injectable()
 export class FilterService {
-    private readonly SETTINGS_STORAGE_KEY = StorageConfig + 'filterSettings';
+    private readonly SETTINGS_STORAGE_KEY = StorageConfig.APP_PREFIX + 'filterSettings';
 
     constructor(private filterResource: FilterResource) {
     }
@@ -17,9 +17,9 @@ export class FilterService {
             .do((settings) => this.saveToLocalStorage(settings));
     }
 
-    public saveSettings(settings: FilterSettings): Observable<void> {
+    public saveSettings(settings: FilterSettings): void {
         this.saveToLocalStorage(settings);
-        return this.filterResource.saveSettings(settings);
+        this.filterResource.saveSettings(settings).subscribe();
     }
 
     public syncSettings(): Observable<any> {
