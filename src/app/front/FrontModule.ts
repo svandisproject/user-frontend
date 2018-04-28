@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {NewsFeedComponent} from './newsFeed/NewsFeedComponent';
 import {RouterModule} from '@angular/router';
 import {FrontRouterConfig} from './FrontRouterConfig';
@@ -10,6 +10,8 @@ import {AppCommonModule} from '../common/AppCommonModule';
 import {FilterBlockComponent} from './newsFeed/filterBlock/FilterBlockComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {FormsModule} from '@angular/forms';
+import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactory';
+import {FilterService} from '../svandisApi/services/FilterService';
 
 @NgModule({
     imports: [
@@ -26,7 +28,13 @@ import {FormsModule} from '@angular/forms';
         FeedListComponent
     ],
     providers: [
-        CanActivateRouteGuard
+        CanActivateRouteGuard,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: FilterSettingsInitFactory.factory,
+            multi: true,
+            deps: [FilterService]
+        }
     ]
 })
 export class FrontModule {
