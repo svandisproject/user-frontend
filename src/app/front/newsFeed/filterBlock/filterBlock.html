@@ -1,9 +1,13 @@
 <div class="uk-inline">
-    <a href="#" class="uk-button uk-button-default dropdown-filter" type="button">
+    <a href="#"
+       id="filter-block-toggle"
+       class="uk-button uk-button-default dropdown-filter"
+       type="button">
         <span uk-icon="settings"></span>
     </a>
 
     <div class="uk-dropdown-grid uk-width-1-1@m dropdown-filter-style"
+         id="filter-block"
          uk-dropdown="pos: bottom-right"
          uk-dropdown="mode: click"
          uk-grid>
@@ -38,7 +42,9 @@
 
                         <div class="uk-margin">
                             <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
-                                <select (change)="changeDropDownFilter($event, 'region')" name="region-filter">
+                                <select (change)="changeDropDownFilter($event, 'region')"
+                                        id="region-filter"
+                                        name="region-filter">
                                     <option *ngFor="let option of settings.region"
                                             [selected]="option.selected"
                                             [value]="option.id">
@@ -55,9 +61,11 @@
                     </form>
                     <div class="uk-margin filter-text">
                         <h5 class="filter-text">Activity field</h5>
-                        <div class="uk-margin filter-text" *ngFor="let activity of settings.activityFields">
+                        <div class="uk-margin filter-text activity-filter-item"
+                             *ngFor="let activity of settings.activityFields">
                             <label>
                                 <input class="uk-checkbox"
+                                       [id]="'activity-filter-' + activity.label.toLowerCase()"
                                        (click)="selectMultiFilter(activity, 'activityFields')"
                                        [value]="activity.id"
                                        type="checkbox"

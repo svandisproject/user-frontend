@@ -36,7 +36,7 @@ export class FilterBlockComponent implements OnChanges {
     public selectMultiFilter(filterItem: FilterItem, key: string): void {
         _.some(this.settings[key], (item) => {
             if (item.id === filterItem.id) {
-                item.selected = true;
+                item.selected = !item.selected;
                 return true;
             }
         });
@@ -55,7 +55,7 @@ export class FilterBlockComponent implements OnChanges {
         }
         return _.find(this.settings[key], (item) => {
             if (item.id === id) {
-                item.selected = true;
+                item.selected = !item.selected;
                 return true;
             }
         });

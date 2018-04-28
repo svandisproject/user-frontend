@@ -1,4 +1,4 @@
-<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts; else listLoading">
+<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts; else listLoading" id="news-feed-list">
     <li class="list-alerts-list" *ngFor="let feed of posts | listReverse">
         <div class="uk-float-left uk-flex">
             <a [href]="feed.url" class="news-feed-header-link" target="_blank">

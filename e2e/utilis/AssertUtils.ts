@@ -6,6 +6,14 @@ export module AssertUtils {
         expect(elementFinder.isPresent()).toBeTruthy();
     }
 
+    export function assertDisplayed(elementFinder: ElementFinder): void {
+        expect(elementFinder.isDisplayed()).toBeTruthy();
+    }
+
+    export function assertSelected(elementFinder: ElementFinder): void {
+        expect(elementFinder.isSelected()).toBeTruthy();
+    }
+
     export function assertNotPresent(elementFinder: ElementFinder): void {
         expect(elementFinder.isPresent()).toBeFalsy();
     }
