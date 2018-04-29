@@ -18,4 +18,10 @@ app-root {
             border-color: #b50500;
         }
     }
+
+    .uk-card-secondary.uk-card-body .uk-checkbox:checked,
+    .uk-card-secondary > :not([class*='uk-card-media']) .uk-checkbox:checked {
+        background-color: #4da2f1 !important;
+        border-color: #4da2f1 !important;
+    }
 }

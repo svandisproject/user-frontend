@@ -13,5 +13,6 @@ describe('svandis-client Login', () => {
     it('should be able to login', () => {
         Login.signIn('user@apimonster.com', 'user');
         assertPresent($('#news-feed-title'));
+        browser.waitForAngularEnabled(false);
     });
 });
