@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactory';
 import {FilterService} from '../svandisApi/services/FilterService';
 import {ScreenerComponent} from './screener/ScreenerComponent';
+import {FilterTableComponent} from './screener/filter-table/FilterTableComponent';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import {ScreenerComponent} from './screener/ScreenerComponent';
     declarations: [
         NewsFeedComponent,
         FilterBlockComponent,
+        FilterTableComponent,
         ScreenerComponent,
         FeedListComponent
     ],

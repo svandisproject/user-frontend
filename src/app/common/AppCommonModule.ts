@@ -5,6 +5,7 @@ import {ListReversePipe} from './pipes/ListReversePipe';
 import {TruncatePipe} from './pipes/TruncatePipe';
 import {FormsModule} from '@angular/forms';
 import {SearchFormComponent} from './forms/search/SearchFormComponent';
+import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {SearchFormComponent} from './forms/search/SearchFormComponent';
     ],
     declarations: [
         ListReversePipe,
+        RangeSliderComponent,
         TruncatePipe,
         SearchFormComponent,
         LoginPageComponent
@@ -21,6 +23,7 @@ import {SearchFormComponent} from './forms/search/SearchFormComponent';
     exports: [
         FormsModule,
         LoginPageComponent,
+        RangeSliderComponent,
         SearchFormComponent,
         TruncatePipe,
         ListReversePipe

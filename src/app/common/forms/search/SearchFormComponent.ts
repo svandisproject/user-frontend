@@ -6,7 +6,7 @@ import {Form} from '@angular/forms';
     styles: ['form.uk-search-default { width: 250px }'],
     template: `
         <form #form="ngForm" (submit)="onSubmit(form)" class="uk-search uk-search-default">
-            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+            <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
             <input class="uk-search-input" type="search" [placeholder]="placeholder">
         </form>
     `

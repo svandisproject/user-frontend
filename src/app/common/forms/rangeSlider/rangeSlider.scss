@@ -1,0 +1,44 @@
+$slider-color: #4ea4f1;
+
+input[type=range]::-webkit-slider-runnable-track {
+    background: $slider-color;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: $slider-color;
+}
+
+input[type=range]::-moz-range-track {
+    background: $slider-color;
+}
+
+input[type=range]::-ms-fill-lower {
+    background: $slider-color;
+}
+
+input[type=range]::-ms-fill-upper {
+    background: $slider-color;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+    background: $slider-color;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: $slider-color;
+}
+
+input[type=range]::-ms-thumb {
+    border: 0;
+    background: $slider-color;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    border: 0;
+    background: $slider-color;
+}
+
+input[type=range]::-moz-range-thumb {
+    border: 0;
+    background: $slider-color;
+}

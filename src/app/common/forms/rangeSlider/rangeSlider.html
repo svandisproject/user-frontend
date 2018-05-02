@@ -1,0 +1,12 @@
+<div class="uk-flex uk-form-horizontal">
+    <label class="uk-form-label">Test</label>
+    <button (click)="increaseValue()">increase</button>
+    <input class="uk-range"
+           type="range"
+           [(ngModel)]="ngModel"
+           (change)="ngModelChange.emit(ngModel)"
+           [min]="options.min"
+           [max]="options.max"
+           [step]="options.step">
+    <button (click)="decreaseValue()">decrease</button>
+</div>
