@@ -12,7 +12,7 @@ $global-link-color: #DA7D02;
 
 // 4. Import UIkit.
 @import "../node_modules/uikit/src/scss/uikit-theme.scss";
-
+@import "~nouislider/distribute/nouislider.min.css";
 html {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     font-size: 16px;

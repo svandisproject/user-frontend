@@ -1,39 +1,46 @@
 <table class="uk-table uk-table-small">
     <tbody>
-    <tr>
-        <td class="uk-form-horizontal">
-            <label class="uk-form-label" for="form-horizontal-select">Select</label>
-            <div class="uk-form-controls">
-                <select class="uk-select" id="form-horizontal-select">
-                    <option>Option 01</option>
-                    <option>Option 02</option>
-                </select>
-            </div>
-        </td>
-        <td class="uk-form-horizontal">
-            <label class="uk-form-label" for="form-horizontal-select">Select</label>
-            <div class="uk-form-controls">
-                <select class="uk-select" id="form-horizontal-select">
-                    <option>Option 01</option>
-                    <option>Option 02</option>
-                </select>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td class="uk-form-horizontal">
+    <ng-container *ngFor="let a of test; index as i">
+        <tr *ngIf="a">
+            <td>
+                <div class="uk-form-horizontal">
+                    <label class="uk-form-label" for="form-label-{{a[0].label}}">
+                        {{a[0].label}}
+                    </label>
+                    <ng-container [ngSwitch]="a[0].type">
+                        <ng-container *ngSwitchCase="filterTypes.SELECT">
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="form-label-{{a[0].label}}">
+                                    <option *ngFor="let option of a[0].options">
+                                        {{option}}
+                                    </option>
+                                </select>
+                            </div>
+                        </ng-container>
+                    </ng-container>
 
-            <app-range-slider></app-range-slider>
-        </td>
-        <td class="uk-form-horizontal">
-            <label class="uk-form-label" for="form-horizontal-select">Select</label>
-            <div class="uk-form-controls">
-                <select class="uk-select" id="form-horizontal-select">
-                    <option>Option 01</option>
-                    <option>Option 02</option>
-                </select>
-            </div>
-        </td>
-    </tr>
+                </div>
+
+            </td>
+            <td *ngIf="a[1]">
+                <div class="uk-form-horizontal">
+                    <label class="uk-form-label" for="form-label-{{i}}">
+                        {{a[1].label}}
+                    </label>
+                    <ng-container [ngSwitch]="a[1].type">
+                        <ng-container *ngSwitchCase="filterTypes.SELECT">
+                            <div class="uk-form-controls">
+                                <select class="uk-select" id="form-label-{{i}}">
+                                    <option *ngFor="let option of a[1].options">
+                                        {{option}}
+                                    </option>
+                                </select>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </td>
+        </tr>
+    </ng-container>
     </tbody>
 </table>

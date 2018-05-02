@@ -14,6 +14,7 @@ import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactor
 import {FilterService} from '../svandisApi/services/FilterService';
 import {ScreenerComponent} from './screener/ScreenerComponent';
 import {FilterTableComponent} from './screener/filter-table/FilterTableComponent';
+import {NouisliderModule} from 'ng2-nouislider';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import {FilterTableComponent} from './screener/filter-table/FilterTableComponent
         CommonModule,
         FormsModule,
         SvandisApiModule,
+        NouisliderModule,
         RouterModule.forChild(FrontRouterConfig),
         TranslateModule
     ],
