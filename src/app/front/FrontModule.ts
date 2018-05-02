@@ -12,6 +12,7 @@ import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {FormsModule} from '@angular/forms';
 import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactory';
 import {FilterService} from '../svandisApi/services/FilterService';
+import {ScreenerComponent} from './screener/ScreenerComponent';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {FilterService} from '../svandisApi/services/FilterService';
     declarations: [
         NewsFeedComponent,
         FilterBlockComponent,
+        ScreenerComponent,
         FeedListComponent
     ],
     providers: [
