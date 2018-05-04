@@ -6,6 +6,6 @@ import {ScreenerComponent} from './screener/ScreenerComponent';
 
 export const FrontRouterConfig: Route[] = [
     {path: '', component: NewsFeedComponent, canActivate: [CanActivateRouteGuard]},
-    {path: 'ico', component: ScreenerComponent},
+    {path: 'ico', component: ScreenerComponent, canActivate: [CanActivateRouteGuard]},
     {path: 'login', component: LoginPageComponent}
 ];
