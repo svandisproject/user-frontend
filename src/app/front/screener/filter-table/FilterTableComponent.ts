@@ -1,8 +1,8 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import * as _ from 'lodash';
-import {MockedICOScreenerFilters} from './MockedICOScreenerFilters';
-import {FilterType} from './FilterType';
-import {AdvancedFilterItem, FilterOption} from './AdvancedFilterItem';
+import {MockedICOScreenerFilters} from './mocks/MockedICOScreenerFilters';
+import {FilterType} from '../../../svandisApi/dataModels/FilterType';
+import {AdvancedFilterItem, FilterOption} from '../../../svandisApi/dataModels/AdvancedFilterItem';
 
 @Component({
     selector: 'app-filter-table',

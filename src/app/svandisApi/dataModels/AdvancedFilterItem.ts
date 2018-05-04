@@ -1,4 +1,4 @@
-import {FilterItem} from '../../../svandisApi/dataModels/FilterItem';
+import {FilterItem} from './FilterItem';
 import {FilterType} from './FilterType';
 
 export interface AdvancedFilterItem extends FilterItem {
