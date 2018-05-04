@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {AuthToken} from './AuthToken';
+import {AuthToken} from './dataModels/AuthToken';
 import {AuthResource} from './AuthResource';
 import {HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {RefreshTokenRequest} from './RefreshRequest';
-import {TokenRequest} from './TokenRequest';
+import {RefreshTokenRequest} from './dataModels/RefreshRequest';
+import {TokenRequest} from './dataModels/TokenRequest';
 import 'rxjs/add/operator/do';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AuthService {
@@ -25,6 +26,11 @@ export class AuthService {
 
     public getCurrentAuthToken(): string {
         return this.authToken.token || this.getSessionToken();
+    }
+
+    // TODO: complex check might be added
+    public isAuthenticated(): boolean {
+        return !_.isEmpty(this.getSessionToken());
     }
 
     public getAuthHeader(): HttpHeaders {

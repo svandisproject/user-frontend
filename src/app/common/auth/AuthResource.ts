@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../http/HttpService';
-import {TokenRequest} from './TokenRequest';
+import {TokenRequest} from './dataModels/TokenRequest';
 import {Observable} from 'rxjs/Observable';
-import {AuthToken} from './AuthToken';
-import {RefreshTokenRequest} from './RefreshRequest';
+import {AuthToken} from './dataModels/AuthToken';
+import {RefreshTokenRequest} from './dataModels/RefreshRequest';
 import {SvandisApi} from '../../svandisApi/config/SvandisApi';
 
 @Injectable()
