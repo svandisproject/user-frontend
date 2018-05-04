@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {AuthService} from './common/auth/AuthService';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +9,12 @@ import {TranslateService} from '@ngx-translate/core';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    constructor(translate: TranslateService) {
+    constructor(private authService: AuthService,
+                translate: TranslateService) {
         translate.setDefaultLang('eng');
+    }
+
+    public isAuthenticated(): boolean {
+        return this.authService.isAuthenticated();
     }
 }

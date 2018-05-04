@@ -1,0 +1,25 @@
+@import "../../colors";
+
+app-filter-table {
+    table {
+        margin-top: 20px;
+        tr {
+            td {
+                border-top: 1px solid $default-border;
+                border-bottom: 1px solid $default-border;
+            }
+            & td:first-child {
+                border-right: 1px solid $default-border;
+            }
+        }
+        button.uk-button {
+            margin-left: 15px;
+            border-color: $default-border !important;
+
+            &.uk-active {
+                background-color: $background-highlight !important;
+                border-color: $background-highlight !important;
+            }
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as _ from 'lodash';
 import {AuthService} from '../auth/AuthService';
-import {TokenRequest} from '../auth/TokenRequest';
+import {TokenRequest} from '../auth/dataModels/TokenRequest';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 

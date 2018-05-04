@@ -1,4 +1,4 @@
-import {FilterSettings} from '../../dataModels/FilterSettings';
+import {FilterSettings} from '../../dataModels/fitlers/FilterSettings';
 
 export const mockedSettings: FilterSettings = {
     searchQuery: ['keyword'],

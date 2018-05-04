@@ -4,6 +4,8 @@ import {TranslateModule} from '@ngx-translate/core';
 import {ListReversePipe} from './pipes/ListReversePipe';
 import {TruncatePipe} from './pipes/TruncatePipe';
 import {FormsModule} from '@angular/forms';
+import {SearchFormComponent} from './forms/search/SearchFormComponent';
+import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
 
 
 @NgModule({
@@ -13,12 +15,16 @@ import {FormsModule} from '@angular/forms';
     ],
     declarations: [
         ListReversePipe,
+        RangeSliderComponent,
         TruncatePipe,
+        SearchFormComponent,
         LoginPageComponent
     ],
     exports: [
         FormsModule,
         LoginPageComponent,
+        RangeSliderComponent,
+        SearchFormComponent,
         TruncatePipe,
         ListReversePipe
     ]

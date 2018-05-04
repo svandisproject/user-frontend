@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {FilterSettings} from '../dataModels/FilterSettings';
+import {FilterSettings} from '../dataModels/fitlers/FilterSettings';
 import {mockedSettings} from './mocks/mockedFilterSettings';
 
 @Injectable()
