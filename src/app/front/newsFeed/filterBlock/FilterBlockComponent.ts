@@ -1,7 +1,7 @@
 import {Component, OnChanges, SimpleChanges, ViewEncapsulation} from '@angular/core';
-import {FilterSettings} from '../../../svandisApi/dataModels/FilterSettings';
-import {FilterSettingsRequest} from '../../../svandisApi/dataModels/FilterSettingsRequest';
-import {FilterItem} from '../../../svandisApi/dataModels/FilterItem';
+import {FilterSettings} from '../../../svandisApi/dataModels/fitlers/FilterSettings';
+import {FilterSettingsRequest} from '../../../svandisApi/dataModels/fitlers/FilterSettingsRequest';
+import {FilterItem} from '../../../svandisApi/dataModels/fitlers/FilterItem';
 import {FilterService} from '../../../svandisApi/services/FilterService';
 import * as _ from 'lodash';
 

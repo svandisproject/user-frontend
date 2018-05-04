@@ -1,5 +1,5 @@
-import {FilterType} from '../../../../svandisApi/dataModels/FilterType';
-import {AdvancedFilterItem} from '../../../../svandisApi/dataModels/AdvancedFilterItem';
+import {FilterType} from '../../../../svandisApi/dataModels/fitlers/FilterType';
+import {AdvancedFilterItem} from '../../../../svandisApi/dataModels/fitlers/AdvancedFilterItem';
 
 export const MockedICOScreenerFilters: AdvancedFilterItem[] = [
     {

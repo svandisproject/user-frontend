@@ -1,16 +1,11 @@
 import {FilterItem} from './FilterItem';
 import {FilterType} from './FilterType';
+import {FilterGroup} from './FilterGroup';
 
 export interface AdvancedFilterItem extends FilterItem {
     type: FilterType;
     group?: FilterGroup;
     options?: FilterOption[];
-}
-
-enum FilterGroup {
-    DESCRIPTIVE,
-    FUNDAMENTAL,
-    TECHNICAL
 }
 
 export interface FilterOption {
