@@ -1,3 +1,4 @@
 export enum FilterType {
-    SELECT
+    SELECT,
+    SWITCH
 }

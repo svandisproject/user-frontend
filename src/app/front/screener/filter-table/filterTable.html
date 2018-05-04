@@ -1,40 +1,29 @@
 <table class="uk-table uk-table-small">
     <tbody>
-    <ng-container *ngFor="let a of test; index as i">
-        <tr *ngIf="a">
-            <td>
+    <ng-container *ngFor="let tableRow of tabledFilters">
+        <tr *ngIf="tableRow">
+            <td *ngFor="let column of tableRow">
                 <div class="uk-form-horizontal">
-                    <label class="uk-form-label" for="form-label-{{a[0].label}}">
-                        {{a[0].label}}
+                    <label class="uk-form-label" for="form-label-{{column.label}}">
+                        {{column.label}}
                     </label>
-                    <ng-container [ngSwitch]="a[0].type">
+                    <ng-container [ngSwitch]="column.type">
                         <ng-container *ngSwitchCase="filterTypes.SELECT">
                             <div class="uk-form-controls">
-                                <select class="uk-select" id="form-label-{{a[0].label}}">
-                                    <option *ngFor="let option of a[0].options">
-                                        {{option}}
+                                <select class="uk-select" id="form-label-{{column.label}}">
+                                    <option *ngFor="let option of column.options" [selected]="option.selected">
+                                        {{option.label}}
                                     </option>
                                 </select>
                             </div>
                         </ng-container>
-                    </ng-container>
-
-                </div>
-
-            </td>
-            <td *ngIf="a[1]">
-                <div class="uk-form-horizontal">
-                    <label class="uk-form-label" for="form-label-{{i}}">
-                        {{a[1].label}}
-                    </label>
-                    <ng-container [ngSwitch]="a[1].type">
-                        <ng-container *ngSwitchCase="filterTypes.SELECT">
-                            <div class="uk-form-controls">
-                                <select class="uk-select" id="form-label-{{i}}">
-                                    <option *ngFor="let option of a[1].options">
-                                        {{option}}
-                                    </option>
-                                </select>
+                        <ng-container *ngSwitchCase="filterTypes.SWITCH">
+                            <div>
+                                <button *ngFor="let option of column.options"
+                                        (click)="selectOption(option, column.options)"
+                                        [class]="getButtonCssClass(option)">
+                                    {{option.label}}
+                                </button>
                             </div>
                         </ng-container>
                     </ng-container>

@@ -24,4 +24,8 @@ app-root {
         background-color: #4da2f1 !important;
         border-color: #4da2f1 !important;
     }
+
+    select option {
+        background-color: $app-background-color;
+    }
 }
