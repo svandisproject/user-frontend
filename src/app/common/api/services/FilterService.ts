@@ -4,12 +4,13 @@ import {FilterResource} from '../resource/FilterResource';
 import {FilterSettings} from '../dataModels/fitlers/FilterSettings';
 import * as _ from 'lodash';
 import {StorageConfig} from '../../../config/StorageConfig';
+import {StorageAdapter} from '../../localStorage/StorageAdapter';
 
 @Injectable()
-export class FilterService {
-    private readonly SETTINGS_STORAGE_KEY = StorageConfig.APP_PREFIX + 'filterSettings';
+export class FilterService extends StorageAdapter <FilterSettings> {
 
     constructor(private filterResource: FilterResource) {
+        super(StorageConfig.APP_PREFIX + 'filterSettings');
     }
 
     public loadInitialSettings(): Observable<FilterSettings> {
@@ -22,20 +23,21 @@ export class FilterService {
         this.filterResource.saveSettings(settings).subscribe();
     }
 
-    public syncSettings(): Observable<any> {
-        const currentSettings: FilterSettings = this.loadSettingsFromStorage();
-        return this.filterResource.saveSettings(currentSettings);
+    public syncSettings(): Observable<FilterSettings> {
+        return this.storageChange().do((settings) => {
+            this.filterResource.saveSettings(settings).subscribe();
+        });
     }
 
     public loadSettingsFromStorage(): FilterSettings {
-        return JSON.parse(localStorage.getItem(this.SETTINGS_STORAGE_KEY));
+        return this.get();
     }
 
     public saveToLocalStorage(settings: FilterSettings): void {
-        localStorage.setItem(this.SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+        this.post(settings);
     }
 
     public isSettingsStorageEmtpy(): boolean {
-        return _.isEmpty(localStorage.getItem(this.SETTINGS_STORAGE_KEY));
+        return _.isEmpty(this.get());
     }
 }
