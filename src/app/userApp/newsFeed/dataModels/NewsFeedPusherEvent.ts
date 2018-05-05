@@ -1,4 +1,4 @@
-import {Post} from '../../../svandisApi/dataModels/Post';
+import {Post} from '../../../common/api/dataModels/Post';
 
 export interface NewsFeedPusherEvent {
     message: Post;

@@ -1,5 +1,5 @@
-import {FilterService} from '../../svandisApi/services/FilterService';
 import {Observable} from 'rxjs/Observable';
+import {FilterService} from '../../common/api/services/FilterService';
 
 export class FilterSettingsInitFactory {
 

@@ -1,9 +1,9 @@
 import {Component, NgZone, ViewEncapsulation} from '@angular/core';
-import {Post} from '../../../svandisApi/dataModels/Post';
-import {PostService} from '../../../svandisApi/services/PostService';
 import {PusherService} from '../../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
 import {NewsFeedPusherEvent} from '../dataModels/NewsFeedPusherEvent';
+import {Post} from '../../../common/api/dataModels/Post';
+import {PostService} from '../../../common/api/services/PostService';
 
 @Component({
     selector: 'app-feed-list',

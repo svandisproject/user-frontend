@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Post} from '../dataModels/Post';
 import {SvandisApi} from '../config/SvandisApi';
-import {HttpService} from '../../common/http/HttpService';
+import {HttpService} from '../../http/HttpService';
 
 @Injectable()
 export class PostResource {

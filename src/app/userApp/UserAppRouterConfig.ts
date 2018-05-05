@@ -4,7 +4,7 @@ import {LoginPageComponent} from '../common/pages/login/LoginPageComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {ScreenerComponent} from './screener/ScreenerComponent';
 
-export const FrontRouterConfig: Route[] = [
+export const UserAppRouterConfig: Route[] = [
     {path: '', component: NewsFeedComponent, canActivate: [CanActivateRouteGuard]},
     {path: 'ico', component: ScreenerComponent, canActivate: [CanActivateRouteGuard]},
     {path: 'login', component: LoginPageComponent}

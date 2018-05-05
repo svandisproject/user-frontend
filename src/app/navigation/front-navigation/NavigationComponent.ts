@@ -5,13 +5,13 @@ import {UserService} from '../../common/user/UserService';
 import {Router} from '@angular/router';
 
 @Component({
-    selector: 'app-front-navigation',
-    templateUrl: './frontNavigation.html',
-    styleUrls: ['./frontNavigation.scss'],
+    selector: 'app-navigation',
+    templateUrl: './navigation.html',
+    styleUrls: ['./navigation.scss'],
     encapsulation: ViewEncapsulation.None
 })
 
-export class FrontNavigationComponent {
+export class NavigationComponent {
     public navItems: NavigationItem[] = FrontNavigation;
 
     constructor(private userService: UserService,

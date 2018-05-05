@@ -4,7 +4,7 @@ import {TokenRequest} from './dataModels/TokenRequest';
 import {Observable} from 'rxjs/Observable';
 import {AuthToken} from './dataModels/AuthToken';
 import {RefreshTokenRequest} from './dataModels/RefreshRequest';
-import {SvandisApi} from '../../svandisApi/config/SvandisApi';
+import {SvandisApi} from '../api/config/SvandisApi';
 
 @Injectable()
 export class AuthResource {

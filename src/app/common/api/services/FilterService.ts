@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {FilterResource} from '../resource/FilterResource';
 import {FilterSettings} from '../dataModels/fitlers/FilterSettings';
 import * as _ from 'lodash';
-import {StorageConfig} from '../../config/StorageConfig';
+import {StorageConfig} from '../../../config/StorageConfig';
 
 @Injectable()
 export class FilterService {

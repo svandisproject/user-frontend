@@ -1,4 +1,4 @@
-import {environment} from '../../../environments/environment';
+import {environment} from '../../../../environments/environment';
 
 export class SvandisApi {
     public static readonly API_HOST = environment.production ? '' : 'https://svandis-api.herokuapp.com';
