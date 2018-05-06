@@ -18,10 +18,6 @@ export class SearchFilterService extends StorageAdapter <SearchFilterSettings> {
             .do((settings) => this.post(settings));
     }
 
-    public loadSettingsFromStorage(): SearchFilterSettings {
-        return this.get();
-    }
-
     private syncSettings(): Observable<SearchFilterSettings> {
         return this.storageChange().do((settings) => {
             this.filterResource.saveSearchFilterSettings(settings).subscribe();

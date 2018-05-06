@@ -18,10 +18,6 @@ export class IcoFilterService extends StorageAdapter <AdvancedFilterItem[]> {
             .do((filters) => this.post(filters));
     }
 
-    public getFiltersFromStorage(): AdvancedFilterItem[] {
-        return this.get();
-    }
-
     private syncSettings(): Observable<AdvancedFilterItem[]> {
         return this.storageChange().do((settings) => {
             this.filterResource.saveAdvancedFilters(settings).subscribe();

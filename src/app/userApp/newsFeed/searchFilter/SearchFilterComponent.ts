@@ -19,7 +19,7 @@ export class SearchFilterComponent {
     public settingsRequest: FilterSettingsRequest = <FilterSettingsRequest> {};
 
     constructor(private filterService: SearchFilterService) {
-        this.settings = this.filterService.loadSettingsFromStorage();
+        this.settings = this.filterService.get();
     }
 
     public changeDropDownFilter($event, key: 'assets' | 'region'): void {
