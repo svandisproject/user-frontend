@@ -1,5 +1,6 @@
 import {browser} from 'protractor';
 import {IcoScreener} from './IcoScreener';
+import {AssertUtils} from '../utilis/AssertUtils';
 
 describe('svandis-client Ico Screener', () => {
 
@@ -7,5 +8,4 @@ describe('svandis-client Ico Screener', () => {
         browser.get(IcoScreener.ROUTE);
         expect(IcoScreener.getTitle()).toEqual('ICO Screener');
     });
-
 });

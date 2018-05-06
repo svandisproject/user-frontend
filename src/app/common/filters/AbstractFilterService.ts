@@ -3,7 +3,7 @@ import {FilterResource} from '../api/resource/FilterResource';
 import {StorageAdapter} from '../localStorage/StorageAdapter';
 import {SyncAwareService} from './SyncAwareService';
 
-export abstract class AbstractFilterService<T> extends StorageAdapter <T> implements SyncAwareService {
+export abstract class AbstractFilterService<T> extends StorageAdapter<T> implements SyncAwareService {
     protected abstract readonly STORAGE_KEY: string;
     protected abstract filterId: string;
 

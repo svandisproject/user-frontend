@@ -8,7 +8,8 @@ exports.config = {
     specs: [
         './e2e/login/*.e2e-spec.ts',
         './e2e/newsFeed/*.e2e-spec.ts',
-        './e2e/icoScreener/*.e2e-spec.ts'
+        './e2e/icoScreener/*.e2e-spec.ts',
+        './e2e/altCoins/*.e2e-spec.ts'
     ],
     capabilities: {
         browserName: 'chrome',
