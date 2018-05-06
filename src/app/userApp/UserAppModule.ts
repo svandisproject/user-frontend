@@ -9,12 +9,13 @@ import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {FormsModule} from '@angular/forms';
-import {ScreenerComponent} from './screener/ScreenerComponent';
+import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
 import {UserAppRouterConfig} from './UserAppRouterConfig';
 import {SearchFilterService} from '../common/filters/SearchFilterService';
 import {FilterInitFactory} from './initializers/FilterInitFactory';
 import {IcoFilterService} from '../common/filters/IcoFilterService';
+import {IcoScreenerComponent} from './screener/IcoScreenerComponent';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import {IcoFilterService} from '../common/filters/IcoFilterService';
     declarations: [
         NewsFeedComponent,
         SearchFilterComponent,
-        ScreenerComponent,
+        GeneralScreenerComponent,
+        IcoScreenerComponent,
         FeedListComponent
     ],
     providers: [

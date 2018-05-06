@@ -1,9 +1,9 @@
 <div class="uk-card uk-card-secondary uk-card-body">
     <div class="uk-child-width-1-2 uk-grid-small rates uk-grid">
         <h3 class="uk-card-title main-header-text"
-            id="ico-screener-title"
+            id="general-screener-title"
             translate>
-            SCREENER.TITLE
+            {{title}}
         </h3>
         <div class="control-header-card-icon uk-flex-right uk-text-right">
             <app-search-form></app-search-form>
@@ -11,12 +11,5 @@
     </div>
     <hr class="after-header-line">
 
-    <div id="some-filter-thing" class="uk-flex uk-flex-center uk-text-uppercase">
-        <a>All(3)</a>
-        <a>descriptive</a>
-        <a>fundamental</a>
-        <a>technical(3)</a>
-    </div>
-
-    <app-filter-table></app-filter-table>
+    <app-filter-table [filterService]="filterService"></app-filter-table>
 </div>
