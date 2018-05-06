@@ -1,30 +1,25 @@
-import {Component, OnChanges, SimpleChanges, ViewEncapsulation} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 import * as _ from 'lodash';
-import {FilterSettings} from '../../../common/api/dataModels/fitlers/FilterSettings';
-import {FilterSettingsRequest} from '../../../common/api/dataModels/fitlers/FilterSettingsRequest';
-import {FilterService} from '../../../common/api/services/FilterService';
-import {FilterItem} from '../../../common/api/dataModels/fitlers/FilterItem';
+import {SearchFilterSettings} from '../../../common/filters/dataModels/FilterSettings';
+import {FilterSettingsRequest} from '../../../common/filters/dataModels/FilterSettingsRequest';
+import {SearchFilterService} from '../../../common/filters/SearchFilterService';
+import {FilterItem} from '../../../common/filters/dataModels/FilterItem';
 
 
 @Component({
-    selector: 'app-filter-block',
-    templateUrl: './filterBlock.html',
-    styleUrls: ['./filterBlock.scss'],
+    selector: 'app-search-filter',
+    templateUrl: './searchFilter.html',
+    styleUrls: ['./searchFilter.scss'],
     encapsulation: ViewEncapsulation.None
 })
 
-export class FilterBlockComponent implements OnChanges {
-    public settings: FilterSettings = <FilterSettings> {};
+export class SearchFilterComponent {
+    public settings: SearchFilterSettings = <SearchFilterSettings> {};
     public settingsRequest: FilterSettingsRequest = <FilterSettingsRequest> {};
 
-    constructor(private filterService: FilterService) {
+    constructor(private filterService: SearchFilterService) {
         this.settings = this.filterService.loadSettingsFromStorage();
-    }
-
-
-    ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
     }
 
     public changeDropDownFilter($event, key: 'assets' | 'region'): void {
@@ -67,6 +62,8 @@ export class FilterBlockComponent implements OnChanges {
     }
 
     private resetSelectionForFilter(key: 'assets' | 'region') {
-        _.each(this.settings[key], item => item.selected = false);
+        _.forEach(this.settings[key], (item) => {
+            item.selected = false;
+        });
     }
 }

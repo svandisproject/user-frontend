@@ -6,7 +6,7 @@ import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 
 import {AppCommonModule} from '../common/AppCommonModule';
-import {FilterBlockComponent} from './newsFeed/filterBlock/FilterBlockComponent';
+import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {FormsModule} from '@angular/forms';
 import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactory';
@@ -14,22 +14,20 @@ import {ScreenerComponent} from './screener/ScreenerComponent';
 import {FilterTableComponent} from './screener/filter-table/FilterTableComponent';
 import {NouisliderModule} from 'ng2-nouislider';
 import {UserAppRouterConfig} from './UserAppRouterConfig';
-import {SvandisApiModule} from '../common/api/SvandisApiModule';
-import {FilterService} from '../common/api/services/FilterService';
+import {SearchFilterService} from '../common/filters/SearchFilterService';
 
 @NgModule({
     imports: [
         AppCommonModule,
         CommonModule,
         FormsModule,
-        SvandisApiModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
         TranslateModule
     ],
     declarations: [
         NewsFeedComponent,
-        FilterBlockComponent,
+        SearchFilterComponent,
         FilterTableComponent,
         ScreenerComponent,
         FeedListComponent
@@ -40,7 +38,7 @@ import {FilterService} from '../common/api/services/FilterService';
             provide: APP_INITIALIZER,
             useFactory: FilterSettingsInitFactory.factory,
             multi: true,
-            deps: [FilterService]
+            deps: [SearchFilterService]
         }
     ]
 })

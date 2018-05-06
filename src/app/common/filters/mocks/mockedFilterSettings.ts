@@ -1,6 +1,6 @@
-import {FilterSettings} from '../../dataModels/fitlers/FilterSettings';
+import {SearchFilterSettings} from '../dataModels/FilterSettings';
 
-export const mockedSettings: FilterSettings = {
+export const mockedSettings: SearchFilterSettings = {
     searchQuery: ['keyword'],
     assets: [
         {id: '1', label: 'Option 1', value: 'option1', selected: false},

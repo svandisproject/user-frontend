@@ -6,11 +6,15 @@ import {TruncatePipe} from './pipes/TruncatePipe';
 import {FormsModule} from '@angular/forms';
 import {SearchFormComponent} from './forms/search/SearchFormComponent';
 import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
+import {SvandisApiModule} from './api/SvandisApiModule';
+import {FiltersModule} from './filters/FiltersModule';
 
 
 @NgModule({
     imports: [
         FormsModule,
+        SvandisApiModule,
+        FiltersModule,
         TranslateModule
     ],
     declarations: [
@@ -22,6 +26,8 @@ import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
     ],
     exports: [
         FormsModule,
+        SvandisApiModule,
+        FiltersModule,
         LoginPageComponent,
         RangeSliderComponent,
         SearchFormComponent,

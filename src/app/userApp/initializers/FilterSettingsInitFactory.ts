@@ -1,13 +1,13 @@
 import {Observable} from 'rxjs/Observable';
-import {FilterService} from '../../common/api/services/FilterService';
+import {SearchFilterService} from '../../common/filters/SearchFilterService';
 
 export class FilterSettingsInitFactory {
 
-    public static factory(filterService: FilterService): () => Promise<any> {
+    public static factory(filterService: SearchFilterService): () => Promise<any> {
         return () => FilterSettingsInitFactory.initFilterSettings(filterService).toPromise();
     }
 
-    private static initFilterSettings(filterService: FilterService): Observable<any> {
+    private static initFilterSettings(filterService: SearchFilterService): Observable<any> {
         if (filterService.isSettingsStorageEmtpy()) {
             return filterService.loadInitialSettings();
         } else {

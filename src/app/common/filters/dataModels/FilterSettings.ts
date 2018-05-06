@@ -1,6 +1,6 @@
 import {FilterItem} from './FilterItem';
 
-export interface FilterSettings {
+export interface SearchFilterSettings {
     searchQuery: string[];
     assets: FilterItem[];
     region: FilterItem[];

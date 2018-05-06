@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {BrowserModule} from '@angular/platform-browser';
 import {TranslateModule} from '@ngx-translate/core';
 import {RouterModule} from '@angular/router';
-import {NavigationComponent} from './front-navigation/NavigationComponent';
+import {NavigationComponent} from './user-navigation/NavigationComponent';
 
 @NgModule({
     imports: [

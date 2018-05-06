@@ -1,6 +1,6 @@
 export interface FilterItem {
     id: string;
-    label: string;
+    label?: string;
     value?: string;
     selected?: boolean;
 }
