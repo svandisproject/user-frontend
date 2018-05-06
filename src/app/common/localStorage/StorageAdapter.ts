@@ -1,5 +1,6 @@
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import * as _ from 'lodash';
 
 export class StorageAdapter<T> {
     protected readonly STORAGE_KEY: string;
@@ -21,5 +22,9 @@ export class StorageAdapter<T> {
 
     public storageChange(): Observable<T> {
         return this.saveSubject;
+    }
+
+    public isStorageEmpty(): boolean {
+        return _.isEmpty(this.get());
     }
 }

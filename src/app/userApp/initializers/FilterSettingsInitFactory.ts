@@ -8,7 +8,7 @@ export class FilterSettingsInitFactory {
     }
 
     private static initFilterSettings(filterService: SearchFilterService): Observable<any> {
-        if (filterService.isSettingsStorageEmtpy()) {
+        if (filterService.isStorageEmpty()) {
             return filterService.loadInitialSettings();
         } else {
             return Observable.of(null);

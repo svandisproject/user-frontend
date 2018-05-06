@@ -58,7 +58,7 @@ export class SearchFilterComponent {
     }
 
     private saveSettings(): void {
-        this.filterService.saveSettings(this.settings);
+        this.filterService.post(this.settings);
     }
 
     private resetSelectionForFilter(key: 'assets' | 'region') {
