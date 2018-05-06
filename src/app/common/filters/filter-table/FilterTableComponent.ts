@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import {MockedICOScreenerFilters} from '../mocks/MockedICOScreenerFilters';
 import {FilterType} from '../dataModels/FilterType';
 import {AdvancedFilterItem, FilterOption} from '../dataModels/AdvancedFilterItem';
+import {IcoFilterService} from '../IcoFilterService';
 
 
 @Component({
@@ -18,6 +19,10 @@ export class FilterTableComponent {
     public filters: AdvancedFilterItem[] = MockedICOScreenerFilters;
     public tabledFilters = _.chunk(this.filters, this.columns);
 
+    constructor(private icoFilterService: IcoFilterService) {
+
+    }
+
     public selectOption(option: FilterOption, options: FilterOption[]): void {
         this.resetOptionsSelected(options);
         option.selected = true;
@@ -29,9 +34,7 @@ export class FilterTableComponent {
     }
 
     private resetOptionsSelected(options: FilterOption[]) {
-        _.forEach(options, opt => {
-            opt.selected = false;
-        });
+        this.icoFilterService.resetOptions(options);
     }
 }
 

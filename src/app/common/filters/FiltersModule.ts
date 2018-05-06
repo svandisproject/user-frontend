@@ -3,6 +3,7 @@ import {SearchFilterService} from './SearchFilterService';
 import {FilterTableComponent} from './filter-table/FilterTableComponent';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {IcoFilterService} from './IcoFilterService';
 
 @NgModule({
     imports: [
@@ -10,7 +11,8 @@ import {CommonModule} from '@angular/common';
         CommonModule
     ],
     providers: [
-        SearchFilterService
+        SearchFilterService,
+        IcoFilterService
     ],
     declarations: [
         FilterTableComponent

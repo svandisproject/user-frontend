@@ -9,11 +9,12 @@ import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {FormsModule} from '@angular/forms';
-import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactory';
 import {ScreenerComponent} from './screener/ScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
 import {UserAppRouterConfig} from './UserAppRouterConfig';
 import {SearchFilterService} from '../common/filters/SearchFilterService';
+import {FilterInitFactory} from './initializers/FilterInitFactory';
+import {IcoFilterService} from '../common/filters/IcoFilterService';
 
 @NgModule({
     imports: [
@@ -34,9 +35,9 @@ import {SearchFilterService} from '../common/filters/SearchFilterService';
         CanActivateRouteGuard,
         {
             provide: APP_INITIALIZER,
-            useFactory: FilterSettingsInitFactory.factory,
+            useFactory: FilterInitFactory.factory,
             multi: true,
-            deps: [SearchFilterService]
+            deps: [SearchFilterService, IcoFilterService]
         }
     ]
 })

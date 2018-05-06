@@ -4,23 +4,25 @@ import {FilterResource} from '../api/resource/FilterResource';
 import {SearchFilterSettings} from './dataModels/FilterSettings';
 import {StorageConfig} from '../../config/StorageConfig';
 import {StorageAdapter} from '../localStorage/StorageAdapter';
+import {SyncAwareService} from './SyncAwareService';
 
 @Injectable()
-export class SearchFilterService extends StorageAdapter <SearchFilterSettings> {
+export class SearchFilterService extends StorageAdapter <SearchFilterSettings> implements SyncAwareService {
 
     constructor(private filterResource: FilterResource) {
         super(StorageConfig.APP_PREFIX + 'filterSettings');
-        this.syncSettings().subscribe();
+        this.sync().subscribe();
     }
 
-    public loadInitialSettings(): Observable<SearchFilterSettings> {
+    public loadInitial(): Observable<SearchFilterSettings> {
         return this.filterResource.getSearchFilterSettings()
             .do((settings) => this.post(settings));
     }
 
-    private syncSettings(): Observable<SearchFilterSettings> {
-        return this.storageChange().do((settings) => {
-            this.filterResource.saveSearchFilterSettings(settings).subscribe();
-        });
+    public sync(): Observable<SearchFilterSettings> {
+        return this.storageChange()
+            .do((settings) => {
+                this.filterResource.saveSearchFilterSettings(settings).subscribe();
+            });
     }
 }
