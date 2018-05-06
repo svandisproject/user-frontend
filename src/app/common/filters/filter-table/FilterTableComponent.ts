@@ -1,8 +1,8 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import * as _ from 'lodash';
-import {MockedICOScreenerFilters} from './mocks/MockedICOScreenerFilters';
-import {FilterType} from '../../../common/filters/dataModels/FilterType';
-import {AdvancedFilterItem, FilterOption} from '../../../common/filters/dataModels/AdvancedFilterItem';
+import {MockedICOScreenerFilters} from '../mocks/MockedICOScreenerFilters';
+import {FilterType} from '../dataModels/FilterType';
+import {AdvancedFilterItem, FilterOption} from '../dataModels/AdvancedFilterItem';
 
 
 @Component({

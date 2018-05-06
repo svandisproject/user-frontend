@@ -1,5 +1,5 @@
-import {AdvancedFilterItem} from '../../../../common/filters/dataModels/AdvancedFilterItem';
-import {FilterType} from '../../../../common/filters/dataModels/FilterType';
+import {AdvancedFilterItem} from '../dataModels/AdvancedFilterItem';
+import {FilterType} from '../dataModels/FilterType';
 
 export const MockedICOScreenerFilters: AdvancedFilterItem[] = [
     {

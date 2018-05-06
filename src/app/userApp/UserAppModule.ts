@@ -11,7 +11,6 @@ import {CanActivateRouteGuard} from './CanActivateRouteGuard';
 import {FormsModule} from '@angular/forms';
 import {FilterSettingsInitFactory} from './initializers/FilterSettingsInitFactory';
 import {ScreenerComponent} from './screener/ScreenerComponent';
-import {FilterTableComponent} from './screener/filter-table/FilterTableComponent';
 import {NouisliderModule} from 'ng2-nouislider';
 import {UserAppRouterConfig} from './UserAppRouterConfig';
 import {SearchFilterService} from '../common/filters/SearchFilterService';
@@ -28,7 +27,6 @@ import {SearchFilterService} from '../common/filters/SearchFilterService';
     declarations: [
         NewsFeedComponent,
         SearchFilterComponent,
-        FilterTableComponent,
         ScreenerComponent,
         FeedListComponent
     ],
