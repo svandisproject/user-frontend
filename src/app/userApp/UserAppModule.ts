@@ -14,8 +14,9 @@ import {NouisliderModule} from 'ng2-nouislider';
 import {UserAppRouterConfig} from './UserAppRouterConfig';
 import {SearchFilterService} from '../common/filters/SearchFilterService';
 import {FilterInitFactory} from './initializers/FilterInitFactory';
-import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {IcoScreenerComponent} from './screener/IcoScreenerComponent';
+import {AltCoinScreenerComponent} from './screener/AltCoinScreenerComponent';
+import {IcoFilterService} from '../common/filters/IcoFilterService';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import {IcoScreenerComponent} from './screener/IcoScreenerComponent';
         SearchFilterComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
+        AltCoinScreenerComponent,
         FeedListComponent
     ],
     providers: [

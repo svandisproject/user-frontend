@@ -2,14 +2,10 @@ import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import * as _ from 'lodash';
 
-export class StorageAdapter<T> {
-    protected readonly STORAGE_KEY: string;
+export abstract class StorageAdapter<T> {
+    protected abstract readonly STORAGE_KEY: string;
 
     protected saveSubject: BehaviorSubject<T> = new BehaviorSubject<T>(null);
-
-    constructor(storageKey: string) {
-        this.STORAGE_KEY = storageKey;
-    }
 
     public get(): T {
         return JSON.parse(localStorage.getItem(this.STORAGE_KEY));

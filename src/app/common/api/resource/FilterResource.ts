@@ -1,28 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {SearchFilterSettings} from '../../filters/dataModels/FilterSettings';
-import {mockedSettings} from '../../filters/mocks/mockedFilterSettings';
-import {AdvancedFilterItem} from '../../filters/dataModels/AdvancedFilterItem';
-import {MockedICOScreenerFilters} from '../../filters/mocks/MockedICOScreenerFilters';
+import {MockedFilters} from '../../filters/mocks/mockedFilters';
 
 @Injectable()
 export class FilterResource {
 
-    public getSearchFilterSettings(): Observable<SearchFilterSettings> {
-        return Observable.of(mockedSettings);
+    public getFilter<T>(id: string): Observable<any> {
+        return Observable.of(MockedFilters[id]);
     }
 
-    public saveSearchFilterSettings(fitleSettings: SearchFilterSettings): Observable<any> {
-        console.log('settings save to DB');
-        return Observable.of(null);
-    }
-
-    public getAdvancedFitlers(): Observable<AdvancedFilterItem[]> {
-        return Observable.of(MockedICOScreenerFilters);
-    }
-
-    public saveAdvancedFilters(filters: AdvancedFilterItem[]): Observable<any> {
+    public saveFilters<T>(filters: any): Observable<any> {
         console.log('Advanced filters saved to DB');
         return Observable.of(null);
     }
