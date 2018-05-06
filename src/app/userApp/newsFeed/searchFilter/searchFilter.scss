@@ -1,0 +1,50 @@
+
+app-search-filter {
+    .btn-selected {
+        border-color: #4da2f1 !important;
+        color: #4da2f1 !important;
+    }
+
+    .dropdown-filter-style {
+        background: #383838;
+        min-width: 342px;
+        .filter-text {
+            text-align: left;
+            padding-left: 0;
+            color: #dbdbdb;
+        }
+        .wrapper-filter {
+            padding-left: 0;
+        }
+        .filter-text .btn-importance {
+            margin-right: 16px;
+            margin-bottom: 16px;
+            padding-left: 16px;
+            padding-right: 16px;
+            color: #9c9c9c;
+            border: 1px solid #505050;
+        }
+        .uk-checkbox:checked {
+            color: #4da2f1;
+        }
+        .inline-search {
+            width: 100%;
+        }
+        option {
+            background: #383838;
+            color: #9c9c9c;
+        }
+        .filter-form {
+            text-align: left;
+        }
+        .form-custom-style {
+            width: 100%;
+            background: #383838;
+            background: none;
+        }
+
+        .dropdown-filter-style-button {
+            width: 100%;
+        }
+    }
+}

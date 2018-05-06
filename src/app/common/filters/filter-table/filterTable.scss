@@ -1,0 +1,35 @@
+@import "../../../userApp/colors";
+
+app-filter-table {
+    #some-filter-thing a {
+        padding: 0 16px;
+        color: $text-grey;
+        text-decoration: none;
+        &.active {
+            color: $neon-blue;
+            text-decoration: underline;
+        }
+    }
+
+    table {
+        margin-top: 20px;
+        tr {
+            td {
+                border-top: 1px solid $default-border;
+                border-bottom: 1px solid $default-border;
+            }
+            & td:first-child {
+                border-right: 1px solid $default-border;
+            }
+        }
+        button.uk-button {
+            margin-left: 15px;
+            border-color: $default-border !important;
+
+            &.uk-active {
+                background-color: $background-highlight !important;
+                border-color: $background-highlight !important;
+            }
+        }
+    }
+}

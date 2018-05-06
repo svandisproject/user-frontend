@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './AppComponent';
-import {FrontModule} from './front/FrontModule';
 import {RouterModule} from '@angular/router';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -9,6 +8,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
 import {NavigationModule} from './navigation/NavigationModule';
+import {UserAppModule} from './userApp/UserAppModule';
 
 @NgModule({
     declarations: [
@@ -28,7 +28,7 @@ import {NavigationModule} from './navigation/NavigationModule';
                 deps: [HttpClient]
             }
         }),
-        FrontModule
+        UserAppModule
     ],
     exports: [
         AppCommonProvidersModule,

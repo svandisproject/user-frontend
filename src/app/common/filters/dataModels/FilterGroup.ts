@@ -1,0 +1,5 @@
+export enum FilterGroup {
+    DESCRIPTIVE = 'DESCRIPTIVE',
+    FUNDAMENTAL = 'FUNDAMENTAL',
+    TECHNICAL = 'TECHNICAL'
+}

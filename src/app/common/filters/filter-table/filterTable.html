@@ -1,0 +1,46 @@
+<div id="some-filter-thing" class="uk-flex uk-flex-center uk-text-uppercase">
+    <a>All(3)</a>
+    <a>descriptive</a>
+    <a>fundamental</a>
+    <a>technical(3)</a>
+</div>
+
+
+<table class="uk-table uk-table-small">
+    <tbody>
+    <ng-container *ngFor="let tableRow of tabledFilters; index as rowIndex">
+        <tr *ngIf="tableRow">
+            <td *ngFor="let column of tableRow; index as columnIndex">
+                <div class="uk-form-horizontal">
+                    <label class="uk-form-label" for="form-label-{{column.id}}">
+                        {{column.label}}
+                    </label>
+                    <ng-container [ngSwitch]="column.type">
+                        <ng-container *ngSwitchCase="filterTypes.SELECT">
+                            <div class="uk-form-controls">
+                                <select class="uk-select"
+                                        (change)="selectFilter($event, column)"
+                                        id="form-label-{{column.id}}">
+                                    <option *ngFor="let option of column.options"
+                                            [selected]="option.selected">
+                                        {{option.label}}
+                                    </option>
+                                </select>
+                            </div>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="filterTypes.SWITCH">
+                            <div>
+                                <button *ngFor="let option of column.options"
+                                        (click)="selectOption(option, column.options)"
+                                        [class]="getButtonCssClass(option)">
+                                    {{option.label}}
+                                </button>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </div>
+            </td>
+        </tr>
+    </ng-container>
+    </tbody>
+</table>
