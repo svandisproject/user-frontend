@@ -4,14 +4,14 @@ import {FilterType} from '../dataModels/FilterType';
 export const MockedICOScreenerFilters: AdvancedFilterItem[] = [
     {
         type: FilterType.SELECT,
-        options: [{label: 'any'}, {label: 'option 1'}, {label: 'option 2'}],
+        options: [{label: 'any', selected: true}, {label: 'option 1'}, {label: 'option 2'}],
         id: '1',
         label: 'Token type',
         value: ''
     },
     {
         type: FilterType.SELECT,
-        options: [{label: 'any'}, {label: 'option 1'}, {label: 'option 2'}],
+        options: [{label: 'any', selected: true}, {label: 'option 1'}, {label: 'option 2'}],
         id: '2',
         label: 'Open presale',
         value: ''

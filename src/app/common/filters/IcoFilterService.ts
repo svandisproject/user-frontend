@@ -11,7 +11,7 @@ import {SyncAwareService} from './SyncAwareService';
 export class IcoFilterService extends StorageAdapter <AdvancedFilterItem[]> implements SyncAwareService {
 
     constructor(private filterResource: FilterResource) {
-        super(StorageConfig.APP_PREFIX + 'filterSettings');
+        super(StorageConfig.APP_PREFIX + 'icoFilters');
         this.sync().subscribe();
     }
 

@@ -12,6 +12,10 @@ export class FilterInitFactory {
     }
 
     private static initFilterSettings(service: SyncAwareService): Observable<any> {
-        return service.loadInitial();
+        if (service.isStorageEmpty()) {
+            return service.loadInitial();
+        } else {
+            return Observable.of(true);
+        }
     }
 }

@@ -1,8 +1,8 @@
 <table class="uk-table uk-table-small">
     <tbody>
-    <ng-container *ngFor="let tableRow of tabledFilters">
+    <ng-container *ngFor="let tableRow of tabledFilters; index as rowIndex">
         <tr *ngIf="tableRow">
-            <td *ngFor="let column of tableRow">
+            <td *ngFor="let column of tableRow; index as columnIndex">
                 <div class="uk-form-horizontal">
                     <label class="uk-form-label" for="form-label-{{column.label}}">
                         {{column.label}}
@@ -10,8 +10,11 @@
                     <ng-container [ngSwitch]="column.type">
                         <ng-container *ngSwitchCase="filterTypes.SELECT">
                             <div class="uk-form-controls">
-                                <select class="uk-select" id="form-label-{{column.label}}">
-                                    <option *ngFor="let option of column.options" [selected]="option.selected">
+                                <select class="uk-select"
+                                        (change)="selectFilter($event, column)"
+                                        id="form-label-{{column.label}}">
+                                    <option *ngFor="let option of column.options"
+                                            [selected]="option.selected">
                                         {{option.label}}
                                     </option>
                                 </select>

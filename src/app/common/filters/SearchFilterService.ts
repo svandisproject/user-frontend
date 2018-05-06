@@ -10,7 +10,7 @@ import {SyncAwareService} from './SyncAwareService';
 export class SearchFilterService extends StorageAdapter <SearchFilterSettings> implements SyncAwareService {
 
     constructor(private filterResource: FilterResource) {
-        super(StorageConfig.APP_PREFIX + 'filterSettings');
+        super(StorageConfig.APP_PREFIX + 'searchFilters');
         this.sync().subscribe();
     }
 

@@ -1,8 +1,7 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import * as _ from 'lodash';
-import {MockedICOScreenerFilters} from '../mocks/MockedICOScreenerFilters';
 import {FilterType} from '../dataModels/FilterType';
-import {AdvancedFilterItem, FilterOption} from '../dataModels/AdvancedFilterItem';
+import {FilterOption} from '../dataModels/AdvancedFilterItem';
 import {IcoFilterService} from '../IcoFilterService';
 
 
@@ -14,18 +13,29 @@ import {IcoFilterService} from '../IcoFilterService';
 })
 
 export class FilterTableComponent {
+    @Input() columns = 2;
+
     public filterTypes = FilterType;
-    public columns = 2;
-    public filters: AdvancedFilterItem[] = MockedICOScreenerFilters;
-    public tabledFilters = _.chunk(this.filters, this.columns);
+    public tabledFilters = [];
 
     constructor(private icoFilterService: IcoFilterService) {
-
+        this.tabledFilters = _.chunk(this.icoFilterService.get(), this.columns);
     }
 
     public selectOption(option: FilterOption, options: FilterOption[]): void {
         this.resetOptionsSelected(options);
         option.selected = true;
+        this.saveFilters();
+    }
+
+    public selectFilter($event, filter): void {
+        _.some(filter.options, (option) => {
+            if (option.label === $event.target.value) {
+                this.resetOptionsSelected(filter.options);
+                option.selected = true;
+            }
+        });
+        this.saveFilters();
     }
 
     public getButtonCssClass(option: FilterOption): string {
@@ -35,6 +45,10 @@ export class FilterTableComponent {
 
     private resetOptionsSelected(options: FilterOption[]) {
         this.icoFilterService.resetOptions(options);
+    }
+
+    private saveFilters(): void {
+        this.icoFilterService.post(_.flatten(this.tabledFilters));
     }
 }
 
