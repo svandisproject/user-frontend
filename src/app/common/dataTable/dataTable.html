@@ -7,7 +7,7 @@
     <tbody>
     <tr *ngFor="let data of dataSet.content">
         <td *ngFor="let column of displayedColumns"
-            [class]="column.isHeadColumn ? 'heading-column' : ''">
+            [class]="getColumnCss(column)">
             {{data[column.columnKey]}}
         </td>
     </tr>

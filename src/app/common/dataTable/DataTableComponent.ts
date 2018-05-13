@@ -15,7 +15,13 @@ export class DataTableComponent {
 
     public isLoading: boolean;
 
-    public getColumnsToDisplay(): string[] {
-        return this.displayedColumns.map(column => column.columnKey);
+    public getColumnCss(column: DataTableColumn): string {
+        if (column.isHeadColumn) {
+            return 'heading-column';
+        } else if (column.isNegativeHeading) {
+            return 'negative-column';
+        } else if (column.isPositiveHeading) {
+            return 'positive-column';
+        }
     }
 }

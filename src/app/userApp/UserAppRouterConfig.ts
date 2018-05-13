@@ -2,8 +2,8 @@ import {Route} from '@angular/router';
 import {NewsFeedComponent} from './newsFeed/NewsFeedComponent';
 import {LoginPageComponent} from '../common/pages/login/LoginPageComponent';
 import {CanActivateRouteGuard} from './CanActivateRouteGuard';
-import {IcoScreenerComponent} from './screener/IcoScreenerComponent';
-import {AltCoinScreenerComponent} from './screener/AltCoinScreenerComponent';
+import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
+import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 
 export const UserAppRouterConfig: Route[] = [
     {path: '', component: NewsFeedComponent, canActivate: [CanActivateRouteGuard]},

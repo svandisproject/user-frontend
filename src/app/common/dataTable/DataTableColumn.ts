@@ -5,4 +5,6 @@ export interface DataTableColumn {
     columnName: string;
     columnKey: string;
     isHeadColumn?: boolean;
+    isPositiveHeading?: boolean;
+    isNegativeHeading?: boolean;
 }

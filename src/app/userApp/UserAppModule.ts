@@ -14,8 +14,8 @@ import {NouisliderModule} from 'ng2-nouislider';
 import {UserAppRouterConfig} from './UserAppRouterConfig';
 import {SearchFilterService} from '../common/filters/SearchFilterService';
 import {FilterInitFactory} from './initializers/FilterInitFactory';
-import {IcoScreenerComponent} from './screener/IcoScreenerComponent';
-import {AltCoinScreenerComponent} from './screener/AltCoinScreenerComponent';
+import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
+import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 

@@ -3,7 +3,7 @@ import {StorageAdapter} from '../../common/localStorage/StorageAdapter';
 
 @Component({
     selector: 'app-screener',
-    templateUrl: './generalScreener.html'
+    templateUrl: './generalScreener.html',
 })
 
 export class GeneralScreenerComponent {
