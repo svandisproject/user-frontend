@@ -17,6 +17,7 @@ import {FilterInitFactory} from './initializers/FilterInitFactory';
 import {IcoScreenerComponent} from './screener/IcoScreenerComponent';
 import {AltCoinScreenerComponent} from './screener/AltCoinScreenerComponent';
 import {IcoFilterService} from '../common/filters/IcoFilterService';
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {IcoFilterService} from '../common/filters/IcoFilterService';
         FormsModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
+        InfiniteScrollModule,
         TranslateModule
     ],
     declarations: [
