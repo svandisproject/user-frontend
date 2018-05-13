@@ -1,16 +1,6 @@
 @import "../../../colors";
 
 app-filter-table {
-    #some-filter-thing a {
-        padding: 0 16px;
-        color: $text-grey;
-        text-decoration: none;
-        &.active {
-            color: $neon-blue;
-            text-decoration: underline;
-        }
-    }
-
     table {
         margin-top: 20px;
         tr {

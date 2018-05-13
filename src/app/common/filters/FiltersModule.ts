@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {SearchFilterService} from './SearchFilterService';
-import {FilterTableComponent} from './filter-table/FilterTableComponent';
+import {FilterTableComponent} from './filterTable/FilterTableComponent';
 import {FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 import {IcoFilterService} from './IcoFilterService';
