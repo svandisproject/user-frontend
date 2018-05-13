@@ -1,0 +1,8 @@
+@import '../../_colors.scss';
+
+app-data-table {
+    td.heading-column {
+        color: $neon-blue;
+        text-transform: uppercase;
+    }
+}

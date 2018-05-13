@@ -8,10 +8,13 @@ import {SearchFormComponent} from './forms/search/SearchFormComponent';
 import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
 import {SvandisApiModule} from './api/SvandisApiModule';
 import {FiltersModule} from './filters/FiltersModule';
+import {DataTableComponent} from './dataTable/DataTableComponent';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({
     imports: [
+        CommonModule,
         FormsModule,
         SvandisApiModule,
         FiltersModule,
@@ -20,13 +23,17 @@ import {FiltersModule} from './filters/FiltersModule';
     declarations: [
         ListReversePipe,
         RangeSliderComponent,
+        DataTableComponent,
         TruncatePipe,
         SearchFormComponent,
         LoginPageComponent
     ],
     exports: [
+        CommonModule,
+        FormsModule,
         FormsModule,
         SvandisApiModule,
+        DataTableComponent,
         FiltersModule,
         LoginPageComponent,
         RangeSliderComponent,

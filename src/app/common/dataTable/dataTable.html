@@ -1,0 +1,19 @@
+<table class="uk-table uk-table-striped" *ngIf="dataSet; else loading">
+    <thead>
+    <tr>
+        <th *ngFor="let heading of displayedColumns">{{heading.columnName | translate}}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of dataSet.content">
+        <td *ngFor="let column of displayedColumns"
+            [class]="column.isHeadColumn ? 'heading-column' : ''">
+            {{data[column.columnKey]}}
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<ng-template #loading>
+    Loading...
+</ng-template>
