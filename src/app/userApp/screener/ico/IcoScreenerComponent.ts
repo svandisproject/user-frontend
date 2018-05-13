@@ -12,7 +12,7 @@ import {IcoMockedDataSet} from './IcoMockedDataSet';
 export class IcoScreenerComponent extends GeneralScreenerComponent {
     public dataSet: Pageable<any> = IcoMockedDataSet;
 
-    public testColumns: DataTableColumn[] = [
+    public dataTableColumns: DataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker', isHeadColumn: true},
         {columnName: 'Name', columnKey: 'name'},
         {columnName: 'Hard cap, $', columnKey: 'hardCap'},
