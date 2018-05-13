@@ -14,6 +14,8 @@ export class DataTableComponent {
     @Input() displayedColumns: DataTableColumn[] = [];
 
     public isLoading: boolean;
+    public orderKey: string;
+    public isReversed: boolean;
 
     public getColumnCss(column: DataTableColumn): string {
         if (column.isHeadColumn) {

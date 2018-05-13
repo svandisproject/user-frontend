@@ -7,7 +7,7 @@ export const AltCoinMockedDataSet: Pageable<any> = {
             name: 'BitShares',
             industry: 'Blockchain',
             marketCap: '602m',
-            price: '0.23',
+            price: '0.25',
             change: '20.29%',
             changeWeek: '59.9%',
             changeYtd: '-65%',

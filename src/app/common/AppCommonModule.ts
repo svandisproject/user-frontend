@@ -11,6 +11,7 @@ import {FiltersModule} from './filters/FiltersModule';
 import {DataTableComponent} from './dataTable/DataTableComponent';
 import {CommonModule} from '@angular/common';
 import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponent';
+import {OrderModule} from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponen
         CommonModule,
         FormsModule,
         SvandisApiModule,
+        OrderModule,
         FiltersModule,
         TranslateModule
     ],
