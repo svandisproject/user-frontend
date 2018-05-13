@@ -1,10 +1,10 @@
+@import '../../_colors.scss';
+
 app-navigation {
     .uk-navbar-container.uk-navbar.navbar-header {
         background: none;
     }
-    .uk-active a {
-        color: #fff !important;
-    }
+
     .logo {
         margin-right: 20px;
         padding-left: 0;
@@ -66,16 +66,23 @@ app-navigation {
     .uk-tab::before {
         border: none;
     }
-    .left-nav .left-nav-bar .uk-tab > .uk-active > a {
-        border-color: #1e87f0;
+
+    .uk-active a {
+        color: #999 !important;
     }
+    .uk-active > a {
+        border: none !important;
+    }
+
+    a.nav-active {
+        color: #fff !important;
+        border-bottom: 1px solid $neon-blue !important;
+    }
+
     .right-nav-bar {
         height: 36px;
     }
-    .uk-card-secondary.uk-card-body .uk-tab > .uk-active > a,
-    .uk-card-secondary > :not([class*='uk-card-media']) .uk-tab > .uk-active > a {
-        border-color: #1e87f0;
-    }
+
     .uk-navbar-nav > li > a {
         text-transform: none;
     }

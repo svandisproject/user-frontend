@@ -6,8 +6,10 @@
                     <img src="../../../assets/image/logo.png" alt="">
                 </a>
                 <ul class="uk-navbar-nav uk-tab left-nav-bar" uk-tab>
-                    <li *ngFor="let item of navItems" routerLinkActive="uk-active">
+                    <li *ngFor="let item of navItems">
                         <a [routerLink]="[item.path]"
+                           [routerLinkActive]="'nav-active'"
+                           [routerLinkActiveOptions]="{exact:true}"
                            [class]="'image-menu ' + item.cssClass">
                             {{item.text | translate}}
                         </a>

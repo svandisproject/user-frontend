@@ -28,4 +28,14 @@ app-root {
     select option {
         background-color: $app-background-color;
     }
+
+    .uk-table-striped > tr:nth-of-type(odd),
+    .uk-table-striped tbody tr:nth-of-type(odd) {
+        background: #2C2C2C;
+        border: none;
+    }
+    .uk-table td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }
