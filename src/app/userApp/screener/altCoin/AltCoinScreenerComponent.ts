@@ -11,7 +11,7 @@ import {AltCoinMockedDataSet} from './AltCoinMockedDataSet';
 })
 export class AltCoinScreenerComponent extends GeneralScreenerComponent {
     public title = 'SCREENER.ALT.TITLE';
-    public testData: Pageable<any> = AltCoinMockedDataSet;
+    public dataSet: Pageable<any> = AltCoinMockedDataSet;
 
     public testColumns: DataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker', isHeadColumn: true},
