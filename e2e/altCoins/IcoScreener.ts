@@ -10,4 +10,8 @@ export class IcoScreener {
     public static getSelectFilterNthOption(filterName: string, option: number): ElementFinder {
         return $(`#${filterName} option:nth-child(${option})`);
     }
+
+    public static openFilterTable(): void {
+        $('#filter-table-toggle').click();
+    }
 }
