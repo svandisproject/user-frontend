@@ -1,22 +1,29 @@
-<ul class="uk-list uk-list-divider list-alerts" *ngIf="posts; else listLoading" id="news-feed-list">
-    <li class="list-alerts-list" *ngFor="let feed of posts | listReverse">
-        <div class="uk-float-left uk-flex">
-            <a [href]="feed.url" class="news-feed-header-link" target="_blank">
-                <h6 class="news-feed-header">{{feed.title | truncate:[50, '...']}}</h6>
-            </a>
-            <p class="news-feed-header-link-paragraph">{{feed.content | truncate}}</p>
-        </div>
-        <div class="uk-float-right uk-flex">
-            <!--TODO: What time should be shown createdAt or publishedAt ?-->
-            <span class="news-feed-header-link-date uk-float-right">{{feed.createdAt}}</span>
-            <!--TODO: Are those tags ?-->
-            <span class="news-feed-header-link-channel uk-float-right channel-red" *ngIf="feed.tags">
-                <ng-container *ngFor="let tag of feed.tags">{{tag.title}}</ng-container>
-            </span>
-        </div>
-    </li>
-</ul>
+<div class="search-results"
+     *ngIf="postPageable; else listLoading"
+     infiniteScroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()">
+    <table class="uk-table uk-table-divider list-alerts" id="news-feed-list">
+        <tbody>
+        <tr *ngFor="let feed of postPageable.content | listReverse">
+            <td>
+                <a [href]="feed.url" class="news-feed-header-link" target="_blank">
+                    <span class="news-feed-header">{{feed.title | truncate:[50, '...']}}</span>
+                </a>
+                <span>{{feed.content | truncate:[80, '...']}}</span>
+            </td>
+            <td>
+                <span class="news-feed-header-link-date">{{feed.createdAt | date: 'shortTime'}}</span>
+                <span class="channel-red" *ngIf="feed.tags">
+                    <ng-container *ngFor="let tag of feed.tags">{{tag.title}} </ng-container>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 <ng-template #listLoading>
-    <h5 translate>APP.LOADING</h5>
+    Loading...
 </ng-template>

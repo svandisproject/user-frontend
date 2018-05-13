@@ -1,0 +1,11 @@
+@import "../../../colors";
+
+button.button-active {
+    color: $neon-blue-light !important;
+}
+
+button.uk-button {
+    border: 1px solid $background-highlight !important;
+    background-color: $background-highlight !important;
+    padding: 1px 10px 0 !important;
+}

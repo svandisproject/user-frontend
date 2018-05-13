@@ -8,25 +8,37 @@ import {SearchFormComponent} from './forms/search/SearchFormComponent';
 import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
 import {SvandisApiModule} from './api/SvandisApiModule';
 import {FiltersModule} from './filters/FiltersModule';
+import {DataTableComponent} from './dataTable/DataTableComponent';
+import {CommonModule} from '@angular/common';
+import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponent';
+import {OrderModule} from 'ngx-order-pipe';
 
 
 @NgModule({
     imports: [
+        CommonModule,
         FormsModule,
         SvandisApiModule,
+        OrderModule,
         FiltersModule,
         TranslateModule
     ],
     declarations: [
         ListReversePipe,
         RangeSliderComponent,
+        DataTableComponent,
+        FilterButtonComponent,
         TruncatePipe,
         SearchFormComponent,
         LoginPageComponent
     ],
     exports: [
+        CommonModule,
+        FormsModule,
         FormsModule,
         SvandisApiModule,
+        FilterButtonComponent,
+        DataTableComponent,
         FiltersModule,
         LoginPageComponent,
         RangeSliderComponent,

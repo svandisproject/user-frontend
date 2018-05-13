@@ -5,9 +5,19 @@
         </h3>
         <div class="control-header-card-icon uk-flex-right uk-text-right">
             <app-search-form></app-search-form>
+            <app-filter-button [(isOpened)]="isFilterOpened"></app-filter-button>
         </div>
     </div>
+
     <hr class="after-header-line">
 
-    <app-filter-table [filterService]="filterService"></app-filter-table>
+    <app-filter-table *ngIf="isFilterOpened" [filterService]="filterService"></app-filter-table>
+
+    <div id="some-filter-thing" class="uk-flex uk-flex-center uk-text-uppercase">
+        <a>All(3)</a>
+        <a>descriptive</a>
+        <a>fundamental</a>
+        <a>technical(3)</a>
+    </div>
+    <app-data-table [dataSet]="dataSet" [displayedColumns]="dataTableColumns"></app-data-table>
 </div>

@@ -48,9 +48,6 @@ export class AuthService {
 
     public getSessionToken(): string {
         const token: string = sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
-        if (!token) {
-            console.warn('Unauthorized');
-        }
         return token;
     }
 

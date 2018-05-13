@@ -26,7 +26,6 @@ export class UserService {
             .map((token) => {
                 this.setUser({});
                 this.authService.setSessionToken(token.token);
-                // console.log(sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY));
             });
     }
 

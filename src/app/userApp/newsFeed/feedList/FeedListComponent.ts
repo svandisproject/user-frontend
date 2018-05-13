@@ -4,6 +4,7 @@ import {Channel} from 'pusher-js';
 import {NewsFeedPusherEvent} from '../dataModels/NewsFeedPusherEvent';
 import {Post} from '../../../common/api/dataModels/Post';
 import {PostService} from '../../../common/api/services/PostService';
+import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 
 @Component({
     selector: 'app-feed-list',
@@ -11,7 +12,8 @@ import {PostService} from '../../../common/api/services/PostService';
     encapsulation: ViewEncapsulation.None
 })
 export class FeedListComponent {
-    public posts: Post[] = [];
+    public postPageable: Pageable<Post>;
+
     private pusherChannel: Channel;
 
     private readonly PUSHER_EVENT = 'new-post';
@@ -21,17 +23,22 @@ export class FeedListComponent {
                 private zone: NgZone,
                 private pusherService: PusherService) {
 
-        this.postService.findAll().subscribe((posts) => this.posts = posts);
+        this.postService.findAll().subscribe((posts) => {
+            this.postPageable = posts;
+        });
+
         this.subscribeToPusherNews();
+    }
+
+    public onScroll($event) {
     }
 
     private subscribeToPusherNews() {
         this.pusherChannel = this.pusherService.connectToChannel(this.PUSHER_CHANNEL);
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
             .subscribe((eventData: NewsFeedPusherEvent) => {
-                // TODO: Can a duplicated news be send ?
                 this.zone.run(() => {
-                    this.posts.unshift(eventData.message);
+                    this.postPageable.content.unshift(eventData.message);
                 });
             });
     }
