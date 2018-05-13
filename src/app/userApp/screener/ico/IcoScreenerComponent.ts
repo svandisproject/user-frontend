@@ -6,7 +6,8 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoMockedDataSet} from './IcoMockedDataSet';
 
 @Component({
-    templateUrl: '../generalScreener.html'
+    templateUrl: '../generalScreener.html',
+    styleUrls: ['../generalScreener.scss']
 })
 export class IcoScreenerComponent extends GeneralScreenerComponent {
     public dataSet: Pageable<any> = IcoMockedDataSet;

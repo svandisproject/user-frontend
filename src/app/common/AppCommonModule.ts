@@ -10,6 +10,7 @@ import {SvandisApiModule} from './api/SvandisApiModule';
 import {FiltersModule} from './filters/FiltersModule';
 import {DataTableComponent} from './dataTable/DataTableComponent';
 import {CommonModule} from '@angular/common';
+import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponent';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {CommonModule} from '@angular/common';
         ListReversePipe,
         RangeSliderComponent,
         DataTableComponent,
+        FilterButtonComponent,
         TruncatePipe,
         SearchFormComponent,
         LoginPageComponent
@@ -33,6 +35,7 @@ import {CommonModule} from '@angular/common';
         FormsModule,
         FormsModule,
         SvandisApiModule,
+        FilterButtonComponent,
         DataTableComponent,
         FiltersModule,
         LoginPageComponent,

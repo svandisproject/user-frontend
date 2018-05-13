@@ -7,7 +7,7 @@ import {CommonModule} from '@angular/common';
 
 import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
-import {CanActivateRouteGuard} from './CanActivateRouteGuard';
+import {AuthGuard} from './guards/AuthGuard';
 import {FormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
@@ -38,7 +38,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
         FeedListComponent
     ],
     providers: [
-        CanActivateRouteGuard,
+        AuthGuard,
         {
             provide: APP_INITIALIZER,
             useFactory: FilterInitFactory.factory,

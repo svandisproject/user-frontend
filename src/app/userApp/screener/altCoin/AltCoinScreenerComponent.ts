@@ -7,7 +7,8 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {AltCoinMockedDataSet} from './AltCoinMockedDataSet';
 
 @Component({
-    templateUrl: '../generalScreener.html'
+    templateUrl: '../generalScreener.html',
+    styleUrls: ['../generalScreener.scss']
 })
 export class AltCoinScreenerComponent extends GeneralScreenerComponent {
     public title = 'SCREENER.ALT.TITLE';
