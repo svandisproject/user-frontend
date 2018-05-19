@@ -1,0 +1,15 @@
+<ng-template *ngIf="!inline; else inlineInput">
+    <form #form="ngForm"
+          (submit)="onSubmit(form)"
+          class="uk-search uk-search-default">
+        <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
+        <input class="uk-search-input" type="search" [placeholder]="placeholder">
+    </form>
+</ng-template>
+
+<ng-template #inlineInput>
+    <div class="uk-inline inline-search">
+        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
+        <input class="uk-input" type="text">
+    </div>
+</ng-template>

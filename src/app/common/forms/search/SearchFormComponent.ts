@@ -2,17 +2,13 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Form} from '@angular/forms';
 
 @Component({
-    selector: 'app-search-form',
-    styles: ['form.uk-search-default { width: 250px }'],
-    template: `
-        <form #form="ngForm" (submit)="onSubmit(form)" class="uk-search uk-search-default">
-            <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
-            <input class="uk-search-input" type="search" [placeholder]="placeholder">
-        </form>
-    `
+    selector: 'app-search-form, [app-search-form-inline]',
+    styleUrls: ['./searchForm.scss'],
+    templateUrl: './searchForm.html'
 })
 export class SearchFormComponent {
     @Input() placeholder = 'Search...';
+    @Input('app-search-form-inline') inline;
     @Output() submitted: EventEmitter<Form> = new EventEmitter<Form>();
 
     public onSubmit(form: Form) {
