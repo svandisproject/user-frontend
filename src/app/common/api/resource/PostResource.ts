@@ -4,6 +4,7 @@ import {Post} from '../dataModels/Post';
 import {SvandisApi} from '../config/SvandisApi';
 import {HttpService} from '../../http/HttpService';
 import {Pageable} from '../dataModels/pageable/Pageable';
+import {Filter} from '../dataModels/Filter';
 
 @Injectable()
 export class PostResource {
@@ -14,5 +15,15 @@ export class PostResource {
 
     public findAll(): Observable<Pageable<Post>> {
         return this.httpService.get(this.URL);
+    }
+
+    public findAllFilterBy(filters: Filter[]): Observable<Pageable<Post>> {
+        const encodedFilters: string = btoa(JSON.stringify(filters));
+
+        return this.httpService.get(this.URL + '/filter', {
+            params: {
+                filter: encodedFilters
+            }
+        });
     }
 }
