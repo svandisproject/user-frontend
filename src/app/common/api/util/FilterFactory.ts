@@ -3,14 +3,20 @@ import {Filter} from '../dataModels/Filter';
 export class FilterFactory {
     private filters: Filter[];
 
-    public create(filter?: Filter): FilterFactory {
-        this.filters = filter ? [filter] : [];
+    constructor() {
+        this.filters = [];
+    }
+
+    public create(filters: Filter[]): FilterFactory {
+        this.filters = filters;
         return this;
     }
 
-    public add(filter): FilterFactory {
+    public add(filter: Filter): FilterFactory {
         if (this.filters) {
             this.filters.push(filter);
+        } else {
+            this.filters = [filter];
         }
 
         return this;

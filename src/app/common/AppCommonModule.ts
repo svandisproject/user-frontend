@@ -12,6 +12,8 @@ import {DataTableComponent} from './dataTable/DataTableComponent';
 import {CommonModule} from '@angular/common';
 import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponent';
 import {OrderModule} from 'ngx-order-pipe';
+import {TagInputModule} from 'ngx-chips';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import {OrderModule} from 'ngx-order-pipe';
         SvandisApiModule,
         OrderModule,
         FiltersModule,
+        BrowserAnimationsModule,
+        TagInputModule,
         TranslateModule
     ],
     declarations: [

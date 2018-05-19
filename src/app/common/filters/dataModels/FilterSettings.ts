@@ -1,7 +1,7 @@
 import {FilterItem} from './FilterItem';
 
 export interface SearchFilterSettings {
-    searchQuery: string[];
+    searchTerms?: FilterItem[];
     assets: FilterItem[];
     region: FilterItem[];
     activityFields: FilterItem[];

@@ -22,6 +22,13 @@ export class SearchFilterComponent {
         this.settings = this.filterService.get();
     }
 
+    public onTermsSearch(searchTerms: string[]) {
+        this.settings.searchTerms = _.map(searchTerms, (term) => {
+            return {value: term, property: 'content'};
+        });
+        this.filterChange.emit(this.settings);
+    }
+
     public changeDropDownFilter($event, key: 'assets' | 'region'): void {
         this.resetSelectionForFilter(key);
         this.saveSettings();

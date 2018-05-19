@@ -16,7 +16,7 @@
             <div class="uk-nav uk-dropdown-nav">
                 <div class="uk-margin">
                     <form action="" class="filter-form">
-                        <div app-search-form-inline="true"></div>
+                        <div app-search-form-inline="true" (termsChange)="onTermsSearch($event)"></div>
                         <div class="uk-margin">
                             <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
                                 <select (change)="changeDropDownFilter($event, 'assets')"
