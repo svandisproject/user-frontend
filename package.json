@@ -35,6 +35,7 @@
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
     "ng2-nouislider": "^1.7.8",
+    "ngx-chips": "^1.9.2",
     "ngx-infinite-scroll": "^0.8.4",
     "ngx-order-pipe": "^2.0.1",
     "nouislider": "^11.1.0",

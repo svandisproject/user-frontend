@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Form} from '@angular/forms';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-search-form, [app-search-form-inline]',
@@ -9,9 +9,13 @@ import {Form} from '@angular/forms';
 export class SearchFormComponent {
     @Input() placeholder = 'Search...';
     @Input('app-search-form-inline') inline;
-    @Output() submitted: EventEmitter<Form> = new EventEmitter<Form>();
+    @Input() searchTerms: { display: string, value: string } [] = [];
 
-    public onSubmit(form: Form) {
-        this.submitted.emit(form);
+    @Output() termsChange: EventEmitter<string[]> = new EventEmitter<string[]>();
+
+    public readonly maxTags = 4;
+
+    public tagAdded() {
+        this.termsChange.emit(_.map(this.searchTerms, term => term.value));
     }
 }
