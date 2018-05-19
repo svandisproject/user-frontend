@@ -10,10 +10,11 @@
 <ng-template #inlineInput>
     <div class="uk-inline inline-search">
         <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
-        <tag-input [(ngModel)]="searchTerms"
+        <tag-input [(ngModel)]="terms"
                    theme="foundation"
                    [placeholder]="placeholder"
                    [maxItems]="maxTags"
-                   (onAdd)="tagAdded()"></tag-input>
+                   (onRemove)="emitOutput()"
+                   (onAdd)="emitOutput()"></tag-input>
     </div>
 </ng-template>

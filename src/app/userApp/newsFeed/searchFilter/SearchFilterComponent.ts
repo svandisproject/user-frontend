@@ -22,10 +22,9 @@ export class SearchFilterComponent {
         this.settings = this.filterService.get();
     }
 
-    public onTermsSearch(searchTerms: string[]) {
-        this.settings.searchTerms = _.map(searchTerms, (term) => {
-            return {value: term, property: 'content'};
-        });
+    public onTermsSearch(searchTerms: FilterItem[]) {
+        this.settings.searchTerms = searchTerms;
+        this.saveSettings();
         this.filterChange.emit(this.settings);
     }
 

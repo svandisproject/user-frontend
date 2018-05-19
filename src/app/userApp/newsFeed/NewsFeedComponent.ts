@@ -7,6 +7,9 @@ import {SearchFilterSettings} from '../../common/filters/dataModels/FilterSettin
 import {Filter} from '../../common/api/dataModels/Filter';
 import * as _ from 'lodash';
 import {FilterItem} from '../../common/filters/dataModels/FilterItem';
+import {HttpErrorResponse} from '@angular/common/http';
+import {catchError} from 'rxjs/operators';
+import {of} from 'rxjs/observable/of';
 
 @Component({
     selector: 'app-news-feed',
@@ -27,9 +30,29 @@ export class NewsFeedComponent {
     }
 
     private filterPosts(searchFilters: SearchFilterSettings): void {
-        this.postService.findAllBy(this.buildFilters(searchFilters)).subscribe((posts) => {
-            this.posts = posts;
-        });
+        this.postService.findAllBy(this.buildFilters(searchFilters))
+            .pipe(
+                catchError((err: HttpErrorResponse) => {
+                    if (err.status === 404) {
+                        this.resetPosts();
+                    }
+                    return of(this.posts);
+                })
+            )
+            .subscribe((posts) => {
+                this.posts = posts;
+            });
+    }
+
+    private resetPosts() {
+        this.posts = {
+            content: [],
+            page_request: {
+                page: 1,
+                size: 0
+            },
+            total: 0
+        };
     }
 
     private buildFilters(settings: SearchFilterSettings): Filter[] {
