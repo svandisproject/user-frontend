@@ -17,7 +17,7 @@ export class PostResource {
         return this.httpService.get(this.URL);
     }
 
-    public findAllFilterBy(filters: Filter[]): Observable<Pageable<Post>> {
+    public findBy(filters: Filter[]): Observable<Pageable<Post>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
 
         return this.httpService.get(this.URL + '/filter', {

@@ -30,7 +30,7 @@ export class NewsFeedComponent {
     }
 
     private filterPosts(searchFilters: SearchFilterSettings): void {
-        this.postService.findAllBy(this.buildFilters(searchFilters))
+        this.postService.findBy(this.buildFilters(searchFilters))
             .pipe(
                 catchError((err: HttpErrorResponse) => {
                     if (err.status === 404) {
