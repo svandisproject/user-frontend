@@ -1,8 +1,7 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
 
 import * as _ from 'lodash';
 import {SearchFilterSettings} from '../../../common/filters/dataModels/FilterSettings';
-import {FilterSettingsRequest} from '../../../common/filters/dataModels/FilterSettingsRequest';
 import {SearchFilterService} from '../../../common/filters/SearchFilterService';
 import {FilterItem} from '../../../common/filters/dataModels/FilterItem';
 
@@ -16,16 +15,23 @@ import {FilterItem} from '../../../common/filters/dataModels/FilterItem';
 
 export class SearchFilterComponent {
     public settings: SearchFilterSettings = <SearchFilterSettings> {};
-    public settingsRequest: FilterSettingsRequest = <FilterSettingsRequest> {};
+
+    @Output() filterChange: EventEmitter<SearchFilterSettings> = new EventEmitter();
 
     constructor(private filterService: SearchFilterService) {
         this.settings = this.filterService.get();
     }
 
+    public onTermsSearch(searchTerms: FilterItem[]) {
+        this.settings.searchTerms = searchTerms;
+        this.saveSettings();
+        this.filterChange.emit(this.settings);
+    }
+
     public changeDropDownFilter($event, key: 'assets' | 'region'): void {
         const filterId: string = $event.target.value;
         this.resetSelectionForFilter(key);
-        this.settingsRequest[key] = this.findFilterItemFrom(key, filterId);
+        this.setSelectedFilterItem(key, filterId);
         this.saveSettings();
     }
 
@@ -36,8 +42,6 @@ export class SearchFilterComponent {
                 return true;
             }
         });
-
-        this.settingsRequest[key] = this.settings[key];
         this.saveSettings();
     }
 
@@ -45,11 +49,12 @@ export class SearchFilterComponent {
         return `uk-button uk-button-default uk-float-left btn-importance ${selected ? 'btn-selected' : ''}`;
     }
 
-    private findFilterItemFrom(key: 'assets' | 'region', id: string): FilterItem {
+    private setSelectedFilterItem(key: 'assets' | 'region', id: string): void {
         if (!this.settings[key]) {
             return;
         }
-        return _.find(this.settings[key], (item) => {
+
+        _.some(this.settings[key], (item) => {
             if (item.id === id) {
                 item.selected = !item.selected;
                 return true;
@@ -59,6 +64,7 @@ export class SearchFilterComponent {
 
     private saveSettings(): void {
         this.filterService.post(this.settings);
+        this.filterChange.emit(this.settings);
     }
 
     private resetSelectionForFilter(key: 'assets' | 'region') {

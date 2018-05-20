@@ -1,4 +1,4 @@
-import {Component, NgZone, ViewEncapsulation} from '@angular/core';
+import {Component, Input, NgZone, ViewEncapsulation} from '@angular/core';
 import {PusherService} from '../../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
 import {NewsFeedPusherEvent} from '../dataModels/NewsFeedPusherEvent';
@@ -9,10 +9,11 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 @Component({
     selector: 'app-feed-list',
     templateUrl: './feedList.html',
+    styles: ['app-feed-list {margin-top: 15px; display: block}'],
     encapsulation: ViewEncapsulation.None
 })
 export class FeedListComponent {
-    public postPageable: Pageable<Post>;
+    @Input() posts: Pageable<Post>;
 
     private pusherChannel: Channel;
 
@@ -22,11 +23,6 @@ export class FeedListComponent {
     constructor(private postService: PostService,
                 private zone: NgZone,
                 private pusherService: PusherService) {
-
-        this.postService.findAll().subscribe((posts) => {
-            this.postPageable = posts;
-        });
-
         this.subscribeToPusherNews();
     }
 
@@ -38,7 +34,7 @@ export class FeedListComponent {
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
             .subscribe((eventData: NewsFeedPusherEvent) => {
                 this.zone.run(() => {
-                    this.postPageable.content.unshift(eventData.message);
+                    this.posts.content.unshift(eventData.message);
                 });
             });
     }

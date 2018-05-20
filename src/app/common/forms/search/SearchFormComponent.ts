@@ -1,21 +1,32 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Form} from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import * as _ from 'lodash';
+import {FilterItem} from '../../filters/dataModels/FilterItem';
 
 @Component({
-    selector: 'app-search-form',
-    styles: ['form.uk-search-default { width: 250px }'],
-    template: `
-        <form #form="ngForm" (submit)="onSubmit(form)" class="uk-search uk-search-default">
-            <button type="submit" class="uk-search-icon-flip" uk-search-icon></button>
-            <input class="uk-search-input" type="search" [placeholder]="placeholder">
-        </form>
-    `
+    selector: 'app-search-form, [app-search-form-inline]',
+    styleUrls: ['./searchForm.scss'],
+    templateUrl: './searchForm.html'
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
     @Input() placeholder = 'Search...';
-    @Output() submitted: EventEmitter<Form> = new EventEmitter<Form>();
+    @Input('app-search-form-inline') inline;
+    @Input() searchTerms: FilterItem[] = [];
 
-    public onSubmit(form: Form) {
-        this.submitted.emit(form);
+    @Output() termsChange: EventEmitter<FilterItem[]> = new EventEmitter<FilterItem[]>();
+
+    public terms: { display: string, value: string }[];
+    public readonly maxTags = 4;
+
+
+    ngOnInit(): void {
+        this.terms = _.map(this.searchTerms, item => {
+            return {display: item.value, value: item.value};
+        });
+    }
+
+    public emitOutput() {
+        this.termsChange.emit(_.map(this.terms, (term) => {
+            return {value: term.value, property: 'content'};
+        }));
     }
 }

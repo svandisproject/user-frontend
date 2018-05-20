@@ -1,6 +1,7 @@
 {
   "APP.LOADING": "Loading...",
   "APP.PAGES.LOGIN.TITLE": "Login",
+  "ERROR.404.RESULTS": "Sorry, no results found",
   "NAVIGATION.FRONT.ITEM.DASHBOARD": "Dashboard",
   "NAVIGATION.FRONT.ITEM.ICO_SCR": "ICO scr",
   "NAVIGATION.FRONT.ITEM.ALT_COIN": "Alt coins scr",

@@ -5,8 +5,8 @@
             <a href="#">
                 <img class="switcher-img" src="../../../assets/image/swither.png" alt="">
             </a>
-            <app-search-filter></app-search-filter>
+            <app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>
         </div>
     </div>
-    <app-feed-list></app-feed-list>
+    <app-feed-list [posts]="posts"></app-feed-list>
 </div>
