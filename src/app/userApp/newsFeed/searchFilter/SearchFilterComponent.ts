@@ -29,7 +29,9 @@ export class SearchFilterComponent {
     }
 
     public changeDropDownFilter($event, key: 'assets' | 'region'): void {
+        const filterId: string = $event.target.value;
         this.resetSelectionForFilter(key);
+        this.setSelectedFilterItem(key, filterId);
         this.saveSettings();
     }
 
@@ -45,6 +47,19 @@ export class SearchFilterComponent {
 
     public getButtonCss(selected: boolean): string {
         return `uk-button uk-button-default uk-float-left btn-importance ${selected ? 'btn-selected' : ''}`;
+    }
+
+    private setSelectedFilterItem(key: 'assets' | 'region', id: string): void {
+        if (!this.settings[key]) {
+            return;
+        }
+
+        _.some(this.settings[key], (item) => {
+            if (item.id === id) {
+                item.selected = !item.selected;
+                return true;
+            }
+        });
     }
 
     private saveSettings(): void {

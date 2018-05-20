@@ -17,6 +17,7 @@
                 <div class="uk-margin">
                     <form action="" class="filter-form">
                         <div app-search-form-inline="true"
+                             id="search-term-filter"
                              [searchTerms]="settings.searchTerms"
                              (termsChange)="onTermsSearch($event)">
                         </div>
