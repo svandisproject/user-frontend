@@ -1,7 +1,7 @@
 import {Route} from '@angular/router';
 import {NewsFeedComponent} from './newsFeed/NewsFeedComponent';
 import {LoginPageComponent} from '../common/pages/login/LoginPageComponent';
-import {AuthGuard} from './guards/AuthGuard';
+import {AuthGuard} from '../common/guards/AuthGuard';
 import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
 import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 

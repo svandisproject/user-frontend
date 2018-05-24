@@ -7,7 +7,7 @@ import {CommonModule} from '@angular/common';
 
 import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
-import {AuthGuard} from './guards/AuthGuard';
+import {AuthGuard} from '../common/guards/AuthGuard';
 import {FormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
