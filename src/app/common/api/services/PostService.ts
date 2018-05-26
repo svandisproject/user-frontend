@@ -17,4 +17,8 @@ export class PostService {
     public findBy(filters: Filter[]): Observable<Pageable<Post>> {
         return this.postResource.findBy(filters);
     }
+
+    public findById(postId: string): Observable<Post> {
+        return this.postResource.findById(postId);
+    }
 }

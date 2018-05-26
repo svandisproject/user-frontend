@@ -13,6 +13,7 @@ import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponen
 import {OrderModule} from 'ngx-order-pipe';
 import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgFormsModule} from './ngForms/NgFormsModule';
 
 @NgModule({
     imports: [
@@ -21,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         SvandisApiModule,
         OrderModule,
         FiltersModule,
+        NgFormsModule,
         BrowserAnimationsModule,
         TagInputModule,
         TranslateModule
@@ -34,6 +36,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         LoginPageComponent
     ],
     exports: [
+        NgFormsModule,
         CommonModule,
         FormsModule,
         OrderModule,

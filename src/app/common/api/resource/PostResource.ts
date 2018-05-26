@@ -26,4 +26,8 @@ export class PostResource {
             }
         });
     }
+
+    public findById(postId: string): Observable<Post> {
+        return this.httpService.get(this.URL + '/' + postId);
+    }
 }

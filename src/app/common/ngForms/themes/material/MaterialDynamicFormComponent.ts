@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {DynamicFormComponent} from '../../components/DynamicFormComponent';
 
 @Component({
@@ -9,5 +9,5 @@ import {DynamicFormComponent} from '../../components/DynamicFormComponent';
     styleUrls: ['./ngFormsMaterial.scss']
 })
 export class MaterialDynamicFormComponent extends DynamicFormComponent {
-
+    @Input() dividerEnabled = false;
 }

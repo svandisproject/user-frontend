@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {UserService} from '../user/UserService';
-import _ = require('lodash');
+import * as _ from 'lodash';
+
 
 @Injectable()
 export class AuthGuard implements CanActivate {

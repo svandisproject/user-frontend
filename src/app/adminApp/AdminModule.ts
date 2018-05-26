@@ -9,9 +9,12 @@ import {AdminComponent} from './AdminComponent';
 import {RouterModule} from '@angular/router';
 import {AdminRouteConfigs} from './AdminRouteConfig';
 import {EditPostComponent} from './posts/edit/EditPostComponent';
+import {AppCommonModule} from '../common/AppCommonModule';
+import {EditPostResolver} from './posts/edit/EditPostResolver';
 
 @NgModule({
     imports: [
+        AppCommonModule,
         CommonModule,
         MatSidenavModule,
         MatToolbarModule,
@@ -28,6 +31,9 @@ import {EditPostComponent} from './posts/edit/EditPostComponent';
         PostListComponent,
         EditPostComponent,
         AdminNavComponent
+    ],
+    providers: [
+        EditPostResolver
     ],
     exports: [
         DataTableComponent,

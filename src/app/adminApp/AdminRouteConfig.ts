@@ -3,6 +3,7 @@ import {AdminComponent} from './AdminComponent';
 import {PostListComponent} from './posts/PostListComponent';
 import {AuthGuard} from '../common/guards/AuthGuard';
 import {EditPostComponent} from './posts/edit/EditPostComponent';
+import {EditPostResolver} from './posts/edit/EditPostResolver';
 
 export const AdminRouteConfigs: Route[] = [
     {
@@ -16,7 +17,8 @@ export const AdminRouteConfigs: Route[] = [
             },
             {
                 path: 'post/edit/:id',
-                component: EditPostComponent
+                component: EditPostComponent,
+                resolve: {post: EditPostResolver}
             }
         ]
     }
