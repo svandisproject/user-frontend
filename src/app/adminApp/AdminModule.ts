@@ -1,6 +1,15 @@
 import {NgModule} from '@angular/core';
 import {AdminNavComponent} from './adminNav/AdminNavComponent';
-import {MatListModule, MatPaginatorModule, MatSidenavModule, MatSortModule, MatTableModule, MatToolbarModule} from '@angular/material';
+import {
+    MatCardModule,
+    MatGridListModule,
+    MatListModule,
+    MatPaginatorModule,
+    MatSidenavModule,
+    MatSortModule,
+    MatTableModule,
+    MatToolbarModule
+} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
 import {DataTableComponent} from './dataTable/DataTableComponent';
@@ -17,8 +26,10 @@ import {EditPostResolver} from './posts/edit/EditPostResolver';
         AppCommonModule,
         CommonModule,
         MatSidenavModule,
+        MatCardModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatGridListModule,
         MatSortModule,
         MatTableModule,
         TranslateModule,
@@ -40,6 +51,9 @@ import {EditPostResolver} from './posts/edit/EditPostResolver';
         MatSidenavModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatGridListModule,
+        MatCardModule,
+        MatSortModule,
         MatTableModule,
         AdminNavComponent
     ]

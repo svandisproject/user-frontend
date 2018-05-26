@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PostService} from '../../../common/api/services/PostService';
 import {EditPostModel} from '../models/EditPostModel';
@@ -7,7 +7,9 @@ import {BaseInput} from '../../../common/ngForms/inputs/base/BaseInput';
 
 @Component({
     selector: 'app-edit-post',
-    templateUrl: './editPost.html'
+    templateUrl: './editPost.html',
+    styleUrls: ['./editPost.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class EditPostComponent {

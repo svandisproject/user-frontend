@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {PostService} from '../../common/api/services/PostService';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {Post} from '../../common/api/dataModels/Post';
@@ -7,7 +7,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-admin-posts',
-    templateUrl: './postList.html'
+    templateUrl: './postList.html',
+    styleUrls: ['./postList.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class PostListComponent {
