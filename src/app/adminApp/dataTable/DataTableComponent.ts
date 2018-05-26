@@ -1,6 +1,16 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild,
+    ViewEncapsulation
+} from '@angular/core';
 import {MatSort, MatTableDataSource, PageEvent} from '@angular/material';
-import {Observable} from 'rxjs/index';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {DataTableColumn} from './DataTableColumn';
 
@@ -8,30 +18,29 @@ import {DataTableColumn} from './DataTableColumn';
     styleUrls: ['./DataTable.scss'],
     selector: 'app-admin-table',
     templateUrl: './DataTable.html',
-    encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class DataTableComponent implements OnInit, OnChanges {
     @ViewChild(MatSort) sort: MatSort;
 
-    @Input() dataSet: Observable<Pageable<any>>;
+    @Input() dataSet: Pageable<any>;
     @Input() displayedColumns: DataTableColumn[] = [];
     @Input() pageIndexSubtractor = 1;
 
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
     public dataSource: MatTableDataSource<any>;
-    public pageable: Pageable<any>;
 
-    // TODO: implement loader;
-    public isLoading: boolean;
 
     ngOnInit(): void {
-        this.loadSource();
+        this.initSources();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        this.loadSource();
+        console.log(changes);
+        this.initSources();
     }
 
     public getColumnsToDisplay(): string[] {
@@ -42,11 +51,10 @@ export class DataTableComponent implements OnInit, OnChanges {
         this.pageChange.emit(pageEvent);
     }
 
-    private loadSource() {
-        this.dataSet.subscribe((data) => {
-            this.pageable = data;
-            this.dataSource = new MatTableDataSource<any>(this.pageable.content);
+    private initSources() {
+        if (this.dataSet) {
+            this.dataSource = new MatTableDataSource<any>(this.dataSet.content);
             this.dataSource.sort = this.sort;
-        });
+        }
     }
 }

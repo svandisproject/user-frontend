@@ -4,7 +4,7 @@ import {MatListModule, MatPaginatorModule, MatSidenavModule, MatTableModule, Mat
 import {TranslateModule} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
 import {DataTableComponent} from './dataTable/DataTableComponent';
-import {AdminPostsComponent} from './posts/AdminPostsComponent';
+import {PostListComponent} from './posts/PostListComponent';
 import {AdminComponent} from './AdminComponent';
 import {RouterModule} from '@angular/router';
 import {AdminRouteConfigs} from './AdminRouteConfig';
@@ -23,7 +23,7 @@ import {AdminRouteConfigs} from './AdminRouteConfig';
     declarations: [
         AdminComponent,
         DataTableComponent,
-        AdminPostsComponent,
+        PostListComponent,
         AdminNavComponent
     ],
     exports: [
