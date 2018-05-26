@@ -18,8 +18,8 @@ export class PostListComponent {
         {columnName: 'url', columnKey: 'url'},
         {columnName: 'content', columnKey: 'content'},
         {columnName: 'source', columnKey: 'source'},
-        {columnName: 'publishedAt', columnKey: 'publishedAt'},
-        {columnName: 'createdAt', columnKey: 'createdAt'},
+        {columnName: 'Published At', columnKey: 'published_at', isDate: true},
+        {columnName: 'Created At', columnKey: 'created_at', isDate: true},
         {columnName: 'tags', columnKey: 'tags'},
     ];
 

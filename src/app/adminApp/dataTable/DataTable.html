@@ -4,7 +4,14 @@
         <!-- Position Column -->
         <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column.columnKey}}">
             <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.columnName | translate}}</mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element[column.columnKey]}}</mat-cell>
+            <mat-cell *matCellDef="let element">
+                <ng-container *ngIf="column.isDate; else columnString">
+                    {{element[column.columnKey] | date: 'shortTime' }}
+                </ng-container>
+                <ng-template #columnString>
+                    {{element[column.columnKey]}}
+                </ng-template>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="getColumnsToDisplay()"></mat-header-row>
@@ -20,6 +27,6 @@
     <!--[pageSizeOptions]="[5, 10, 25, 100]">-->
     <!--</mat-paginator>-->
 </div>
-<ng-template #loading translate>
-    APP.LOADING
+<ng-template #loading>
+    {{ 'APP.LOADING'| translate }}
 </ng-template>

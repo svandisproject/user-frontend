@@ -39,7 +39,6 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-        console.log(changes);
         this.initSources();
     }
 

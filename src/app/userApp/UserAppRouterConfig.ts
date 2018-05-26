@@ -6,7 +6,8 @@ import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
 import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 
 export const UserAppRouterConfig: Route[] = [
-    {path: '', component: NewsFeedComponent, canActivate: [AuthGuard]},
+    {path: '', redirectTo: '/news-feed', pathMatch: 'full'},
+    {path: 'news-feed', component: NewsFeedComponent, canActivate: [AuthGuard]},
     {path: 'ico', component: IcoScreenerComponent, canActivate: [AuthGuard]},
     {path: 'alt-coins', component: AltCoinScreenerComponent, canActivate: [AuthGuard]},
     {path: 'login', component: LoginPageComponent}

@@ -21,5 +21,8 @@ html {
     -webkit-text-size-adjust: 100%;
     background: #1c1c1c;
     color: #666;
+    &.admin-panel {
+        background: #ffffff;
+    }
 }
 body { margin: 0; }

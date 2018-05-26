@@ -4,4 +4,5 @@
 export interface DataTableColumn {
     columnName: string;
     columnKey: string;
+    isDate?: boolean;
 }

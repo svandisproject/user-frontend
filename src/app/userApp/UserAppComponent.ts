@@ -3,7 +3,7 @@ import {AuthService} from '../common/auth/AuthService';
 
 @Component({
     selector: 'app-user-app',
-    templateUrl: './userApp.html'
+    templateUrl: './userApp.html',
 })
 
 export class UserAppComponent {

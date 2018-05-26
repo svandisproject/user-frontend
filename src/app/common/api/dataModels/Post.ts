@@ -6,7 +6,7 @@ export interface Post {
     url: string;
     content: string;
     source: string;
-    publishedAt: Date;
-    createdAt: Date;
+    published_at: Date;
+    created_at: Date;
     tags: Tag[];
 }

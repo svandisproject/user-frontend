@@ -6,3 +6,10 @@
     width: 200px;
     box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
 }
+
+mat-nav-list {
+    padding-top: 0;
+    a.active {
+        background-color: #bfbfbf80;
+    }
+}

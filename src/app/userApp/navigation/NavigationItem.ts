@@ -1,5 +1,5 @@
 export interface NavigationItem {
     text: string;
-    cssClass: string;
+    cssClass?: string;
     path: string;
 }

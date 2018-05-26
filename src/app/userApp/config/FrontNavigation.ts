@@ -8,5 +8,5 @@ export const FrontNavigation: NavigationItem[] = [
     // {cssClass: 'visualization', path: '#', text: 'NAVIGATION.FRONT.ITEM.VIS_TOOLS'},
     // {cssClass: 'market', path: '#', text: 'NAVIGATION.FRONT.ITEM.MARKET_CAPS'},
     // {cssClass: 'data', path: '#', text: 'NAVIGATION.FRONT.ITEM.DATA_MARKET'},
-    {cssClass: 'newsfeed', path: '', text: 'NAVIGATION.FRONT.ITEM.NEWS'},
+    {cssClass: 'newsfeed', path: 'news-feed', text: 'NAVIGATION.FRONT.ITEM.NEWS'},
 ];
