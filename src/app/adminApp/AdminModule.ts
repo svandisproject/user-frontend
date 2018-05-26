@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AdminNavComponent} from './adminNav/AdminNavComponent';
-import {MatListModule, MatPaginatorModule, MatSidenavModule, MatTableModule, MatToolbarModule} from '@angular/material';
+import {MatListModule, MatPaginatorModule, MatSidenavModule, MatSortModule, MatTableModule, MatToolbarModule} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
 import {DataTableComponent} from './dataTable/DataTableComponent';
@@ -15,6 +15,7 @@ import {AdminRouteConfigs} from './AdminRouteConfig';
         MatSidenavModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatSortModule,
         MatTableModule,
         TranslateModule,
         MatListModule,

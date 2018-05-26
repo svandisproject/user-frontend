@@ -3,7 +3,9 @@
 
         <!-- Position Column -->
         <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column.columnKey}}">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.columnName | translate}}</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header="{{column.columnKey}}">
+                {{ column.columnName | translate}}
+            </mat-header-cell>
             <mat-cell *matCellDef="let element">
                 <ng-container *ngIf="column.isDate; else columnString">
                     {{element[column.columnKey] | date: 'shortTime' }}
