@@ -8,6 +8,7 @@ import {PostListComponent} from './posts/PostListComponent';
 import {AdminComponent} from './AdminComponent';
 import {RouterModule} from '@angular/router';
 import {AdminRouteConfigs} from './AdminRouteConfig';
+import {EditPostComponent} from './posts/edit/EditPostComponent';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {AdminRouteConfigs} from './AdminRouteConfig';
         AdminComponent,
         DataTableComponent,
         PostListComponent,
+        EditPostComponent,
         AdminNavComponent
     ],
     exports: [

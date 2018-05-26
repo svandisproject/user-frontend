@@ -3,6 +3,7 @@ import {PostService} from '../../common/api/services/PostService';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {Post} from '../../common/api/dataModels/Post';
 import {DataTableColumn} from '../dataTable/DataTableColumn';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-admin-posts',
@@ -23,7 +24,13 @@ export class PostListComponent {
         {columnName: 'tags', columnKey: 'tags'},
     ];
 
-    constructor(private postService: PostService) {
+    constructor(private postService: PostService,
+                private route: ActivatedRoute,
+                private router: Router) {
         this.postService.findAll().subscribe((posts) => this.posts = posts);
+    }
+
+    public editPost(post: Post): void {
+        this.router.navigate(['admin', 'post', 'edit', post.id]);
     }
 }

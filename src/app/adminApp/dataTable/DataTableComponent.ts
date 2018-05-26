@@ -30,6 +30,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() pageIndexSubtractor = 1;
 
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+    @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();
 
     public dataSource: MatTableDataSource<any>;
 
@@ -44,6 +45,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     public getColumnsToDisplay(): string[] {
         return this.displayedColumns.map(column => column.columnKey);
+    }
+
+    public rowSelect(row: any): void {
+        this.rowSelected.emit(row);
     }
 
     public onPageChange(pageEvent: PageEvent): void {
