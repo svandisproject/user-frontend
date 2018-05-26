@@ -9,6 +9,7 @@ import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
 import {NavigationModule} from './navigation/NavigationModule';
 import {UserAppModule} from './userApp/UserAppModule';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import {UserAppModule} from './userApp/UserAppModule';
                 deps: [HttpClient]
             }
         }),
-        UserAppModule
+        UserAppModule,
+        BrowserAnimationsModule
     ],
     exports: [
         AppCommonProvidersModule,
