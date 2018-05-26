@@ -21,4 +21,12 @@ export class PostService {
     public findById(postId: string): Observable<Post> {
         return this.postResource.findById(postId);
     }
+
+    public saveOrCreate(post: Post): Observable<Post> {
+        if (post.id) {
+            return this.postResource.update(post);
+        } else {
+            return this.postResource.create(post);
+        }
+    }
 }

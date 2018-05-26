@@ -20,6 +20,7 @@ export class EditPostModel extends NgFormsModel implements Post {
     @NgFormField({fieldType: FormFieldType.TEXT})
     source: string;
 
+    published_at: Date;
     tags: Tag[];
 
     constructor(post: Post) {

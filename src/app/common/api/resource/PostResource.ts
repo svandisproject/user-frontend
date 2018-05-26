@@ -30,4 +30,12 @@ export class PostResource {
     public findById(postId: string): Observable<Post> {
         return this.httpService.get(this.URL + '/' + postId);
     }
+
+    public create(post: Post): Observable<Post> {
+        return this.httpService.post(this.URL, post);
+    }
+
+    public update(post: Post): Observable<Post> {
+        return this.httpService.put(this.URL + '/' + post.id, post);
+    }
 }
