@@ -1,9 +1,38 @@
 import {NgModule} from '@angular/core';
-import {AdminPostModule} from './posts/AdminPostModule';
+import {AdminNavComponent} from './adminNav/AdminNavComponent';
+import {MatListModule, MatPaginatorModule, MatSidenavModule, MatTableModule, MatToolbarModule} from '@angular/material';
+import {TranslateModule} from '@ngx-translate/core';
+import {CommonModule} from '@angular/common';
+import {DataTableComponent} from './dataTable/DataTableComponent';
+import {AdminPostsComponent} from './posts/AdminPostsComponent';
+import {AdminComponent} from './AdminComponent';
+import {RouterModule} from '@angular/router';
+import {AdminRouteConfigs} from './AdminRouteConfig';
 
 @NgModule({
     imports: [
-        AdminPostModule
+        CommonModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatPaginatorModule,
+        MatTableModule,
+        TranslateModule,
+        MatListModule,
+        RouterModule.forChild(AdminRouteConfigs)
+    ],
+    declarations: [
+        AdminComponent,
+        DataTableComponent,
+        AdminPostsComponent,
+        AdminNavComponent
+    ],
+    exports: [
+        DataTableComponent,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatPaginatorModule,
+        MatTableModule,
+        AdminNavComponent
     ]
 })
 export class AdminModule {

@@ -7,18 +7,21 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
-import {NavigationModule} from './navigation/NavigationModule';
 import {UserAppModule} from './userApp/UserAppModule';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AdminModule} from './adminApp/AdminModule';
+import {MatPaginatorModule, MatTableModule} from '@angular/material';
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
     ],
     imports: [
         AppCommonModule,
         AppCommonProvidersModule,
-        NavigationModule,
+        MatTableModule,
+        MatPaginatorModule,
+        AdminModule,
         BrowserModule,
         HttpClientModule,
         RouterModule.forRoot([]),

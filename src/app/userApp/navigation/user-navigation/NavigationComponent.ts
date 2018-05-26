@@ -1,7 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {NavigationItem} from '../NavigationItem';
 import {FrontNavigation} from '../../config/FrontNavigation';
-import {UserService} from '../../common/user/UserService';
+import {UserService} from '../../../common/user/UserService';
 import {Router} from '@angular/router';
 
 @Component({

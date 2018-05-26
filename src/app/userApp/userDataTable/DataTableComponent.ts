@@ -1,5 +1,5 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {Pageable} from '../api/dataModels/pageable/Pageable';
+import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {DataTableColumn} from './DataTableColumn';
 
 @Component({

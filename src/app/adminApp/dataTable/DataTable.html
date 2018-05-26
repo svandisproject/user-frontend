@@ -1,0 +1,22 @@
+<div class="data-table-container">
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+        <!-- Position Column -->
+        <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column.columnKey}}">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>{{ column.columnName | translate}}</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element[column.columnKey]}}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="getColumnsToDisplay()"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: getColumnsToDisplay();"></mat-row>
+    </mat-table>
+
+
+    <!--<mat-paginator [length]="pageable.total"-->
+    <!--*ngIf="pageable"-->
+    <!--[pageSize]="pageable.pageRequest.size"-->
+    <!--(page)="onPageChange($event)"-->
+    <!--[pageIndex]="pageable.pageRequest.page - pageIndexSubtractor"-->
+    <!--[pageSizeOptions]="[5, 10, 25, 100]">-->
+    <!--</mat-paginator>-->
+</div>

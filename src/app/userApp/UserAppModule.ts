@@ -18,20 +18,26 @@ import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
 import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {DataTableComponent} from './userDataTable/DataTableComponent';
+import {UserAppComponent} from './UserAppComponent';
+import {NavigationModule} from './navigation/NavigationModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
         CommonModule,
         FormsModule,
+        NavigationModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
         InfiniteScrollModule,
         TranslateModule
     ],
     declarations: [
+        UserAppComponent,
         NewsFeedComponent,
         SearchFilterComponent,
+        DataTableComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,
