@@ -5,6 +5,7 @@ import {EditPostModel} from '../models/EditPostModel';
 import {Post} from '../../../common/api/dataModels/Post';
 import {BaseInput} from '../../../common/ngForms/inputs/base/BaseInput';
 import {FormGroup} from '@angular/forms';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-edit-post',
@@ -40,8 +41,10 @@ export class EditPostComponent {
     }
 
     private savePost() {
-        this.postModel.id = this.post.id;
-        this.postService.saveOrCreate(this.postModel).subscribe(() => {
+        const id: string = _.get(this.post, 'id');
+
+        this.postModel.published_at = this.post ? this.post.published_at : new Date();
+        this.postService.saveOrCreate(this.postModel, id).subscribe(() => {
             // TODO: do some indication or go back to list
         });
     }

@@ -22,11 +22,11 @@ export class PostService {
         return this.postResource.findById(postId);
     }
 
-    public saveOrCreate(post: Post): Observable<Post> {
-        if (post.id) {
-            return this.postResource.update(post);
+    public saveOrCreate(post: Post, id?: string): Observable<Post> {
+        if (id) {
+            return this.postResource.update(id, {post: post});
         } else {
-            return this.postResource.create(post);
+            return this.postResource.create({post: post});
         }
     }
 }

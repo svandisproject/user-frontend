@@ -1,8 +1,10 @@
 import {NgModule} from '@angular/core';
 import {AdminNavComponent} from './adminNav/AdminNavComponent';
 import {
+    MatButtonModule,
     MatCardModule,
     MatGridListModule,
+    MatIconModule,
     MatListModule,
     MatPaginatorModule,
     MatSidenavModule,
@@ -20,6 +22,9 @@ import {AdminRouteConfigs} from './AdminRouteConfig';
 import {EditPostComponent} from './posts/edit/EditPostComponent';
 import {AppCommonModule} from '../common/AppCommonModule';
 import {EditPostResolver} from './posts/edit/EditPostResolver';
+import {TagListComponent} from './tags/TagListComponent';
+import {EditTagComponent} from './tags/edit/EditTagComponent';
+import {EditTagResolver} from './tags/edit/EditTagResolver';
 
 @NgModule({
     imports: [
@@ -32,6 +37,8 @@ import {EditPostResolver} from './posts/edit/EditPostResolver';
         MatGridListModule,
         MatSortModule,
         MatTableModule,
+        MatButtonModule,
+        MatIconModule,
         TranslateModule,
         MatListModule,
         RouterModule.forChild(AdminRouteConfigs)
@@ -41,9 +48,12 @@ import {EditPostResolver} from './posts/edit/EditPostResolver';
         DataTableComponent,
         PostListComponent,
         EditPostComponent,
+        TagListComponent,
+        EditTagComponent,
         AdminNavComponent
     ],
     providers: [
+        EditTagResolver,
         EditPostResolver
     ],
     exports: [
@@ -51,9 +61,11 @@ import {EditPostResolver} from './posts/edit/EditPostResolver';
         MatSidenavModule,
         MatToolbarModule,
         MatPaginatorModule,
+        MatIconModule,
         MatGridListModule,
         MatCardModule,
         MatSortModule,
+        MatButtonModule,
         MatTableModule,
         AdminNavComponent
     ]

@@ -8,28 +8,36 @@ export class EditPostModel extends NgFormsModel implements Post {
 
     id: string;
 
-    @NgFormField({fieldType: FormFieldType.TEXT})
-    title: string;
+    @NgFormField({fieldType: FormFieldType.TEXT, placeholder: 'Tile'})
+    title = '';
 
-    @NgFormField({fieldType: FormFieldType.TEXT})
-    url: string;
+    @NgFormField({fieldType: FormFieldType.TEXT, placeholder: 'Url'})
+    url = '';
 
-    @NgFormField({fieldType: FormFieldType.TEXT_AREA})
-    content: string;
+    @NgFormField({fieldType: FormFieldType.TEXT_AREA, placeholder: 'Content'})
+    content = '';
 
-    @NgFormField({fieldType: FormFieldType.TEXT})
-    source: string;
+    @NgFormField({fieldType: FormFieldType.TEXT, placeholder: 'Source'})
+    source = '';
 
-    published_at: Date;
+    @NgFormField({
+        fieldType: FormFieldType.CHECKBOX,
+        placeholder: 'Tags',
+        selectOptionKeys: {labelKey: 'title', valueKey: 'id'}
+    })
     tags: Tag[];
+
+    published_at: Date = new Date();
 
     constructor(post: Post) {
         super();
-        this.title = post.title;
-        this.content = post.content;
-        this.source = post.source;
-        this.tags = post.tags;
-        this.url = post.url;
-        this.id = post.id;
+        if (post) {
+            this.title = post.title;
+            this.content = post.content;
+            this.source = post.source;
+            this.tags = post.tags;
+            this.published_at = post.published_at;
+            this.url = post.url;
+        }
     }
 }

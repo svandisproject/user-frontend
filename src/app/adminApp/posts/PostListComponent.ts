@@ -35,4 +35,8 @@ export class PostListComponent {
     public editPost(post: Post): void {
         this.router.navigate(['admin', 'post', 'edit', post.id]);
     }
+
+    public addPost(): void {
+        this.router.navigate(['admin', 'post', 'create']);
+    }
 }

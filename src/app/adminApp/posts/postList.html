@@ -2,3 +2,7 @@
                  [displayedColumns]="columns"
                  (rowSelected)="editPost($event)">
 </app-admin-table>
+
+<button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addPost()">
+    <mat-icon>add</mat-icon>
+</button>

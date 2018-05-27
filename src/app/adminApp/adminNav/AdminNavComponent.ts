@@ -8,6 +8,7 @@ import {NavigationItem} from '../../userApp/navigation/NavigationItem';
 })
 export class AdminNavComponent {
     public menuItems: NavigationItem[] = [
-        {text: 'Post list', path: 'posts'}
+        {text: 'Posts', path: 'posts'},
+        {text: 'Tags', path: 'tags'},
     ];
 }

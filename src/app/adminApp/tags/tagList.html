@@ -1,0 +1,8 @@
+<app-admin-table [dataSet]="tags"
+                 [displayedColumns]="columns"
+                 (rowSelected)="editTag($event)">
+</app-admin-table>
+
+<button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addTag()">
+    <mat-icon>add</mat-icon>
+</button>

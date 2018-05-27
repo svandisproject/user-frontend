@@ -1,0 +1,17 @@
+app-edit-tag {
+    ng-forms-material {
+        width: 100%;
+    }
+
+    .grid-container {
+        margin: 20px;
+
+        mat-card {
+            position: relative;
+        }
+
+        .mat-figure {
+            align-items: baseline;
+        }
+    }
+}
