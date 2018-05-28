@@ -1,0 +1,15 @@
+/* tslint:disable:component-selector */
+
+import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
+import {DynamicFormComponent} from '../../components/DynamicFormComponent';
+
+@Component({
+    selector: 'ng-forms-material',
+    templateUrl: './materialDynamicForm.html',
+    encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./ngFormsMaterial.scss']
+})
+export class MaterialDynamicFormComponent extends DynamicFormComponent {
+    @Input() dividerEnabled = false;
+}

@@ -16,7 +16,7 @@
                 <span>{{feed.content | truncate:[80, '...']}}</span>
             </td>
             <td>
-                <span class="news-feed-header-link-date">{{feed.createdAt | date: 'shortTime'}}</span>
+                <span class="news-feed-header-link-date">{{feed.created_at | date: 'shortTime'}}</span>
                 <span class="channel-red" *ngIf="feed.tags">
                     <ng-container *ngFor="let tag of feed.tags">{{tag.title}} </ng-container>
                 </span>

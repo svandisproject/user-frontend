@@ -5,16 +5,12 @@ import {SvandisApi} from '../config/SvandisApi';
 import {HttpService} from '../../http/HttpService';
 import {Pageable} from '../dataModels/pageable/Pageable';
 import {Filter} from '../dataModels/Filter';
+import {AbstractCrudResource} from '../util/AbstractCrudResource';
 
 @Injectable()
-export class PostResource {
-    private readonly URL: string = SvandisApi.API_URL + '/post';
-
-    constructor(private httpService: HttpService) {
-    }
-
-    public findAll(): Observable<Pageable<Post>> {
-        return this.httpService.get(this.URL);
+export class PostResource extends AbstractCrudResource<Post> {
+    constructor(httpService: HttpService) {
+        super(SvandisApi.API_URL + '/post', httpService);
     }
 
     public findBy(filters: Filter[]): Observable<Pageable<Post>> {

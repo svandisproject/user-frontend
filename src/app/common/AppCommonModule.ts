@@ -8,13 +8,12 @@ import {SearchFormComponent} from './forms/search/SearchFormComponent';
 import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
 import {SvandisApiModule} from './api/SvandisApiModule';
 import {FiltersModule} from './filters/FiltersModule';
-import {DataTableComponent} from './dataTable/DataTableComponent';
 import {CommonModule} from '@angular/common';
 import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponent';
 import {OrderModule} from 'ngx-order-pipe';
 import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
+import {NgFormsModule} from './ngForms/NgFormsModule';
 
 @NgModule({
     imports: [
@@ -23,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         SvandisApiModule,
         OrderModule,
         FiltersModule,
+        NgFormsModule,
         BrowserAnimationsModule,
         TagInputModule,
         TranslateModule
@@ -30,19 +30,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     declarations: [
         ListReversePipe,
         RangeSliderComponent,
-        DataTableComponent,
         FilterButtonComponent,
         TruncatePipe,
         SearchFormComponent,
         LoginPageComponent
     ],
     exports: [
+        NgFormsModule,
         CommonModule,
         FormsModule,
+        OrderModule,
         FormsModule,
         SvandisApiModule,
         FilterButtonComponent,
-        DataTableComponent,
         FiltersModule,
         LoginPageComponent,
         RangeSliderComponent,

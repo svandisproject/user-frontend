@@ -36,4 +36,8 @@ export class UserService {
     public isUserSignedIn(): boolean {
         return !_.isEmpty(sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY));
     }
+
+    public hasRoleAdmin(): boolean {
+        return this.isUserSignedIn();
+    }
 }

@@ -1,0 +1,93 @@
+@import '../../../colors';
+
+app-navigation {
+    .uk-navbar-container.uk-navbar.navbar-header {
+        background: none;
+    }
+
+    .logo {
+        margin-right: 20px;
+        padding-left: 0;
+    }
+    .image-menu {
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+    }
+    .dashboard {
+        background-image: url("../../../../assets/image/dashboard.png");
+    }
+    .iso {
+        background-image: url("../../../../assets/image/ISo.png");
+    }
+    .alt {
+        background-image: url("../../../../assets/image/Alt.png");
+    }
+    .index {
+        background-image: url("../../../../assets/image/index.png");
+    }
+    .visualization {
+        background-image: url("../../../../assets/image/visual.png");
+    }
+    .market {
+        background-image: url("../../../../assets/image/market.png");
+    }
+    .data {
+        background-image: url("../../../../assets/image/data.png");
+    }
+    .newsfeed {
+        background-image: url("../../../../assets/image/newsfeed.png");
+    }
+    .sun {
+        background-image: url("../../../../assets/image/sun.png");
+    }
+    .logout {
+        background-image: url("../../../../assets/image/logout.png");
+        margin-left: 20px;
+    }
+    .sun,
+    .logout {
+        width: 40px;
+        //height: 40px !important;
+        padding-top: 5px;
+        background-color: #2f2f2f;
+        background-position: 50% 50%;
+    }
+    .uk-navbar-nav > li > .sun,
+    .uk-navbar-nav > li > .logout{
+        height: 40px
+    }
+    .left-nav-bar {
+        height: 54px;
+        li a {
+            @extend .left-nav-bar;
+            padding: 30px 8px 8px 8px;
+        }
+    }
+    .uk-tab::before {
+        border: none;
+    }
+
+    .uk-active a {
+        color: #999 !important;
+    }
+    .uk-active > a {
+        border: none !important;
+    }
+
+    a.nav-active {
+        color: #fff !important;
+        border-bottom: 1px solid $neon-blue !important;
+    }
+
+    .right-nav-bar {
+        height: 36px;
+    }
+
+    .uk-navbar-nav > li > a {
+        text-transform: none;
+    }
+
+    .uk-navbar-container.uk-navbar-transparent.subnav-nav {
+        width: 100%;
+    }
+}

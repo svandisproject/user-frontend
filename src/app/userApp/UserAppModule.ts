@@ -7,7 +7,7 @@ import {CommonModule} from '@angular/common';
 
 import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
-import {AuthGuard} from './guards/AuthGuard';
+import {AuthGuard} from '../common/guards/AuthGuard';
 import {FormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
@@ -18,20 +18,26 @@ import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
 import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
+import {DataTableComponent} from './userDataTable/DataTableComponent';
+import {UserAppComponent} from './UserAppComponent';
+import {NavigationModule} from './navigation/NavigationModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
         CommonModule,
         FormsModule,
+        NavigationModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
         InfiniteScrollModule,
         TranslateModule
     ],
     declarations: [
+        UserAppComponent,
         NewsFeedComponent,
         SearchFilterComponent,
+        DataTableComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,

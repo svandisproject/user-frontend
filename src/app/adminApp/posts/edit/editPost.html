@@ -1,0 +1,8 @@
+<div class="grid-container">
+    <h1 class="mat-h1">Edit post: {{postModel.title}}</h1>
+    <mat-grid-list cols="1" rowHeight="2:1">
+        <mat-grid-tile>
+            <ng-forms-material [inputs]="getInputs()" (formSubmit)="onSave($event)"></ng-forms-material>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

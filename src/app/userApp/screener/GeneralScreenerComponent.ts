@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {StorageAdapter} from '../../common/localStorage/StorageAdapter';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
-import {DataTableColumn} from '../../common/dataTable/DataTableColumn';
+import {DataTableColumn} from '../userDataTable/DataTableColumn';
 
 @Component({
     selector: 'app-screener',

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {IcoFilterService} from '../../../common/filters/IcoFilterService';
-import {DataTableColumn} from '../../../common/dataTable/DataTableColumn';
+import {DataTableColumn} from '../../userDataTable/DataTableColumn';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoMockedDataSet} from './IcoMockedDataSet';
 

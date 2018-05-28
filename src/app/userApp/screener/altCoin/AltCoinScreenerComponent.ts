@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {AltCoinsFilterService} from '../../../common/filters/AltCoinsFilterService';
 import {PostService} from '../../../common/api/services/PostService';
-import {DataTableColumn} from '../../../common/dataTable/DataTableColumn';
+import {DataTableColumn} from '../../userDataTable/DataTableColumn';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {AltCoinMockedDataSet} from './AltCoinMockedDataSet';
 
