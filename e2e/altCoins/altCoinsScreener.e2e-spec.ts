@@ -1,6 +1,5 @@
 import {browser} from 'protractor';
 import {AltCoins} from './AltCoins';
-import {AssertUtils} from '../utilis/AssertUtils';
 
 describe('svandis-client Alt Coins Screener', () => {
 

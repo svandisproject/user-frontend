@@ -8,11 +8,12 @@ import {UserAppComponent} from './UserAppComponent';
 
 export const UserAppRouterConfig: Route[] = [
     {
-        path: '', component: UserAppComponent, children: [
+        path: 'user', component: UserAppComponent, children: [
             {path: 'news-feed', component: NewsFeedComponent, canActivate: [AuthGuard]},
             {path: 'ico', component: IcoScreenerComponent, canActivate: [AuthGuard]},
             {path: 'alt-coins', component: AltCoinScreenerComponent, canActivate: [AuthGuard]},
             {path: 'login', component: LoginPageComponent}
-        ]
+        ],
     },
+    {path: '', redirectTo: 'user/news-feed', pathMatch: 'full'}
 ];

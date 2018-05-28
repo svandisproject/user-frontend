@@ -1,3 +1,5 @@
+/* tslint:disable:component-selector */
+
 import {ChangeDetectionStrategy, Component, Input, ViewEncapsulation} from '@angular/core';
 import {DynamicFormComponent} from '../../components/DynamicFormComponent';
 

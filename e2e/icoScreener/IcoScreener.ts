@@ -1,7 +1,7 @@
 import {$, ElementFinder} from 'protractor';
 
-export class AltCoins {
-    public static readonly ROUTE: string = '/alt-coins';
+export class IcoScreener {
+    public static readonly ROUTE: string = '/user/ico';
 
     public static getTitle() {
         return $('app-root #general-screener-title').getText();
@@ -9,5 +9,9 @@ export class AltCoins {
 
     public static getSelectFilterNthOption(filterName: string, option: number): ElementFinder {
         return $(`#${filterName} option:nth-child(${option})`);
+    }
+
+    public static openFilterTable(): void {
+        $('#filter-table-toggle').click();
     }
 }

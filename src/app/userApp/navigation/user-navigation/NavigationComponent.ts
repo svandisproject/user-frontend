@@ -21,7 +21,7 @@ export class NavigationComponent {
 
     public logout(): void {
         this.userService.signOut();
-        this.router.navigate(['login']);
+        this.router.navigate(['user', 'login']);
     }
 
     public isLoggedIn(): boolean {

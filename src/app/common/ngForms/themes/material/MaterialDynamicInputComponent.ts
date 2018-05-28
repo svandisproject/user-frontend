@@ -1,3 +1,5 @@
+/* tslint:disable:component-selector */
+
 import {Component, ViewEncapsulation} from '@angular/core';
 import {DynamicInputComponent} from '../../components/DynamicInputComponent';
 
