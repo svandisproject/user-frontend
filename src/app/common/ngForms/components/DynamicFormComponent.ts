@@ -1,3 +1,5 @@
+/* tslint:disable:component-selector */
+
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {BaseInput} from '../inputs/base/BaseInput';
