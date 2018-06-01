@@ -19,6 +19,10 @@
                         (click)="isMasked = !isMasked">
                     {{isMasked ? 'show' : 'hide'}}
                 </button>
+                <button class="uk-button uk-button-default"
+                        (click)="regenerateToken()">
+                    Regenerate
+                </button>
             </td>
         </tr>
         </tbody>

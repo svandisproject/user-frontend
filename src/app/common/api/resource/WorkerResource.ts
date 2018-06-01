@@ -10,7 +10,7 @@ export class WorkerResource {
     constructor(private httpService: HttpService) {
     }
 
-    public regenerateToken(): Observable<string> {
+    public regenerateToken(): Observable<{ secret: string }> {
         return this.httpService.post(this.URL + '/regenerate-user-token');
     }
 

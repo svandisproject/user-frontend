@@ -11,6 +11,14 @@ export class UserProfileDetailsComponent {
     public isMasked = true;
 
     constructor(private workerService: WorkerService) {
-        this.workerService.getSecret().subscribe(res => this.secret = res.secret);
+        this.workerService.getSecret().subscribe(res => this.setSecret(res));
+    }
+
+    public regenerateToken(): void {
+        this.workerService.regenerate().subscribe(res => this.setSecret(res));
+    }
+
+    private setSecret(response: { secret: string }) {
+        this.secret = response.secret;
     }
 }

@@ -8,7 +8,7 @@ export class WorkerService {
     constructor(private workerResource: WorkerResource) {
     }
 
-    public regenerate(): Observable<string> {
+    public regenerate(): Observable<{ secret: string }> {
         return this.workerResource.regenerateToken();
     }
 
