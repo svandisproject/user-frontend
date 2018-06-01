@@ -6,7 +6,7 @@ import assertSelected = AssertUtils.assertSelected;
 describe('svandis-client Ico Screener', () => {
 
     it('should be on ico screener page', () => {
-        browser.get(IcoScreener.ROUTE);
+        IcoScreener.getNavItem().click();
         expect(IcoScreener.getTitle()).toEqual('ICO Screener');
     });
 

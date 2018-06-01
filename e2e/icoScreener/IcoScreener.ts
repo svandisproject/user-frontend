@@ -1,4 +1,4 @@
-import {$, ElementFinder} from 'protractor';
+import {$, by, element, ElementFinder} from 'protractor';
 
 export class IcoScreener {
     public static readonly ROUTE: string = '/user/ico';
@@ -13,5 +13,9 @@ export class IcoScreener {
 
     public static openFilterTable(): void {
         $('#filter-table-toggle').click();
+    }
+
+    public static getNavItem(): ElementFinder {
+        return element(by.css(`a[href*="${IcoScreener.ROUTE}"]`));
     }
 }

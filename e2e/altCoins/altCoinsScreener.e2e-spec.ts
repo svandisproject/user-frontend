@@ -1,10 +1,9 @@
-import {browser} from 'protractor';
 import {AltCoins} from './AltCoins';
 
 describe('svandis-client Alt Coins Screener', () => {
 
     it('should be on ico screener page', () => {
-        browser.get(AltCoins.ROUTE);
+        AltCoins.getNavItem().click();
         expect(AltCoins.getTitle()).toEqual('Alt Coins Screener');
     });
 
