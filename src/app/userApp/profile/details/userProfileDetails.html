@@ -1,0 +1,30 @@
+<div class="uk-card uk-card-secondary uk-card-body">
+    <div class="uk-child-width-1-2 uk-grid-small rates uk-grid">
+        <h3 class="uk-card-title main-header-text">
+            User profile details
+        </h3>
+    </div>
+
+    <hr class="after-header-line">
+
+    <table class="uk-table uk-table-striped">
+        <tbody>
+        <tr>
+            <td>Worker secret</td>
+            <td>
+                <input class="uk-input uk-form-width-medium"
+                       [type]="isMasked ? 'password' : 'text'"
+                       [value]="secret">
+                <button class="uk-button uk-button-default"
+                        (click)="isMasked = !isMasked">
+                    {{isMasked ? 'show' : 'hide'}}
+                </button>
+                <button class="uk-button uk-button-default"
+                        (click)="regenerateToken()">
+                    Regenerate
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

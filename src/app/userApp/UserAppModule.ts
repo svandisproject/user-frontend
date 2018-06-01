@@ -21,11 +21,13 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {DataTableComponent} from './userDataTable/DataTableComponent';
 import {UserAppComponent} from './UserAppComponent';
 import {NavigationModule} from './navigation/NavigationModule';
+import {UserProfileModule} from './profile/UserProfileModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
         CommonModule,
+        UserProfileModule,
         FormsModule,
         NavigationModule,
         NouisliderModule,
