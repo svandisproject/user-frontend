@@ -10,5 +10,6 @@ export class AdminNavComponent {
     public menuItems: NavigationItem[] = [
         {text: 'Posts', path: 'posts'},
         {text: 'Tags', path: 'tags'},
+        {text: 'WebFeeds', path: 'web-feeds'},
     ];
 }

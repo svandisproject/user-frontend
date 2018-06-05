@@ -1,0 +1,8 @@
+<app-admin-table [dataSet]="feeds"
+                 [displayedColumns]="columns"
+                 (rowSelected)="editFeed($event)">
+</app-admin-table>
+
+<button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addFeed()">
+    <mat-icon>add</mat-icon>
+</button>
