@@ -23,6 +23,9 @@ import {EditPostComponent} from './posts/edit/EditPostComponent';
 import {AppCommonModule} from '../common/AppCommonModule';
 import {EditPostResolver} from './posts/edit/EditPostResolver';
 import {TagListComponent} from './tags/TagListComponent';
+import {EditWebFeedComponent} from './webFeed/edit/EditWebFeedComponent';
+import {EditWebFeedResolver} from './webFeed/edit/EditWebFeedResolver';
+import {WebFeedListComponent} from './webFeed/WebFeedListComponent';
 import {EditTagComponent} from './tags/edit/EditTagComponent';
 import {EditTagResolver} from './tags/edit/EditTagResolver';
 
@@ -48,12 +51,15 @@ import {EditTagResolver} from './tags/edit/EditTagResolver';
         DataTableComponent,
         PostListComponent,
         EditPostComponent,
+        WebFeedListComponent,
+        EditWebFeedComponent,
         TagListComponent,
         EditTagComponent,
         AdminNavComponent
     ],
     providers: [
         EditTagResolver,
+        EditWebFeedResolver,
         EditPostResolver
     ],
     exports: [

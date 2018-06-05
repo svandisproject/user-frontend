@@ -1,6 +1,7 @@
 import {Observable} from 'rxjs/Observable';
 import {Pageable} from '../dataModels/pageable/Pageable';
 import {HttpService} from '../../http/HttpService';
+import {Filter} from '../dataModels/Filter';
 
 export class AbstractCrudResource<T> {
 
@@ -22,5 +23,15 @@ export class AbstractCrudResource<T> {
 
     public update(id: string, payload: { [key: string]: T }): Observable<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
+    }
+
+    public findBy(filters: Filter[]): Observable<Pageable<T>> {
+        const encodedFilters: string = btoa(JSON.stringify(filters));
+
+        return this.httpService.get(this.URL + '/filter', {
+            params: {
+                filter: encodedFilters
+            }
+        });
     }
 }

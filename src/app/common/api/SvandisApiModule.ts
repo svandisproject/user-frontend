@@ -7,6 +7,8 @@ import {TagResource} from './resource/TagResource';
 import {TagService} from './services/TagService';
 import {WorkerResource} from './resource/WorkerResource';
 import {WorkerService} from './services/WorkerService';
+import {WebFeedResource} from './resource/WebFeedResource';
+import {WebFeedService} from './services/WebFeedService';
 
 @NgModule({
     imports: [HttpClientModule],
@@ -15,6 +17,8 @@ import {WorkerService} from './services/WorkerService';
         PostService,
         WorkerResource,
         WorkerService,
+        WebFeedResource,
+        WebFeedService,
         TagResource,
         TagService,
         FilterResource,

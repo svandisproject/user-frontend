@@ -5,6 +5,9 @@ import {AuthGuard} from '../common/guards/AuthGuard';
 import {EditPostComponent} from './posts/edit/EditPostComponent';
 import {EditPostResolver} from './posts/edit/EditPostResolver';
 import {TagListComponent} from './tags/TagListComponent';
+import {EditWebFeedComponent} from './webFeed/edit/EditWebFeedComponent';
+import {EditWebFeedResolver} from './webFeed/edit/EditWebFeedResolver';
+import {WebFeedListComponent} from './webFeed/WebFeedListComponent';
 import {EditTagComponent} from './tags/edit/EditTagComponent';
 import {EditTagResolver} from './tags/edit/EditTagResolver';
 
@@ -39,6 +42,19 @@ export const AdminRouteConfigs: Route[] = [
             {
                 path: 'tag/create',
                 component: EditTagComponent,
+            },
+            {
+                path: 'web-feeds',
+                component: WebFeedListComponent,
+            },
+            {
+                path: 'web-feed/edit/:id',
+                component: EditWebFeedComponent,
+                resolve: {webFeed: EditWebFeedResolver}
+            },
+            {
+                path: 'web-feed/create',
+                component: EditWebFeedComponent,
             }
         ]
     }
