@@ -2,6 +2,6 @@ export interface WebFeed {
     id?: string;
     title?: string;
     url?: string;
-    linkSelector?: string;
-    timeInterval?: string;
+    link_selector?: string;
+    time_interval?: string;
 }

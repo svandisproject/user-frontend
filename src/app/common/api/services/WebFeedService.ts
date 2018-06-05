@@ -24,9 +24,9 @@ export class WebFeedService {
 
     public saveOrCreate(tag: WebFeed, id?: string): Observable<WebFeed> {
         if (id) {
-            return this.webFeedResource.update(id, {tag: tag});
+            return this.webFeedResource.update(id, {web_feed: tag});
         } else {
-            return this.webFeedResource.create({tag: tag});
+            return this.webFeedResource.create({web_feed: tag});
         }
     }
 }
