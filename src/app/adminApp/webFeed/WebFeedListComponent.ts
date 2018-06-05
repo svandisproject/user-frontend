@@ -18,8 +18,8 @@ export class WebFeedListComponent {
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
         {columnName: 'url', columnKey: 'url'},
-        {columnName: 'linkSelector', columnKey: 'linkSelector'},
-        {columnName: 'timeInterval', columnKey: 'timeInterval'},
+        {columnName: 'linkSelector', columnKey: 'link_selector'},
+        {columnName: 'timeInterval', columnKey: 'time_interval'},
     ];
 
     constructor(private webFeedService: WebFeedService,

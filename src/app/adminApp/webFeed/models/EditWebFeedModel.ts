@@ -13,10 +13,10 @@ export class EditWebFeedModel extends NgFormsModel implements WebFeed {
     url = '';
 
     @NgFormField({fieldType: FormFieldType.TEXT, placeholder: 'Link selector'})
-    linkSelector = '';
+    link_selector = '';
 
     @NgFormField({fieldType: FormFieldType.TEXT, placeholder: 'Time interval'})
-    timeInterval = '';
+    time_interval = '';
 
 
     constructor(webFeed?: WebFeed) {
@@ -26,8 +26,8 @@ export class EditWebFeedModel extends NgFormsModel implements WebFeed {
             this.id = webFeed.id;
             this.title = webFeed.title;
             this.url = webFeed.url;
-            this.linkSelector = webFeed.linkSelector;
-            this.timeInterval = webFeed.timeInterval;
+            this.link_selector = webFeed.link_selector;
+            this.time_interval = webFeed.time_interval;
         }
     }
 }
