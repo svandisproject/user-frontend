@@ -8,7 +8,7 @@
            id="news-feed-list"
            *ngIf="posts.content.length > 0; else noResults">
         <tbody>
-        <tr *ngFor="let feed of posts.content | listReverse">
+        <tr *ngFor="let feed of posts.content">
             <td>
                 <a [href]="feed.url" class="news-feed-header-link" target="_blank">
                     <span class="news-feed-header">{{feed.title | truncate:[50, '...']}}</span>

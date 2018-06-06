@@ -10,6 +10,9 @@ import {FilterItem} from '../../common/filters/dataModels/FilterItem';
 import {HttpErrorResponse} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
+import {NewsFeedPusherEvent} from './dataModels/NewsFeedPusherEvent';
+import {PusherService} from '../../common/pusher/services/PusherService';
+import {Channel} from 'pusher-js';
 
 @Component({
     selector: 'app-news-feed',
@@ -19,14 +22,30 @@ import {of} from 'rxjs/observable/of';
 })
 export class NewsFeedComponent {
     public posts: Pageable<Post>;
+    private pusherChannel: Channel;
 
-    constructor(private postService: PostService) {
-        this.postService.findAll().subscribe(posts => this.posts = posts);
+    private readonly PUSHER_EVENT = 'new-post';
+    private readonly PUSHER_CHANNEL = 'news-feed';
+
+    constructor(private postService: PostService,
+                private pusherService: PusherService) {
+        this.postService.findAll()
+            .subscribe(posts => {
+                this.posts = posts;
+                this.subscribeToPusherNews();
+            });
     }
-
 
     public onFilterChange($event: SearchFilterSettings): void {
         this.filterPosts($event);
+    }
+
+    private subscribeToPusherNews(): void {
+        this.pusherChannel = this.pusherService.connectToChannel(this.PUSHER_CHANNEL);
+        this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
+            .subscribe((eventData: NewsFeedPusherEvent) => {
+                this.posts.content.push(eventData.message);
+            });
     }
 
     private filterPosts(searchFilters: SearchFilterSettings): void {
