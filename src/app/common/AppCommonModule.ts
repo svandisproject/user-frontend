@@ -15,6 +15,7 @@ import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgFormsModule} from './ngForms/NgFormsModule';
 import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
+import {BlockUIModule} from 'ng-block-ui';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
         NgFormsModule,
         BrowserAnimationsModule,
         TagInputModule,
+        BlockUIModule,
         TranslateModule
     ],
     declarations: [
