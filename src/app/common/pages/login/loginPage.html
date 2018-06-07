@@ -75,6 +75,12 @@
                                            aria-invalid="false">
                                 </div>
                             </div>
+
+                            <div class="uk-alert-danger" *ngIf="credsInvalid" uk-alert>
+                                <a class="uk-alert-close" uk-close></a>
+                                <p translate>VALIDATION.ERROR.LOGIN_PASS</p>
+                            </div>
+
                             <button type="submit"
                                     id="login-submit"
                                     class="uk-button uk-button-dark dark-input"
