@@ -24,6 +24,7 @@ export class NewsFeedComponent {
     public posts: Pageable<Post>;
     public isFeedListSmall = false;
     private pusherChannel: Channel;
+    private currentFilterSettings: SearchFilterSettings;
 
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
@@ -37,7 +38,14 @@ export class NewsFeedComponent {
             });
     }
 
+    public loadNextPageable(): void {
+        if (this.posts.page_request.page < this.posts.page_request.size) {
+            this.filterPosts(this.currentFilterSettings, this.posts.page_request.page + 1);
+        }
+    }
+
     public onFilterChange($event: SearchFilterSettings): void {
+        this.currentFilterSettings = $event;
         this.filterPosts($event);
     }
 
@@ -53,8 +61,8 @@ export class NewsFeedComponent {
             });
     }
 
-    private filterPosts(searchFilters: SearchFilterSettings): void {
-        this.postService.findBy(this.buildFilters(searchFilters))
+    private filterPosts(searchFilters: SearchFilterSettings, page?: number): void {
+        this.postService.findBy(this.buildFilters(searchFilters), page)
             .pipe(
                 catchError((err: HttpErrorResponse) => {
                     if (err.status === 404) {
@@ -64,8 +72,20 @@ export class NewsFeedComponent {
                 })
             )
             .subscribe((posts) => {
-                this.posts = posts;
+                if (page) {
+                    this.mergePosts(posts);
+                } else {
+                    this.posts = posts;
+                }
             });
+    }
+
+    private mergePosts(posts) {
+        _.mergeWith(this.posts, posts, (objValue, srcValue) => {
+            if (_.isArray(objValue)) {
+                return objValue.concat(srcValue);
+            }
+        });
     }
 
     private resetPosts() {
