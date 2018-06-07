@@ -22,6 +22,7 @@ import {Channel} from 'pusher-js';
 })
 export class NewsFeedComponent {
     public posts: Pageable<Post>;
+    public isFeedListSmall = false;
     private pusherChannel: Channel;
 
     private readonly PUSHER_EVENT = 'new-post';
@@ -38,6 +39,10 @@ export class NewsFeedComponent {
 
     public onFilterChange($event: SearchFilterSettings): void {
         this.filterPosts($event);
+    }
+
+    public toggleFeedList($event: boolean) {
+        this.isFeedListSmall = $event;
     }
 
     private subscribeToPusherNews(): void {

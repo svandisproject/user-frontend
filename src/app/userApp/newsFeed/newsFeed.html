@@ -2,11 +2,13 @@
     <div class="uk-child-width-1-2 uk-grid-small rates uk-grid">
         <h3 class="uk-card-title main-header-text" id="news-feed-title" translate>NEWS_FEED.TITLE</h3>
         <div class="control-header-card-icon uk-flex-right uk-text-right">
-            <a href="#">
-                <img class="switcher-img" src="../../../assets/image/swither.png" alt="">
-            </a>
+            <app-input-toggle (toggle)="toggleFeedList($event)"></app-input-toggle>
             <app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>
+
         </div>
     </div>
-    <app-feed-list [posts]="posts"></app-feed-list>
+    <app-feed-list [posts]="posts" *ngIf="isFeedListSmall; else largeFeedList"></app-feed-list>
+    <ng-template #largeFeedList>
+        <app-feed-list-large [posts]="posts"></app-feed-list-large>
+    </ng-template>
 </div>
