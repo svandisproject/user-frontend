@@ -8,7 +8,7 @@ export class NewsFeed {
     }
 
     public static getFeedList(): ElementArrayFinder {
-        return $$('#news-feed-list tr');
+        return $$('.feed-item');
     }
 
     public static getFilterBlockToggleButton(): ElementFinder {

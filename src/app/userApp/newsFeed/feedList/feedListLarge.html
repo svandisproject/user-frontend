@@ -4,7 +4,7 @@
      [infiniteScrollDistance]="2"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll($event)">
-    <div *ngFor="let feed of posts.content | listReverse">
+    <div *ngFor="let feed of posts.content | listReverse" class="feed-item">
         <div class="uk-panel">
             <!--<img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"-->
             <!--src="" width="150" height="150" alt="Example image">-->
