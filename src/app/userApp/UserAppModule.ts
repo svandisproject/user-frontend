@@ -4,7 +4,6 @@ import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
-
 import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {AuthGuard} from '../common/guards/AuthGuard';
@@ -22,6 +21,7 @@ import {DataTableComponent} from './userDataTable/DataTableComponent';
 import {UserAppComponent} from './UserAppComponent';
 import {NavigationModule} from './navigation/NavigationModule';
 import {UserProfileModule} from './profile/UserProfileModule';
+import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 
 @NgModule({
     imports: [
@@ -43,7 +43,8 @@ import {UserProfileModule} from './profile/UserProfileModule';
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,
-        FeedListComponent
+        FeedListComponent,
+        FeedListLargeComponent
     ],
     providers: [
         AuthGuard,

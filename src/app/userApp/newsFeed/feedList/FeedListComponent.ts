@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {Post} from '../../../common/api/dataModels/Post';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 
@@ -10,7 +10,9 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 })
 export class FeedListComponent {
     @Input() posts: Pageable<Post>;
+    @Output() scrolled: EventEmitter<void> = new EventEmitter<void>();
 
     public onScroll($event) {
+        this.scrolled.emit();
     }
 }

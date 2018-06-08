@@ -13,5 +13,6 @@
   "SCREENER.ICO.TITLE": "ICO Screener",
   "SCREENER.ALT.TITLE": "Alt Coins Screener",
   "NEWS_FEED.TITLE": "News feed",
-  "NEWS_FEED.FILTER.TITLE": "Filter"
+  "NEWS_FEED.FILTER.TITLE": "Filter",
+  "VALIDATION.ERROR.LOGIN_PASS": "Invalid login or password"
 }

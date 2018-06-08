@@ -14,6 +14,9 @@ import {OrderModule} from 'ngx-order-pipe';
 import {TagInputModule} from 'ngx-chips';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgFormsModule} from './ngForms/NgFormsModule';
+import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
+import {BlockUIModule} from 'ng-block-ui';
+
 
 @NgModule({
     imports: [
@@ -25,12 +28,14 @@ import {NgFormsModule} from './ngForms/NgFormsModule';
         NgFormsModule,
         BrowserAnimationsModule,
         TagInputModule,
+        BlockUIModule,
         TranslateModule
     ],
     declarations: [
         ListReversePipe,
         RangeSliderComponent,
         FilterButtonComponent,
+        ToggleInputComponent,
         TruncatePipe,
         SearchFormComponent,
         LoginPageComponent
@@ -45,6 +50,7 @@ import {NgFormsModule} from './ngForms/NgFormsModule';
         FilterButtonComponent,
         FiltersModule,
         LoginPageComponent,
+        ToggleInputComponent,
         RangeSliderComponent,
         SearchFormComponent,
         TruncatePipe,

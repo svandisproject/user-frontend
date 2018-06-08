@@ -11,6 +11,7 @@ import {UserAppModule} from './userApp/UserAppModule';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AdminModule} from './adminApp/AdminModule';
 import {MatPaginatorModule, MatTableModule} from '@angular/material';
+import {BlockUIModule} from 'ng-block-ui';
 
 @NgModule({
     declarations: [
@@ -23,6 +24,7 @@ import {MatPaginatorModule, MatTableModule} from '@angular/material';
         MatPaginatorModule,
         AdminModule,
         BrowserModule,
+        BlockUIModule.forRoot(),
         HttpClientModule,
         RouterModule.forRoot([]),
         TranslateModule.forRoot({

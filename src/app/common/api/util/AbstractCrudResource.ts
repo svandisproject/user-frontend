@@ -25,12 +25,13 @@ export class AbstractCrudResource<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
     }
 
-    public findBy(filters: Filter[]): Observable<Pageable<T>> {
+    public findBy(filters: Filter[], page: string = '1'): Observable<Pageable<T>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
 
         return this.httpService.get(this.URL + '/filter', {
             params: {
-                filter: encodedFilters
+                filter: encodedFilters,
+                page: page
             }
         });
     }

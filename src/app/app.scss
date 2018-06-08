@@ -41,6 +41,12 @@ app-root {
         padding-bottom: 10px;
     }
 
+    .uk-alert-danger {
+        background: #ff587a00;
+        color: #f03654;
+        border: 1px solid;
+    }
+
     table.uk-table-divider tr {
         border-top: 1px solid $default-border !important;
     }

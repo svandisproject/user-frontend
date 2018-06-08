@@ -1,7 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserService} from '../../user/UserService';
 import {Router} from '@angular/router';
+import {BlockUIService} from 'ng-block-ui';
+import {finalize} from 'rxjs/internal/operators';
 
 @Component({
     selector: 'app-login',
@@ -13,16 +15,28 @@ import {Router} from '@angular/router';
 export class LoginPageComponent {
     public email: string;
     public password: string;
+    public credsInvalid = false;
+    public readonly BLOCK_UI_INSTANCE_NAME = 'loginLoading';
 
-    constructor(private userService: UserService, private router: Router) {
+    @ViewChild('form') form: NgForm;
+
+    constructor(private userService: UserService,
+                private blockUIService: BlockUIService,
+                private router: Router) {
     }
 
     public login(form: NgForm) {
         if (form.valid) {
+            this.blockUIService.start(this.BLOCK_UI_INSTANCE_NAME);
             this.userService.signIn({
                 username: this.email,
                 password: this.password
-            }).subscribe(res => this.router.navigate(['']));
+            })
+                .pipe(finalize(() => this.blockUIService.stop(this.BLOCK_UI_INSTANCE_NAME)))
+                .subscribe(
+                    res => this.router.navigate(['']),
+                    err => this.credsInvalid = true
+                );
         }
     }
 }
