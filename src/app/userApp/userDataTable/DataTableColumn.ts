@@ -7,4 +7,5 @@ export interface DataTableColumn {
     isHeadColumn?: boolean;
     isPositiveHeading?: boolean;
     isNegativeHeading?: boolean;
+    isList?: boolean;
 }

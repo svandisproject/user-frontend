@@ -10,7 +10,11 @@ export class AbstractCrudResource<T> {
     }
 
     public findAll(): Observable<Pageable<T>> {
-        return this.httpService.get(this.URL);
+        return this.httpService.get(this.URL, {
+            params: {
+                direction: 'desc'
+            }
+        });
     }
 
     public findById(id: string): Observable<T> {
@@ -31,6 +35,7 @@ export class AbstractCrudResource<T> {
         return this.httpService.get(this.URL + '/filter', {
             params: {
                 filter: encodedFilters,
+                direction: 'desc',
                 page: page
             }
         });
