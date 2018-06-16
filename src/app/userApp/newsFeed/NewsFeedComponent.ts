@@ -58,7 +58,7 @@ export class NewsFeedComponent {
         this.pusherChannel = this.pusherService.connectToChannel(this.PUSHER_CHANNEL);
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
             .subscribe((eventData: NewsFeedPusherEvent) => {
-                this.posts.content.push(eventData.message);
+                this.posts.content.unshift(eventData.message);
             });
     }
 
