@@ -9,12 +9,16 @@ import {WorkerResource} from './resource/WorkerResource';
 import {WorkerService} from './services/WorkerService';
 import {WebFeedResource} from './resource/WebFeedResource';
 import {WebFeedService} from './services/WebFeedService';
+import {IcoResource} from './resource/IcoResource';
+import {IcoService} from './services/IcoService';
 
 @NgModule({
     imports: [HttpClientModule],
     providers: [
         PostResource,
         PostService,
+        IcoResource,
+        IcoService,
         WorkerResource,
         WorkerService,
         WebFeedResource,

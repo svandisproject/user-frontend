@@ -10,6 +10,7 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 })
 export class FeedListComponent {
     @Input() posts: Pageable<Post>;
+    @Input() isLoading = false;
     @Output() scrolled: EventEmitter<void> = new EventEmitter<void>();
 
     public onScroll($event) {

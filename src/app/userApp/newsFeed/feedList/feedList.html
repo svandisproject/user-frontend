@@ -2,6 +2,7 @@
      *ngIf="posts; else listLoading"
      infiniteScroll
      [infiniteScrollDistance]="2"
+     [infiniteScrollDisabled]="isLoading"
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll($event)">
     <table class="uk-table uk-table-divider list-alerts"

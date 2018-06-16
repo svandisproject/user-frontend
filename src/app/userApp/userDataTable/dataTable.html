@@ -11,7 +11,12 @@
     <tr *ngFor="let data of dataSet.content | orderBy: orderKey:isReversed">
         <td *ngFor="let column of displayedColumns"
             [class]="getColumnCss(column)">
-            {{data[column.columnKey]}}
+            <ng-template *ngIf="column.isList; else simpleItem">
+                <span *ngFor="let item of data[column.columnKey]">{{item}}</span>
+            </ng-template>
+            <ng-template #simpleItem>
+                {{data[column.columnKey]}}
+            </ng-template>
         </td>
     </tr>
     </tbody>
