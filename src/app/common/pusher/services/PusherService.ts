@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
+import {Injectable, NgZone} from '@angular/core';
 import {PusherConfig} from '../configs/PusherConfig';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import * as _ from 'lodash';
-import {Channel, Pusher} from 'pusher-js';
 import * as pusher from 'pusher-js';
+import {Channel, Pusher} from 'pusher-js';
 
 @Injectable()
 export class PusherService {
     private socket: Pusher;
     private currentChannel: Channel;
 
-    constructor() {
+    constructor(private zone: NgZone) {
         this.initSocket();
     }
 
@@ -41,7 +41,9 @@ export class PusherService {
             channel = channel || this.getChannel();
 
             channel.bind(eventName, (data) => {
-                observer.next(data);
+                this.zone.run(() => {
+                    observer.next(data);
+                });
             });
 
             // On dispose unbind

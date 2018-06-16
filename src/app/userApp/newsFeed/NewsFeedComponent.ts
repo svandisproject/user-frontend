@@ -8,7 +8,7 @@ import {Filter} from '../../common/api/dataModels/Filter';
 import * as _ from 'lodash';
 import {FilterItem} from '../../common/filters/dataModels/FilterItem';
 import {HttpErrorResponse} from '@angular/common/http';
-import {catchError} from 'rxjs/operators';
+import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
 import {NewsFeedPusherEvent} from './dataModels/NewsFeedPusherEvent';
 import {PusherService} from '../../common/pusher/services/PusherService';
@@ -23,9 +23,10 @@ import {Channel} from 'pusher-js';
 export class NewsFeedComponent {
     public posts: Pageable<Post>;
     public isFeedListSmall = false;
+    public isLoading = false;
+
     private pusherChannel: Channel;
     private currentFilterSettings: SearchFilterSettings;
-
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
 
@@ -62,6 +63,7 @@ export class NewsFeedComponent {
     }
 
     private filterPosts(searchFilters: SearchFilterSettings, page?: number): void {
+        this.isLoading = true;
         this.postService.findBy(this.buildFilters(searchFilters), page)
             .pipe(
                 catchError((err: HttpErrorResponse) => {
@@ -69,7 +71,8 @@ export class NewsFeedComponent {
                         this.resetPosts();
                     }
                     return of(this.posts);
-                })
+                }),
+                finalize(() => this.isLoading = false)
             )
             .subscribe((posts) => {
                 if (page) {
@@ -80,7 +83,7 @@ export class NewsFeedComponent {
             });
     }
 
-    private mergePosts(posts) {
+    private mergePosts(posts: Pageable<Post>) {
         _.mergeWith(this.posts, posts, (objValue, srcValue) => {
             if (_.isArray(objValue)) {
                 return objValue.concat(srcValue);
