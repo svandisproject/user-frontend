@@ -14,8 +14,8 @@ export class TagService {
         return this.tagResource.findAll();
     }
 
-    public findBy(filters: Filter[]): Observable<Pageable<Tag>> {
-        return this.tagResource.findBy(filters);
+    public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Tag>> {
+        return this.tagResource.findBy(filters, String(page));
     }
 
     public findById(tagId: string): Observable<Tag> {
