@@ -28,6 +28,10 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() dataSet: Pageable<any>;
     @Input() displayedColumns: DataTableColumn[] = [];
     @Input() pageIndexSubtractor = 1;
+    @Input() pagination = true;
+    @Input() paginationOptions = {
+        itemsPerPage: 10
+    };
 
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
     @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();

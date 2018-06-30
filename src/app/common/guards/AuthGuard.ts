@@ -14,7 +14,8 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (!this.userService.isUserSignedIn()) {
-            this.router.navigate(['user', 'login']);
+            this.router.navigate(['user', 'login'])
+                .then(() => UIkit.notification('Not logged in', 'danger'));
             return false;
         }
 

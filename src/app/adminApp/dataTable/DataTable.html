@@ -7,8 +7,9 @@
     <mat-table #table [dataSource]="dataSource" matSort>
 
         <!-- Position Column -->
-        <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column.columnKey}}">
-            <mat-header-cell *matHeaderCellDef mat-sort-header="{{column.columnKey}}">
+        <ng-container *ngFor="let column of displayedColumns; let first = first" matColumnDef="{{column.columnKey}}">
+            <mat-header-cell *matHeaderCellDef mat-sort-header="{{column.columnKey}}"
+                             [ngClass]="first ? 'header-first' : ''">
                 {{ column.columnName | translate}}
             </mat-header-cell>
             <mat-cell *matCellDef="let element">
@@ -26,13 +27,12 @@
     </mat-table>
 
 
-    <!--<mat-paginator [length]="pageable.total"-->
-    <!--*ngIf="pageable"-->
-    <!--[pageSize]="pageable.pageRequest.size"-->
-    <!--(page)="onPageChange($event)"-->
-    <!--[pageIndex]="pageable.pageRequest.page - pageIndexSubtractor"-->
-    <!--[pageSizeOptions]="[5, 10, 25, 100]">-->
-    <!--</mat-paginator>-->
+    <mat-paginator [length]="dataSet.total"
+                   *ngIf="pagination"
+                   [pageSize]="paginationOptions.itemsPerPage"
+                   (page)="onPageChange($event)"
+                   [pageIndex]="dataSet.page_request.page - pageIndexSubtractor">
+    </mat-paginator>
 </div>
 <ng-template #loading>
     {{ 'APP.LOADING'| translate }}
