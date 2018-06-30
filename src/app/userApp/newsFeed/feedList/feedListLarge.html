@@ -1,9 +1,5 @@
 <div class="search-results"
      *ngIf="posts; else listLoading"
-     infiniteScroll
-     [infiniteScrollDistance]="2"
-     [infiniteScrollThrottle]="500"
-     [infiniteScrollDisabled]="isLoading"
      (scrolled)="onScroll($event)">
     <div *ngFor="let feed of posts.content | listReverse" class="feed-item">
         <div class="uk-panel">
@@ -20,6 +16,19 @@
         </div>
         <hr>
     </div>
+    <ul class="uk-pagination">
+        <li *ngIf="!isFirstPage()">
+            <a href="#" (click)="previousPage(); $event.preventDefault()">
+                <span class="uk-margin-small-right" uk-pagination-previous></span>
+                Previous
+            </a>
+        </li>
+        <li class="uk-margin-auto-left" *ngIf="!isLastPage()">
+            <a href="#" (click)="nextPage(); $event.preventDefault()">Next
+                <span class="uk-margin-small-left" uk-pagination-next></span>
+            </a>
+        </li>
+    </ul>
 </div>
 
 <ng-template #listLoading>
