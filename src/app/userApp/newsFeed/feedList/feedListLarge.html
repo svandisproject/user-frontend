@@ -15,7 +15,7 @@
                 <div class="uk-navbar-left">
                     <a [href]="feed.url" class="continue-link" target="_blank">Continue read</a>
                 </div>
-                <div class="uk-navbar-right">
+                <div class="uk-navbar-right" *ngIf="isAdmin()">
                     <div class="uk-navbar-item">
                         Available tags:
                     </div>

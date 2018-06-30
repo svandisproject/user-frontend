@@ -1,5 +1,8 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {FeedListComponent} from './FeedListComponent';
+import {AuthService} from '../../../common/auth/AuthService';
+import {UserRoles} from '../../../common/user/UserRoles';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-feed-list-large',
@@ -7,4 +10,11 @@ import {FeedListComponent} from './FeedListComponent';
     templateUrl: './feedListLarge.html'
 })
 export class FeedListLargeComponent extends FeedListComponent {
+    constructor(private authService: AuthService) {
+        super();
+    }
+
+    public isAdmin(): boolean {
+        return _.includes(this.authService.getDecodedToken().roles, UserRoles.ADMIN);
+    }
 }
