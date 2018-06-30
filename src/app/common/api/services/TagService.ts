@@ -4,9 +4,12 @@ import {Pageable} from '../dataModels/pageable/Pageable';
 import {Filter} from '../dataModels/Filter';
 import {TagResource} from '../resource/TagResource';
 import {Tag} from '../dataModels/Tag';
+import {map, tap} from 'rxjs/operators';
 
 @Injectable()
 export class TagService {
+    private mainTags: Tag[] = [];
+
     constructor(private tagResource: TagResource) {
     }
 
@@ -20,6 +23,23 @@ export class TagService {
 
     public findById(tagId: string): Observable<Tag> {
         return this.tagResource.findById(tagId);
+    }
+
+    public loadMainTags(): Observable<Tag[]> {
+        return this.tagResource.findBy([
+            new Filter('lk', 'title', 'Bullish'),
+            new Filter('lk', 'title', 'Bearish'),
+            new Filter('lk', 'title', 'Important'),
+            new Filter('lk', 'title', 'Toxic'),
+        ])
+            .pipe(
+                map((res) => res.content),
+                tap((res) => this.mainTags = res)
+            );
+    }
+
+    public getMainTags(): Tag[] {
+        return this.mainTags;
     }
 
     public saveOrCreate(tag: Tag, id?: string): Observable<Tag> {

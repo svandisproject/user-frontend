@@ -1,0 +1,8 @@
+<ul class="uk-navbar-nav" *ngIf="post">
+    <li *ngFor="let tag of availableTags">
+        <a href="#" [class]="tag.title.toLowerCase() + '-icon'" (click)="setTag(tag); $event.preventDefault()">
+            <span [attr.uk-icon]="tag.icon"></span>&nbsp;
+            <span [ngClass]="isSelected(tag) ? 'selected' : ''">{{tag.title}}</span>
+        </a>
+    </li>
+</ul>

@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {NewsFeedComponent} from './newsFeed/NewsFeedComponent';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
@@ -23,6 +23,8 @@ import {NavigationModule} from './navigation/NavigationModule';
 import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 import {UserProfileDetailsComponent} from './profile/UserProfileDetailsComponent';
 import {SvandisApiModule} from '../common/api/SvandisApiModule';
+import {TagToolComponent} from './taggingTool/TagToolComponent';
+import {NewsFeedResolver} from './newsFeed/NewsFeedResolver';
 
 @NgModule({
     imports: [
@@ -38,6 +40,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
     ],
     declarations: [
         UserAppComponent,
+        TagToolComponent,
         NewsFeedComponent,
         UserProfileDetailsComponent,
         SearchFilterComponent,
@@ -50,12 +53,16 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
     ],
     providers: [
         AuthGuard,
+        NewsFeedResolver,
         {
             provide: APP_INITIALIZER,
             useFactory: FilterInitFactory.factory,
             multi: true,
             deps: [SearchFilterService, IcoFilterService]
         }
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
     ]
 })
 export class UserAppModule {
