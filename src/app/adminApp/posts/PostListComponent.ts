@@ -18,8 +18,6 @@ export class PostListComponent {
     public columns: DataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
-        {columnName: 'url', columnKey: 'url'},
-        {columnName: 'content', columnKey: 'content'},
         {columnName: 'source', columnKey: 'source'},
         {columnName: 'Published At', columnKey: 'published_at', isDate: true},
         {columnName: 'Created At', columnKey: 'created_at', isDate: true},

@@ -1,4 +1,4 @@
-app-data-table {
+app-admin-table {
     [type="checkbox"] + label {
         height: 15px;
     }
@@ -21,5 +21,11 @@ app-data-table {
 
     .mat-paginator-container {
         justify-content: flex-start;
+    }
+
+    .filter-container {
+        display: flex;
+        padding: 15px;
+        flex-direction: column;
     }
 }

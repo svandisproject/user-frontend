@@ -51,6 +51,10 @@ export class DataTableComponent implements OnInit, OnChanges {
         this.rowSelected.emit(row);
     }
 
+    public applyFilter(filterValue: string): void {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
+
     public onPageChange(pageEvent: PageEvent): void {
         this.pageChange.emit(pageEvent);
     }

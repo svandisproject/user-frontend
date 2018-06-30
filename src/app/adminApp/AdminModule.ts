@@ -3,8 +3,10 @@ import {AdminNavComponent} from './adminNav/AdminNavComponent';
 import {
     MatButtonModule,
     MatCardModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
     MatPaginatorModule,
     MatSidenavModule,
@@ -42,6 +44,8 @@ import {EditTagResolver} from './tags/edit/EditTagResolver';
         MatTableModule,
         MatButtonModule,
         MatIconModule,
+        MatInputModule,
+        MatFormFieldModule,
         TranslateModule,
         MatListModule,
         RouterModule.forChild(AdminRouteConfigs)
@@ -65,6 +69,8 @@ import {EditTagResolver} from './tags/edit/EditTagResolver';
     exports: [
         DataTableComponent,
         MatSidenavModule,
+        MatFormFieldModule,
+        MatInputModule,
         MatToolbarModule,
         MatPaginatorModule,
         MatIconModule,

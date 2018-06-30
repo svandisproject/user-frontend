@@ -1,4 +1,9 @@
 <div class="data-table-container" *ngIf="dataSet; else loading">
+    <div class="filter-container">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
     <mat-table #table [dataSource]="dataSource" matSort>
 
         <!-- Position Column -->

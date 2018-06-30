@@ -20,15 +20,11 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar color="primary">
-            <!--<button-->
-            <!--type="button"-->
-            <!--aria-label="Toggle sidenav"-->
-            <!--mat-icon-button-->
-            <!--(click)="drawer.toggle()"-->
-            <!--*ngIf="isHandset$ | async">-->
-            <!--<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>-->
-            <!--</button>-->
             <span>Admin Panel</span>
+            <!-- This fills the remaining space of the current row -->
+            <span class="toolbar-fill-row"></span>
+
+            <button mat-button [routerLink]="['']">Open app</button>
         </mat-toolbar>
         <ng-content></ng-content>
     </mat-sidenav-content>
