@@ -20,24 +20,26 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {DataTableComponent} from './userDataTable/DataTableComponent';
 import {UserAppComponent} from './UserAppComponent';
 import {NavigationModule} from './navigation/NavigationModule';
-import {UserProfileModule} from './profile/UserProfileModule';
 import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
+import {UserProfileDetailsComponent} from './profile/UserProfileDetailsComponent';
+import {SvandisApiModule} from '../common/api/SvandisApiModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
         CommonModule,
-        UserProfileModule,
         FormsModule,
         NavigationModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
         InfiniteScrollModule,
+        SvandisApiModule,
         TranslateModule
     ],
     declarations: [
         UserAppComponent,
         NewsFeedComponent,
+        UserProfileDetailsComponent,
         SearchFilterComponent,
         DataTableComponent,
         GeneralScreenerComponent,

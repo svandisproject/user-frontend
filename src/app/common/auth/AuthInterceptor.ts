@@ -54,7 +54,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private getAuthorizedRequest(request: HttpRequest<any>): HttpRequest<any> {
         return request.clone({
-            headers: request.headers.append('Authorization', this.authService.getAuthTokenString())
+            headers: request.headers.append('Authorization', this.authService.getJwtToken())
         });
     }
 }

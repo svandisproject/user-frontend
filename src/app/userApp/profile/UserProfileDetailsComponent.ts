@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {WorkerService} from '../../../common/api/services/WorkerService';
+import {WorkerService} from '../../common/api/services/WorkerService';
 
 @Component({
     selector: 'app-user-profile-details',

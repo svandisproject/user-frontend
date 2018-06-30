@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AuthToken} from './dataModels/AuthToken';
+import {AuthResponse} from './dataModels/AuthToken';
 import {AuthResource} from './AuthResource';
 import {HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
@@ -7,6 +7,8 @@ import {RefreshTokenRequest} from './dataModels/RefreshRequest';
 import {TokenRequest} from './dataModels/TokenRequest';
 import 'rxjs/add/operator/do';
 import * as _ from 'lodash';
+import {JwtTokenDecoded} from './dataModels/JwtTokenDecoded';
+import * as JwtDecode from 'jwt-decode';
 
 @Injectable()
 export class AuthService {
@@ -14,41 +16,44 @@ export class AuthService {
     public static readonly REFRESH_TOKEN_KEY: string = 'refreshToken';
     public static readonly SESSION_STORAGE_KEY: string = 'accessToken';
 
-    private authToken: AuthToken = <AuthToken>{};
+    private authToken: AuthResponse = <AuthResponse>{};
 
     constructor(private authResource: AuthResource) {
     }
 
-    public requestToken(payload: TokenRequest): Observable<AuthToken> {
+    public requestToken(payload: TokenRequest): Observable<AuthResponse> {
         return this.authResource.requestAuthToken(payload)
             .do((token) => this.authToken = token);
     }
 
-    public getCurrentAuthToken(): string {
-        return this.authToken.token || this.getSessionToken();
+    public getCurrentJwtToken(): string {
+        return this.authToken.token || this.getSessionJwtToken();
     }
 
-    // TODO: complex check might be added
+    public getDecodedToken(): JwtTokenDecoded {
+        return JwtDecode(this.getCurrentJwtToken());
+    }
+
     public isAuthenticated(): boolean {
-        return !_.isEmpty(this.getSessionToken());
+        return !_.isEmpty(this.getSessionJwtToken());
     }
 
     public getAuthHeader(): HttpHeaders {
         const headers: HttpHeaders = new HttpHeaders();
-        headers.set('Authorization', 'Bearer ' + this.getCurrentAuthToken());
+        headers.set('Authorization', 'Bearer ' + this.getCurrentJwtToken());
         return headers;
     }
 
-    public getAuthTokenString(): string {
-        return 'Bearer ' + this.getCurrentAuthToken();
+    public getJwtToken(): string {
+        return 'Bearer ' + this.getCurrentJwtToken();
     }
 
-    public isTokenExpired(): void {
+    public isTokenExpired(): boolean {
+        return this.getDecodedToken().exp < Date.now() / 1000;
     }
 
-    public getSessionToken(): string {
-        const token: string = sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
-        return token;
+    public getSessionJwtToken(): string {
+        return sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
     }
 
     public setSessionToken(token: string): void {
@@ -59,7 +64,7 @@ export class AuthService {
         sessionStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
     }
 
-    public refreshToken(): Observable<AuthToken> {
+    public refreshToken(): Observable<AuthResponse> {
         return this.authResource.refreshToken(this.buildRefreshTokenRequest())
             .do((authToken) => this.authToken = authToken);
     }
