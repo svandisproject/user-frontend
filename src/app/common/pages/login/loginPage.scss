@@ -1,8 +1,16 @@
 app-login {
     #login-title {
-        color: #fff;
+        color: #000;
     }
     .dark-input {
         background: #2f2f2f;
+    }
+
+    form {
+        width: 100%;
+    }
+
+    .mat-figure {
+        align-items: start !important;
     }
 }

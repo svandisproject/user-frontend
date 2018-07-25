@@ -4,6 +4,7 @@ import {AuthService} from '../common/auth/AuthService';
 @Component({
     selector: 'app-user-app',
     templateUrl: './userApp.html',
+    styleUrls: ['userApp.scss']
 })
 
 export class UserAppComponent {

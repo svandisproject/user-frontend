@@ -1,0 +1,21 @@
+<header>
+    <div class="sidebar-fixed">
+        <a class="logo-wrapper waves-effect">
+            <h3>Logo here</h3>
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a class="list-group-item waves-effect"
+               [routerLink]="item.link"
+               [routerLinkActive]="item.link"
+               *ngFor="let item of items">
+                <i [class]="'fa mr-3 ' + item.icon"></i>
+                {{item.title}}
+            </a>
+
+        </div>
+
+    </div>
+
+</header>

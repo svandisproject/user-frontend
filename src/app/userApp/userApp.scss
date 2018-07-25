@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$svandis-user-app-primary: mat-palette($mat-indigo);
+$svandis-user-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$svandis-user-app-warn: mat-palette($mat-red);
+
+$svandis-user-app-theme: mat-light-theme(
+                $svandis-user-app-primary,
+                $svandis-user-app-accent,
+                $svandis-user-app-warn
+);
+
+@include angular-material-theme($svandis-user-app-theme);

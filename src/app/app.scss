@@ -1,11 +1,11 @@
 @import "./colors";
 
-$app-background-color: #1c1c1c;
+$app-background-color: $svandis-bg;
 $app-header-color: #212121;
 
 app-root {
     .app-wrapper {
-        background: #1c1c1c;
+      background: $app-background-color;
         width: 100%;
         height: 100%;
     }

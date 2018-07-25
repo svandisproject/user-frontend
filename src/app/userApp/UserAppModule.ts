@@ -22,6 +22,8 @@ import {UserAppComponent} from './UserAppComponent';
 import {NavigationModule} from './navigation/NavigationModule';
 import {UserProfileModule} from './profile/UserProfileModule';
 import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
+import {UserSidebarComponent} from './sidebar/UserSidebarComponent';
+import {MatToolbarModule} from '@angular/material';
 
 @NgModule({
     imports: [
@@ -31,6 +33,7 @@ import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent
         FormsModule,
         NavigationModule,
         NouisliderModule,
+        MatToolbarModule,
         RouterModule.forChild(UserAppRouterConfig),
         InfiniteScrollModule,
         TranslateModule
@@ -43,6 +46,7 @@ import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,
+        UserSidebarComponent,
         FeedListComponent,
         FeedListLargeComponent
     ],
