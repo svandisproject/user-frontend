@@ -10,15 +10,21 @@
                         <mat-card-subtitle>{{feed.created_at | date: 'shortTime'}}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions>
-                        <button mat-button>LIKE</button>
-                        <button mat-button>SHARE</button>
+                        <ul class="label-tag" *ngIf="feed.tags">
+                            <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
+                        </ul>
                     </mat-card-actions>
-                    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+                    <img mat-card-image
+                         [src]="feed.imageUrl || 'assets/image/image-placeholder.png'"
+                         alt="Photo of a Shiba Inu">
                     <mat-card-content>
                         <p>
                             {{feed.content | truncate:[350, '...']}}
                         </p>
                     </mat-card-content>
+                    <mat-card-actions *ngIf="isAdmin()">
+                        <app-tag-tool [post]="feed"></app-tag-tool>
+                    </mat-card-actions>
                     <mat-card-footer>
                         <a [href]="feed.url" mat-button class="continue-link" target="_blank">Continue read </a>
                     </mat-card-footer>
@@ -27,32 +33,32 @@
         </div>
     </div>
 </div>
-<div class="uk-navbar-right" *ngIf="isAdmin()">
-    <div class="uk-navbar-item">
-        Available tags:
-    </div>
-    <app-tag-tool [post]="feed"></app-tag-tool>
-</div>
+<!--<div class="uk-navbar-right" *ngIf="isAdmin()">-->
+<!--<div class="uk-navbar-item">-->
+<!--Available tags:-->
+<!--</div>-->
+<!--<app-tag-tool [post]="feed"></app-tag-tool>-->
+<!--</div>-->
 
-<ul class="label-tag" *ngIf="feed.tags">
-    <!--<li><span uk-icon="triangle-up"></span>Important</li>-->
-    <li>{{feed.created_at | date: 'shortTime'}}</li>
-    <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
-</ul>
+<!--<ul class="label-tag" *ngIf="feed.tags">-->
+<!--&lt;!&ndash;<li><span uk-icon="triangle-up"></span>Important</li>&ndash;&gt;-->
+<!--<li>{{feed.created_at | date: 'shortTime'}}</li>-->
+<!--<li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>-->
+<!--</ul>-->
 
-<ul class="uk-pagination">
-    <li *ngIf="!isFirstPage()">
-        <a href="#" (click)="previousPage(); $event.preventDefault()">
-            <span class="uk-margin-small-right" uk-pagination-previous></span>
-            Previous
-        </a>
-    </li>
-    <li class="uk-margin-auto-left" *ngIf="!isLastPage()">
-        <a href="#" (click)="nextPage(); $event.preventDefault()">Next
-            <span class="uk-margin-small-left" uk-pagination-next></span>
-        </a>
-    </li>
-</ul>
+<!--<ul class="uk-pagination">-->
+<!--<li *ngIf="!isFirstPage()">-->
+<!--<a href="#" (click)="previousPage(); $event.preventDefault()">-->
+<!--<span class="uk-margin-small-right" uk-pagination-previous></span>-->
+<!--Previous-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="uk-margin-auto-left" *ngIf="!isLastPage()">-->
+<!--<a href="#" (click)="nextPage(); $event.preventDefault()">Next-->
+<!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
 <ng-template #listLoading>
     <span translate>APP.LOADING</span>
 </ng-template>

@@ -8,5 +8,6 @@ export interface Post {
     source?: string;
     published_at?: Date;
     created_at?: Date;
+    imageUrl?: string;
     tags?: Tag[];
 }
