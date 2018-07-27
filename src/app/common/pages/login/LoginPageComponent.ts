@@ -34,7 +34,13 @@ export class LoginPageComponent {
             })
                 .pipe(finalize(() => this.blockUIService.stop(this.BLOCK_UI_INSTANCE_NAME)))
                 .subscribe(
-                    res => this.router.navigate(['']),
+                    (res) => {
+                        if (this.userService.hasRoleAdmin()) {
+                            this.router.navigate(['admin']);
+                        } else {
+                            this.router.navigate(['']);
+                        }
+                    },
                     err => this.handleFormError(form)
                 );
         }

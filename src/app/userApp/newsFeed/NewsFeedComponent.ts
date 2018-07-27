@@ -39,10 +39,8 @@ export class NewsFeedComponent {
             });
     }
 
-    public loadNextPageable(): void {
-        if (this.posts.page_request.page < this.posts.page_request.size) {
-            this.filterPosts(this.currentFilterSettings, this.posts.page_request.page + 1);
-        }
+    public loadPage(page: number): void {
+        this.filterPosts(this.currentFilterSettings, page);
     }
 
     public onFilterChange($event: SearchFilterSettings): void {
@@ -75,11 +73,7 @@ export class NewsFeedComponent {
                 finalize(() => this.isLoading = false)
             )
             .subscribe((posts) => {
-                if (page) {
-                    this.mergePosts(posts);
-                } else {
-                    this.posts = posts;
-                }
+                this.posts = posts;
             });
     }
 

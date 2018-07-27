@@ -1,5 +1,6 @@
 <app-admin-table [dataSet]="feeds"
                  [displayedColumns]="columns"
+                 (pageChange)="loadPage($event)"
                  (rowSelected)="editFeed($event)">
 </app-admin-table>
 

@@ -28,6 +28,10 @@ export class DataTableComponent implements OnInit, OnChanges {
     @Input() dataSet: Pageable<any>;
     @Input() displayedColumns: DataTableColumn[] = [];
     @Input() pageIndexSubtractor = 1;
+    @Input() pagination = true;
+    @Input() paginationOptions = {
+        itemsPerPage: 10
+    };
 
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
     @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();
@@ -49,6 +53,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     public rowSelect(row: any): void {
         this.rowSelected.emit(row);
+    }
+
+    public applyFilter(filterValue: string): void {
+        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
     public onPageChange(pageEvent: PageEvent): void {

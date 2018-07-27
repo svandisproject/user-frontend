@@ -10,13 +10,13 @@
 </div>
 <app-feed-list [posts]="posts"
                [isLoading]="isLoading"
-               (scrolled)="loadNextPageable()"
+               (pageChange)="loadPage($event)"
                *ngIf="isFeedListSmall; else largeFeedList">
 </app-feed-list>
 <ng-template #largeFeedList>
     <app-feed-list-large
             [isLoading]="isLoading"
             [posts]="posts"
-            (scrolled)="loadNextPageable()">
+            (pageChange)="loadPage($event)">
     </app-feed-list-large>
 </ng-template>

@@ -4,6 +4,7 @@ import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {Post} from '../../common/api/dataModels/Post';
 import {DataTableColumn} from '../dataTable/DataTableColumn';
 import {ActivatedRoute, Router} from '@angular/router';
+import {PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-admin-posts',
@@ -18,8 +19,6 @@ export class PostListComponent {
     public columns: DataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
-        {columnName: 'url', columnKey: 'url'},
-        {columnName: 'content', columnKey: 'content'},
         {columnName: 'source', columnKey: 'source'},
         {columnName: 'Published At', columnKey: 'published_at', isDate: true},
         {columnName: 'Created At', columnKey: 'created_at', isDate: true},
@@ -38,5 +37,10 @@ export class PostListComponent {
 
     public addPost(): void {
         this.router.navigate(['admin', 'post', 'create']);
+    }
+
+    public loadPage(pageEvent: PageEvent): void {
+        this.postService.findBy(null, pageEvent.pageIndex + 1)
+            .subscribe((res) => this.posts = res);
     }
 }

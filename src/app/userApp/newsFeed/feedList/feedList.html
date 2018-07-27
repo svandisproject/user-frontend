@@ -1,10 +1,5 @@
 <div class="search-results"
-     *ngIf="posts; else listLoading"
-     infiniteScroll
-     [infiniteScrollDistance]="2"
-     [infiniteScrollDisabled]="isLoading"
-     [infiniteScrollThrottle]="50"
-     (scrolled)="onScroll($event)">
+     *ngIf="posts; else listLoading">
     <table class="uk-table uk-table-divider list-alerts"
            id="news-feed-list"
            *ngIf="posts.content.length > 0; else noResults">
@@ -28,6 +23,19 @@
         </tr>
         </tbody>
     </table>
+    <ul class="uk-pagination">
+        <li *ngIf="!isFirstPage()">
+            <a href="#" (click)="previousPage(); $event.preventDefault()">
+                <span class="uk-margin-small-right" uk-pagination-previous></span>
+                Previous
+            </a>
+        </li>
+        <li class="uk-margin-auto-left" *ngIf="!isLastPage()">
+            <a href="#" (click)="nextPage(); $event.preventDefault()">Next
+                <span class="uk-margin-small-left" uk-pagination-next></span>
+            </a>
+        </li>
+    </ul>
     <ng-template #noResults>
         <span translate>ERROR.404.RESULTS</span>
     </ng-template>

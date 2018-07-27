@@ -26,23 +26,33 @@
             </div>
         </div>
     </div>
-    <!--<div *ngFor="let feed of posts.content | listReverse" class="feed-item">-->
-    <!--<div class="uk-panel">-->
-    <!--&lt;!&ndash;<img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"&ndash;&gt;-->
-    <!--&lt;!&ndash;src="" width="150" height="150" alt="Example image">&ndash;&gt;-->
-    <!--<h5>{{feed.title}}</h5>-->
-    <!--<ul class="label-tag" *ngIf="feed.tags">-->
-    <!--&lt;!&ndash;<li><span uk-icon="triangle-up"></span>Important</li>&ndash;&gt;-->
-    <!--<li>{{feed.createdAt | date: 'shortTime'}}</li>-->
-    <!--<li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>-->
-    <!--</ul>-->
-    <!--<p>{{feed.content | truncate:[350, '...']}}</p>-->
-    <!--<a [href]="feed.url" class="continue-link" target="_blank">Continue read </a>-->
-    <!--</div>-->
-    <!--<hr>-->
-    <!--</div>-->
+</div>
+<div class="uk-navbar-right" *ngIf="isAdmin()">
+    <div class="uk-navbar-item">
+        Available tags:
+    </div>
+    <app-tag-tool [post]="feed"></app-tag-tool>
 </div>
 
+<ul class="label-tag" *ngIf="feed.tags">
+    <!--<li><span uk-icon="triangle-up"></span>Important</li>-->
+    <li>{{feed.created_at | date: 'shortTime'}}</li>
+    <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
+</ul>
+
+<ul class="uk-pagination">
+    <li *ngIf="!isFirstPage()">
+        <a href="#" (click)="previousPage(); $event.preventDefault()">
+            <span class="uk-margin-small-right" uk-pagination-previous></span>
+            Previous
+        </a>
+    </li>
+    <li class="uk-margin-auto-left" *ngIf="!isLastPage()">
+        <a href="#" (click)="nextPage(); $event.preventDefault()">Next
+            <span class="uk-margin-small-left" uk-pagination-next></span>
+        </a>
+    </li>
+</ul>
 <ng-template #listLoading>
     <span translate>APP.LOADING</span>
 </ng-template>

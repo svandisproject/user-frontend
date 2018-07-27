@@ -4,6 +4,7 @@ import {AuthService} from '../auth/AuthService';
 import {TokenRequest} from '../auth/dataModels/TokenRequest';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {UserRoles} from './UserRoles';
 
 
 @Injectable()
@@ -38,6 +39,6 @@ export class UserService {
     }
 
     public hasRoleAdmin(): boolean {
-        return this.isUserSignedIn();
+        return _.includes(this.authService.getDecodedToken().roles, UserRoles.ADMIN);
     }
 }

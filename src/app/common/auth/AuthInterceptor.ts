@@ -42,7 +42,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private handleAuthError(err: HttpErrorResponse, request: HttpRequest<any>) {
         if (err.status === 401) {
-            this.router.navigate(['login']);
+            this.router.navigate(['login'])
+                .then(() => UIkit.notification('Not logged in', 'danger'));
             throw new AuthNoTokenException();
             // TODO: for now no refreshes
             // this.authService.refreshToken().subscribe(() => {
@@ -54,7 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private getAuthorizedRequest(request: HttpRequest<any>): HttpRequest<any> {
         return request.clone({
-            headers: request.headers.append('Authorization', this.authService.getAuthTokenString())
+            headers: request.headers.append('Authorization', this.authService.getJwtToken())
         });
     }
 }

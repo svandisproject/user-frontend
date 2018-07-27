@@ -1,4 +1,4 @@
-import {APP_INITIALIZER, NgModule} from '@angular/core';
+import {APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {NewsFeedComponent} from './newsFeed/NewsFeedComponent';
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
@@ -20,7 +20,6 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {DataTableComponent} from './userDataTable/DataTableComponent';
 import {UserAppComponent} from './UserAppComponent';
 import {NavigationModule} from './navigation/NavigationModule';
-import {UserProfileModule} from './profile/UserProfileModule';
 import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 import {UserSidebarComponent} from './sidebar/UserSidebarComponent';
 import {
@@ -49,18 +48,20 @@ import {LayoutModule} from '@angular/cdk/layout';
         MatToolbarModule,
         LayoutModule,
         CommonModule,
-        UserProfileModule,
         FormsModule,
         NavigationModule,
         NouisliderModule,
         MatToolbarModule,
         RouterModule.forChild(UserAppRouterConfig),
         InfiniteScrollModule,
+        SvandisApiModule,
         TranslateModule
     ],
     declarations: [
         UserAppComponent,
+        TagToolComponent,
         NewsFeedComponent,
+        UserProfileDetailsComponent,
         SearchFilterComponent,
         DataTableComponent,
         GeneralScreenerComponent,
@@ -72,12 +73,16 @@ import {LayoutModule} from '@angular/cdk/layout';
     ],
     providers: [
         AuthGuard,
+        NewsFeedResolver,
         {
             provide: APP_INITIALIZER,
             useFactory: FilterInitFactory.factory,
             multi: true,
             deps: [SearchFilterService, IcoFilterService]
         }
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
     ]
 })
 export class UserAppModule {
