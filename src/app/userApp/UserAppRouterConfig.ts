@@ -12,8 +12,8 @@ export const UserAppRouterConfig: Route[] = [
             {path: 'news-feed', component: NewsFeedComponent, canActivate: [AuthGuard]},
             {path: 'ico', component: IcoScreenerComponent, canActivate: [AuthGuard]},
             {path: 'alt-coins', component: AltCoinScreenerComponent, canActivate: [AuthGuard]},
-            {path: 'login', component: LoginPageComponent}
         ],
     },
+    {path: 'login', component: LoginPageComponent},
     {path: '', redirectTo: 'user/news-feed', pathMatch: 'full'}
 ];

@@ -3,7 +3,7 @@ import {LoginPageComponent} from './pages/login/LoginPageComponent';
 import {TranslateModule} from '@ngx-translate/core';
 import {ListReversePipe} from './pipes/ListReversePipe';
 import {TruncatePipe} from './pipes/TruncatePipe';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {SearchFormComponent} from './forms/search/SearchFormComponent';
 import {RangeSliderComponent} from './forms/rangeSlider/RangeSliderComponent';
 import {SvandisApiModule} from './api/SvandisApiModule';
@@ -16,7 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgFormsModule} from './ngForms/NgFormsModule';
 import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
 import {BlockUIModule} from 'ng-block-ui';
-import {MatButtonModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
 
 
 @NgModule({
@@ -30,9 +30,9 @@ import {MatButtonModule, MatFormFieldModule, MatGridListModule, MatIconModule, M
         BrowserAnimationsModule,
         TagInputModule,
         BlockUIModule,
-        ReactiveFormsModule,
         MatButtonModule,
         MatGridListModule,
+        MatCardModule,
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,

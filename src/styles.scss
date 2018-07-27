@@ -1,23 +1,26 @@
-// 1. Your custom variables and variable overwrites.
 $global-link-color: #DA7D02;
 
-// 3. Your custom mixin overwrites.
 @mixin hook-card() {
-    color: #000;
+  color: #000;
 }
 
 @import "~nouislider/distribute/nouislider.min.css";
-@import "./app/colors";
+@import "app/userApp/svandis-material";
+
 html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
-  background: $svandis-bg;
-    color: #666;
-    &.admin-panel {
-        background: #ffffff;
-    }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  background: $primary;
+  color: #666;
+
+  &.admin-panel {
+    background: #ffffff;
+  }
 }
-body { margin: 0; }
+
+body {
+  margin: 0;
+}
