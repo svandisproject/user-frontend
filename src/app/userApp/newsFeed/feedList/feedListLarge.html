@@ -1,30 +1,29 @@
 <div class="search-results"
-     *ngIf="posts; else listLoading"
-     (scrolled)="onScroll($event)">
+     *ngIf="posts; else listLoading">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 mb-3" *ngFor="let feed of posts.content | listReverse">
                 <mat-card>
+                    <mat-card-actions *ngIf="feed.tags.length">
+                        <ul class="label-tag">
+                            <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
+                        </ul>
+                    </mat-card-actions>
                     <mat-card-header>
                         <mat-card-title>{{feed.title}}</mat-card-title>
                         <mat-card-subtitle>{{feed.created_at | date: 'shortTime'}}</mat-card-subtitle>
                     </mat-card-header>
-                    <mat-card-actions>
-                        <ul class="label-tag" *ngIf="feed.tags">
-                            <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
-                        </ul>
-                    </mat-card-actions>
                     <img mat-card-image
-                         [src]="feed.imageUrl || 'assets/image/image-placeholder.png'"
-                         alt="Photo of a Shiba Inu">
+                         [src]="feed.imageUrl || 'http://lorempixel.com/640/480/business/'"
+                         alt="Image place holder">
                     <mat-card-content>
                         <p>
                             {{feed.content | truncate:[350, '...']}}
                         </p>
                     </mat-card-content>
-                    <mat-card-actions *ngIf="isAdmin()">
-                        <app-tag-tool [post]="feed"></app-tag-tool>
-                    </mat-card-actions>
+                    <!--<mat-card-actions *ngIf="isAdmin()">-->
+                    <!--<app-tag-tool [post]="feed"></app-tag-tool>-->
+                    <!--</mat-card-actions>-->
                     <mat-card-footer>
                         <a [href]="feed.url" mat-button class="continue-link" target="_blank">Continue read </a>
                     </mat-card-footer>
@@ -33,32 +32,20 @@
         </div>
     </div>
 </div>
-<!--<div class="uk-navbar-right" *ngIf="isAdmin()">-->
-<!--<div class="uk-navbar-item">-->
-<!--Available tags:-->
-<!--</div>-->
-<!--<app-tag-tool [post]="feed"></app-tag-tool>-->
-<!--</div>-->
 
-<!--<ul class="label-tag" *ngIf="feed.tags">-->
-<!--&lt;!&ndash;<li><span uk-icon="triangle-up"></span>Important</li>&ndash;&gt;-->
-<!--<li>{{feed.created_at | date: 'shortTime'}}</li>-->
-<!--<li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>-->
-<!--</ul>-->
 
-<!--<ul class="uk-pagination">-->
+<!--<ul>-->
 <!--<li *ngIf="!isFirstPage()">-->
 <!--<a href="#" (click)="previousPage(); $event.preventDefault()">-->
-<!--<span class="uk-margin-small-right" uk-pagination-previous></span>-->
 <!--Previous-->
 <!--</a>-->
 <!--</li>-->
-<!--<li class="uk-margin-auto-left" *ngIf="!isLastPage()">-->
+<!--<li *ngIf="!isLastPage()">-->
 <!--<a href="#" (click)="nextPage(); $event.preventDefault()">Next-->
-<!--<span class="uk-margin-small-left" uk-pagination-next></span>-->
 <!--</a>-->
 <!--</li>-->
 <!--</ul>-->
+
 <ng-template #listLoading>
     <span translate>APP.LOADING</span>
 </ng-template>

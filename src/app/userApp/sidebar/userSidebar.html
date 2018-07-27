@@ -12,7 +12,7 @@
                [routerLinkActive]="item.link"
                *ngFor="let item of items">
                 <!--<i [class]="'fa mr-3 ' + item.icon"></i>-->
-                {{item.title}}
+                {{item.title | translate}}
             </a>
         </mat-nav-list>
     </mat-sidenav>

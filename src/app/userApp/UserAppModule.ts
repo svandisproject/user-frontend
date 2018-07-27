@@ -43,6 +43,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         AppCommonModule,
         MatSidenavModule,
         MatIconModule,
+        TranslateModule,
         MatListModule,
         MatButtonModule,
         ReactiveFormsModule,

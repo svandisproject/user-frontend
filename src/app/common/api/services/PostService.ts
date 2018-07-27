@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {PostResource} from '../resource/PostResource';
 import {Observable} from 'rxjs/Observable';
-import {Post} from '../dataModels/Post';
+import {Post, PostUpdate} from '../dataModels/Post';
 import {Pageable} from '../dataModels/pageable/Pageable';
 import {Filter} from '../dataModels/Filter';
+import * as _ from 'lodash';
 
 @Injectable()
 export class PostService {
@@ -24,9 +25,15 @@ export class PostService {
 
     public saveOrCreate(post: Post, id?: string): Observable<Post> {
         if (id) {
-            return this.postResource.update(id, {post: post});
+            return this.postResource.update(id, {post: this.postToPostUpdate(post) as any});
         } else {
             return this.postResource.create({post: post});
         }
+    }
+
+    private postToPostUpdate(post: Post): PostUpdate {
+        const postUpdate: any = _.omit(post, ['id', 'created_at']);
+        postUpdate.tags = _.map(postUpdate.tags, tag => tag.id);
+        return postUpdate;
     }
 }
