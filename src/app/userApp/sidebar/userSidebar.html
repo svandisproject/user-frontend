@@ -1,21 +1,23 @@
-<header>
-    <div class="sidebar-fixed">
-        <a class="logo-wrapper waves-effect">
-            <h3>Logo here</h3>
-        </a>
-
-        <div class="list-group list-group-flush">
-
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+            #drawer
+            [fixedInViewport]="true"
+            class="sidenav"
+            mode="side"
+            opened>
+        <mat-nav-list>
             <a class="list-group-item waves-effect"
+               mat-list-item
                [routerLink]="item.link"
                [routerLinkActive]="item.link"
                *ngFor="let item of items">
-                <i [class]="'fa mr-3 ' + item.icon"></i>
+                <!--<i [class]="'fa mr-3 ' + item.icon"></i>-->
                 {{item.title}}
             </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
 
-        </div>
-
-    </div>
-
-</header>

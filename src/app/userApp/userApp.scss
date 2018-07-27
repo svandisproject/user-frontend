@@ -1,8 +1,8 @@
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 200px;
-  box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+.mat-toolbar {
+  background-color: #2B2A49;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
 }

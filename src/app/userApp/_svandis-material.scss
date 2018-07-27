@@ -68,10 +68,14 @@ $md-svnadis-front-accent: (
         )
 );
 
+$svandis-user-app-primary: mat-palette($md-svandis-front-primary);
+$svandis-user-app-accent: mat-palette($md-svnadis-front-accent, A200, A100, A400);
+$svandis-user-app-warn: mat-palette($mat-red);
+
 $mat-dark-theme-background: (
         status-bar: black,
         app-bar: map_get($mat-grey, 900),
-        background: #303030,
+        background: #1E1F35,
         hover: rgba(white, 0.04),
         card: #2B2A49,
         dialog: map_get($mat-grey, 800),
@@ -84,10 +88,6 @@ $mat-dark-theme-background: (
         unselected-chip: map_get($mat-grey, 700),
         disabled-list-option: black,
 );
-
-$svandis-user-app-primary: mat-palette($md-svandis-front-primary);
-$svandis-user-app-accent: mat-palette($md-svnadis-front-accent, A200, A100, A400);
-$svandis-user-app-warn: mat-palette($mat-red);
 
 $svandis-user-app-theme: mat-dark-theme(
                 $svandis-user-app-primary,
