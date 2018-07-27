@@ -1,25 +1,46 @@
 <div class="search-results"
      *ngIf="posts; else listLoading"
-     infiniteScroll
-     [infiniteScrollDistance]="2"
-     [infiniteScrollThrottle]="500"
-     [infiniteScrollDisabled]="isLoading"
      (scrolled)="onScroll($event)">
-    <div *ngFor="let feed of posts.content | listReverse" class="feed-item">
-        <div class="uk-panel">
-            <!--<img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"-->
-            <!--src="" width="150" height="150" alt="Example image">-->
-            <h5>{{feed.title}}</h5>
-            <ul class="label-tag" *ngIf="feed.tags">
-                <!--<li><span uk-icon="triangle-up"></span>Important</li>-->
-                <li>{{feed.createdAt | date: 'shortTime'}}</li>
-                <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
-            </ul>
-            <p>{{feed.content | truncate:[350, '...']}}</p>
-            <a [href]="feed.url" class="continue-link" target="_blank">Continue read </a>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 mb-3" *ngFor="let feed of posts.content | listReverse">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>{{feed.title}}</mat-card-title>
+                        <mat-card-subtitle>{{feed.created_at | date: 'shortTime'}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions>
+                        <button mat-button>LIKE</button>
+                        <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+                    <mat-card-content>
+                        <p>
+                            {{feed.content | truncate:[350, '...']}}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-footer>
+                        <a [href]="feed.url" mat-button class="continue-link" target="_blank">Continue read </a>
+                    </mat-card-footer>
+                </mat-card>
+            </div>
         </div>
-        <hr>
     </div>
+    <!--<div *ngFor="let feed of posts.content | listReverse" class="feed-item">-->
+    <!--<div class="uk-panel">-->
+    <!--&lt;!&ndash;<img class="uk-align-center uk-align-right@m uk-margin-remove-adjacent"&ndash;&gt;-->
+    <!--&lt;!&ndash;src="" width="150" height="150" alt="Example image">&ndash;&gt;-->
+    <!--<h5>{{feed.title}}</h5>-->
+    <!--<ul class="label-tag" *ngIf="feed.tags">-->
+    <!--&lt;!&ndash;<li><span uk-icon="triangle-up"></span>Important</li>&ndash;&gt;-->
+    <!--<li>{{feed.createdAt | date: 'shortTime'}}</li>-->
+    <!--<li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>-->
+    <!--</ul>-->
+    <!--<p>{{feed.content | truncate:[350, '...']}}</p>-->
+    <!--<a [href]="feed.url" class="continue-link" target="_blank">Continue read </a>-->
+    <!--</div>-->
+    <!--<hr>-->
+    <!--</div>-->
 </div>
 
 <ng-template #listLoading>

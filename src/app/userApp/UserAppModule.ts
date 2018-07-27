@@ -23,7 +23,16 @@ import {NavigationModule} from './navigation/NavigationModule';
 import {UserProfileModule} from './profile/UserProfileModule';
 import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 import {UserSidebarComponent} from './sidebar/UserSidebarComponent';
-import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatGridListModule,
+    MatIconModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule
+} from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
@@ -34,6 +43,9 @@ import {LayoutModule} from '@angular/cdk/layout';
         MatListModule,
         MatButtonModule,
         ReactiveFormsModule,
+        MatCardModule,
+        MatDividerModule,
+        MatGridListModule,
         MatToolbarModule,
         LayoutModule,
         CommonModule,
