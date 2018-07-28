@@ -3,7 +3,8 @@ import {WorkerService} from '../../common/api/services/WorkerService';
 
 @Component({
     selector: 'app-user-profile-details',
-    templateUrl: './userProfileDetails.html'
+    templateUrl: './userProfileDetails.html',
+    styles: ['mat-icon {cursor: pointer}']
 })
 
 export class UserProfileDetailsComponent {

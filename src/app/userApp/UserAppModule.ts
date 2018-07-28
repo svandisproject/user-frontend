@@ -24,10 +24,14 @@ import {
     MatButtonModule,
     MatCardModule,
     MatDividerModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
+    MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatSidenavModule,
+    MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
@@ -43,6 +47,10 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         MatIconModule,
         TranslateModule,
         MatListModule,
+        MatTabsModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatMenuModule,
         MatButtonModule,
         ReactiveFormsModule,
         MatCardModule,

@@ -1,30 +1,32 @@
-<div class="uk-card uk-card-secondary uk-card-body">
-    <div class="uk-child-width-1-2 uk-grid-small rates uk-grid">
-        <h3 class="uk-card-title main-header-text">
-            User profile details
-        </h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <h4>User profile</h4>
+        </div>
     </div>
-
-    <hr class="after-header-line">
-
-    <table class="uk-table uk-table-striped">
-        <tbody>
-        <tr>
-            <td>Worker secret</td>
-            <td>
-                <input class="uk-input uk-form-width-medium"
-                       [type]="isMasked ? 'password' : 'text'"
-                       [value]="secret">
-                <button class="uk-button uk-button-default"
-                        (click)="isMasked = !isMasked">
-                    {{isMasked ? 'show' : 'hide'}}
-                </button>
-                <button class="uk-button uk-button-default"
-                        (click)="regenerateToken()">
-                    Regenerate
-                </button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-sm-12">
+            <mat-tab-group>
+                <mat-tab label="Auth key">
+                    <div class="container-fluid mt-5">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <mat-form-field class="w-100">
+                                    <input matInput
+                                           [type]="isMasked ? 'password' : 'text'"
+                                           placeholder="Worker Token"
+                                           disabled
+                                           [value]="secret">
+                                    <mat-icon matSuffix (click)="isMasked = !isMasked">
+                                        {{isMasked ? 'visibility' : 'visibility_off'}}
+                                    </mat-icon>
+                                    <mat-icon matSuffix (click)="regenerateToken()">replay</mat-icon>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
 </div>

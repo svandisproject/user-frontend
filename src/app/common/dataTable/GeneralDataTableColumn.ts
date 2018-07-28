@@ -5,4 +5,5 @@ export interface GeneralDataTableColumn {
     columnName: string;
     columnKey: string;
     isDate?: boolean;
+    columnClass?: string;
 }

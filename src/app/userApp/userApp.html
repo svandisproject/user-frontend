@@ -3,9 +3,18 @@
         <img src="assets/image/svandis-logo.png" alt="">
     </span>
     <span class="flex-fill-remaining"></span>
-    <span>Right Aligned Text</span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="profile">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </a>
+    </mat-menu>
 </mat-toolbar>
 
 <app-user-sidebar>
     <router-outlet></router-outlet>
 </app-user-sidebar>
+
