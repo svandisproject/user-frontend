@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {IpcService} from './common/electron/IpcService';
 
 @Component({
     selector: 'app-root',
@@ -8,7 +9,9 @@ import {TranslateService} from '@ngx-translate/core';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    constructor(translate: TranslateService) {
+    constructor(translate: TranslateService, ipcService: IpcService) {
         translate.setDefaultLang('eng');
+
+        ipcService.send('test');
     }
 }
