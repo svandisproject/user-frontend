@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {IcoFilterService} from '../../../common/filters/IcoFilterService';
-import {UserDataTableColumn} from '../UserDataTableColumn';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoService} from '../../../common/api/services/IcoService';
+import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTableColumn';
 
 @Component({
     templateUrl: '../generalScreener.html',
@@ -12,19 +12,19 @@ import {IcoService} from '../../../common/api/services/IcoService';
 export class IcoScreenerComponent extends GeneralScreenerComponent {
     public dataSet: Pageable<any>;
 
-    public dataTableColumns: UserDataTableColumn[] = [
-        {columnName: 'remote_id', columnKey: 'remote_id', isHeadColumn: true},
+    public dataTableColumns: GeneralDataTableColumn[] = [
+        {columnName: 'remote_id', columnKey: 'remote_id'},
         {columnName: 'title', columnKey: 'title'},
-        {columnName: 'advisors', columnKey: 'advisors', isList: true},
-        {columnName: 'competitors', columnKey: 'competitors', isList: true},
+        {columnName: 'advisors', columnKey: 'advisors'},
+        {columnName: 'competitors', columnKey: 'competitors'},
         {columnName: 'country', columnKey: 'country'},
         {columnName: 'hard_cap', columnKey: 'hard_cap'},
-        {columnName: 'industries', columnKey: 'industries', isList: true},
+        {columnName: 'industries', columnKey: 'industries'},
         {columnName: 'kyc', columnKey: 'kyc'},
-        {columnName: 'partners', columnKey: 'partners', isList: true},
+        {columnName: 'partners', columnKey: 'partners'},
         {columnName: 'raised', columnKey: 'raised'},
-        {columnName: 'restricted_countries', columnKey: 'restricted_countries', isList: true},
-        {columnName: 'team', columnKey: 'team', isList: true},
+        {columnName: 'restricted_countries', columnKey: 'restricted_countries'},
+        {columnName: 'team', columnKey: 'team'},
         {columnName: 'token_price', columnKey: 'token_price'},
     ];
 

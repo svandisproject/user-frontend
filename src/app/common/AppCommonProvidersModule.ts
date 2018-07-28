@@ -6,6 +6,7 @@ import {AuthService} from './auth/AuthService';
 import {PusherModule} from './pusher/PusherModule';
 import {UserService} from './user/UserService';
 import {AuthInterceptor} from './auth/AuthInterceptor';
+import {IpcService} from './electron/IpcService';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import {AuthInterceptor} from './auth/AuthInterceptor';
         HttpService,
         UserService,
         AuthResource,
+        IpcService,
         AuthService,
         {
             provide: HTTP_INTERCEPTORS,
