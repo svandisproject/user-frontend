@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {StorageAdapter} from '../../common/localStorage/StorageAdapter';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
-import {UserDataTableColumn} from './UserDataTableColumn';
+import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 
 @Component({
     selector: 'app-screener',
@@ -14,5 +14,5 @@ export class GeneralScreenerComponent {
     public filterService: StorageAdapter<any>;
     public isFilterOpened = false;
     public dataSet: Pageable<any>;
-    public dataTableColumns: UserDataTableColumn[];
+    public dataTableColumns: GeneralDataTableColumn[];
 }
