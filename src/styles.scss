@@ -1,28 +1,33 @@
-// 1. Your custom variables and variable overwrites.
 $global-link-color: #DA7D02;
 
-// 2. Import default variables and available mixins.
-@import "../node_modules/uikit/src/scss/variables-theme.scss";
-@import "../node_modules/uikit/src/scss/mixins-theme.scss";
-
-// 3. Your custom mixin overwrites.
 @mixin hook-card() {
-    color: #000;
+  color: #000;
 }
 
-// 4. Import UIkit.
-@import "../node_modules/uikit/src/scss/uikit-theme.scss";
 @import "~nouislider/distribute/nouislider.min.css";
+@import "app/userApp/svandis-material";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/utilities";
+@import "../node_modules/bootstrap/scss/images";
+@import "~material-icons/css/material-icons";
+
 html {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    line-height: 1.5;
-    -webkit-text-size-adjust: 100%;
-    background: #1c1c1c;
-    color: #666;
-    &.admin-panel {
-        background: #ffffff;
-    }
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  background: $primary;
+  color: #666;
+
+  &.admin-panel {
+    background: #ffffff;
+  }
 }
-body { margin: 0; }
+
+body {
+  margin: 0;
+}

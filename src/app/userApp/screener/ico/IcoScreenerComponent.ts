@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {IcoFilterService} from '../../../common/filters/IcoFilterService';
-import {DataTableColumn} from '../../userDataTable/DataTableColumn';
+import {UserDataTableColumn} from '../UserDataTableColumn';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoService} from '../../../common/api/services/IcoService';
 
@@ -12,7 +12,7 @@ import {IcoService} from '../../../common/api/services/IcoService';
 export class IcoScreenerComponent extends GeneralScreenerComponent {
     public dataSet: Pageable<any>;
 
-    public dataTableColumns: DataTableColumn[] = [
+    public dataTableColumns: UserDataTableColumn[] = [
         {columnName: 'remote_id', columnKey: 'remote_id', isHeadColumn: true},
         {columnName: 'title', columnKey: 'title'},
         {columnName: 'advisors', columnKey: 'advisors', isList: true},

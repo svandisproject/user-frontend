@@ -9,3 +9,16 @@
         text-decoration: underline;
     }
 }
+
+td.heading-column {
+    color: $neon-blue-light;
+    text-transform: uppercase;
+}
+
+td.positive-column {
+    color: $green-positive;
+}
+
+td.negative-column {
+    color: $red-negative;
+}

@@ -1,9 +1,10 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
-import {DataTableColumn} from '../dataTable/DataTableColumn';
+import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Tag} from '../../common/api/dataModels/Tag';
 import {TagService} from '../../common/api/services/TagService';
+import {PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-admin-tags',
@@ -15,7 +16,7 @@ import {TagService} from '../../common/api/services/TagService';
 export class TagListComponent {
     public tags: Pageable<Tag>;
 
-    public columns: DataTableColumn[] = [
+    public columns: GeneralDataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
     ];
@@ -32,5 +33,10 @@ export class TagListComponent {
 
     public addTag(): void {
         this.router.navigate(['admin', 'tag', 'create']);
+    }
+
+    public loadPage(pageEvent: PageEvent): void {
+        this.tagService.findBy(null, pageEvent.pageIndex + 1)
+            .subscribe((res) => this.tags = res);
     }
 }

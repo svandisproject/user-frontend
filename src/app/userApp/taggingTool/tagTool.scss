@@ -1,0 +1,20 @@
+@import "../../colors";
+
+app-tag-tool {
+    .important-icon svg {
+        color: $yellow-light;
+    }
+    .bullish-icon svg {
+        color: $green-light;
+    }
+    .toxic-icon svg {
+        color: $violet;
+    }
+    .bearish-icon svg {
+        color: $red-orange;
+    }
+    span.selected {
+        color: #fff;
+        text-decoration: underline;
+    }
+}

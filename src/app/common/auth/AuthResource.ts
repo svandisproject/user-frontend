@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpService} from '../http/HttpService';
 import {TokenRequest} from './dataModels/TokenRequest';
 import {Observable} from 'rxjs/Observable';
-import {AuthToken} from './dataModels/AuthToken';
+import {AuthResponse} from './dataModels/AuthToken';
 import {RefreshTokenRequest} from './dataModels/RefreshRequest';
 import {SvandisApi} from '../api/config/SvandisApi';
 
@@ -13,11 +13,11 @@ export class AuthResource {
     constructor(private httpService: HttpService) {
     }
 
-    public requestAuthToken(tokenRequest: TokenRequest): Observable<AuthToken> {
+    public requestAuthToken(tokenRequest: TokenRequest): Observable<AuthResponse> {
         return this.httpService.post(AuthResource.ENDPOINT, tokenRequest);
     }
 
-    public refreshToken(refreshTokenRequest: RefreshTokenRequest): Observable<AuthToken> {
+    public refreshToken(refreshTokenRequest: RefreshTokenRequest): Observable<AuthResponse> {
         return this.httpService.post(AuthResource.ENDPOINT, refreshTokenRequest);
     }
 }

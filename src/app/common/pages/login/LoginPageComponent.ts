@@ -34,9 +34,21 @@ export class LoginPageComponent {
             })
                 .pipe(finalize(() => this.blockUIService.stop(this.BLOCK_UI_INSTANCE_NAME)))
                 .subscribe(
-                    res => this.router.navigate(['']),
-                    err => this.credsInvalid = true
+                    (res) => {
+                        if (this.userService.hasRoleAdmin()) {
+                            this.router.navigate(['admin']);
+                        } else {
+                            this.router.navigate(['']);
+                        }
+                    },
+                    err => this.handleFormError(form)
                 );
         }
+    }
+
+    private handleFormError(form: NgForm) {
+        form.controls.email.setErrors({'incorrect': true});
+        form.controls.password.setErrors({'incorrect': true});
+        this.credsInvalid = true;
     }
 }

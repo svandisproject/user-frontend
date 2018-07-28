@@ -11,15 +11,20 @@ app-data-table {
         padding: 8px 24px 0;
     }
 
-    button:focus {
-        background-color: #fff !important;
-    }
-
     .mat-sort-header-sorted button {
         color: color('grey', 'darken-4') !important;
     }
 
     .mat-paginator-container {
         justify-content: flex-start;
+    }
+
+    .filter-container {
+        display: flex;
+        padding: 15px;
+        flex-direction: column;
+    }
+    .mat-column-id {
+        flex: 0 0 70px;
     }
 }

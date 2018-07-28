@@ -1,6 +1,6 @@
 /* SystemJS module definition */
 declare var module: NodeModule;
-import 'uikit';
+declare var UIkit;
 
 interface NodeModule {
   id: string;

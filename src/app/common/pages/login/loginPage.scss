@@ -1,8 +1,20 @@
+@import "../../../userApp/_svandis-material.scss";
+
 app-login {
     #login-title {
         color: #fff;
     }
-    .dark-input {
-        background: #2f2f2f;
+
+    form {
+        width: 100%;
+    }
+
+    .mat-figure {
+        align-items: start !important;
+    }
+
+    .login-wrapper {
+        margin-top: 15%;
+        background-color: $primary;
     }
 }

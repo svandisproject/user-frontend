@@ -1,11 +1,20 @@
-<header *ngIf="isAuthenticated()">
-    <app-navigation></app-navigation>
-</header>
+<mat-toolbar color="primary" class="mat-elevation-z2">
+    <span>
+        <img src="assets/image/svandis-logo.png" alt="">
+    </span>
+    <span class="flex-fill-remaining"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <a mat-menu-item routerLink="profile">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+        </a>
+    </mat-menu>
+</mat-toolbar>
 
-<div class="app-wrapper">
-    <div class="uk-container uk-container-large">
-        <div class="uk-margin-top uk-child-width-1-1@s uk-grid-small uk-grid-match main-section-offset" uk-grid>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
-</div>
+<app-user-sidebar>
+    <router-outlet></router-outlet>
+</app-user-sidebar>
+

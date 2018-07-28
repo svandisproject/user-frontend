@@ -1,9 +1,10 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {DataTableColumn} from '../dataTable/DataTableColumn';
+import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WebFeed} from '../../common/api/dataModels/WebFeed';
 import {WebFeedService} from '../../common/api/services/WebFeedService';
+import {PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-admin-web-feeds',
@@ -14,7 +15,7 @@ import {WebFeedService} from '../../common/api/services/WebFeedService';
 export class WebFeedListComponent {
     public feeds: Pageable<WebFeed>;
 
-    public columns: DataTableColumn[] = [
+    public columns: GeneralDataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
         {columnName: 'url', columnKey: 'url'},
@@ -35,5 +36,10 @@ export class WebFeedListComponent {
 
     public addFeed(): void {
         this.router.navigate(['admin', 'web-feed', 'create']);
+    }
+
+    public loadPage(pageEvent: PageEvent): void {
+        this.webFeedService.findBy(null, pageEvent.pageIndex + 1)
+            .subscribe((res) => this.feeds = res);
     }
 }

@@ -4,7 +4,6 @@ import {Observable} from 'rxjs/Observable';
 import {UserService} from '../user/UserService';
 import * as _ from 'lodash';
 
-
 @Injectable()
 export class AuthGuard implements CanActivate {
 
@@ -15,12 +14,14 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (!this.userService.isUserSignedIn()) {
-            this.router.navigate(['user', 'login']);
+            this.router.navigate(['login'])
+                .then(() => UIkit.notification('Not logged in', 'danger'));
             return false;
         }
 
         if (_.includes(state.url, 'admin') && !this.userService.hasRoleAdmin()) {
-            this.router.navigate(['user', 'login']);
+            this.router.navigate(['login'])
+                .then(() => UIkit.notification('Access restricted', 'danger'));
             return false;
         }
 

@@ -1,0 +1,8 @@
+<ng-container *ngIf="post">
+    <button *ngFor="let tag of availableTags"
+            mat-button
+            (click)="setTag(tag); $event.preventDefault()">
+        <!--<span [attr.uk-icon]="tag.icon"></span>&nbsp;-->
+        <span [ngClass]="isSelected(tag) ? 'selected' : ''">{{tag.title}}</span>
+    </button>
+</ng-container>

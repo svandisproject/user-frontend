@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+            #drawer
+            [fixedInViewport]="true"
+            class="sidenav"
+            mode="side"
+            opened>
+        <mat-nav-list>
+            <a class="list-group-item waves-effect"
+               *ngFor="let item of items"
+               mat-list-item
+               [routerLink]="item.link"
+               routerLinkActive="mat-list-item-focus">
+                <mat-icon>{{item.icon}}</mat-icon>
+                {{item.title | translate}}
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <ng-content></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

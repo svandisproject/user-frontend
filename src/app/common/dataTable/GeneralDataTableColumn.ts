@@ -1,8 +1,9 @@
 /**
  * columnName ca be i18n key string
  */
-export interface DataTableColumn {
+export interface GeneralDataTableColumn {
     columnName: string;
     columnKey: string;
     isDate?: boolean;
+    columnClass?: string;
 }

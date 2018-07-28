@@ -1,11 +1,12 @@
 @import "./colors";
+@import "userApp/svandis-material";
 
-$app-background-color: #1c1c1c;
+$app-background-color: $primary;
 $app-header-color: #212121;
 
 app-root {
     .app-wrapper {
-        background: #1c1c1c;
+      background: $app-background-color;
         width: 100%;
         height: 100%;
     }
@@ -20,35 +21,8 @@ app-root {
             border-color: #b50500;
         }
     }
-
-    .uk-card-secondary.uk-card-body .uk-checkbox:checked,
-    .uk-card-secondary > :not([class*='uk-card-media']) .uk-checkbox:checked {
-        background-color: #4da2f1 !important;
-        border-color: #4da2f1 !important;
-    }
-
     select option {
         background-color: $app-background-color;
-    }
-
-    .uk-table-striped > tr:nth-of-type(odd),
-    .uk-table-striped tbody tr:nth-of-type(odd) {
-        background: #2C2C2C;
-        border: none;
-    }
-    .uk-table td {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .uk-alert-danger {
-        background: #ff587a00;
-        color: #f03654;
-        border: 1px solid;
-    }
-
-    table.uk-table-divider tr {
-        border-top: 1px solid $default-border !important;
     }
 
     button.fab-fixed-bottom-right {
@@ -56,4 +30,20 @@ app-root {
         bottom: 5%;
         right: 5%;
     }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover
+    textarea:-webkit-autofill:focus,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus {
+        border: none;
+        -webkit-text-fill-color: white;
+        -webkit-box-shadow: none;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
 }

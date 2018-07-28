@@ -16,6 +16,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgFormsModule} from './ngForms/NgFormsModule';
 import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
 import {BlockUIModule} from 'ng-block-ui';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
+import {DataTableModule} from './dataTable/DataTableModule';
 
 
 @NgModule({
@@ -29,6 +31,13 @@ import {BlockUIModule} from 'ng-block-ui';
         BrowserAnimationsModule,
         TagInputModule,
         BlockUIModule,
+        MatButtonModule,
+        MatGridListModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        DataTableModule,
         TranslateModule
     ],
     declarations: [
@@ -46,6 +55,7 @@ import {BlockUIModule} from 'ng-block-ui';
         FormsModule,
         OrderModule,
         FormsModule,
+        DataTableModule,
         SvandisApiModule,
         FilterButtonComponent,
         FiltersModule,

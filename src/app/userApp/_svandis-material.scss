@@ -1,0 +1,102 @@
+@import '../../../node_modules/@angular/material/theming';
+
+@include mat-core();
+
+$md-svandis-front-primary: (
+        50 : #e4e4e7,
+        100 : #bcbcc2,
+        200 : #8f8f9a,
+        300 : #626272,
+        400 : #404153,
+        500 : #1e1f35,
+        600 : #1a1b30,
+        700 : #161728,
+        800 : #121222,
+        900 : #0a0a16,
+        A100 : #5858ff,
+        A200 : #2525ff,
+        A400 : #0000f1,
+        A700 : #0000d8,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #ffffff,
+                400 : #ffffff,
+                500 : #ffffff,
+                600 : #ffffff,
+                700 : #ffffff,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #ffffff,
+                A200 : #ffffff,
+                A400 : #ffffff,
+                A700 : #ffffff,
+        )
+);
+
+$md-svnadis-front-accent: (
+        50 : #e5f9ed,
+        100 : #bdefd3,
+        200 : #91e5b5,
+        300 : #65da97,
+        400 : #44d281,
+        500 : #23ca6b,
+        600 : #1fc563,
+        700 : #1abd58,
+        800 : #15b74e,
+        900 : #0cab3c,
+        A100 : #d8ffe2,
+        A200 : #a5ffbc,
+        A400 : #72ff96,
+        A700 : #58ff83,
+        contrast: (
+                50 : #000000,
+                100 : #000000,
+                200 : #000000,
+                300 : #000000,
+                400 : #000000,
+                500 : #000000,
+                600 : #000000,
+                700 : #000000,
+                800 : #ffffff,
+                900 : #ffffff,
+                A100 : #000000,
+                A200 : #000000,
+                A400 : #000000,
+                A700 : #000000,
+        )
+);
+
+$svandis-user-app-primary: mat-palette($md-svandis-front-primary);
+$svandis-user-app-accent: mat-palette($md-svnadis-front-accent, A200, A100, A400);
+$svandis-user-app-warn: mat-palette($mat-red);
+
+$mat-dark-theme-background: (
+        status-bar: black,
+        app-bar: map_get($mat-grey, 900),
+        background: #1E1F35,
+        hover: rgba(white, 0.04),
+        card: #2B2A49,
+        dialog: map_get($mat-grey, 800),
+        disabled-button: rgba(white, 0.12),
+        raised-button: map-get($mat-grey, 800),
+        focused-button: $light-focused,
+        selected-button: map_get($mat-grey, 900),
+        selected-disabled-button: map_get($mat-grey, 800),
+        disabled-button-toggle: black,
+        unselected-chip: map_get($mat-grey, 700),
+        disabled-list-option: black,
+);
+
+$svandis-user-app-theme: mat-dark-theme(
+                $svandis-user-app-primary,
+                $svandis-user-app-accent,
+                $svandis-user-app-warn
+);
+
+@include angular-material-theme($svandis-user-app-theme);
+
+$primary: mat-color($svandis-user-app-primary);
+$accent: mat-color($svandis-user-app-accent);
+$warn: mat-color($svandis-user-app-warn);

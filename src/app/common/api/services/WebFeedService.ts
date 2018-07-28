@@ -14,8 +14,8 @@ export class WebFeedService {
         return this.webFeedResource.findAll();
     }
 
-    public findBy(filters: Filter[]): Observable<Pageable<WebFeed>> {
-        return this.webFeedResource.findBy(filters);
+    public findBy(filters: Filter[], page = 1): Observable<Pageable<WebFeed>> {
+        return this.webFeedResource.findBy(filters, String(page));
     }
 
     public findById(tagId: string): Observable<WebFeed> {

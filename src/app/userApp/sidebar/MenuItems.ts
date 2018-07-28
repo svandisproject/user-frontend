@@ -1,12 +1,16 @@
-import {NavigationItem} from '../navigation/NavigationItem';
-
-export const FrontNavigation: NavigationItem[] = [
+export const MenuItems: MenuItem[] = [
     // {cssClass: 'dashboard', path: '#', text: 'NAVIGATION.FRONT.ITEM.DASHBOARD'},
-    {cssClass: 'iso', path: 'ico', text: 'NAVIGATION.FRONT.ITEM.ICO_SCR'},
-    {cssClass: 'alt', path: 'alt-coins', text: 'NAVIGATION.FRONT.ITEM.ALT_COIN'},
+    // {icon: 'assessment', link: 'ico', title: 'NAVIGATION.FRONT.ITEM.ICO_SCR'},
+    {icon: 'copyright', link: 'alt-coins', title: 'NAVIGATION.FRONT.ITEM.ALT_COIN'},
     // {cssClass: 'index', path: '#', text: 'NAVIGATION.FRONT.ITEM.INDEX_BUILDER'},
     // {cssClass: 'visualization', path: '#', text: 'NAVIGATION.FRONT.ITEM.VIS_TOOLS'},
     // {cssClass: 'market', path: '#', text: 'NAVIGATION.FRONT.ITEM.MARKET_CAPS'},
     // {cssClass: 'data', path: '#', text: 'NAVIGATION.FRONT.ITEM.DATA_MARKET'},
-    {cssClass: 'newsfeed', path: 'news-feed', text: 'NAVIGATION.FRONT.ITEM.NEWS'},
+    {icon: 'library_books', link: 'news-feed', title: 'NAVIGATION.FRONT.ITEM.NEWS'},
 ];
+
+export interface MenuItem {
+    title: string;
+    link: string;
+    icon: string;
+}
