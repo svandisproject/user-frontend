@@ -2,7 +2,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
 import {PostService} from '../../common/api/services/PostService';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {Post} from '../../common/api/dataModels/Post';
-import {DataTableColumn} from '../dataTable/DataTableColumn';
+import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PageEvent} from '@angular/material';
 
@@ -16,7 +16,7 @@ import {PageEvent} from '@angular/material';
 export class PostListComponent {
     public posts: Pageable<Post>;
 
-    public columns: DataTableColumn[] = [
+    public columns: GeneralDataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
         {columnName: 'source', columnKey: 'source'},

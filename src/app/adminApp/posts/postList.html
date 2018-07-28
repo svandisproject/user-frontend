@@ -1,8 +1,8 @@
-<app-admin-table [dataSet]="posts"
-                 [displayedColumns]="columns"
-                 (pageChange)="loadPage($event)"
-                 (rowSelected)="editPost($event)">
-</app-admin-table>
+<app-data-table [dataSet]="posts"
+                [displayedColumns]="columns"
+                (pageChange)="loadPage($event)"
+                (rowSelected)="editPost($event)">
+</app-data-table>
 
 <button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addPost()">
     <mat-icon>add</mat-icon>

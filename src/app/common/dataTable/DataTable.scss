@@ -1,4 +1,4 @@
-app-admin-table {
+app-data-table {
     [type="checkbox"] + label {
         height: 15px;
     }
@@ -9,10 +9,6 @@ app-admin-table {
     .example-header {
         min-height: 64px;
         padding: 8px 24px 0;
-    }
-
-    button:focus {
-        background-color: #fff !important;
     }
 
     .mat-sort-header-sorted button {

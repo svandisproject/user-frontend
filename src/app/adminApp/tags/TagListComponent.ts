@@ -1,6 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
-import {DataTableColumn} from '../dataTable/DataTableColumn';
+import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Tag} from '../../common/api/dataModels/Tag';
 import {TagService} from '../../common/api/services/TagService';
@@ -16,7 +16,7 @@ import {PageEvent} from '@angular/material';
 export class TagListComponent {
     public tags: Pageable<Tag>;
 
-    public columns: DataTableColumn[] = [
+    public columns: GeneralDataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
         {columnName: 'title', columnKey: 'title'},
     ];

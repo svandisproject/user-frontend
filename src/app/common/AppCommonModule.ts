@@ -17,6 +17,7 @@ import {NgFormsModule} from './ngForms/NgFormsModule';
 import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
 import {BlockUIModule} from 'ng-block-ui';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
+import {DataTableModule} from './dataTable/DataTableModule';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, M
         MatFormFieldModule,
         MatIconModule,
         MatInputModule,
+        DataTableModule,
         TranslateModule
     ],
     declarations: [
@@ -53,6 +55,7 @@ import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, M
         FormsModule,
         OrderModule,
         FormsModule,
+        DataTableModule,
         SvandisApiModule,
         FilterButtonComponent,
         FiltersModule,

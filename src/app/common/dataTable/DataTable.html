@@ -1,5 +1,5 @@
 <div class="data-table-container" *ngIf="dataSet; else loading">
-    <div class="filter-container">
+    <div class="filter-container" *ngIf="settings.filter">
         <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         </mat-form-field>
@@ -28,10 +28,10 @@
 
 
     <mat-paginator [length]="dataSet.total"
-                   *ngIf="pagination"
-                   [pageSize]="paginationOptions.itemsPerPage"
+                   *ngIf="settings.pagination"
+                   [pageSize]="settings.paginationOptions.itemsPerPage"
                    (page)="onPageChange($event)"
-                   [pageIndex]="dataSet.page_request.page - pageIndexSubtractor">
+                   [pageIndex]="dataSet.page_request.page - settings.pageIndexSubtractor">
     </mat-paginator>
 </div>
 <ng-template #loading>

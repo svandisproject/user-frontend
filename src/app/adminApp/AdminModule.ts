@@ -16,7 +16,6 @@ import {
 } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
-import {DataTableComponent} from './dataTable/DataTableComponent';
 import {PostListComponent} from './posts/PostListComponent';
 import {AdminComponent} from './AdminComponent';
 import {RouterModule} from '@angular/router';
@@ -52,7 +51,6 @@ import {EditTagResolver} from './tags/edit/EditTagResolver';
     ],
     declarations: [
         AdminComponent,
-        DataTableComponent,
         PostListComponent,
         EditPostComponent,
         WebFeedListComponent,
@@ -67,7 +65,6 @@ import {EditTagResolver} from './tags/edit/EditTagResolver';
         EditPostResolver
     ],
     exports: [
-        DataTableComponent,
         MatSidenavModule,
         MatFormFieldModule,
         MatInputModule,

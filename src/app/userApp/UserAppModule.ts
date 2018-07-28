@@ -17,9 +17,7 @@ import {IcoScreenerComponent} from './screener/ico/IcoScreenerComponent';
 import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerComponent';
 import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-import {DataTableComponent} from './userDataTable/DataTableComponent';
 import {UserAppComponent} from './UserAppComponent';
-import {NavigationModule} from './navigation/NavigationModule';
 import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 import {UserSidebarComponent} from './sidebar/UserSidebarComponent';
 import {
@@ -54,7 +52,6 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         LayoutModule,
         CommonModule,
         FormsModule,
-        NavigationModule,
         NouisliderModule,
         MatToolbarModule,
         RouterModule.forChild(UserAppRouterConfig),
@@ -68,7 +65,6 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         NewsFeedComponent,
         UserProfileDetailsComponent,
         SearchFilterComponent,
-        DataTableComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,

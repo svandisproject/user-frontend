@@ -11,12 +11,12 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import {MatSort, MatTableDataSource, PageEvent} from '@angular/material';
-import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
-import {DataTableColumn} from './DataTableColumn';
+import {Pageable} from '../api/dataModels/pageable/Pageable';
+import {GeneralDataTableColumn} from './GeneralDataTableColumn';
 
 @Component({
     styleUrls: ['./DataTable.scss'],
-    selector: 'app-admin-table',
+    selector: 'app-data-table',
     templateUrl: './DataTable.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush
@@ -26,11 +26,14 @@ export class DataTableComponent implements OnInit, OnChanges {
     @ViewChild(MatSort) sort: MatSort;
 
     @Input() dataSet: Pageable<any>;
-    @Input() displayedColumns: DataTableColumn[] = [];
-    @Input() pageIndexSubtractor = 1;
-    @Input() pagination = true;
-    @Input() paginationOptions = {
-        itemsPerPage: 10
+    @Input() displayedColumns: GeneralDataTableColumn[] = [];
+    @Input() settings: {
+        pageIndexSubtractor: number,
+        pagination: boolean,
+        paginationOptions: {
+            itemsPerPage: number
+        },
+        filter: boolean
     };
 
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
@@ -40,6 +43,7 @@ export class DataTableComponent implements OnInit, OnChanges {
 
 
     ngOnInit(): void {
+        this.initDefaultSettings();
         this.initSources();
     }
 
@@ -68,5 +72,16 @@ export class DataTableComponent implements OnInit, OnChanges {
             this.dataSource = new MatTableDataSource<any>(this.dataSet.content);
             this.dataSource.sort = this.sort;
         }
+    }
+
+    private initDefaultSettings() {
+        this.settings = _.merge({
+            pageIndexSubtractor: 1,
+            pagination: true,
+            paginationOptions: {
+                itemsPerPage: 10
+            },
+            filter: true
+        }, this.settings);
     }
 }

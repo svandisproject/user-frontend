@@ -1,6 +1,6 @@
 export const MenuItems: MenuItem[] = [
     // {cssClass: 'dashboard', path: '#', text: 'NAVIGATION.FRONT.ITEM.DASHBOARD'},
-    {icon: 'iso', link: 'ico', title: 'NAVIGATION.FRONT.ITEM.ICO_SCR'},
+    // {icon: 'iso', link: 'ico', title: 'NAVIGATION.FRONT.ITEM.ICO_SCR'},
     {icon: 'alt', link: 'alt-coins', title: 'NAVIGATION.FRONT.ITEM.ALT_COIN'},
     // {cssClass: 'index', path: '#', text: 'NAVIGATION.FRONT.ITEM.INDEX_BUILDER'},
     // {cssClass: 'visualization', path: '#', text: 'NAVIGATION.FRONT.ITEM.VIS_TOOLS'},

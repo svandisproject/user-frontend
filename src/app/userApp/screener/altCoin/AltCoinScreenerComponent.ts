@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {AltCoinsFilterService} from '../../../common/filters/AltCoinsFilterService';
 import {PostService} from '../../../common/api/services/PostService';
-import {DataTableColumn} from '../../userDataTable/DataTableColumn';
+import {UserDataTableColumn} from '../UserDataTableColumn';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {AltCoinMockedDataSet} from './AltCoinMockedDataSet';
 
@@ -14,7 +14,7 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent {
     public title = 'SCREENER.ALT.TITLE';
     public dataSet: Pageable<any> = AltCoinMockedDataSet;
 
-    public dataTableColumns: DataTableColumn[] = [
+    public dataTableColumns: UserDataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker', isHeadColumn: true},
         {columnName: 'Name', columnKey: 'name'},
         {columnName: 'Market Cap', columnKey: 'marketCap'},
