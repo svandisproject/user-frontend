@@ -1,17 +1,31 @@
-app-user-sidebar {
-  .sidenav-container {
-    height: 100%;
-    position: relative;
-    top: 60px;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-  }
+@import '../_svandis-material.scss';
 
-  .sidenav {
-    width: 312px;
-    top: 60px !important;
-    background-color: #181B2B;
-    box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
-  }
+app-user-sidebar {
+    .sidenav-container {
+        height: 100%;
+        position: relative;
+        top: 60px;
+        bottom: 60px;
+        left: 0;
+        right: 0;
+    }
+
+    .sidenav {
+        width: 312px;
+        top: 60px !important;
+        background-color: #181B2B;
+        box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
+    }
+
+    mat-icon {
+        margin-right: 2rem;
+    }
+
+    mat-nav-list {
+        padding-top: 20px !important;
+
+        a.mat-list-item-focus {
+            color: #0087F4 !important;
+        }
+    }
 }

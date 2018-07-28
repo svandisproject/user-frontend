@@ -11,6 +11,8 @@ import {WebFeedResource} from './resource/WebFeedResource';
 import {WebFeedService} from './services/WebFeedService';
 import {IcoResource} from './resource/IcoResource';
 import {IcoService} from './services/IcoService';
+import {TokenResource} from './resource/TokenResource';
+import {TokenService} from './services/TokenService';
 
 @NgModule({
     imports: [HttpClientModule],
@@ -23,6 +25,8 @@ import {IcoService} from './services/IcoService';
         WorkerService,
         WebFeedResource,
         WebFeedService,
+        TokenResource,
+        TokenService,
         TagResource,
         TagService,
         FilterResource,

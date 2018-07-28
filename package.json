@@ -38,6 +38,7 @@
     "jquery": "^3.3.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.5",
+    "material-icons": "^0.2.3",
     "ng-block-ui": "^1.0.4",
     "ng2-nouislider": "^1.7.8",
     "ngx-chips": "^1.9.2",

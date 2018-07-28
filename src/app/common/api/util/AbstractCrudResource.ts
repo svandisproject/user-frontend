@@ -9,7 +9,11 @@ export class AbstractCrudResource<T> {
                 protected httpService: HttpService) {
     }
 
-    public findAll(): Observable<Pageable<T>> {
+    public findAll(noParams = false): Observable<Pageable<T>> {
+        if (noParams) {
+            return this.httpService.get(this.URL);
+        }
+
         return this.httpService.get(this.URL, {
             params: {
                 direction: 'desc'

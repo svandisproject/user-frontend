@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
-import {AltCoinsFilterService} from '../../../common/filters/AltCoinsFilterService';
-import {PostService} from '../../../common/api/services/PostService';
 import {UserDataTableColumn} from '../UserDataTableColumn';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {AltCoinMockedDataSet} from './AltCoinMockedDataSet';
+import {TokenService} from '../../../common/api/services/TokenService';
+import {Token} from '../../../common/api/dataModels/Token';
 
 @Component({
     templateUrl: '../generalScreener.html',
@@ -12,7 +12,7 @@ import {AltCoinMockedDataSet} from './AltCoinMockedDataSet';
 })
 export class AltCoinScreenerComponent extends GeneralScreenerComponent {
     public title = 'SCREENER.ALT.TITLE';
-    public dataSet: Pageable<any> = AltCoinMockedDataSet;
+    public dataSet: Pageable<Token[]> = AltCoinMockedDataSet;
 
     public dataTableColumns: UserDataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker', isHeadColumn: true},
@@ -25,7 +25,8 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent {
         {columnName: 'Volume, $', columnKey: 'volume'},
     ];
 
-    constructor(public filterService: AltCoinsFilterService, test: PostService) {
+    constructor(private tokenService: TokenService) {
         super();
+        this.tokenService.findAll().subscribe();
     }
 }

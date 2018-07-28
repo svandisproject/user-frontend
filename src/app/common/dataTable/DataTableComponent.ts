@@ -13,6 +13,7 @@ import {
 import {MatSort, MatTableDataSource, PageEvent} from '@angular/material';
 import {Pageable} from '../api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from './GeneralDataTableColumn';
+import * as _ from 'lodash';
 
 @Component({
     styleUrls: ['./DataTable.scss'],

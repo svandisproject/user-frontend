@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {NavigationItem} from '../../userApp/navigation/NavigationItem';
 
 @Component({
     selector: 'app-admin-nav',
@@ -7,7 +6,7 @@ import {NavigationItem} from '../../userApp/navigation/NavigationItem';
     styleUrls: ['./adminNav.scss']
 })
 export class AdminNavComponent {
-    public menuItems: NavigationItem[] = [
+    public menuItems = [
         {text: 'Posts', path: 'posts'},
         {text: 'Tags', path: 'tags'},
         {text: 'WebFeeds', path: 'web-feeds'},
