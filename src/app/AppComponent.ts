@@ -9,9 +9,11 @@ import {IpcService} from './common/electron/IpcService';
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-    constructor(translate: TranslateService, ipcService: IpcService) {
+    constructor(translate: TranslateService, private ipcService: IpcService) {
         translate.setDefaultLang('eng');
+    }
 
-        ipcService.send('test');
+    start() {
+        this.ipcService.send('startWorker', {token: 'string'});
     }
 }

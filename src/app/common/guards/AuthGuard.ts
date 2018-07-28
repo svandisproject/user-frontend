@@ -14,14 +14,12 @@ export class AuthGuard implements CanActivate {
     canActivate(route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if (!this.userService.isUserSignedIn()) {
-            this.router.navigate(['login'])
-                .then(() => UIkit.notification('Not logged in', 'danger'));
+            this.router.navigate(['login']);
             return false;
         }
 
         if (_.includes(state.url, 'admin') && !this.userService.hasRoleAdmin()) {
-            this.router.navigate(['login'])
-                .then(() => UIkit.notification('Access restricted', 'danger'));
+            this.router.navigate(['login']);
             return false;
         }
 

@@ -4,6 +4,9 @@ import {Pageable} from '../dataModels/pageable/Pageable';
 import {Filter} from '../dataModels/Filter';
 import {TokenResource} from '../resource/TokenResource';
 import {Token} from '../dataModels/Token';
+import {map} from 'rxjs/operators';
+import * as _ from 'lodash';
+import {format} from 'd3-format';
 
 @Injectable()
 export class TokenService {
@@ -11,7 +14,18 @@ export class TokenService {
     }
 
     public findAll(): Observable<Pageable<Token>> {
-        return this.tokenResource.findAll(true);
+        return this.tokenResource.findAll(true)
+            .pipe(
+                map((resp) => {
+                    resp.content = _.map(resp.content, (token) => {
+                        token.change = format('0%')(token.change as number);
+                        console.log(token.change);
+                        token.price = this.scienceToFloat(token.price as number);
+                        return token;
+                    });
+                    return resp;
+                })
+            );
     }
 
     public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Token>> {
@@ -28,5 +42,21 @@ export class TokenService {
         } else {
             return this.tokenResource.create({token: token});
         }
+    }
+
+    public convertPrices(tokenPageable: Pageable<Token>): Pageable<Token> {
+        tokenPageable.content =
+            _.map(tokenPageable.content, (token) => this.formatPrices(token));
+        return tokenPageable;
+    }
+
+    private formatPrices(token: Token): Token {
+        token.market_cap = format('.2s')(token.market_cap as number || 0).replace(/G/, 'B');
+        token.volume = format('.2s')(token.volume as number || 0).replace(/G/, 'B');
+        return token;
+    }
+
+    private scienceToFloat(value: number) {
+        return parseFloat(Number(value).toFixed(4));
     }
 }

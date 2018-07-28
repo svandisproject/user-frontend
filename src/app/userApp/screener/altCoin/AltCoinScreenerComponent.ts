@@ -4,6 +4,7 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {TokenService} from '../../../common/api/services/TokenService';
 import {Token} from '../../../common/api/dataModels/Token';
 import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTableColumn';
+import {map} from 'rxjs/operators';
 
 @Component({
     templateUrl: '../generalScreener.html',
@@ -26,6 +27,8 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent {
 
     constructor(private tokenService: TokenService) {
         super();
-        this.tokenService.findAll().subscribe((res) => this.dataSet = res);
+        this.tokenService.findAll()
+            .pipe(map((resp) => this.tokenService.convertPrices(resp)))
+            .subscribe((res) => this.dataSet = res);
     }
 }

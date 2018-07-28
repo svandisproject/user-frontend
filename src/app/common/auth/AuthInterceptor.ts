@@ -1,10 +1,10 @@
 import {Injectable, Injector} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
-import {AuthService} from '../auth/AuthService';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
-import {AuthNoTokenException} from '../auth/AuthNoTokenException';
 import * as _ from 'lodash';
+import {AuthService} from './AuthService';
+import {AuthNoTokenException} from './AuthNoTokenException';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -42,8 +42,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     private handleAuthError(err: HttpErrorResponse, request: HttpRequest<any>) {
         if (err.status === 401) {
-            this.router.navigate(['login'])
-                .then(() => UIkit.notification('Not logged in', 'danger'));
+            this.router.navigate(['login']);
             throw new AuthNoTokenException();
             // TODO: for now no refreshes
             // this.authService.refreshToken().subscribe(() => {

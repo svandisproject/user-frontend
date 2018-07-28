@@ -3,6 +3,11 @@ export interface Token {
         title: string
     };
     title: string;
-    price: number;
+    price: number | string;
     ticker: string;
+    change: number | string;
+    market_cap: number | string;
+    volume: number | string;
+    weekly_change: number;
+    year_to_day_change: number;
 }
