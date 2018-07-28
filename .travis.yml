@@ -15,7 +15,7 @@ before_script:
 
 script:
   - ng lint
-  - ng e2e
+#  - ng e2e
   - ng build --prod --aot
 
 notifications:
