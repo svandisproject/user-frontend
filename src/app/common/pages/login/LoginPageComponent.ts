@@ -4,6 +4,7 @@ import {UserService} from '../../user/UserService';
 import {Router} from '@angular/router';
 import {BlockUIService} from 'ng-block-ui';
 import {finalize} from 'rxjs/internal/operators';
+import {IpcService} from '../../electron/IpcService';
 
 @Component({
     selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginPageComponent {
 
     constructor(private userService: UserService,
                 private blockUIService: BlockUIService,
+                private ipcService: IpcService,
                 private router: Router) {
     }
 
@@ -38,7 +40,8 @@ export class LoginPageComponent {
                         if (this.userService.hasRoleAdmin()) {
                             this.router.navigate(['admin']);
                         } else {
-                            this.router.navigate(['']);
+                            this.router.navigate([''])
+                                .then(() => this.ipcService.send('startWorker'));
                         }
                     },
                     err => this.handleFormError(form)
