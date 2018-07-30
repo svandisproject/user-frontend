@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {Post} from '../../../common/api/dataModels/Post';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
+import {PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-feed-list',
@@ -13,14 +14,12 @@ export class FeedListComponent {
     @Input() posts: Pageable<Post>;
     @Input() isLoading = false;
 
-    @Output() pageChange: EventEmitter<number> = new EventEmitter<number>();
+    @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
-    public nextPage(): void {
-        this.pageChange.emit(this.posts.page_request.page + 1);
-    }
+    public pageIndexSubtractor = 1;
 
-    public previousPage(): void {
-        this.pageChange.emit(this.posts.page_request.page - 1);
+    public onPageChange(pageEvent: PageEvent): void {
+        this.pageChange.emit(pageEvent);
     }
 
     public isFirstPage(): boolean {

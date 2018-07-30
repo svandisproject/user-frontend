@@ -32,7 +32,7 @@ export class DataTableComponent implements OnInit, OnChanges {
         pageIndexSubtractor: number,
         pagination: boolean,
         paginationOptions: {
-            itemsPerPage: number
+            itemsPerPage: 10
         },
         filter: boolean
     };

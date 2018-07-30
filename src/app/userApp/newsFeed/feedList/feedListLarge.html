@@ -30,21 +30,18 @@
                 </mat-card>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <mat-paginator [length]="posts.total"
+                               [pageSize]="10"
+                               (page)="onPageChange($event)"
+                               [pageIndex]="posts.page_request.page - pageIndexSubtractor">
+                </mat-paginator>
+            </div>
+        </div>
     </div>
 </div>
 
-
-<!--<ul>-->
-<!--<li *ngIf="!isFirstPage()">-->
-<!--<a href="#" (click)="previousPage(); $event.preventDefault()">-->
-<!--Previous-->
-<!--</a>-->
-<!--</li>-->
-<!--<li *ngIf="!isLastPage()">-->
-<!--<a href="#" (click)="nextPage(); $event.preventDefault()">Next-->
-<!--</a>-->
-<!--</li>-->
-<!--</ul>-->
 
 <ng-template #listLoading>
     <div class="container-fluid">

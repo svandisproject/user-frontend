@@ -13,6 +13,7 @@ import {of} from 'rxjs/observable/of';
 import {NewsFeedPusherEvent} from './dataModels/NewsFeedPusherEvent';
 import {PusherService} from '../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
+import {PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-news-feed',
@@ -39,8 +40,8 @@ export class NewsFeedComponent {
             });
     }
 
-    public loadPage(page: number): void {
-        this.filterPosts(this.currentFilterSettings, page);
+    public loadPage(pageEvent: PageEvent): void {
+        this.filterPosts(this.currentFilterSettings, pageEvent.pageIndex + 1);
     }
 
     public onFilterChange($event: SearchFilterSettings): void {

@@ -30,6 +30,7 @@ import {
     MatInputModule,
     MatListModule,
     MatMenuModule,
+    MatPaginatorModule,
     MatSidenavModule,
     MatTabsModule,
     MatToolbarModule
@@ -53,6 +54,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         MatMenuModule,
         MatButtonModule,
         ReactiveFormsModule,
+        MatPaginatorModule,
         MatCardModule,
         MatDividerModule,
         MatGridListModule,
