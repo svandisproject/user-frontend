@@ -17,5 +17,6 @@
 <div class="container-fluid">
     <app-data-table [dataSet]="dataSet"
                     [displayedColumns]="dataTableColumns"
+                    (pageChange)="loadPage($event)"
                     [settings]="{filter: false}"></app-data-table>
 </div>

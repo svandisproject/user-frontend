@@ -33,15 +33,19 @@ export class AbstractCrudResource<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
     }
 
-    public findBy(filters: Filter[], page: string = '1'): Observable<Pageable<T>> {
+    public findBy(filters: Filter[], page: string = '1', noDirection = false): Observable<Pageable<T>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
+        const params = {
+            filter: encodedFilters,
+            page: page
+        };
+
+        if (!noDirection) {
+            params['direction'] = 'desc';
+        }
 
         return this.httpService.get(this.URL + '/filter', {
-            params: {
-                filter: encodedFilters,
-                direction: 'desc',
-                page: page
-            }
+            params: params
         });
     }
 }

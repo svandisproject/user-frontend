@@ -19,7 +19,6 @@ export class TokenService {
                 map((resp) => {
                     resp.content = _.map(resp.content, (token) => {
                         token.change = format('0%')(token.change as number);
-                        console.log(token.change);
                         token.price = this.scienceToFloat(token.price as number);
                         return token;
                     });
@@ -29,7 +28,17 @@ export class TokenService {
     }
 
     public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Token>> {
-        return this.tokenResource.findBy(filters, String(page));
+        return this.tokenResource.findBy(filters, String(page), true)
+            .pipe(
+                map((resp) => {
+                    resp.content = _.map(resp.content, (token) => {
+                        token.change = format('0%')(token.change as number);
+                        token.price = this.scienceToFloat(token.price as number);
+                        return token;
+                    });
+                    return resp;
+                })
+            );
     }
 
     public findById(tokenId: string): Observable<Token> {
