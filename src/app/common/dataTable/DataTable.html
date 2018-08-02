@@ -12,7 +12,8 @@
                              [ngClass]="first ? 'header-first ' + column.columnClass : '' + column.columnClass">
                 {{ column.columnName | translate}}
             </mat-header-cell>
-            <mat-cell *matCellDef="let element">
+            <mat-cell *matCellDef="let element"
+                      [ngClass]="isNegative(element[column.columnKey]) ? 'negative' : 'positive'">
                 <ng-container *ngIf="column.isDate; else columnString">
                     {{element[column.columnKey] | date: 'shortTime' }}
                 </ng-container>

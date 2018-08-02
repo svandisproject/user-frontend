@@ -20,7 +20,7 @@ import * as _ from 'lodash';
     selector: 'app-data-table',
     templateUrl: './DataTable.html',
     encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class DataTableComponent implements OnInit, OnChanges {
@@ -50,6 +50,10 @@ export class DataTableComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges): void {
         this.initSources();
+    }
+
+    public isNegative(value: string) {
+        return Math.sign(Number(value)) === -1;
     }
 
     public getColumnsToDisplay(): string[] {

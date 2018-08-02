@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {TokenService} from '../../../common/api/services/TokenService';
@@ -8,15 +8,17 @@ import {map} from 'rxjs/operators';
 import {PageEvent} from '@angular/material';
 
 @Component({
+    selector: 'app-alt-coin-screener',
     templateUrl: '../generalScreener.html',
-    styleUrls: ['../generalScreener.scss']
+    styleUrls: ['../generalScreener.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class AltCoinScreenerComponent extends GeneralScreenerComponent {
     public title = 'SCREENER.ALT.TITLE';
     public dataSet: Pageable<Token>;
 
     public dataTableColumns: GeneralDataTableColumn[] = [
-        {columnName: 'Ticker', columnKey: 'ticker'},
+        {columnName: 'Ticker', columnKey: 'ticker', columnClass: 'test-aaaaaaaaaaaaaaaaaaaaaa'},
         {columnName: 'Name', columnKey: 'title'},
         {columnName: 'Market Cap', columnKey: 'market_cap'},
         {columnName: 'Price, $', columnKey: 'price'},

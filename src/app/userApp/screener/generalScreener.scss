@@ -15,10 +15,14 @@ td.heading-column {
     text-transform: uppercase;
 }
 
-td.positive-column {
-    color: $green-positive;
-}
+app-alt-coin-screener {
+    .mat-column-weekly_change, .mat-column-change {
+        &.positive {
+            color: $green-positive !important;
+        }
 
-td.negative-column {
-    color: $red-negative;
+        &.negative {
+            color: $red-negative !important;
+        }
+    }
 }
