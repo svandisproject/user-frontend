@@ -1,11 +1,13 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {TokenService} from '../../../common/api/services/TokenService';
 import {Token} from '../../../common/api/dataModels/Token';
 import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTableColumn';
-import {map} from 'rxjs/operators';
+import {concatMap, map} from 'rxjs/operators';
 import {PageEvent} from '@angular/material';
+import {Subscription} from 'rxjs/Subscription';
+import {interval} from 'rxjs/internal/observable/interval';
 
 @Component({
     selector: 'app-alt-coin-screener',
@@ -13,12 +15,11 @@ import {PageEvent} from '@angular/material';
     styleUrls: ['../generalScreener.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class AltCoinScreenerComponent extends GeneralScreenerComponent {
+export class AltCoinScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
     public title = 'SCREENER.ALT.TITLE';
     public dataSet: Pageable<Token>;
-
     public dataTableColumns: GeneralDataTableColumn[] = [
-        {columnName: 'Ticker', columnKey: 'ticker', columnClass: 'test-aaaaaaaaaaaaaaaaaaaaaa'},
+        {columnName: 'Ticker', columnKey: 'ticker'},
         {columnName: 'Name', columnKey: 'title'},
         {columnName: 'Market Cap', columnKey: 'market_cap'},
         {columnName: 'Price, $', columnKey: 'price'},
@@ -28,6 +29,13 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent {
         {columnName: 'Volume, $', columnKey: 'volume'},
     ];
 
+    private readonly PUSHER_EVENT = 'token';
+    private readonly PUSHER_CHANNEL = 'token';
+
+    private readonly REQUEST_INTERVAL = 10000;
+    private tokenSubscription: Subscription;
+    private currentPage = 0;
+
     constructor(private tokenService: TokenService) {
         super();
         this.tokenService.findAll()
@@ -35,9 +43,24 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent {
             .subscribe((res) => this.dataSet = res);
     }
 
-    public loadPage(pageEvent: PageEvent): void {
-        this.tokenService.findBy(null, pageEvent.pageIndex + 1)
-            .pipe(map((resp) => this.tokenService.convertPrices(resp)))
+    ngOnInit(): void {
+        this.tokenSubscription = interval(this.REQUEST_INTERVAL)
+            .pipe(concatMap(() => this.loadByPageWithPrices(this.currentPage)))
             .subscribe((res) => this.dataSet = res);
+    }
+
+    ngOnDestroy(): void {
+        this.tokenSubscription.unsubscribe();
+    }
+
+    public loadPage(pageEvent: PageEvent): void {
+        this.currentPage = pageEvent.pageIndex;
+        this.loadByPageWithPrices(pageEvent.pageIndex)
+            .subscribe((res) => this.dataSet = res);
+    }
+
+    private loadByPageWithPrices(pageIndex: number) {
+        return this.tokenService.findBy(null, pageIndex + 1)
+            .pipe(map((resp) => this.tokenService.convertPrices(resp)));
     }
 }
