@@ -16,16 +16,17 @@ export class TagToolComponent {
     @Output() tagSelected: EventEmitter<void> = new EventEmitter<void>();
 
     public availableTags = [
-        {title: 'Bullish', icon: 'arrow-up'},
-        {title: 'Bearish', icon: 'arrow-down'},
-        {title: 'Important', icon: 'warning'},
-        {title: 'Toxic', icon: 'bolt'}
+        // {title: 'Bullish', icon: 'thumb_up'},
+        // {title: 'Bearish', icon: 'thumb_down'},
+        // {title: 'Important', icon: 'warning'},
+        {title: 'Toxic', icon: 'offline_bolt'}
     ];
 
     constructor(private tagService: TagService,
                 private postService: PostService) {
         _.merge(this.availableTags, this.tagService.getMainTags());
         this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id);
+        console.log(this.availableTags);
     }
 
     public setTag(tag: Tag): void {

@@ -2,31 +2,38 @@
      *ngIf="posts; else listLoading">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6 mb-3" *ngFor="let feed of posts.content | listReverse">
+            <div class="col-md-6 mb-3" *ngFor="let feed of posts.content | listReverse; let i = index;">
                 <mat-card>
+                    <mat-card-header class="header" *ngIf="isAdmin()">
+                        <div class="subheading-2 title">Tagging tool</div>
+                        <div class="header-actions">
+                            <app-tag-tool [post]="feed"></app-tag-tool>
+                        </div>
+                    </mat-card-header>
+                    <img mat-card-image
+                         [src]="feed.imageUrl || 'https://placeimg.com/640/480/tech/' + i"
+                         alt="Image place holder">
+
                     <mat-card-actions *ngIf="feed.tags.length">
                         <ul class="label-tag">
                             <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
                         </ul>
                     </mat-card-actions>
-                    <mat-card-header>
-                        <mat-card-title>{{feed.title}}</mat-card-title>
-                        <mat-card-subtitle>{{feed.created_at | date: 'shortTime'}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <img mat-card-image
-                         [src]="feed.imageUrl || 'http://lorempixel.com/640/480/business/'"
-                         alt="Image place holder">
                     <mat-card-content>
+                        <mat-card-title>{{feed.title}}</mat-card-title>
+                        <mat-card-subtitle>Published on {{feed.created_at | date}}</mat-card-subtitle>
+                        <mat-divider [inset]="true"></mat-divider>
                         <p>
                             {{feed.content | truncate:[350, '...']}}
                         </p>
                     </mat-card-content>
-                    <!--<mat-card-actions *ngIf="isAdmin()">-->
-                    <!--<app-tag-tool [post]="feed"></app-tag-tool>-->
-                    <!--</mat-card-actions>-->
-                    <mat-card-footer>
-                        <a [href]="feed.url" mat-button class="continue-link" target="_blank">Continue read </a>
-                    </mat-card-footer>
+                    <a [href]="feed.url"
+                       mat-icon-button
+                       [disableRipple]="true"
+                       class="continue-link w-100 text-right"
+                       target="_blank">
+                        Read more <i class="material-icons">chevron_right</i>
+                    </a>
                 </mat-card>
             </div>
         </div>

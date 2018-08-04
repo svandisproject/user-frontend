@@ -50,7 +50,6 @@ export class LoginPageComponent {
     }
 
     private handleFormError(form: NgForm) {
-        form.controls.email.setErrors({'incorrect': true});
         form.controls.password.setErrors({'incorrect': true});
         this.credsInvalid = true;
     }

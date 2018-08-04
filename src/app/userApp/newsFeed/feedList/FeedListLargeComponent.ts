@@ -7,7 +7,8 @@ import * as _ from 'lodash';
 @Component({
     selector: 'app-feed-list-large',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    templateUrl: './feedListLarge.html'
+    templateUrl: './feedListLarge.html',
+    styleUrls: ['feedListLarge.scss']
 })
 export class FeedListLargeComponent extends FeedListComponent {
     constructor(private authService: AuthService) {

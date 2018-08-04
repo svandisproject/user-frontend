@@ -53,7 +53,7 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         this.dataSource.sort = this.sort;
 
         merge(this.sort.sortChange, this.paginator.page)
-            .subscribe((event) => {
+            .subscribe((event: PageEvent | Sort) => {
                 this.pageChange.emit(event);
             });
     }

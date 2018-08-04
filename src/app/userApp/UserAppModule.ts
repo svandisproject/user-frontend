@@ -36,7 +36,8 @@ import {
     MatSortModule,
     MatTableModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTooltipModule
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {NewsFeedResolver} from './newsFeed/NewsFeedResolver';
@@ -57,6 +58,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         MatFormFieldModule,
         MatMenuModule,
         MatButtonModule,
+        MatTooltipModule,
         ReactiveFormsModule,
         MatPaginatorModule,
         MatCardModule,
