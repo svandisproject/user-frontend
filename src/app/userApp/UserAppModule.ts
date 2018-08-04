@@ -31,7 +31,10 @@ import {
     MatListModule,
     MatMenuModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule,
     MatSidenavModule,
+    MatSortModule,
+    MatTableModule,
     MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
@@ -49,6 +52,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         TranslateModule,
         MatListModule,
         MatTabsModule,
+        MatProgressSpinnerModule,
         MatInputModule,
         MatFormFieldModule,
         MatMenuModule,
@@ -58,6 +62,8 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         MatCardModule,
         MatDividerModule,
         MatGridListModule,
+        MatTableModule,
+        MatSortModule,
         MatToolbarModule,
         LayoutModule,
         CommonModule,

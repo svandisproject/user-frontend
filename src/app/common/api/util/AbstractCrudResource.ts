@@ -2,6 +2,7 @@ import {Observable} from 'rxjs/Observable';
 import {Pageable} from '../dataModels/pageable/Pageable';
 import {HttpService} from '../../http/HttpService';
 import {Filter} from '../dataModels/Filter';
+import {Sorting} from './Sorting';
 
 export class AbstractCrudResource<T> {
 
@@ -33,15 +34,18 @@ export class AbstractCrudResource<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
     }
 
-    public findBy(filters: Filter[], page: string = '1', noDirection = false): Observable<Pageable<T>> {
+    public findBy(filters: Filter[], page: string = '1', sort?: Sorting): Observable<Pageable<T>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
         const params = {
             filter: encodedFilters,
             page: page
         };
 
-        if (!noDirection) {
-            params['direction'] = 'desc';
+        if (!sort) {
+            params['direction'] = 'asc';
+        } else {
+            params['direction'] = sort.direction;
+            params['sort'] = sort.sort;
         }
 
         return this.httpService.get(this.URL + '/filter', {

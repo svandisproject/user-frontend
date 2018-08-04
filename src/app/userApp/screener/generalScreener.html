@@ -14,7 +14,7 @@
 
 <!--TODO: Filter disabled , not in design-->
 <!--<app-filter-table *ngIf="isFilterOpened" [filterService]="filterService"></app-filter-table>-->
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="dataSet">
     <app-data-table [dataSet]="dataSet"
                     [displayedColumns]="dataTableColumns"
                     (pageChange)="loadPage($event)"

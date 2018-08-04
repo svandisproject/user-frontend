@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
@@ -10,10 +11,11 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
-import {MatSort, MatTableDataSource, PageEvent} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from '@angular/material';
 import {Pageable} from '../api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from './GeneralDataTableColumn';
 import * as _ from 'lodash';
+import {merge} from 'rxjs';
 
 @Component({
     styleUrls: ['./DataTable.scss'],
@@ -23,8 +25,9 @@ import * as _ from 'lodash';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DataTableComponent implements OnInit, OnChanges {
+export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
     @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     @Input() dataSet: Pageable<any>;
     @Input() displayedColumns: GeneralDataTableColumn[] = [];
@@ -37,15 +40,22 @@ export class DataTableComponent implements OnInit, OnChanges {
         filter: boolean
     };
 
-    @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
+    @Output() pageChange: EventEmitter<PageEvent | Sort> = new EventEmitter<PageEvent | Sort>();
     @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();
 
     public dataSource: MatTableDataSource<any>;
 
-
     ngOnInit(): void {
         this.initDefaultSettings();
-        this.initSources();
+    }
+
+    ngAfterViewInit(): void {
+        this.dataSource.sort = this.sort;
+
+        merge(this.sort.sortChange, this.paginator.page)
+            .subscribe((event) => {
+                this.pageChange.emit(event);
+            });
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -53,7 +63,7 @@ export class DataTableComponent implements OnInit, OnChanges {
     }
 
     public isNegative(value: string) {
-        return Math.sign(Number(value)) === -1;
+        return Math.sign(Number(_.replace(value, /[^\d.-]/g, ''))) === -1;
     }
 
     public getColumnsToDisplay(): string[] {
@@ -68,18 +78,13 @@ export class DataTableComponent implements OnInit, OnChanges {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
-    public onPageChange(pageEvent: PageEvent): void {
-        this.pageChange.emit(pageEvent);
-    }
-
-    private initSources() {
+    protected initSources() {
         if (this.dataSet) {
             this.dataSource = new MatTableDataSource<any>(this.dataSet.content);
-            this.dataSource.sort = this.sort;
         }
     }
 
-    private initDefaultSettings() {
+    protected initDefaultSettings() {
         this.settings = _.merge({
             pageIndexSubtractor: 1,
             pagination: true,

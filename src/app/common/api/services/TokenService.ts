@@ -7,6 +7,7 @@ import {Token} from '../dataModels/Token';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
 import {format} from 'd3-format';
+import {Sorting} from '../util/Sorting';
 
 @Injectable()
 export class TokenService {
@@ -17,29 +18,22 @@ export class TokenService {
         return this.tokenResource.findAll(true)
             .pipe(
                 map((resp) => {
-                    resp.content = _.map(resp.content, (token) => {
-                        token.change = format('0%')(token.change as number);
-                        token.price = this.scienceToFloat(token.price as number);
-                        return token;
-                    });
+                    resp.content = _.map(resp.content, (token) => this.format(token));
                     return resp;
                 })
             );
     }
 
-    public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Token>> {
-        return this.tokenResource.findBy(filters, String(page), true)
+    public findBy(filters: Filter[], page: number = 1, sort?: Sorting): Observable<Pageable<Token>> {
+        return this.tokenResource.findBy(filters, String(page), sort)
             .pipe(
                 map((resp) => {
-                    resp.content = _.map(resp.content, (token) => {
-                        token.change = format('0%')(token.change as number);
-                        token.price = this.scienceToFloat(token.price as number);
-                        return token;
-                    });
+                    resp.content = _.map(resp.content, (token) => this.format(token));
                     return resp;
                 })
             );
     }
+
 
     public findById(tokenId: string): Observable<Token> {
         return this.tokenResource.findById(tokenId);
@@ -53,13 +47,10 @@ export class TokenService {
         }
     }
 
-    public convertPrices(tokenPageable: Pageable<Token>): Pageable<Token> {
-        tokenPageable.content =
-            _.map(tokenPageable.content, (token) => this.formatPrices(token));
-        return tokenPageable;
-    }
-
-    private formatPrices(token: Token): Token {
+    private format(token: Token): Token {
+        token.price = this.scienceToFloat(token.price as number);
+        token.change = format('.06f')(token.change as number);
+        token.weekly_change = format('.1f')(token.weekly_change as number);
         token.market_cap = format('.2s')(token.market_cap as number || 0).replace(/G/, 'B');
         token.volume = format('.2s')(token.volume as number || 0).replace(/G/, 'B');
         return token;

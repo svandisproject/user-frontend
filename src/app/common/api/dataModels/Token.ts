@@ -8,6 +8,6 @@ export interface Token {
     change: number | string;
     market_cap: number | string;
     volume: number | string;
-    weekly_change: number;
+    weekly_change: number | string;
     year_to_day_change: number;
 }

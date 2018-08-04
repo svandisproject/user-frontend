@@ -4,10 +4,12 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {TokenService} from '../../../common/api/services/TokenService';
 import {Token} from '../../../common/api/dataModels/Token';
 import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTableColumn';
-import {concatMap, map} from 'rxjs/operators';
-import {PageEvent} from '@angular/material';
+import {switchMap} from 'rxjs/operators';
+import {PageEvent, Sort} from '@angular/material';
 import {Subscription} from 'rxjs/Subscription';
 import {interval} from 'rxjs/internal/observable/interval';
+import {Sorting} from '../../../common/api/util/Sorting';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'app-alt-coin-screener',
@@ -18,6 +20,7 @@ import {interval} from 'rxjs/internal/observable/interval';
 export class AltCoinScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
     public title = 'SCREENER.ALT.TITLE';
     public dataSet: Pageable<Token>;
+
     public dataTableColumns: GeneralDataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker'},
         {columnName: 'Name', columnKey: 'title'},
@@ -29,23 +32,21 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
         {columnName: 'Volume, $', columnKey: 'volume'},
     ];
 
-    private readonly PUSHER_EVENT = 'token';
-    private readonly PUSHER_CHANNEL = 'token';
-
     private readonly REQUEST_INTERVAL = 10000;
     private tokenSubscription: Subscription;
-    private currentPage = 0;
+    private currentPage = 1;
+    private currentSorting: Sorting;
 
     constructor(private tokenService: TokenService) {
         super();
-        this.tokenService.findAll()
-            .pipe(map((resp) => this.tokenService.convertPrices(resp)))
-            .subscribe((res) => this.dataSet = res);
     }
 
     ngOnInit(): void {
+        this.tokenService.findAll()
+            .subscribe((res) => this.dataSet = res);
+
         this.tokenSubscription = interval(this.REQUEST_INTERVAL)
-            .pipe(concatMap(() => this.loadByPageWithPrices(this.currentPage)))
+            .pipe(switchMap(() => this.findToken()))
             .subscribe((res) => this.dataSet = res);
     }
 
@@ -53,14 +54,15 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
         this.tokenSubscription.unsubscribe();
     }
 
-    public loadPage(pageEvent: PageEvent): void {
-        this.currentPage = pageEvent.pageIndex;
-        this.loadByPageWithPrices(pageEvent.pageIndex)
-            .subscribe((res) => this.dataSet = res);
+    public loadPage(pageEvent: PageEvent | Sort): void {
+        this.currentPage = pageEvent['pageIndex'] + 1 || this.currentPage;
+        this.currentSorting = pageEvent['direction'] ?
+            {sort: pageEvent['active'], direction: pageEvent['direction']} : null;
+
+        this.findToken().subscribe((res) => this.dataSet = res);
     }
 
-    private loadByPageWithPrices(pageIndex: number) {
-        return this.tokenService.findBy(null, pageIndex + 1)
-            .pipe(map((resp) => this.tokenService.convertPrices(resp)));
+    private findToken(): Observable<Pageable<Token>> {
+        return this.tokenService.findBy(null, this.currentPage, this.currentSorting);
     }
 }
