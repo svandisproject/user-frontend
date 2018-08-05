@@ -1,9 +1,22 @@
 <ng-container *ngIf="post">
-    <button mat-icon-button
-            *ngFor="let tag of availableTags"
-            matTooltip="{{tag.title}}"
-            (click)="setTag(tag);">
-        <mat-icon>{{tag.icon}}</mat-icon>
-    </button>
+    <ng-container *ngIf="canEdit; else showTags">
+        <button mat-icon-button
+                *ngFor="let tag of availableTags"
+                [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
+                matTooltip="{{tag.title}}"
+                (click)="setTag(tag);">
+            <mat-icon>{{tag.icon}}</mat-icon>
+        </button>
+    </ng-container>
+    <ng-template #showTags>
+        <span class="icon-wrapper">
+            <mat-icon mat-icon-button
+                      *ngFor="let tag of availableTags"
+                      [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
+                      matTooltip="{{tag.title}}">
+            {{tag.icon}}
+        </mat-icon>
+        </span>
+    </ng-template>
 </ng-container>
 

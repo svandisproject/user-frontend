@@ -4,21 +4,15 @@
         <div class="row">
             <div class="col-md-6 mb-3" *ngFor="let feed of posts.content | listReverse; let i = index;">
                 <mat-card>
-                    <mat-card-header class="header" *ngIf="isAdmin()">
-                        <div class="subheading-2 title">Tagging tool</div>
+                    <mat-card-header class="header">
+                        <div class="subheading-2 title">{{isAdmin() ? "Tagging tool" : "Tags"}}</div>
                         <div class="header-actions">
-                            <app-tag-tool [post]="feed"></app-tag-tool>
+                            <app-tag-tool [(post)]="posts.content[i]" [canEdit]="isAdmin()"></app-tag-tool>
                         </div>
                     </mat-card-header>
                     <img mat-card-image
                          [src]="feed.imageUrl || 'https://placeimg.com/640/480/tech/' + i"
                          alt="Image place holder">
-
-                    <mat-card-actions *ngIf="feed.tags.length">
-                        <ul class="label-tag">
-                            <li *ngFor="let tag of feed.tags" class="dotted">{{tag.title}}</li>
-                        </ul>
-                    </mat-card-actions>
                     <mat-card-content>
                         <mat-card-title>{{feed.title}}</mat-card-title>
                         <mat-card-subtitle>Published on {{feed.created_at | date}}</mat-card-subtitle>

@@ -27,10 +27,7 @@ export class TagService {
 
     public loadMainTags(): Observable<Tag[]> {
         return this.tagResource.findBy([
-            new Filter('lk', 'title', 'Bullish'),
-            new Filter('lk', 'title', 'Bearish'),
-            new Filter('lk', 'title', 'Important'),
-            new Filter('lk', 'title', 'Toxic'),
+            new Filter('in', 'title', ['Bullish', 'Bearish', 'Important', 'Toxic']),
         ])
             .pipe(
                 map((res) => res.content),
