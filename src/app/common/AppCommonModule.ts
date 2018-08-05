@@ -12,7 +12,6 @@ import {CommonModule} from '@angular/common';
 import {FilterButtonComponent} from './filters/filterButton/FilterButtonComponent';
 import {OrderModule} from 'ngx-order-pipe';
 import {TagInputModule} from 'ngx-chips';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgFormsModule} from './ngForms/NgFormsModule';
 import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
 import {BlockUIModule} from 'ng-block-ui';
@@ -28,7 +27,6 @@ import {DataTableModule} from './dataTable/DataTableModule';
         OrderModule,
         FiltersModule,
         NgFormsModule,
-        BrowserAnimationsModule,
         TagInputModule,
         BlockUIModule,
         MatButtonModule,

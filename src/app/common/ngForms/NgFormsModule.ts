@@ -2,15 +2,15 @@ import {NgModule} from '@angular/core';
 import {DynamicFormComponent} from './components/DynamicFormComponent';
 import {DynamicInputComponent} from './components/DynamicInputComponent';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
 import {NgFormsThemeModule} from './themes/NgFormsThemeModule';
 import {TranslateModule} from '@ngx-translate/core';
 import 'reflect-metadata';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     imports: [
         FormsModule,
-        BrowserModule,
+        CommonModule,
         TranslateModule,
         NgFormsThemeModule,
         ReactiveFormsModule

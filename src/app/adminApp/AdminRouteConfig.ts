@@ -13,7 +13,7 @@ import {EditTagResolver} from './tags/edit/EditTagResolver';
 
 export const AdminRouteConfigs: Route[] = [
     {
-        path: 'admin',
+        path: '',
         component: AdminComponent,
         canActivate: [AuthGuard],
         children: [

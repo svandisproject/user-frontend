@@ -9,9 +9,9 @@ import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
 import {UserAppModule} from './userApp/UserAppModule';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AdminModule} from './adminApp/AdminModule';
 import {MatPaginatorModule, MatTableModule} from '@angular/material';
 import {BlockUIModule} from 'ng-block-ui';
+import {AppRouting} from './AppRouting';
 
 @NgModule({
     declarations: [
@@ -22,11 +22,10 @@ import {BlockUIModule} from 'ng-block-ui';
         AppCommonProvidersModule,
         MatTableModule,
         MatPaginatorModule,
-        AdminModule,
         BrowserModule,
         BlockUIModule.forRoot(),
         HttpClientModule,
-        RouterModule.forRoot([]),
+        RouterModule.forRoot(AppRouting),
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
