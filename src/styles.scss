@@ -5,7 +5,7 @@ $global-link-color: #DA7D02;
 }
 
 @import "~nouislider/distribute/nouislider.min.css";
-@import "app/userApp/svandis-material";
+@import "app/svandis-material";
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/mixins";
@@ -22,10 +22,6 @@ html {
   -webkit-text-size-adjust: 100%;
   background: $primary;
   color: #666;
-
-  &.admin-panel {
-    background: #ffffff;
-  }
 }
 
 body {

@@ -1,4 +1,5 @@
 <app-data-table [dataSet]="posts"
+                *ngIf="posts"
                 [displayedColumns]="columns"
                 (pageChange)="loadPage($event)"
                 (rowSelected)="editPost($event)">

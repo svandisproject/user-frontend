@@ -8,7 +8,6 @@ import {PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-admin-web-feeds',
-    styleUrls: ['./webFeedList.scss'],
     templateUrl: './webFeedList.html',
     encapsulation: ViewEncapsulation.None
 })

@@ -26,7 +26,7 @@
               },
               "node_modules/bootstrap/scss/bootstrap-grid.scss",
               "src/styles.scss",
-              "src/app/userApp/_svandis-material.scss"
+              "src/app/_svandis-material.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

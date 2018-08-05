@@ -1,4 +1,4 @@
-@import '../../../node_modules/@angular/material/theming';
+@import '../../node_modules/@angular/material/theming';
 
 @include mat-core();
 
@@ -36,20 +36,20 @@ $md-svandis-front-primary: (
 );
 
 $md-svnadis-front-accent: (
-        50 : #e5f9ed,
-        100 : #bdefd3,
-        200 : #91e5b5,
-        300 : #65da97,
-        400 : #44d281,
-        500 : #23ca6b,
-        600 : #1fc563,
-        700 : #1abd58,
-        800 : #15b74e,
-        900 : #0cab3c,
-        A100 : #d8ffe2,
-        A200 : #a5ffbc,
-        A400 : #72ff96,
-        A700 : #58ff83,
+        50 : #e9f6e8,
+        100 : #c7e9c5,
+        200 : #c7e9c5,
+        300 : #c7e9c5,
+        400 : #61c05c,
+        500 : #45b53f,
+        600 : #3eae39,
+        700 : #36a531,
+        800 : #2e9d29,
+        900 : #1f8d1b,
+        A100 : #c8ffc6,
+        A200 : #45b53f,
+        A400 : #64ff60,
+        A700 : #4bff47,
         contrast: (
                 50 : #000000,
                 100 : #000000,

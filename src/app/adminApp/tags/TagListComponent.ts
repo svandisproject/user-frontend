@@ -9,7 +9,6 @@ import {PageEvent} from '@angular/material';
 @Component({
     selector: 'app-admin-tags',
     templateUrl: './tagList.html',
-    styleUrls: ['./tagList.scss'],
     encapsulation: ViewEncapsulation.None
 })
 

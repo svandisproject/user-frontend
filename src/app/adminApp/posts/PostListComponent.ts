@@ -9,7 +9,6 @@ import {PageEvent} from '@angular/material';
 @Component({
     selector: 'app-admin-posts',
     templateUrl: './postList.html',
-    styleUrls: ['./postList.scss'],
     encapsulation: ViewEncapsulation.None
 })
 
