@@ -7,6 +7,7 @@ import {PusherModule} from './pusher/PusherModule';
 import {UserService} from './user/UserService';
 import {AuthInterceptor} from './auth/AuthInterceptor';
 import {IpcService} from './electron/IpcService';
+import {AuthGuard} from './guards/AuthGuard';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import {IpcService} from './electron/IpcService';
         UserService,
         AuthResource,
         IpcService,
+        AuthGuard,
         AuthService,
         {
             provide: HTTP_INTERCEPTORS,

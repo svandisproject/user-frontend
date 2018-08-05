@@ -29,10 +29,12 @@ import {EditWebFeedResolver} from './webFeed/edit/EditWebFeedResolver';
 import {WebFeedListComponent} from './webFeed/WebFeedListComponent';
 import {EditTagComponent} from './tags/edit/EditTagComponent';
 import {EditTagResolver} from './tags/edit/EditTagResolver';
+import {AppCommonProvidersModule} from '../common/AppCommonProvidersModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
+        AppCommonProvidersModule,
         CommonModule,
         MatSidenavModule,
         MatCardModule,

@@ -6,7 +6,6 @@ import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 import {AppCommonModule} from '../common/AppCommonModule';
 import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
-import {AuthGuard} from '../common/guards/AuthGuard';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
@@ -91,7 +90,6 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         FeedListLargeComponent
     ],
     providers: [
-        AuthGuard,
         NewsFeedResolver,
         {
             provide: APP_INITIALIZER,
