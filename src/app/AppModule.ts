@@ -7,7 +7,6 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
-import {UserAppModule} from './userApp/UserAppModule';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatPaginatorModule, MatTableModule} from '@angular/material';
 import {BlockUIModule} from 'ng-block-ui';
@@ -33,7 +32,6 @@ import {AppRouting} from './AppRouting';
                 deps: [HttpClient]
             }
         }),
-        UserAppModule,
         BrowserAnimationsModule
     ],
     exports: [
