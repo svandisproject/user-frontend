@@ -36,13 +36,16 @@ import {
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatSlideToggleModule
 } from '@angular/material';
 import {LayoutModule} from '@angular/cdk/layout';
 import {NewsFeedResolver} from './newsFeed/NewsFeedResolver';
 import {UserProfileDetailsComponent} from './profile/UserProfileDetailsComponent';
 import {TagToolComponent} from './taggingTool/TagToolComponent';
 import {SvandisApiModule} from '../common/api/SvandisApiModule';
+import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 
 @NgModule({
     imports: [
@@ -58,6 +61,8 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         MatMenuModule,
         MatButtonModule,
         MatTooltipModule,
+        MatCheckboxModule,
+        MatSlideToggleModule,
         ReactiveFormsModule,
         MatPaginatorModule,
         MatCardModule,
@@ -81,6 +86,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
         TagToolComponent,
         NewsFeedComponent,
         UserProfileDetailsComponent,
+        WorkerUIComponent,
         SearchFilterComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
