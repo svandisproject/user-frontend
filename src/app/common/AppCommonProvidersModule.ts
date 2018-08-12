@@ -8,6 +8,7 @@ import {UserService} from './user/UserService';
 import {AuthInterceptor} from './auth/AuthInterceptor';
 import {IpcService} from './electron/IpcService';
 import {AuthGuard} from './guards/AuthGuard';
+import {ElectronAppGuard} from './guards/ElectronAppGuard';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import {AuthGuard} from './guards/AuthGuard';
         AuthResource,
         IpcService,
         AuthGuard,
+        ElectronAppGuard,
         AuthService,
         {
             provide: HTTP_INTERCEPTORS,

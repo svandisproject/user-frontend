@@ -6,8 +6,7 @@ export const MenuItems: MenuItem[] = [
     // {cssClass: 'visualization', path: '#', text: 'NAVIGATION.FRONT.ITEM.VIS_TOOLS'},
     // {cssClass: 'market', path: '#', text: 'NAVIGATION.FRONT.ITEM.MARKET_CAPS'},
     // {cssClass: 'data', path: '#', text: 'NAVIGATION.FRONT.ITEM.DATA_MARKET'},
-    {icon: 'library_books', link: 'news-feed', title: 'NAVIGATION.FRONT.ITEM.NEWS'},
-    {icon: 'stars', link: 'data-mining-app', title: 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP'},
+    {icon: 'library_books', link: 'news-feed', title: 'NAVIGATION.FRONT.ITEM.NEWS'}
 ];
 
 export interface MenuItem {

@@ -7,6 +7,7 @@ import {UserAppComponent} from './UserAppComponent';
 import {UserProfileDetailsComponent} from './profile/UserProfileDetailsComponent';
 import {NewsFeedResolver} from './newsFeed/NewsFeedResolver';
 import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
+import {ElectronAppGuard} from '../common/guards/ElectronAppGuard';
 
 export const UserAppRouterConfig: Route[] = [
     {
@@ -22,7 +23,7 @@ export const UserAppRouterConfig: Route[] = [
             {path: 'ico', component: IcoScreenerComponent, canActivate: [AuthGuard]},
             {path: 'alt-coins', component: AltCoinScreenerComponent, canActivate: [AuthGuard]},
             {path: 'profile', component: UserProfileDetailsComponent, canActivate: [AuthGuard]},
-            {path: 'data-mining-app', component: WorkerUIComponent, canActivate: [AuthGuard]}
+            {path: 'data-mining-app', component: WorkerUIComponent, canActivate: [AuthGuard, ElectronAppGuard]}
         ],
     }
 ];
