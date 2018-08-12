@@ -21,7 +21,6 @@ export class WorkerUIComponent {
 
     public toggleUseMiningApp() {
         this.isUsingMiningApp = !this.isUsingMiningApp;
-
         if (this.isUsingMiningApp) {
             this.ipcService.send('startWorker', {token: this.authService.getCurrentJwtToken()});
         } else {

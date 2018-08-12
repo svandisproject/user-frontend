@@ -40,8 +40,7 @@ export class LoginPageComponent {
                         if (this.userService.hasRoleAdmin()) {
                             this.router.navigate(['admin']);
                         } else {
-                            this.router.navigate([''])
-                                .then(() => this.ipcService.send('startWorker'));
+                            this.router.navigate(['']);
                         }
                     },
                     err => this.handleFormError(form)
