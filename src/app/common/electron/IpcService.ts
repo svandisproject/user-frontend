@@ -31,4 +31,7 @@ export class IpcService {
         this.ipc.send(channel, ...args);
     }
 
+    public isInitialized(): boolean {
+        return !!this.ipc;
+    }
 }

@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {MenuItem, MenuItems} from './MenuItems';
+import {IpcService} from '../../common/electron/IpcService';
 
 
 @Component({
@@ -10,4 +11,10 @@ import {MenuItem, MenuItems} from './MenuItems';
 })
 export class UserSidebarComponent {
     public items: MenuItem[] = MenuItems;
+
+    constructor(private ipcService: IpcService) {
+        if (this.ipcService.isInitialized()) {
+            this.items.push({icon: 'stars', link: 'data-mining-app', title: 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP'});
+        }
+    }
 }
