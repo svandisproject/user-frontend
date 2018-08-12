@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {IpcService} from '../../common/electron/IpcService';
 
 
 @Component({
@@ -8,16 +9,22 @@ import {Component} from '@angular/core';
 })
 export class WorkerUIComponent {
     public urls: string[] = [];
+    public isUsingMiningApp = false;
 
-    constructor() {
-
-    }
+    constructor(private ipcService: IpcService) {}
 
     public toggleConsentToTerms() {
 
     }
 
     public toggleUseMiningApp() {
+        this.isUsingMiningApp = !this.isUsingMiningApp;
+
+        if (this.isUsingMiningApp) {
+            this.ipcService.send('startWorker', {token: 'string'});
+        } else {
+            this.ipcService.send('stopWorker');
+        }
 
     }
 }
