@@ -1,31 +1,32 @@
-import {Component} from '@angular/core';
-import {IpcService} from '../../common/electron/IpcService';
-import {AuthService} from '../../common/auth/AuthService';
+import {Component, OnInit} from '@angular/core';
+import {WorkerService} from '../../common/api/services/WorkerService';
 
 @Component({
     selector: 'app-worker-ui',
     templateUrl: './workerUI.html',
     styleUrls: ['./workerUI.scss']
 })
-export class WorkerUIComponent {
+export class WorkerUIComponent implements OnInit {
     public urls: string[] = [];
 
-    public isUsingMiningApp = false;
+    public isWorkerRunning = false;
+    public hasAcceptedTerms = false;
 
-    constructor(private ipcService: IpcService,
-                private authService: AuthService) {
+    constructor(private workerService: WorkerService) {
     }
 
-    public toggleConsentToTerms() {
+    ngOnInit(): void {
+        this.isWorkerRunning = this.workerService.isRuning();
     }
 
     public toggleUseMiningApp() {
-        this.isUsingMiningApp = !this.isUsingMiningApp;
-        if (this.isUsingMiningApp) {
-            this.ipcService.send('startWorker', {token: this.authService.getCurrentJwtToken()});
+
+        if (this.isWorkerRunning) {
+            this.workerService.stopWorker();
         } else {
-            this.ipcService.send('stopWorker');
+            this.workerService.startWorker();
         }
 
+        this.isWorkerRunning = this.workerService.isRuning();
     }
 }
