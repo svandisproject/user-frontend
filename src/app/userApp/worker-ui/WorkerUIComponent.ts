@@ -9,24 +9,26 @@ import {WorkerService} from '../../common/api/services/WorkerService';
 export class WorkerUIComponent implements OnInit {
     public urls: string[] = [];
 
-    public isWorkerRunning = false;
     public hasAcceptedTerms = false;
+    public isRunning: boolean;
 
     constructor(private workerService: WorkerService) {
     }
 
     ngOnInit(): void {
-        this.isWorkerRunning = this.workerService.isRuning();
+        this.hasAcceptedTerms = this.isWorkerRunning();
+        this.isRunning = this.isWorkerRunning();
     }
 
     public toggleUseMiningApp() {
-
-        if (this.isWorkerRunning) {
+        if (this.workerService.getWorkerStatusSubject().getValue()) {
             this.workerService.stopWorker();
         } else {
             this.workerService.startWorker();
         }
+    }
 
-        this.isWorkerRunning = this.workerService.isRuning();
+    public isWorkerRunning(): boolean {
+        return this.workerService.getWorkerStatusSubject().getValue();
     }
 }

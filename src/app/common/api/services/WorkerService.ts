@@ -1,15 +1,13 @@
 import {Injectable} from '@angular/core';
 import {WorkerResource} from '../resource/WorkerResource';
-import {Observable} from 'rxjs/index';
+import {BehaviorSubject, Observable} from 'rxjs/index';
 import {IpcService} from '../../electron/IpcService';
-import {AuthService} from '../../auth/AuthService';
 
 @Injectable()
 export class WorkerService {
-    private isWorkerRunning: boolean;
+    private workerStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
     constructor(private workerResource: WorkerResource,
-                private authService: AuthService,
                 private ipcService: IpcService) {
     }
 
@@ -21,17 +19,23 @@ export class WorkerService {
         return this.workerResource.getSecret();
     }
 
+    public getWorkerStatusSubject(): BehaviorSubject<boolean> {
+        return this.workerStatusSubject;
+    }
+
     public startWorker(): void {
-        this.ipcService.send('startWorker', {token: this.authService.getCurrentJwtToken()});
-        this.isWorkerRunning = true;
+        this.getSecret().subscribe((secret) => {
+            this.ipcService.send('startWorker', {token: secret.secret});
+            this.workerStatusSubject.next(true);
+        });
     }
 
     public stopWorker(): void {
-        this.ipcService.send('stopWorker');
-        this.isWorkerRunning = false;
+        // this.ipcService.send('stopWorker');
+        this.workerStatusSubject.next(false);
     }
 
-    public isRuning(): boolean {
-        return this.isWorkerRunning;
+    public isRunning(): Observable<boolean> {
+        return this.workerStatusSubject.asObservable();
     }
 }

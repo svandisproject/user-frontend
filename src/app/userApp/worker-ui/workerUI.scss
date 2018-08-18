@@ -1,3 +1,5 @@
+@import '../../svandis-material';
+
 .url-list {
     list-style-type: none;
     padding: 0;
@@ -18,5 +20,13 @@
 .links-counter {
     font-size: xx-large;
     font-weight: lighter;
+}
+
+h3 small {
+    font-weight: lighter;
+    position: absolute;
+    top: 0.8em;
+    color: mat-color($svandis-user-app-accent);
+    padding-left: 0.5em;
 }
 

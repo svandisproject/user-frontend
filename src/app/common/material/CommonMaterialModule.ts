@@ -1,0 +1,82 @@
+import {NgModule} from '@angular/core';
+import {
+    MatBadgeModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatDividerModule,
+    MatFormFieldModule,
+    MatGridListModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatMenuModule,
+    MatPaginatorModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    MatSidenavModule,
+    MatSlideToggleModule,
+    MatSortModule,
+    MatTableModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatTooltipModule
+} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+
+
+@NgModule({
+    imports: [
+        MatListModule,
+        MatTabsModule,
+        MatProgressSpinnerModule,
+        MatProgressBarModule,
+        MatMenuModule,
+        MatTooltipModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatDividerModule,
+        MatGridListModule,
+        MatTableModule,
+        MatSortModule,
+        MatToolbarModule,
+        MatBadgeModule,
+
+        MatSidenavModule,
+
+    ],
+    exports: [
+        MatListModule,
+        MatBadgeModule,
+        MatTabsModule,
+        MatProgressSpinnerModule,
+        MatMenuModule,
+        MatProgressBarModule,
+        MatTooltipModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatSlideToggleModule,
+        ReactiveFormsModule,
+        MatPaginatorModule,
+        MatCardModule,
+        MatDividerModule,
+        MatGridListModule,
+        MatTableModule,
+        MatSortModule,
+        MatToolbarModule,
+        MatSidenavModule,
+    ],
+    providers: [],
+})
+export class CommonMaterialModule {
+}

@@ -1,7 +1,17 @@
 <div class="container-fluid mt-1">
     <div class="row">
         <div class="col-sm-12">
-            <h3>Data Mining App</h3>
+            <h3>
+                Data Mining App
+                <span *ngIf="isWorkerRunning()">
+                    <small>running ... </small>
+                    <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
+                </span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
             <mat-divider class="mb-4"></mat-divider>
         </div>
     </div>
@@ -22,7 +32,8 @@
                         purpose (injected humour and the like).
                     </p>
 
-                    <mat-checkbox class="px-4" (click)="hasAcceptedTerms = !hasAcceptedTerms">
+                    <mat-checkbox class="px-4"
+                                  [(ngModel)]="hasAcceptedTerms">
                         I read and agree
                     </mat-checkbox>
 
@@ -30,8 +41,16 @@
 
                     <div class="container">
                         <div class="row">
-                            <div class="col col-lg-6 text-left px-0">Using Data Mining App</div>
-                            <div class="col col-lg-6 text-right px-0"><mat-slide-toggle (click)="toggleUseMiningApp()"></mat-slide-toggle></div>
+                            <div class="col col-lg-6 text-left px-0">
+                                Using Data Mining App
+                            </div>
+                            <div class="col col-lg-6 text-right px-0">
+                                <mat-slide-toggle (toggleChange)="toggleUseMiningApp()"
+                                                  color="accent"
+                                                  [ngModel]="isRunning"
+                                                  [disabled]="!hasAcceptedTerms">
+                                </mat-slide-toggle>
+                            </div>
                         </div>
                     </div>
                 </mat-card-content>
