@@ -1,7 +1,17 @@
 <div class="container-fluid mt-1">
     <div class="row">
         <div class="col-sm-12">
-            <h3>Data Mining App</h3>
+            <h3>
+                Data Mining App
+                <span *ngIf="isWorkerRunning()">
+                    <small>running ... </small>
+                    <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
+                </span>
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
             <mat-divider class="mb-4"></mat-divider>
         </div>
     </div>
@@ -12,16 +22,35 @@
         <div class="col col-lg-9">
             <mat-card class="p-3">
                 <mat-card-content>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+                    <p>
+                        It is a long established fact that a reader will be distracted by the readable content of a page
+                        when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                        distribution of letters, as opposed to using 'Content here, content here', making it look like
+                        readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as
+                        their default model text, and a search for 'lorem ipsum' will uncover many web sites still in
+                        their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
+                        purpose (injected humour and the like).
+                    </p>
 
-                    <mat-checkbox class="px-4" (click)="toggleConsentToTerms()">I read and agree</mat-checkbox>
+                    <mat-checkbox class="px-4"
+                                  [(ngModel)]="hasAcceptedTerms">
+                        I read and agree
+                    </mat-checkbox>
 
                     <mat-divider [inset]="true" class="my-3"></mat-divider>
 
                     <div class="container">
                         <div class="row">
-                            <div class="col col-lg-6 text-left px-0">Using Data Mining App</div>
-                            <div class="col col-lg-6 text-right px-0"><mat-slide-toggle (click)="toggleUseMiningApp()"></mat-slide-toggle></div>
+                            <div class="col col-lg-6 text-left px-0">
+                                Using Data Mining App
+                            </div>
+                            <div class="col col-lg-6 text-right px-0">
+                                <mat-slide-toggle (toggleChange)="toggleUseMiningApp()"
+                                                  color="accent"
+                                                  [ngModel]="isRunning"
+                                                  [disabled]="!hasAcceptedTerms">
+                                </mat-slide-toggle>
+                            </div>
                         </div>
                     </div>
                 </mat-card-content>

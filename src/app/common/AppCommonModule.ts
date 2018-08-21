@@ -15,8 +15,8 @@ import {TagInputModule} from 'ngx-chips';
 import {NgFormsModule} from './ngForms/NgFormsModule';
 import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
 import {BlockUIModule} from 'ng-block-ui';
-import {MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatIconModule, MatInputModule} from '@angular/material';
 import {DataTableModule} from './dataTable/DataTableModule';
+import {CommonMaterialModule} from './material/CommonMaterialModule';
 
 
 @NgModule({
@@ -29,12 +29,7 @@ import {DataTableModule} from './dataTable/DataTableModule';
         NgFormsModule,
         TagInputModule,
         BlockUIModule,
-        MatButtonModule,
-        MatGridListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
+        CommonMaterialModule,
         DataTableModule,
         TranslateModule
     ],
