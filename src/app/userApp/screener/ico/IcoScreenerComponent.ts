@@ -14,8 +14,7 @@ import * as _ from 'lodash';
     templateUrl: '../generalScreener.html',
     styleUrls: ['../generalScreener.scss']
 })
-export class IcoScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
-    private icoSubscription: Subscription;
+export class IcoScreenerComponent extends GeneralScreenerComponent implements OnInit {
     private currentPage = 1;
     private currentSorting: Sorting;
 
@@ -44,10 +43,6 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
 
     ngOnInit(): void {
         this.icoService.findAll().subscribe((res) => this.dataSet = res);
-    }
-
-    ngOnDestroy(): void {
-        this.icoSubscription.unsubscribe();
     }
 
     public loadPage(pageEvent: PageEvent | Sort): void {

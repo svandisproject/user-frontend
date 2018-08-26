@@ -10,6 +10,7 @@ import {Subscription} from 'rxjs/Subscription';
 import {interval} from 'rxjs/internal/observable/interval';
 import {Sorting} from '../../../common/api/util/Sorting';
 import {Observable} from 'rxjs/Observable';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-alt-coin-screener',
@@ -21,7 +22,8 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
     public title = 'SCREENER.ALT.TITLE';
     public dataSet: Pageable<Token>;
 
-    public dataTableColumns: GeneralDataTableColumn[] = [
+
+    public availableDataTableColumns: GeneralDataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker'},
         {columnName: 'Name', columnKey: 'title'},
         {columnName: 'Market Cap', columnKey: 'market_cap'},
@@ -31,6 +33,7 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
         {columnName: 'CHG% YTD', columnKey: 'year_to_day_change'},
         {columnName: 'Volume, $', columnKey: 'volume'},
     ];
+    public dataTableColumns: GeneralDataTableColumn[] = _.clone(this.availableDataTableColumns);
 
     private readonly REQUEST_INTERVAL = 10000;
     private tokenSubscription: Subscription;
