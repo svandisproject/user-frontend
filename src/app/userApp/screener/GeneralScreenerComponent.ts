@@ -16,8 +16,18 @@ export class GeneralScreenerComponent {
     public isFilterOpened = false;
     public dataSet: Pageable<any>;
     public dataTableColumns: GeneralDataTableColumn[];
-
+    public availableDataTableColumns: GeneralDataTableColumn[];
+    public areColumnOptionsVisible = false;
+    public selectedColumnsService: StorageAdapter<any>;
 
     public loadPage(pageEvent: PageEvent): void {
+    }
+
+    public toggleColumnOptions(): void {
+        this.areColumnOptionsVisible = !this.areColumnOptionsVisible;
+    }
+
+    public onTableColumnChange($event: GeneralDataTableColumn[]): void {
+        this.dataTableColumns = $event;
     }
 }

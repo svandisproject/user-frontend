@@ -6,6 +6,7 @@
     </div>
     <mat-table #table [dataSource]="dataSource" matSort>
         <ng-container *ngFor="let column of displayedColumns; let first = first" matColumnDef="{{column.columnKey}}">
+
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header
                              [ngClass]="first ? 'header-first ' + column.columnClass : '' + column.columnClass">
@@ -14,12 +15,6 @@
             <mat-cell *matCellDef="let element"
                       [ngClass]="isNegative(element[column.columnKey]) ? 'negative' : 'positive'">
                 <ng-container>{{stringifyColumnValue(element, column)}}</ng-container>
-                <!--<ng-container *ngIf="column.isDate; else columnString">-->
-                    <!--{{element[column.columnKey] | date: 'shortTime' }}-->
-                <!--</ng-container>-->
-                <!--<ng-template #columnString>-->
-                    <!--{{element[column.columnKey]}}-->
-                <!--</ng-template>-->
             </mat-cell>
         </ng-container>
 

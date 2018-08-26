@@ -17,7 +17,6 @@ import {Pageable} from '../api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from './GeneralDataTableColumn';
 import * as _ from 'lodash';
 import {merge} from 'rxjs';
-import {stringify} from 'querystring';
 
 @Component({
     styleUrls: ['./DataTable.scss'],

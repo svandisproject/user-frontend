@@ -6,11 +6,11 @@ export interface Ico {
     industries: object[];
     kyc: boolean;
     partners: string[];
-    raised: number;
+    raised: number | string;
     remote_id: number;
     restricted_countries: string[];
     team: string[];
     title: string;
-    token_price: number;
+    token_price: number | string;
 }
 
