@@ -3,7 +3,7 @@ export interface Ico {
     competitors: string[];
     country: string;
     hard_cap: string;
-    industries: object[];
+    industries: IcoIndustry[];
     kyc: boolean;
     partners: string[];
     raised: number | string;
@@ -14,3 +14,6 @@ export interface Ico {
     token_price: number | string;
 }
 
+export interface IcoIndustry {
+    title: string;
+}

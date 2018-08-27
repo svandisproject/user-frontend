@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatSelectionListChange} from '@angular/material';
 import * as _ from 'lodash';
 import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
@@ -12,7 +12,7 @@ export class ScreenerColumnManagerComponent {
     @Input() tableColumns: GeneralDataTableColumn[] = [];
     @Input() selectedColumns: GeneralDataTableColumn[] = [];
     @Output() tableColumnsChange: EventEmitter<GeneralDataTableColumn[]> = new EventEmitter<GeneralDataTableColumn[]>();
-    @Output() onCloseClicked: EventEmitter<any> = new EventEmitter<any>();
+    @Output() close: EventEmitter<void> = new EventEmitter<void>();
 
     public onColumnSelect($event: MatSelectionListChange): void {
         const currentlySelectedColumns = _.map($event.source.selectedOptions.selected, option => option.value);
