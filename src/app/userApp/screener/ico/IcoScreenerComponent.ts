@@ -6,6 +6,8 @@ import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTable
 import {Subscription} from 'rxjs/Subscription';
 import {PageEvent, Sort} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
+import {interval} from 'rxjs/internal/observable/interval';
+import {switchMap} from 'rxjs/operators';
 import {Sorting} from '../../../common/api/util/Sorting';
 import {Ico} from '../../../common/api/dataModels/Ico';
 import * as _ from 'lodash';
@@ -14,9 +16,11 @@ import * as _ from 'lodash';
     templateUrl: '../generalScreener.html',
     styleUrls: ['../generalScreener.scss']
 })
-export class IcoScreenerComponent extends GeneralScreenerComponent implements OnInit {
+export class IcoScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
     private currentPage = 1;
     private currentSorting: Sorting;
+    private readonly REQUEST_INTERVAL = 10000;
+    private icoSubscription: Subscription;
 
     public dataSet: Pageable<Ico>;
     public availableDataTableColumns: GeneralDataTableColumn[] = [
@@ -43,6 +47,14 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
 
     ngOnInit(): void {
         this.icoService.findAll().subscribe((res) => this.dataSet = res);
+
+        this.icoSubscription = interval(this.REQUEST_INTERVAL)
+            .pipe(switchMap(() => this.findIcoItem()))
+            .subscribe((res) => this.dataSet = res);
+    }
+
+    ngOnDestroy(): void {
+        this.icoSubscription.unsubscribe();
     }
 
     public loadPage(pageEvent: PageEvent | Sort): void {
