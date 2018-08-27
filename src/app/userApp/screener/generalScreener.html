@@ -21,12 +21,12 @@
 <!--<app-filter-table *ngIf="isFilterOpened" [filterService]="filterService"></app-filter-table>-->
 <div class="container-fluid" *ngIf="dataSet">
     <div class="row">
-        <app-data-table class="col-md-10" [dataSet]="dataSet"
+        <app-data-table class="col-md" [dataSet]="dataSet"
                         [displayedColumns]="dataTableColumns"
                         (pageChange)="loadPage($event)"
                         [settings]="{filter: false}"></app-data-table>
 
-        <div *ngIf="areColumnOptionsVisible" class="screener-column-manager col-md-2">
+        <div *ngIf="areColumnOptionsVisible" class="screener-column-manager col-lg-2">
             <app-screener-column-manager
                     [tableColumns]="availableDataTableColumns"
                     [selectedColumns]="dataTableColumns"
