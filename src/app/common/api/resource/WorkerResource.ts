@@ -17,4 +17,8 @@ export class WorkerResource {
     public getSecret(): Observable<{ secret: string }> {
         return this.httpService.get(this.URL + '/secret');
     }
+
+    public registerWorker(secret: string): Observable<{ token: string }> {
+        return this.httpService.post(SvandisApi.API_HOST + '/worker/register', {secret: secret});
+    }
 }

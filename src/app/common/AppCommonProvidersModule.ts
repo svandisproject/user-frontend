@@ -4,7 +4,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthResource} from './auth/AuthResource';
 import {AuthService} from './auth/AuthService';
 import {PusherModule} from './pusher/PusherModule';
-import {UserService} from './user/UserService';
+import {UserAuthService} from './user/UserAuthService';
 import {AuthInterceptor} from './auth/AuthInterceptor';
 import {IpcService} from './electron/IpcService';
 import {AuthGuard} from './guards/AuthGuard';
@@ -17,7 +17,7 @@ import {ElectronAppGuard} from './guards/ElectronAppGuard';
     ],
     providers: [
         HttpService,
-        UserService,
+        UserAuthService,
         AuthResource,
         IpcService,
         AuthGuard,
