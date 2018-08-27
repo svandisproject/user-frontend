@@ -11,6 +11,7 @@ import {
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
+import {formatDate} from '@angular/common';
 import {MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from '@angular/material';
 import {Pageable} from '../api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from './GeneralDataTableColumn';
@@ -82,6 +83,22 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         if (this.dataSet) {
             this.dataSource = new MatTableDataSource<any>(this.dataSet.content);
         }
+    }
+
+    public stringifyColumnValue(element, column): string {
+        const columnValue = element[column.columnKey];
+        let str;
+
+        if (column.isArray) {
+            str = _.map(columnValue, item => item[column.arrayItemKey]).join(', ');
+        } else if (column.isDate) {
+            str = formatDate(columnValue, 'shortTime', 'EN');
+        } else if (column.isBoolean) {
+            str = columnValue ? '+' : '-';
+        } else {
+            str = (!_.isNumber(columnValue) && _.isEmpty(columnValue)) ? '-' : columnValue;
+        }
+        return str;
     }
 
     protected initDefaultSettings() {

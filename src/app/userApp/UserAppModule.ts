@@ -26,6 +26,7 @@ import {TagToolComponent} from './taggingTool/TagToolComponent';
 import {SvandisApiModule} from '../common/api/SvandisApiModule';
 import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
+import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
 
 @NgModule({
     imports: [
@@ -53,7 +54,8 @@ import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
         AltCoinScreenerComponent,
         UserSidebarComponent,
         FeedListComponent,
-        FeedListLargeComponent
+        FeedListLargeComponent,
+        ScreenerColumnManagerComponent
     ],
     providers: [
         NewsFeedResolver,
