@@ -4,13 +4,13 @@ app-tag-tool {
     .selected.warning {
         color: $yellow-light;
     }
-    .selected.thumb_up {
+    .selected.arrow_upward {
         color: $green-light;
     }
     .selected.offline_bolt {
         color: $violet;
     }
-    .selected.thumb_down {
+    .selected.arrow_downward {
         color: $red-orange;
     }
     span.selected {

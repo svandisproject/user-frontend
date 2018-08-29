@@ -1,0 +1,48 @@
+@import "../../../colors";
+
+app-feed-list {
+  margin-top: 15px;
+  display: block
+}
+
+.news-feed-header-link {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.news-feed-header-link-date {
+  color: #C6C5D3;
+  font-size: small;
+}
+
+.news-feed-tr {
+  td {
+    border-bottom: 1px solid #302f43;
+    border-spacing: 0;
+  }
+}
+
+.news-feed-header-table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+.icon-wrapper mat-icon {
+  margin: 0;
+  width: 15px;
+  height: 15px;
+}
+
+.sentiment {
+  color: #C6C5D3;
+}
+
+.sentiment.sentiment_very_dissatisfied {
+  color: $red-orange;
+}
+.sentiment.sentiment_very_satisfied {
+  color: $green-light;
+}
+//.selected {
+//  font-size: medium;
+//}

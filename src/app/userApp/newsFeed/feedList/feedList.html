@@ -1,41 +1,46 @@
 <div class="search-results"
      *ngIf="posts; else listLoading">
-    <table class="uk-table uk-table-divider list-alerts"
-           id="news-feed-list"
-           *ngIf="posts.content.length > 0; else noResults">
-        <tbody>
-        <tr *ngFor="let feed of posts.content">
-            <td>
-                <a [href]="feed.url" class="news-feed-header-link" target="_blank">
-                    <span class="news-feed-header">{{feed.title | truncate:[50, '...']}}</span>
-                </a>
 
-            </td>
-            <td>
-                <span>{{feed.content | truncate:[80, '...']}}</span>
-            </td>
-            <td>
-                <span class="news-feed-header-link-date">{{feed.created_at | date: 'shortTime'}}</span>
-                <span class="channel-red" *ngIf="feed.tags">
-                    <ng-container *ngFor="let tag of feed.tags">{{tag.title}} </ng-container>
-                </span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <ul class="uk-pagination">
-        <li *ngIf="!isFirstPage()">
-            <a href="#" (click)="previousPage(); $event.preventDefault()">
-                <span class="uk-margin-small-right" uk-pagination-previous></span>
-                Previous
-            </a>
-        </li>
-        <li class="uk-margin-auto-left" *ngIf="!isLastPage()">
-            <a href="#" (click)="nextPage(); $event.preventDefault()">Next
-                <span class="uk-margin-small-left" uk-pagination-next></span>
-            </a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <table class="uk-table uk-table-divider list-alerts news-feed-header-table"
+               id="news-feed-list"
+               *ngIf="posts.content.length > 0; else noResults">
+
+            <tbody>
+            <tr *ngFor="let feed of posts.content; let i = index;" class="news-feed-tr">
+                <td class="py-2">
+                    <span class="news-feed-header-link-date font-weight-light">{{feed.created_at | date: 'short'}}</span>
+                </td>
+                <td>
+                    <a [href]="feed.url" class="news-feed-header-link px-1 py-1" target="_blank">
+                        <span class="news-feed-header font-weight-light">{{feed.title | truncate:[75, '...']}}</span>
+                        <span class="channel-red" *ngIf="feed.tags">
+                            <app-tag-tool [(post)]="posts.content[i]" [canEdit]="false"></app-tag-tool>
+                                <!--<ng-container *ngFor="let tag of feed.tags">{{tag.title}}</ng-container>-->
+                        </span>
+                    </a>
+                </td>
+                <td>
+                    <span class="channel-red sentiment {{getSentimentIconNameForPost(feed)}}">
+                        <mat-icon>{{getSentimentIconNameForPost(feed)}}</mat-icon>
+                    </span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="row">
+            <div class="col-md my-2 mx-1">
+                <mat-paginator [length]="posts.total"
+                               [pageSize]="20"
+                               (page)="onPageChange($event)"
+                               [pageIndex]="posts.page_request.page - pageIndexSubtractor">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+
+
     <ng-template #noResults>
         <span translate>ERROR.404.RESULTS</span>
     </ng-template>

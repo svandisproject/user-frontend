@@ -23,7 +23,7 @@ import {PageEvent} from '@angular/material';
 })
 export class NewsFeedComponent {
     public posts: Pageable<Post>;
-    public isFeedListSmall = false;
+    public isFeedListSmall = true;
     public isLoading = false;
 
     private pusherChannel: Channel;
@@ -107,5 +107,9 @@ export class NewsFeedComponent {
         });
 
         return factory.build();
+    }
+
+    public toggleFeedView(): void {
+        this.isFeedListSmall = !this.isFeedListSmall;
     }
 }

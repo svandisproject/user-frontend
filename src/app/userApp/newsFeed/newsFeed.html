@@ -2,10 +2,16 @@
 <!--<app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>-->
 <div class="container-fluid mt-1">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-11">
             <h3>NewsFeed</h3>
-            <mat-divider class="mb-4"></mat-divider>
         </div>
+        <div class="col-sm-1 d-flex justify-content-end align-items-center">
+            <button (click)="toggleFeedView()" class="mat-icon-button pt-1">
+                <mat-icon *ngIf="!isFeedListSmall">list</mat-icon>
+                <mat-icon *ngIf="isFeedListSmall">view_module</mat-icon>
+            </button>
+        </div>
+        <mat-divider class="mb-4"></mat-divider>
     </div>
 </div>
 <app-feed-list [posts]="posts"
