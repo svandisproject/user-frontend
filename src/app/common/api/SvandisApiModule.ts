@@ -13,6 +13,8 @@ import {IcoResource} from './resource/IcoResource';
 import {IcoService} from './services/IcoService';
 import {TokenResource} from './resource/TokenResource';
 import {TokenService} from './services/TokenService';
+import {UserResource} from './resource/UserResource';
+import {UserService} from './services/UserService';
 
 @NgModule({
     imports: [HttpClientModule],
@@ -30,6 +32,8 @@ import {TokenService} from './services/TokenService';
         TagResource,
         TagService,
         FilterResource,
+        UserResource,
+        UserService,
     ]
 })
 export class SvandisApiModule {

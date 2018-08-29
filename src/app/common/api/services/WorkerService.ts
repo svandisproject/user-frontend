@@ -1,18 +1,25 @@
 import {Injectable} from '@angular/core';
 import {WorkerResource} from '../resource/WorkerResource';
-import {BehaviorSubject, Observable} from 'rxjs/index';
+import {BehaviorSubject, interval, Observable, Subject, Subscription} from 'rxjs/index';
 import {IpcService} from '../../electron/IpcService';
+import {delay, tap} from 'rxjs/operators';
 
 @Injectable()
 export class WorkerService {
     private workerStatusSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    private workerRunSubscription: Subscription;
+    private currentWorkerToken: string;
+    private readonly WORKER_RESTART_INTERVAL = 150000;
 
     constructor(private workerResource: WorkerResource,
                 private ipcService: IpcService) {
     }
 
     public regenerate(): Observable<{ secret: string }> {
-        return this.workerResource.regenerateToken();
+        return this.workerResource.regenerateToken()
+            .pipe(
+                tap((secret) => this.registerWorker(secret.secret).subscribe()),
+            );
     }
 
     public getSecret(): Observable<{ secret: string }> {
@@ -23,16 +30,46 @@ export class WorkerService {
         return this.workerStatusSubject;
     }
 
-    public startWorker(): void {
+    public startWorker(): Observable<void> {
+        const subject = new Subject<void>();
         this.getSecret().subscribe((secret) => {
-            this.ipcService.send('startWorker', {token: secret.secret});
-            this.workerStatusSubject.next(true);
+            this.registerWorker(secret.secret).subscribe(() => {
+                this.ipcService.send('startWorker', {token: this.currentWorkerToken});
+                this.workerStatusSubject.next(true);
+                subject.next();
+                subject.complete();
+            });
         });
+
+        return subject.asObservable();
+    }
+
+    public registerWorker(secret: string): Observable<{ token: string }> {
+        return this.workerResource.registerWorker(secret)
+            .pipe(tap((token) => this.currentWorkerToken = token.token));
     }
 
     public stopWorker(): void {
-        // this.ipcService.send('stopWorker');
+        this.workerRunSubscription.unsubscribe();
+        this.ipcService.send('stopWorker');
         this.workerStatusSubject.next(false);
+    }
+
+    public restartWorkerSilently() {
+
+        if (!this.currentWorkerToken) {
+            console.error('no secret');
+            return;
+        }
+
+        this.workerRunSubscription = interval(this.WORKER_RESTART_INTERVAL)
+            .pipe(
+                tap(() => this.ipcService.send('stopWorker')),
+                delay(5000),
+                tap(() => this.ipcService.send('startWorker', {token: this.currentWorkerToken}))
+            )
+            .subscribe();
+
     }
 
     public isRunning(): Observable<boolean> {

@@ -1,6 +1,6 @@
 import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {UserService} from '../../user/UserService';
+import {UserAuthService} from '../../user/UserAuthService';
 import {Router} from '@angular/router';
 import {BlockUIService} from 'ng-block-ui';
 import {finalize} from 'rxjs/internal/operators';
@@ -21,7 +21,7 @@ export class LoginPageComponent {
 
     @ViewChild('form') form: NgForm;
 
-    constructor(private userService: UserService,
+    constructor(private userService: UserAuthService,
                 private blockUIService: BlockUIService,
                 private ipcService: IpcService,
                 private router: Router) {

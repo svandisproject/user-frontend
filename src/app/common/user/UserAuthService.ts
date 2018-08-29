@@ -8,7 +8,7 @@ import {UserRoles} from './UserRoles';
 
 
 @Injectable()
-export class UserService {
+export class UserAuthService {
     private user: any;
 
     constructor(private authService: AuthService) {
