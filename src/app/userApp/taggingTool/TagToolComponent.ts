@@ -17,8 +17,8 @@ export class TagToolComponent implements OnInit {
     @Output() postChange: EventEmitter<Post> = new EventEmitter<Post>();
 
     public availableTags = [
-        {title: 'Bullish', icon: 'thumb_up'},
-        {title: 'Bearish', icon: 'thumb_down'},
+        {title: 'Bullish', icon: 'arrow_upward'},
+        {title: 'Bearish', icon: 'arrow_downward'},
         {title: 'Important', icon: 'warning'},
         {title: 'Toxic', icon: 'offline_bolt'}
     ];
