@@ -29,4 +29,22 @@
             </mat-tab-group>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p (click)="createNewEthResearchUser()">Click here to sign new user creation of your new web3 account</p>
+            <p>Data Hash that will be sent to backend: {{returnedHash}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p (click)="createSignedSvandisData()">Click here to sign ICO/Token Screener data with your web3 account</p>
+            <p>Data Hash that will be sent to backend: {{returnedSvandisHash}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <p>Once sent to the backend,
+                the signatures above will be used to submit decentralized and unique information to the blockchain</p>
+        </div>
+    </div>
 </div>

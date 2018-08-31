@@ -9,8 +9,8 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "postinstall": "ng build --aot --prod",
     "build": "ng build --prod --aot",
+    "postinstall": "node patch.js",
     "test": "ng test",
     "gzipper": "gzipper",
     "lint": "ng lint",
@@ -52,6 +52,7 @@
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.1.0",
+    "web3": "^1.0.0-beta.35",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
