@@ -1,24 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Web3} from './Web3';
+import {Web3Config} from '../../config/Web3Config';
+import {Web3Interface} from './Web3Interface';
+import Web3 from 'web3';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Web3Service {
-    private web3: Web3;
+    private web3: Web3Interface;
 
-    private password = 'Svandis1';
-
-    private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
-    private readonly SIGN_NEW_SVANDIS_DATA = JSON.stringify({
+    private readonly SIGN_NEW_USER: string = 'CREATE NEW ACCOUNT';
+    private readonly SIGN_NEW_SVANDIS_DATA: string = JSON.stringify({
         token: 'SVN',
         supply: 400000000
     });
 
-    private readonly ENCRYPTED_PRV_KEY = 'ENCRYPTED_PRV_KEY';
-
     constructor() {
-        this.web3 = new Web3('ws://localhost:9545');
+        this.web3 = new Web3(Web3Config.LOCAL_HOST_RPC);
 
         this.clearWallet();
         const privateKeyEncrypted = this.getKeyEncrypted();
@@ -30,46 +29,43 @@ export class Web3Service {
         }
     }
 
-    public async signNewUser(): Promise<string> {
-        return Promise.resolve(this.signData(this.SIGN_NEW_USER));
+    public signNewUser(): Observable<string> {
+        return Observable.of(this.signData(this.SIGN_NEW_USER));
     }
 
-    public async signSvandisData(): Promise<string> {
-        return Promise.resolve(this.signData(this.SIGN_NEW_SVANDIS_DATA));
+    public signSvandisData(): Observable<string> {
+        return Observable.of(this.signData(this.SIGN_NEW_SVANDIS_DATA));
     }
 
-    // TODO: Refactor this method as i did with constructor
-    public async signData(dataString: string): Promise<string> {
-        const privateKeyEncrypted = localStorage.getItem(this.ENCRYPTED_PRV_KEY);
-        const privateKey = this.web3.eth.accounts.decrypt(privateKeyEncrypted, this.password);
+    public signData(dataString: string): string {
+        const privateKeyEncrypted = this.getKeyEncrypted();
+        const privateKey = this.decryptKey( privateKeyEncrypted);
         const signed = this.web3.eth.accounts.sign(
             dataString, privateKey.privateKey);
+
         const signature = signed.signature;
-        const hash = signed.messageHash;
-        // Lets prove we can get back our address
+        // Here we prove we can get back our address
         const sigRecovery = this.web3.eth.accounts.recover(dataString, signature);
-        console.log('Sig recovery is ' + sigRecovery + ' and the public key is ' +
-            privateKey.address);
         if (sigRecovery === privateKey.address) {
-            return Promise.resolve(signature);
+            return signature;
+        } else {
+            return 'No Signature';
         }
-        return null;
     }
 
-
     private createWalletAndStoreKey() {
-        this.web3.eth.accounts.wallet.create(1);
-        const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(this.password);
+        this.web3.eth.accounts.wallet.create(1, 'entropy');
+        const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(Web3Config.PASSWORD);
         const walletString = JSON.stringify(encryptedPrivateKey[0]);
-        localStorage.setItem(this.ENCRYPTED_PRV_KEY, walletString);
+        localStorage.setItem(Web3Config.ENCRYPTED_PRV_KEY, walletString);
     }
 
     private decryptKey(privateKeyEncrypted) {
-        this.web3.eth.accounts.decrypt(privateKeyEncrypted, this.password);
+        return this.web3.eth.accounts.decrypt(privateKeyEncrypted, Web3Config.PASSWORD);
     }
 
     private getKeyEncrypted() {
-        return localStorage.getItem(this.ENCRYPTED_PRV_KEY);
+        return localStorage.getItem(Web3Config.ENCRYPTED_PRV_KEY);
     }
 
     private clearWallet() {

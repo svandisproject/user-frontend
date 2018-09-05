@@ -1,5 +1,5 @@
 // TODO: Extend and improve while adding or working with class definition
-export declare class Web3 {
+export declare class Web3Interface {
     eth: {
         accounts: {
             wallet: {
