@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {WorkerService} from '../../common/api/services/WorkerService';
-import {UserService} from '../../common/api/services/UserService';
-import {BehaviorSubject, interval, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Component({
     selector: 'app-worker-ui',
@@ -9,29 +8,19 @@ import {BehaviorSubject, interval, Observable} from 'rxjs';
     styleUrls: ['./workerUI.scss']
 })
 export class WorkerUIComponent implements OnInit {
-    public urls: string[] = [];
-
     public hasAcceptedTerms = false;
     public isRunning: boolean;
 
-    public userStatisticsSubject: BehaviorSubject<any> = new BehaviorSubject(null);
-
-    constructor(private workerService: WorkerService,
-                private userService: UserService) {
+    constructor(private workerService: WorkerService) {
     }
 
     ngOnInit(): void {
         this.hasAcceptedTerms = this.isWorkerRunning();
         this.isRunning = this.isWorkerRunning();
-        interval(6000)
-            .subscribe(() => {
-                this.userService.getWorkerStats()
-                    .subscribe((stats) => this.userStatisticsSubject.next(stats));
-            });
     }
 
-    public getStats(): Observable<any> {
-        return this.userStatisticsSubject.asObservable();
+    public getStats(): Observable<string[]> {
+        return this.workerService.onStatUpdate();
     }
 
     public toggleUseMiningApp() {
