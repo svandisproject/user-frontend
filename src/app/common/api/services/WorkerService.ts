@@ -3,6 +3,7 @@ import {WorkerResource} from '../resource/WorkerResource';
 import {BehaviorSubject, interval, Observable, Subject, Subscription} from 'rxjs/index';
 import {IpcService} from '../../electron/IpcService';
 import {delay, tap} from 'rxjs/operators';
+import {Socket} from 'ng-socket-io';
 
 @Injectable()
 export class WorkerService {
@@ -10,8 +11,10 @@ export class WorkerService {
     private workerRunSubscription: Subscription;
     private currentWorkerToken: string;
     private readonly WORKER_RESTART_INTERVAL = 150000;
+    private statSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(null);
 
     constructor(private workerResource: WorkerResource,
+                private socket: Socket,
                 private ipcService: IpcService) {
     }
 
@@ -24,6 +27,14 @@ export class WorkerService {
 
     public getSecret(): Observable<{ secret: string }> {
         return this.workerResource.getSecret();
+    }
+
+    public onStatUpdate(): Observable<string[]> {
+        this.socket.on('statUpdate', (urls) => {
+            this.statSubject.next(urls);
+        });
+
+        return this.statSubject.asObservable();
     }
 
     public getWorkerStatusSubject(): BehaviorSubject<boolean> {

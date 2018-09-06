@@ -11,6 +11,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatPaginatorModule, MatTableModule} from '@angular/material';
 import {BlockUIModule} from 'ng-block-ui';
 import {AppRouting} from './AppRouting';
+import {SocketIoModule} from 'ng-socket-io';
+import {SocketConfig} from './config/SocketConfig';
 
 @NgModule({
     declarations: [
@@ -23,6 +25,7 @@ import {AppRouting} from './AppRouting';
         MatPaginatorModule,
         BrowserModule,
         BlockUIModule.forRoot(),
+        SocketIoModule.forRoot(SocketConfig),
         HttpClientModule,
         RouterModule.forRoot(AppRouting),
         TranslateModule.forRoot({
