@@ -8,6 +8,7 @@
   },
   "scripts": {
     "ng": "ng",
+    "dev": "ng serve --aot",
     "start": "node server.js",
     "build": "ng build --prod --aot",
     "postinstall": "ng build --aot --prod",
