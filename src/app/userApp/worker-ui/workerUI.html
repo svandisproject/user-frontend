@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h3>
-                Data Mining App
+                DataMining App
                 <span *ngIf="isWorkerRunning()">
                     <small>running ... </small>
                     <mat-progress-bar mode="buffer" color="accent"></mat-progress-bar>
@@ -42,7 +42,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col col-lg-6 text-left px-0">
-                                Using Data Mining App
+                                Using DataMining App
                             </div>
                             <div class="col col-lg-6 text-right px-0">
                                 <mat-slide-toggle (toggleChange)="toggleUseMiningApp()"
@@ -61,7 +61,7 @@
     <div class="row justify-content-center">
         <div class="col col-lg-3">
             <mat-card class="p-3">
-                <mat-card-title>URLs visited</mat-card-title>
+                <mat-card-title>Total Crawled URLs</mat-card-title>
                 <mat-card-content>
                     <h3 class="links-counter my-4" *ngIf="(getStats() | async) as posts">
                         {{ posts.length }}
@@ -71,10 +71,10 @@
         </div>
         <div class="col col-lg-6">
             <mat-card class="p-3">
-                <mat-card-title>Links</mat-card-title>
+                <mat-card-title>Recent Crawled URLs</mat-card-title>
                 <mat-card-content>
                     <ul class="url-list">
-                        <li class="lst-none" *ngFor="let post of (getStats() | async)">
+                        <li class="lst-none" *ngFor="let post of (getStats() | async | slice:0:20)">
                             <a href="{{post.url}}">{{post.url}}</a>
                         </li>
                     </ul>
