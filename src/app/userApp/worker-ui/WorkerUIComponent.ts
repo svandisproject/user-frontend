@@ -22,7 +22,7 @@ export class WorkerUIComponent implements OnInit {
 
     ngOnInit(): void {
         this.hasAcceptedTerms = this.isWorkerRunning();
-        this.isRunning = this.isWorkerRunning();
+        this.isRunniваng = this.isWorkerRunning();
         interval(6000)
             .subscribe(() => {
                 this.userService.getWorkerStats()
