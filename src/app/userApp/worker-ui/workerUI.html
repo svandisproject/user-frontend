@@ -63,8 +63,8 @@
             <mat-card class="p-3">
                 <mat-card-title>URLs visited</mat-card-title>
                 <mat-card-content>
-                    <h3 class="links-counter my-4" *ngIf="(getStats() | async) as urls">
-                        {{ urls.length }}
+                    <h3 class="links-counter my-4" *ngIf="(getStats() | async) as posts">
+                        {{ posts.length }}
                     </h3>
                 </mat-card-content>
             </mat-card>
@@ -74,8 +74,8 @@
                 <mat-card-title>Links</mat-card-title>
                 <mat-card-content>
                     <ul class="url-list">
-                        <li class="lst-none" *ngFor="let url of (getStats() | async)">
-                            <a href="{{url}}">{{url}}</a>
+                        <li class="lst-none" *ngFor="let post of (getStats() | async)">
+                            <a href="{{post.url}}">{{post.url}}</a>
                         </li>
                     </ul>
                 </mat-card-content>

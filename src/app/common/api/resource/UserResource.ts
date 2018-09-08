@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {SvandisApi} from '../config/SvandisApi';
 import {HttpService} from '../../http/HttpService';
 
 @Injectable()
