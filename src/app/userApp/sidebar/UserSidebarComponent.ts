@@ -17,16 +17,12 @@ export class UserSidebarComponent {
 
     constructor(private ipcService: IpcService,
                 private workerService: WorkerService) {
-        if (this.ipcService.isInitialized() && !this.isDataMiningMenuItesExists()) {
+        if (this.ipcService.isInitialized() && !_.find(this.items, { title: 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP' }) ) {
             this.items.push({icon: 'stars', link: 'data-mining-app', title: 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP'});
         }
     }
 
     public isWorkerRunning(): Observable<boolean> {
         return this.workerService.isRunning();
-    }
-
-    private isDataMiningMenuItesExists(): boolean {
-        return !!(_.filter(this.items, item => item.title === 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP').length);
     }
 }
