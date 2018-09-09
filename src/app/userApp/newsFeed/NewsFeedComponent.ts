@@ -27,7 +27,7 @@ export class NewsFeedComponent {
     public isLoading = false;
 
     private pusherChannel: Channel;
-    private currentFilterSettings: SearchFilterSettings;
+    private currentFilterSettings: SearchFilterSettings = <SearchFilterSettings> {};
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
 
@@ -44,9 +44,9 @@ export class NewsFeedComponent {
         this.filterPosts(this.currentFilterSettings, pageEvent.pageIndex + 1);
     }
 
-    public onFilterChange($event: SearchFilterSettings): void {
-        this.currentFilterSettings = $event;
-        this.filterPosts($event);
+    public onFilterChange($event: FilterItem[]): void {
+        this.currentFilterSettings['searchTerms'] = $event;
+        this.filterPosts(this.currentFilterSettings);
     }
 
     public toggleFeedList($event: boolean) {
