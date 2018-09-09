@@ -14,7 +14,8 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>
+            <div app-search-form-inline="true"
+                 (termsChange)="onFilterChange($event)">
         </div>
     </div>
 </div>

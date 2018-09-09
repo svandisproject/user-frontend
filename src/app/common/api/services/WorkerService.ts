@@ -74,6 +74,10 @@ export class WorkerService {
     }
 
     public isRunning(): Observable<boolean> {
+        if (!this.workerStatusSubject.getValue()) {
+            this.ipcService.on('workerStarted', () => this.workerStatusSubject.next(true));
+        }
+
         return this.workerStatusSubject.asObservable();
     }
 }

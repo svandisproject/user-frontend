@@ -11,105 +11,105 @@
                (matChipInputTokenEnd)="addTerm($event)">
     </mat-chip-list>
 </mat-form-field>
-<!--<div class="uk-inline">-->
-<!--<a href="#"-->
-<!--id="filter-block-toggle"-->
-<!--class="uk-button uk-button-default dropdown-filter"-->
-<!--type="button">-->
-<!--<span uk-icon="settings"></span>-->
-<!--</a>-->
+<div class="uk-inline">
+    <a href="#"
+       id="filter-block-toggle"
+       class="uk-button uk-button-default dropdown-filter"
+       type="button">
+        <span uk-icon="settings"></span>
+    </a>
 
-<!--<div class="uk-dropdown-grid uk-width-1-1@m dropdown-filter-style"-->
-<!--id="filter-block"-->
-<!--uk-dropdown="pos: bottom-right"-->
-<!--uk-dropdown="mode: click"-->
-<!--uk-grid>-->
-<!--<div class="wrapper-filter">-->
-<!--<h4 class="filter-text" translate>NEWS_FEED.FILTER.TITLE</h4>-->
-<!--<div class="uk-nav uk-dropdown-nav">-->
-<!--<div class="uk-margin">-->
-<!--<form action="" class="filter-form">-->
-<!--<div app-search-form-inline="true"-->
-<!--id="search-term-filter"-->
-<!--[searchTerms]="settings.searchTerms"-->
-<!--(termsChange)="onTermsSearch($event)">-->
-<!--</div>-->
-<!--<div class="uk-margin">-->
-<!--<div uk-form-custom="target: > * > span:first-child" class="form-custom-style">-->
-<!--<select (change)="changeDropDownFilter($event, 'assets')"-->
-<!--name="assets-filter"-->
-<!--id="assets-filter">-->
-<!--<option *ngFor="let option of settings.assets"-->
-<!--[selected]="option.selected"-->
-<!--[value]="option.id">-->
-<!--{{ option.label}}-->
-<!--</option>-->
-<!--</select>-->
-<!--<button class="uk-button uk-button-default dropdown-filter-style-button"-->
-<!--type="button"-->
-<!--tabindex="-1">-->
-<!--<span></span>-->
-<!--<span uk-icon="icon: chevron-down"></span>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
+    <div class="uk-dropdown-grid uk-width-1-1@m dropdown-filter-style"
+         id="filter-block"
+         uk-dropdown="pos: bottom-right"
+         uk-dropdown="mode: click"
+         uk-grid>
+        <div class="wrapper-filter">
+            <h4 class="filter-text" translate>NEWS_FEED.FILTER.TITLE</h4>
+            <div class="uk-nav uk-dropdown-nav">
+                <div class="uk-margin">
+                    <form action="" class="filter-form">
+                        <div app-search-form-inline="true"
+                             id="search-term-filter"
+                             [searchTerms]="settings.searchTerms"
+                             (termsChange)="onTermsSearch($event)">
+                        </div>
+                        <div class="uk-margin">
+                            <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
+                                <select (change)="changeDropDownFilter($event, 'assets')"
+                                        name="assets-filter"
+                                        id="assets-filter">
+                                    <option *ngFor="let option of settings.assets"
+                                            [selected]="option.selected"
+                                            [value]="option.id">
+                                        {{ option.label}}
+                                    </option>
+                                </select>
+                                <button class="uk-button uk-button-default dropdown-filter-style-button"
+                                        type="button"
+                                        tabindex="-1">
+                                    <span></span>
+                                    <span uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
+                        </div>
 
-<!--<div class="uk-margin">-->
-<!--<div uk-form-custom="target: > * > span:first-child" class="form-custom-style">-->
-<!--<select (change)="changeDropDownFilter($event, 'region')"-->
-<!--id="region-filter"-->
-<!--name="region-filter">-->
-<!--<option *ngFor="let option of settings.region"-->
-<!--[selected]="option.selected"-->
-<!--[value]="option.id">-->
-<!--{{ option.label }}-->
-<!--</select>-->
-<!--<button class="uk-button uk-button-default dropdown-filter-style-button"-->
-<!--type="button"-->
-<!--tabindex="-1">-->
-<!--<span></span>-->
-<!--<span uk-icon="icon: chevron-down"></span>-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
-<!--<div class="uk-margin filter-text">-->
-<!--<h5 class="filter-text">Activity field</h5>-->
-<!--<div class="uk-margin filter-text activity-filter-item"-->
-<!--*ngFor="let activity of settings.activityFields">-->
-<!--<label>-->
-<!--<input class="uk-checkbox"-->
-<!--[id]="'activity-filter-' + activity.label.toLowerCase()"-->
-<!--(click)="selectMultiFilter(activity, 'activityFields')"-->
-<!--[value]="activity.id"-->
-<!--type="checkbox"-->
-<!--[checked]="activity.selected">-->
-<!--{{activity.label}}-->
-<!--</label>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="uk-margin filter-text uk-clearfix">-->
-<!--<h5 class="filter-text">Importance</h5>-->
-<!--<div class="uk-margin filter-text">-->
-<!--<button *ngFor="let importance of settings.importanceFilters"-->
-<!--[class]="getButtonCss(importance.selected)"-->
-<!--(click)="selectMultiFilter(importance, 'importanceFilters')">-->
-<!--{{importance.label}}-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="uk-margin filter-text uk-clearfix">-->
-<!--<h5 class="filter-text">Voting</h5>-->
-<!--<div class="uk-margin filter-text">-->
-<!--<button *ngFor="let vote of settings.votingFilters"-->
-<!--[class]="getButtonCss(vote.selected)"-->
-<!--(click)="selectMultiFilter(vote, 'votingFilters')">-->
-<!--{{vote.label}}-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+                        <div class="uk-margin">
+                            <div uk-form-custom="target: > * > span:first-child" class="form-custom-style">
+                                <select (change)="changeDropDownFilter($event, 'region')"
+                                        id="region-filter"
+                                        name="region-filter">
+                                    <option *ngFor="let option of settings.region"
+                                            [selected]="option.selected"
+                                            [value]="option.id">
+                                        {{ option.label }}
+                                </select>
+                                <button class="uk-button uk-button-default dropdown-filter-style-button"
+                                        type="button"
+                                        tabindex="-1">
+                                    <span></span>
+                                    <span uk-icon="icon: chevron-down"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="uk-margin filter-text">
+                        <h5 class="filter-text">Activity field</h5>
+                        <div class="uk-margin filter-text activity-filter-item"
+                             *ngFor="let activity of settings.activityFields">
+                            <label>
+                                <input class="uk-checkbox"
+                                       [id]="'activity-filter-' + activity.label.toLowerCase()"
+                                       (click)="selectMultiFilter(activity, 'activityFields')"
+                                       [value]="activity.id"
+                                       type="checkbox"
+                                       [checked]="activity.selected">
+                                {{activity.label}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="uk-margin filter-text uk-clearfix">
+                        <h5 class="filter-text">Importance</h5>
+                        <div class="uk-margin filter-text">
+                            <button *ngFor="let importance of settings.importanceFilters"
+                                    [class]="getButtonCss(importance.selected)"
+                                    (click)="selectMultiFilter(importance, 'importanceFilters')">
+                                {{importance.label}}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="uk-margin filter-text uk-clearfix">
+                        <h5 class="filter-text">Voting</h5>
+                        <div class="uk-margin filter-text">
+                            <button *ngFor="let vote of settings.votingFilters"
+                                    [class]="getButtonCss(vote.selected)"
+                                    (click)="selectMultiFilter(vote, 'votingFilters')">
+                                {{vote.label}}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
