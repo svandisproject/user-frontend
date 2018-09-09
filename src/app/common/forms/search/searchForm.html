@@ -8,7 +8,7 @@
 </ng-template>
 
 <ng-template #inlineInput>
-    <mat-form-field class="w-100">
+    <mat-form-field class="w-100" color="accent">
         <mat-chip-list #chipList>
             <mat-chip *ngFor="let term of searchTerms"
                       [selectable]="true"
@@ -21,6 +21,7 @@
                    [matChipInputFor]="chipList"
                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                    (matChipInputTokenEnd)="addTerm($event)">
+            <mat-icon matPrefix>search</mat-icon>
         </mat-chip-list>
     </mat-form-field>
 </ng-template>
