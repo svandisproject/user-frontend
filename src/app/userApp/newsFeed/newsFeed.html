@@ -1,5 +1,4 @@
 <!--<app-input-toggle (toggle)="toggleFeedList($event)"></app-input-toggle>-->
-<!--<app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>-->
 <div class="container-fluid mt-1">
     <div class="row">
         <div class="col-sm-11">
@@ -12,6 +11,11 @@
             </button>
         </div>
         <mat-divider class="mb-4"></mat-divider>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <app-search-filter (filterChange)="onFilterChange($event)"></app-search-filter>
+        </div>
     </div>
 </div>
 <app-feed-list [posts]="posts"
