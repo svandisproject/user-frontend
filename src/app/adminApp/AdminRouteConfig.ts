@@ -22,12 +22,12 @@ export const AdminRouteConfigs: Route[] = [
                 component: PostListComponent,
             },
             {
-                path: 'post/edit/:id',
+                path: 'posts/edit/:id',
                 component: EditPostComponent,
                 resolve: {post: EditPostResolver}
             },
             {
-                path: 'post/create',
+                path: 'posts/create',
                 component: EditPostComponent,
             },
             {
@@ -35,12 +35,12 @@ export const AdminRouteConfigs: Route[] = [
                 component: TagListComponent,
             },
             {
-                path: 'tag/edit/:id',
+                path: 'tags/edit/:id',
                 component: EditTagComponent,
                 resolve: {tag: EditTagResolver}
             },
             {
-                path: 'tag/create',
+                path: 'tags/create',
                 component: EditTagComponent,
             },
             {
@@ -48,12 +48,12 @@ export const AdminRouteConfigs: Route[] = [
                 component: WebFeedListComponent,
             },
             {
-                path: 'web-feed/edit/:id',
+                path: 'web-feeds/edit/:id',
                 component: EditWebFeedComponent,
                 resolve: {webFeed: EditWebFeedResolver}
             },
             {
-                path: 'web-feed/create',
+                path: 'web-feeds/create',
                 component: EditWebFeedComponent,
             }
         ]
