@@ -1,15 +1,14 @@
 import {Injectable} from '@angular/core';
-import {SvandisApi} from '../config/SvandisApi';
 import {HttpService} from '../../http/HttpService';
 
 @Injectable()
 export class UserResource {
-    private readonly URL = SvandisApi.API_URL + '/user';
+    private readonly URL = 'https://svandis-socket-server.herokuapp.com/statistics/';
 
     constructor(private httpService: HttpService) {
     }
 
     public findCrawled() {
-        return this.httpService.get(this.URL + '/me/crawled');
+        return this.httpService.get(this.URL);
     }
 }

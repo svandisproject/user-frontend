@@ -10,6 +10,7 @@ export class WorkerService {
     private workerRunSubscription: Subscription;
     private currentWorkerToken: string;
     private readonly WORKER_RESTART_INTERVAL = 150000;
+    private statSubject: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(null);
 
     constructor(private workerResource: WorkerResource,
                 private ipcService: IpcService) {
@@ -73,6 +74,10 @@ export class WorkerService {
     }
 
     public isRunning(): Observable<boolean> {
+        if (!this.workerStatusSubject.getValue()) {
+            this.ipcService.on('workerStarted', () => this.workerStatusSubject.next(true));
+        }
+
         return this.workerStatusSubject.asObservable();
     }
 }

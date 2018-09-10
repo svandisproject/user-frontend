@@ -4,6 +4,8 @@ import * as _ from 'lodash';
 import {SearchFilterSettings} from '../../../common/filters/dataModels/FilterSettings';
 import {SearchFilterService} from '../../../common/filters/SearchFilterService';
 import {FilterItem} from '../../../common/filters/dataModels/FilterItem';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {MatChipInputEvent} from '@angular/material';
 
 
 @Component({
@@ -15,11 +17,28 @@ import {FilterItem} from '../../../common/filters/dataModels/FilterItem';
 
 export class SearchFilterComponent {
     public settings: SearchFilterSettings = <SearchFilterSettings> {};
+    public readonly separatorKeysCodes: number[] = [ENTER, COMMA];
+    public searchTerms: string[] = [];
+
 
     @Output() filterChange: EventEmitter<SearchFilterSettings> = new EventEmitter();
 
     constructor(private filterService: SearchFilterService) {
         this.settings = this.filterService.get();
+    }
+
+
+    public addTerm(event: MatChipInputEvent) {
+        this.searchTerms.push(event.value);
+        event.input.value = '';
+    }
+
+    public removeTerm(term) {
+        const index = this.searchTerms.indexOf(term);
+
+        if (index >= 0) {
+            this.searchTerms.splice(index, 1);
+        }
     }
 
     public onTermsSearch(searchTerms: FilterItem[]) {

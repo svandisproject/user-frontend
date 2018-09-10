@@ -1,3 +1,16 @@
+<mat-form-field class="w-100" appearance="fill">
+    <mat-chip-list #chipList>
+        <mat-chip *ngFor="let term of searchTerms" [selectable]="true"
+                  [removable]="true" (removed)="removeTerm(term)">
+            {{term}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Search terms:"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="addTerm($event)">
+    </mat-chip-list>
+</mat-form-field>
 <div class="uk-inline">
     <a href="#"
        id="filter-block-toggle"
