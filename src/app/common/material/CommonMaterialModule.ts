@@ -4,7 +4,6 @@ import {
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
-    MatChipsModule,
     MatDividerModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -38,7 +37,6 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatButtonModule,
         MatFormFieldModule,
         MatIconModule,
-        MatChipsModule,
         MatInputModule,
         MatSlideToggleModule,
         ReactiveFormsModule,
@@ -50,8 +48,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatSortModule,
         MatToolbarModule,
         MatBadgeModule,
-        MatSidenavModule,
 
+        MatSidenavModule,
 
     ],
     exports: [
@@ -61,7 +59,6 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatProgressSpinnerModule,
         MatMenuModule,
         MatProgressBarModule,
-        MatChipsModule,
         MatTooltipModule,
         MatCheckboxModule,
         MatButtonModule,

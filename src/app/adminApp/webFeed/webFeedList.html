@@ -1,12 +1,8 @@
 <app-data-table [dataSet]="feeds"
-                *ngIf="feeds; else loading"
                 [displayedColumns]="columns"
                 (pageChange)="loadPage($event)"
                 (rowSelected)="editFeed($event)">
 </app-data-table>
-<ng-template #loading>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
 
 <button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addFeed()">
     <mat-icon>add</mat-icon>

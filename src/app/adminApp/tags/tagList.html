@@ -1,12 +1,9 @@
 <app-data-table [dataSet]="tags"
-                *ngIf="tags; else loading"
                 [displayedColumns]="columns"
                 (pageChange)="loadPage($event)"
                 (rowSelected)="editTag($event)">
 </app-data-table>
-<ng-template #loading>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
+
 <button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addTag()">
     <mat-icon>add</mat-icon>
 </button>

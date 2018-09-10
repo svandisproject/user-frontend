@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import * as _ from 'lodash';
 import {FilterItem} from '../../filters/dataModels/FilterItem';
-import {MatChipInputEvent} from '@angular/material';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
 
 @Component({
     selector: 'app-search-form, [app-search-form-inline]',
@@ -11,27 +10,23 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
 export class SearchFormComponent implements OnInit {
     @Input() placeholder = 'Search...';
     @Input('app-search-form-inline') inline;
-    @Input() property = 'content';
     @Input() searchTerms: FilterItem[] = [];
 
     @Output() termsChange: EventEmitter<FilterItem[]> = new EventEmitter<FilterItem[]>();
 
-    public readonly separatorKeysCodes = [ENTER, COMMA];
+    public terms: { display: string, value: string }[];
+    public readonly maxTags = 4;
+
 
     ngOnInit(): void {
+        this.terms = _.map(this.searchTerms, item => {
+            return {display: item.value, value: item.value};
+        });
     }
 
-    public addTerm(event: MatChipInputEvent) {
-        this.searchTerms.push({value: event.value, property: this.property});
-        event.input.value = '';
-        this.termsChange.emit(this.searchTerms);
-    }
-
-    public removeTerm(term) {
-        const index = this.searchTerms.indexOf(term);
-        if (index >= 0) {
-            this.searchTerms.splice(index, 1);
-        }
-        this.termsChange.emit(this.searchTerms);
+    public emitOutput() {
+        this.termsChange.emit(_.map(this.terms, (term) => {
+            return {value: term.value, property: 'content'};
+        }));
     }
 }

@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {PostService} from '../../../common/api/services/PostService';
 import {EditPostModel} from '../models/EditPostModel';
 import {Post} from '../../../common/api/dataModels/Post';
@@ -21,7 +21,6 @@ export class EditPostComponent {
     private formFields: BaseInput[] = [];
 
     constructor(private route: ActivatedRoute,
-                private router: Router,
                 private postService: PostService) {
         this.init();
     }
@@ -46,7 +45,7 @@ export class EditPostComponent {
 
         this.postModel.published_at = this.post ? this.post.published_at : new Date();
         this.postService.saveOrCreate(this.postModel, id).subscribe(() => {
-            this.router.navigate(['../../'], {relativeTo: this.route});
+            // TODO: do some indication or go back to list
         });
     }
 }

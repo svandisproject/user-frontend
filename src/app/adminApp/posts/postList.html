@@ -1,12 +1,10 @@
 <app-data-table [dataSet]="posts"
-                *ngIf="posts; else loading"
+                *ngIf="posts"
                 [displayedColumns]="columns"
                 (pageChange)="loadPage($event)"
                 (rowSelected)="editPost($event)">
 </app-data-table>
-<ng-template #loading>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
+
 <button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addPost()">
     <mat-icon>add</mat-icon>
 </button>
