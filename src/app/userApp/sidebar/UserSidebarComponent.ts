@@ -3,7 +3,6 @@ import {MenuItem, MenuItems} from './MenuItems';
 import {IpcService} from '../../common/electron/IpcService';
 import {WorkerService} from '../../common/api/services/WorkerService';
 import {Observable} from 'rxjs';
-import * as _ from 'lodash';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class UserSidebarComponent {
 
     constructor(private ipcService: IpcService,
                 private workerService: WorkerService) {
-        if (this.ipcService.isInitialized() && !_.find(this.items, { title: 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP' }) ) {
+        if (this.ipcService.isInitialized()) {
             this.items.push({icon: 'stars', link: 'data-mining-app', title: 'NAVIGATION.FRONT.ITEM.DATA_MINING_APP'});
         }
     }

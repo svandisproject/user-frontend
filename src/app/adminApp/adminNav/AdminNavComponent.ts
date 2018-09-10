@@ -1,10 +1,9 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-admin-nav',
     templateUrl: './adminNav.html',
-    styleUrls: ['./adminNav.scss'],
-    encapsulation: ViewEncapsulation.None
+    styleUrls: ['./adminNav.scss']
 })
 export class AdminNavComponent {
     public menuItems = [

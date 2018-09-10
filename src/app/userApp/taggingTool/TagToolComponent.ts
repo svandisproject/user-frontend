@@ -30,7 +30,7 @@ export class TagToolComponent implements OnInit {
 
     ngOnInit(): void {
         _.merge(this.availableTags, this.tagService.getMainTags());
-        this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id) as AvailableTags[];
+        this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id);
         this.currentPost = _.cloneDeep(this.post);
 
         if (!this.canEdit) {
@@ -60,9 +60,4 @@ export class TagToolComponent implements OnInit {
         tag = _.omit(tag, ['icon']) as Tag;
         return _.some(this.currentPost.tags, tag);
     }
-}
-
-interface AvailableTags {
-    title: string;
-    icon: string;
 }

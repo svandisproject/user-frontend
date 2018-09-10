@@ -31,11 +31,11 @@ export class PostListComponent {
     }
 
     public editPost(post: Post): void {
-        this.router.navigate(['admin', 'posts', 'edit', post.id]);
+        this.router.navigate(['admin', 'post', 'edit', post.id]);
     }
 
     public addPost(): void {
-        this.router.navigate(['admin', 'posts', 'create']);
+        this.router.navigate(['admin', 'post', 'create']);
     }
 
     public loadPage(pageEvent: PageEvent): void {

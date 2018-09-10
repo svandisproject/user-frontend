@@ -34,7 +34,6 @@ export class FilterTableComponent implements OnInit {
             if (option.label === $event.target.value) {
                 this.resetOptions(filter.options);
                 option.selected = true;
-                return true;
             }
         });
         this.saveFilters();

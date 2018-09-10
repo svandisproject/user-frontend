@@ -27,11 +27,11 @@ export class TagListComponent {
     }
 
     public editTag(tag: Tag): void {
-        this.router.navigate(['admin', 'tags', 'edit', tag.id]);
+        this.router.navigate(['admin', 'tag', 'edit', tag.id]);
     }
 
     public addTag(): void {
-        this.router.navigate(['admin', 'tags', 'create']);
+        this.router.navigate(['admin', 'tag', 'create']);
     }
 
     public loadPage(pageEvent: PageEvent): void {

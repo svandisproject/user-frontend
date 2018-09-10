@@ -42,7 +42,7 @@ export class AbstractCrudResource<T> {
         };
 
         if (!sort) {
-            params['direction'] = 'desc';
+            params['direction'] = 'asc';
         } else {
             params['direction'] = sort.direction;
             params['sort'] = sort.sort;

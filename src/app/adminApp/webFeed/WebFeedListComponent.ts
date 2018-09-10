@@ -30,11 +30,11 @@ export class WebFeedListComponent {
     }
 
     public editFeed(feed: WebFeed): void {
-        this.router.navigate(['admin', 'web-feeds', 'edit', feed.id]);
+        this.router.navigate(['admin', 'web-feed', 'edit', feed.id]);
     }
 
     public addFeed(): void {
-        this.router.navigate(['admin', 'web-feeds', 'create']);
+        this.router.navigate(['admin', 'web-feed', 'create']);
     }
 
     public loadPage(pageEvent: PageEvent): void {

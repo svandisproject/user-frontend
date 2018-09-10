@@ -1,5 +1,5 @@
 <ng-container *ngIf="input.controlType != 'checkbox' && input.controlType != 'radio'">
-    <mat-form-field color="accent" [ngSwitch]="input.controlType" [formGroup]="form" class="w-100">
+    <mat-form-field [ngSwitch]="input.controlType" [formGroup]="form" class="w-100">
         <input *ngSwitchCase="'text'"
                [formControlName]="input.name"
                [placeholder]="input.placeholder"
@@ -32,13 +32,13 @@
 </ng-container>
 
 <ng-container *ngIf="input.controlType == 'checkbox'">
-    <mat-checkbox *ngFor="let input of input.options" [(ngModel)]="input.value" color="accent">
+    <mat-checkbox *ngFor="let input of input.options" [(ngModel)]="input.value">
         {{input.label}}
     </mat-checkbox>
 </ng-container>
 
 
-<mat-radio-group *ngIf="input.controlType == 'radio'" color="accent">
+<mat-radio-group *ngIf="input.controlType == 'radio'">
     <mat-radio-button *ngFor="let radio of input.options" [value]="radio.value">
         {{radio.label}}
     </mat-radio-button>
