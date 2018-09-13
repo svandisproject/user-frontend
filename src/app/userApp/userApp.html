@@ -1,6 +1,9 @@
 <mat-toolbar color="primary" class="mat-elevation-z2">
     <span>
-        <img src="assets/image/svandis-logo.png" alt="">
+        <img *ngIf="!isMobile; else smallLogo" src="assets/image/svandis-logo.png" alt="">
+        <ng-template #smallLogo>
+            <img src="assets/image/32x32@1x.png" alt="" (click)="openSidebar()">
+        </ng-template>
     </span>
     <span class="flex-fill-remaining"></span>
     <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -18,7 +21,7 @@
     </mat-menu>
 </mat-toolbar>
 
-<app-user-sidebar>
+<app-user-sidebar [opened]="sidebarOpen">
     <router-outlet></router-outlet>
 </app-user-sidebar>
 

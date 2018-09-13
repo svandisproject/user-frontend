@@ -3,8 +3,8 @@
             #drawer
             [fixedInViewport]="true"
             class="sidenav"
-            mode="side"
-            opened>
+            [mode]="isMobile ? 'push' : 'side'"
+            [opened]="opened">
         <mat-nav-list>
             <a class="list-group-item waves-effect"
                *ngFor="let item of items"
