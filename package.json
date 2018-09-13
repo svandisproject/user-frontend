@@ -10,8 +10,8 @@
     "ng": "ng",
     "dev": "ng serve --aot",
     "start": "node server.js",
-    "build": "ng build --aot",
-    "postinstall": "ng build --aot",
+    "build": "ng build --aot --prod",
+    "postinstall": "ng build --aot --prod",
     "test": "ng test",
     "gzipper": "gzipper",
     "lint": "ng lint",
@@ -51,7 +51,6 @@
     "nouislider": "^11.1.0",
     "path": "^0.12.7",
     "pusher-js": "^4.2.2",
-    "reflect-metadata": "^0.1.12",
     "rxjs": "^6.1.0",
     "rxjs-compat": "^6.1.0",
     "zone.js": "^0.8.19"

@@ -4,7 +4,6 @@ import {DynamicInputComponent} from './components/DynamicInputComponent';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgFormsThemeModule} from './themes/NgFormsThemeModule';
 import {TranslateModule} from '@ngx-translate/core';
-import 'reflect-metadata';
 import {CommonModule} from '@angular/common';
 
 @NgModule({

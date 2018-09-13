@@ -10,17 +10,19 @@ export class BaseInputFactory {
     public static build(className: string,
                         fieldName: string,
                         params?: BaseInputParams): BaseInput {
-        switch (className) {
-            case TextInput.name :
-                return new TextInput(fieldName, params);
-            case CheckboxInput.name :
-                return new CheckboxInput(fieldName, params);
-            case TextAreaInput.name :
-                return new TextAreaInput(fieldName, params);
-            case SelectInput.name :
-                return new SelectInput(fieldName, params.selectOptions, params);
-            case RadioInput.name :
-                return new RadioInput(fieldName, params.selectOptions, params);
+        if (className === 'SelectInput' || className === 'RadioInput') {
+            return new Inputs[className](fieldName, params.selectOptions, params);
+        } else {
+            return new Inputs[className](fieldName, params);
         }
+
     }
 }
+
+const Inputs = {
+    TextInput,
+    CheckboxInput,
+    TextAreaInput,
+    SelectInput,
+    RadioInput
+};
