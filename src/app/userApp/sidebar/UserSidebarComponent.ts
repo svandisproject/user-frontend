@@ -1,4 +1,4 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
 import {MenuItem, MenuItems} from './MenuItems';
 import {IpcService} from '../../common/electron/IpcService';
 import {WorkerService} from '../../common/api/services/WorkerService';
@@ -15,7 +15,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 })
 export class UserSidebarComponent {
     @Input() opened = false;
-
+    @Output() close: EventEmitter<void> = new EventEmitter<void>();
     public items: MenuItem[] = MenuItems;
     public isMobile = false;
 
