@@ -8,7 +8,7 @@
 
             <tbody>
             <tr *ngFor="let feed of posts.content; let i = index;" class="news-feed-tr">
-                <td class="py-2">
+                <td class="py-2 text-center">
                     <span class="news-feed-header-link-date font-weight-light">{{feed.created_at | date: 'short'}}</span>
                 </td>
                 <td>
