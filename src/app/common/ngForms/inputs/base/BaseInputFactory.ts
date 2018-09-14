@@ -6,6 +6,14 @@ import {SelectInput} from '../SelectInput';
 import {CheckboxInput} from '../CheckboxInput';
 import {RadioInput} from '../RadioInput';
 
+const Inputs = {
+    TextInput,
+    CheckboxInput,
+    TextAreaInput,
+    SelectInput,
+    RadioInput
+};
+
 export class BaseInputFactory {
     public static build(className: string,
                         fieldName: string,
@@ -18,11 +26,3 @@ export class BaseInputFactory {
 
     }
 }
-
-const Inputs = {
-    TextInput,
-    CheckboxInput,
-    TextAreaInput,
-    SelectInput,
-    RadioInput
-};
