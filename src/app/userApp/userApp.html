@@ -21,7 +21,7 @@
     </mat-menu>
 </mat-toolbar>
 
-<app-user-sidebar [opened]="sidebarOpen" (close)="sidebarOpen=false">
+<app-user-sidebar [opened]="sidebarOpen || !isMobile" (close)="sidebarOpen=false">
     <router-outlet></router-outlet>
 </app-user-sidebar>
 
