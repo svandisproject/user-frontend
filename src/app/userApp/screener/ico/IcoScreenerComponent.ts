@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoService} from '../../../common/api/services/IcoService';
@@ -9,7 +9,7 @@ import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs/internal/observable/interval';
 import {switchMap} from 'rxjs/operators';
 import {Sorting} from '../../../common/api/util/Sorting';
-import {Ico} from '../../../common/api/dataModels/Ico';
+import {NewIco} from '../../../common/api/dataModels/Ico';
 import * as _ from 'lodash';
 
 @Component({
@@ -22,22 +22,20 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
     private readonly REQUEST_INTERVAL = 10000;
     private icoSubscription: Subscription;
 
-    public dataSet: Pageable<Ico>;
+    public dataSet: Pageable<NewIco>;
     public availableDataTableColumns: GeneralDataTableColumn[] = [
         {columnName: 'Remote ID', columnKey: 'remote_id'},
         {columnName: 'Title', columnKey: 'title'},
-        {columnName: 'Advisors', columnKey: 'advisors'},
-        {columnName: 'Competitors', columnKey: 'competitors'},
+        {columnName: 'Competitors', columnKey: 'competitors', isArray: true},
         {columnName: 'Country', columnKey: 'country'},
-        {columnName: 'Hard Cap', columnKey: 'hard_cap'},
         {columnName: 'Industries', columnKey: 'industries', isArray: true, arrayItemKey: 'title'},
-        {columnName: 'KYC', columnKey: 'kyc', isBoolean: true},
-        {columnName: 'Partners', columnKey: 'partners'},
-        {columnName: 'Raised', columnKey: 'raised'},
-        {columnName: 'Restricted Countries', columnKey: 'restricted_countries'},
-        {columnName: 'Team', columnKey: 'team'},
-        {columnName: 'Token Price', columnKey: 'token_price'}
+        {columnName: 'Partners', columnKey: 'partners', isArray: true},
+        {columnName: 'Price', columnKey: 'asset.price'},
+        {columnName: 'Restricted Countries', columnKey: 'restricted_countries', isArray: true},
+        {columnName: 'Team', columnKey: 'team', isArray: true, arrayItemKey: 'name'},
+        {columnName: 'Token Price', columnKey: 'finance.token_price_eth'}
     ];
+
     public dataTableColumns: GeneralDataTableColumn[] = _.clone(this.availableDataTableColumns);
 
 
@@ -65,7 +63,7 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
         this.findIcoItem().subscribe((res) => this.dataSet = res);
     }
 
-    private findIcoItem(): Observable<Pageable<Ico>> {
+    private findIcoItem(): Observable<Pageable<NewIco>> {
         return this.icoService.findBy(null, this.currentPage, this.currentSorting);
     }
 }

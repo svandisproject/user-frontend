@@ -86,11 +86,12 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     public stringifyColumnValue(element, column): string {
-        const columnValue = element[column.columnKey];
+        const columnValue = _.get(element, column.columnKey);
         let str;
 
         if (column.isArray) {
-            str = _.map(columnValue, item => item[column.arrayItemKey]).join(', ');
+            str = column.arrayItemKey ?
+                _.map(columnValue, item => item[column.arrayItemKey]).join(', ') : columnValue.join();
         } else if (column.isDate) {
             str = formatDate(columnValue, 'shortTime', 'EN');
         } else if (column.isBoolean) {
