@@ -14,7 +14,11 @@
             </mat-header-cell>
             <mat-cell *matCellDef="let element"
                       [ngClass]="isNegative(element[column.columnKey]) ? 'negative' : 'positive'">
-                <ng-container>{{stringifyColumnValue(element, column)}}</ng-container>
+                <ng-container>
+                    <span [matTooltip]="stringifyColumnValue(element, column, false)">
+                        {{stringifyColumnValue(element, column)}}
+                    </span>
+                </ng-container>
             </mat-cell>
         </ng-container>
 

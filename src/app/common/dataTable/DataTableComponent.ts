@@ -85,7 +85,7 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         }
     }
 
-    public stringifyColumnValue(element, column): string {
+    public stringifyColumnValue(element, column, short = true): string {
         const columnValue = _.get(element, column.columnKey);
         let str;
 
@@ -98,6 +98,10 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
             str = columnValue ? '+' : '-';
         } else {
             str = (!_.isNumber(columnValue) && _.isEmpty(columnValue)) ? '-' : columnValue;
+        }
+
+        if (short) {
+            str = _.truncate(str);
         }
         return str;
     }
