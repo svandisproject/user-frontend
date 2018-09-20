@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {StorageAdapter} from '../../common/localStorage/StorageAdapter';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
@@ -7,7 +7,8 @@ import {PageEvent} from '@angular/material';
 @Component({
     selector: 'app-screener',
     templateUrl: './generalScreener.html',
-    styleUrls: ['./generalScreener.scss']
+    styleUrls: ['./generalScreener.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class GeneralScreenerComponent {

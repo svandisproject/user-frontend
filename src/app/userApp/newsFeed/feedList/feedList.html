@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-md my-2 mx-1">
                 <mat-paginator [length]="posts.total"
-                               [pageSize]="20"
+                               [pageSize]="10"
                                (page)="onPageChange($event)"
                                [pageIndex]="posts.page_request.page - pageIndexSubtractor">
                 </mat-paginator>

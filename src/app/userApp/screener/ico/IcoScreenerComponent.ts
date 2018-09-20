@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {GeneralScreenerComponent} from '../GeneralScreenerComponent';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoService} from '../../../common/api/services/IcoService';
@@ -13,8 +13,10 @@ import {NewIco} from '../../../common/api/dataModels/Ico';
 import * as _ from 'lodash';
 
 @Component({
+    selector: 'app-ico-screener',
     templateUrl: '../generalScreener.html',
-    styleUrls: ['../generalScreener.scss']
+    styleUrls: ['../generalScreener.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class IcoScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
     private currentPage = 1;

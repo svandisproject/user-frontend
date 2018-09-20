@@ -3,8 +3,6 @@ import {Post} from '../../../common/api/dataModels/Post';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {PageEvent} from '@angular/material';
 import * as _ from 'lodash';
-import {UserRoles} from '../../../common/user/UserRoles';
-import {AuthService} from '../../../common/auth/AuthService';
 
 @Component({
     selector: 'app-feed-list',
