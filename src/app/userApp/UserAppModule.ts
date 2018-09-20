@@ -27,6 +27,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
 import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
+import {ResearchOnboardingComponent} from './onboarding/researchOnboardingComponent';
 
 @NgModule({
     imports: [
@@ -55,7 +56,8 @@ import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerCo
         UserSidebarComponent,
         FeedListComponent,
         FeedListLargeComponent,
-        ScreenerColumnManagerComponent
+        ScreenerColumnManagerComponent,
+        ResearchOnboardingComponent
     ],
     providers: [
         NewsFeedResolver,
