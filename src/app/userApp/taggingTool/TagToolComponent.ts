@@ -16,7 +16,7 @@ export class TagToolComponent implements OnInit {
     @Input() canEdit: boolean;
     @Output() postChange: EventEmitter<Post> = new EventEmitter<Post>();
 
-    public availableTags = [
+    public availableTags: any[] = [
         {title: 'Bullish', icon: 'arrow_upward'},
         {title: 'Bearish', icon: 'arrow_downward'},
         {title: 'Important', icon: 'warning'},
@@ -29,11 +29,15 @@ export class TagToolComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        _.merge(this.availableTags, this.tagService.getMainTags());
+        _.intersectionWith(this.availableTags, this.tagService.getMainTags(), (arrVal, other) => {
+            if (arrVal.title === other.title) {
+                arrVal.id = other.id;
+            }
+        });
         this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id) as AvailableTags[];
         this.currentPost = _.cloneDeep(this.post);
-
         if (!this.canEdit) {
+
             this.availableTags = _.filter(this.availableTags, (tag) => {
                 tag = _.omit(tag, ['icon']);
                 return _.some(this.currentPost.tags, tag);
