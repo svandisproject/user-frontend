@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {WorkerService} from '../../common/api/services/WorkerService';
+import {ResearchOnboardingComponent} from '../onboarding/researchOnboardingComponent';
 
 @Component({
     selector: 'app-user-profile-details',
