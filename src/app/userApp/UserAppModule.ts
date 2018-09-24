@@ -28,6 +28,7 @@ import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
 import {ResearchOnboardingComponent} from './onboarding/researchOnboardingComponent';
+import {EthConnectionPromptComponent} from './web3/ethConnectionPromptComponent';
 
 @NgModule({
     imports: [
@@ -57,7 +58,8 @@ import {ResearchOnboardingComponent} from './onboarding/researchOnboardingCompon
         FeedListComponent,
         FeedListLargeComponent,
         ScreenerColumnManagerComponent,
-        ResearchOnboardingComponent
+        ResearchOnboardingComponent,
+        EthConnectionPromptComponent
     ],
     providers: [
         NewsFeedResolver,

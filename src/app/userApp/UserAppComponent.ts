@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AuthService} from '../common/auth/AuthService';
 import {Router} from '@angular/router';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {EthConnectionPromptComponent} from './web3/ethConnectionPromptComponent';
 
 @Component({
     selector: 'app-user-app',
