@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {WorkerService} from '../../common/api/services/WorkerService';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
+import {Web3Service} from '../web3/Web3Service';
 
 @Component({
     selector: 'app-rc-onboarding',
@@ -17,9 +18,11 @@ export class ResearchOnboardingComponent implements OnInit {
     public expertSelected = false;
     public beginnerButtonStyle = 'highlight-button';
     public expertButtonStyle = 'unselected-button';
+    public returnedSigHash: string;
+    public returnedSvandisSigHash: string;
 
 
-    constructor(private workerService: WorkerService, private _formBuilder: FormBuilder) {
+    constructor(private workerService: WorkerService, private _formBuilder: FormBuilder, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
     }
 
@@ -36,5 +39,10 @@ export class ResearchOnboardingComponent implements OnInit {
         this.expertButtonStyle = intermediate;
         this.expertSelected = !this.expertSelected;
         this.acceptedTerms = false;
+    }
+
+    public createNewEthResearchUser(): void {
+        this.web3Service.createNewWalletAndStoreKey();
+        this.web3Service.signNewUser(this.expertSelected, '0x0').subscribe(returnedSig => this.returnedSigHash = returnedSig);
     }
 }

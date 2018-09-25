@@ -14,20 +14,24 @@ export class Web3Service {
         token: 'SVN',
         supply: 400000000
     });
-    public walletStatus = new BehaviorSubject('No Eth Key Connected');
+    public walletStatus = new BehaviorSubject(false);
     walletStatus$ = this.walletStatus.asObservable();
     constructor() {
         this.web3 = new Web3(Web3Config.LOCAL_HOST_RPC);
         this.clearWallet();
 
-        // localStorage.removeItem(Web3Config.ENCRYPTED_PRV_KEY);
+         // localStorage.removeItem(Web3Config.ENCRYPTED_PRV_KEY); //Use this to reset testing for encrypted prv key
         const privateKeyEncrypted = this.getKeyEncrypted();
         if (privateKeyEncrypted) {
-            this.walletStatus.next('Eth Key Connected');
+            this.walletStatus.next(true);
             this.decryptKey(privateKeyEncrypted);
         }
     }
-    public signNewUser(): Observable<string> {
+    public signNewUser(isExpert: boolean, recoveryEthAddress: string): Observable<string> {
+        if (isExpert) {
+            // This will be a variable in the call to the backend, so we know
+            // Do something with recovery Eth Address directed to backend as well
+        }
         return Observable.of(this.signData(this.SIGN_NEW_USER));
     }
     public signSvandisData(): Observable<string> {
@@ -47,11 +51,12 @@ export class Web3Service {
             return 'No Signature';
         }
     }
-    private createWalletAndStoreKey() {
+    public createNewWalletAndStoreKey() {
         this.web3.eth.accounts.wallet.create(1, 'entropy');
         const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(Web3Config.PASSWORD);
         const walletString = JSON.stringify(encryptedPrivateKey[0]);
         localStorage.setItem(Web3Config.ENCRYPTED_PRV_KEY, walletString);
+        this.walletStatus.next(true);
     }
     private decryptKey(privateKeyEncrypted) {
         return this.web3.eth.accounts.decrypt(privateKeyEncrypted, Web3Config.PASSWORD);

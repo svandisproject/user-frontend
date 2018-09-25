@@ -11,15 +11,15 @@ import {Web3Service} from './Web3Service';
 })
 export class EthConnectionPromptComponent implements OnInit  {
 
-    public promptTitle = 'No Eth Key Detected';
+    public connectionStatus = false;
     constructor(private web3Service: Web3Service) {
-        this.promptTitle = this.web3Service.walletStatus.getValue();
+        this.connectionStatus = this.web3Service.walletStatus.getValue();
     }
 
     ngOnInit() {
         this.web3Service.walletStatus$.subscribe(
             data => {
-                this.promptTitle = data;
+                this.connectionStatus = data;
             });
     }
 }

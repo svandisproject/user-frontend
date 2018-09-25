@@ -185,7 +185,7 @@
                             <button mat-button mat-stroked-button matStepperPrevious>BACK</button>
                             <button mat-button (click)="stepper.reset()">CANCEL</button>
                             <span class= "divide-horizontal-20"></span>
-                            <button mat-button mat-stroked-button color="accent" [disabled]="!acceptedTerms" matStepperNext>CONTINUE</button>
+                            <button mat-button mat-stroked-button color="accent" [disabled]="!acceptedTerms" (click)="createNewEthResearchUser()" matStepperNext>CONTINUE</button>
                         </div>
                     </form>
                 </mat-step>
