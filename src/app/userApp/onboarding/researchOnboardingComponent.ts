@@ -45,4 +45,8 @@ export class ResearchOnboardingComponent implements OnInit {
         this.web3Service.createNewWalletAndStoreKey();
         this.web3Service.signNewUser(this.expertSelected, '0x0').subscribe(returnedSig => this.returnedSigHash = returnedSig);
     }
+
+    public resetDemo(): void {
+        this.web3Service.resetThis();
+    }
 }

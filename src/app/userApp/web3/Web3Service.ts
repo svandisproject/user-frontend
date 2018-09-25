@@ -52,6 +52,8 @@ export class Web3Service {
         }
     }
     public createNewWalletAndStoreKey() {
+        this.web3.eth.accounts.wallet.clear();
+        localStorage.removeItem(Web3Config.ENCRYPTED_PRV_KEY);
         this.web3.eth.accounts.wallet.create(1, 'entropy');
         const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(Web3Config.PASSWORD);
         const walletString = JSON.stringify(encryptedPrivateKey[0]);
@@ -66,5 +68,11 @@ export class Web3Service {
     }
     private clearWallet() {
         this.web3.eth.accounts.wallet.clear();
+    }
+
+    public resetThis() {
+        this.web3.eth.accounts.wallet.clear();
+        localStorage.removeItem(Web3Config.ENCRYPTED_PRV_KEY);
+        this.walletStatus.next(false);
     }
 }
