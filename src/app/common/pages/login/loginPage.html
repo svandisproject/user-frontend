@@ -55,7 +55,7 @@
                         </mat-card-content>
                     </mat-card>
 
-                    <div class="row text-center d-flex justify-content-center mt-4">
+                    <div class="row text-center d-flex justify-content-center mt-4" *ngIf="!isDesktop()">
                         <div class="col-lg-6">
                             <a href="https://github.com/svandisproject/svandis-desktop/releases/download/0.1.4-beta/Svandis-0.1.4.dmg"
                                mat-button color="accent">

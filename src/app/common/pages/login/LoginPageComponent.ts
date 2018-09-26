@@ -48,6 +48,10 @@ export class LoginPageComponent {
         }
     }
 
+    public isDesktop(): boolean {
+        return window['require'];
+    }
+
     private handleFormError(form: NgForm) {
         form.controls.password.setErrors({'incorrect': true});
         this.credsInvalid = true;
