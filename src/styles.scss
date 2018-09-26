@@ -28,6 +28,8 @@ body {
   margin: 0;
 }
 
-iframe {
-  margin-bottom: 30%;
+iframe#jsd-widget {
+  bottom: 0;
+  left: 10px;
+  height: 70px;
 }
