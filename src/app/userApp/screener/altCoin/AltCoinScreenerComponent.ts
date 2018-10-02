@@ -39,6 +39,7 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
     private tokenSubscription: Subscription;
     private currentPage = 1;
     private currentSorting: Sorting;
+    private sortingOptions = { field: null, direction: null };
 
     constructor(private tokenService: TokenService) {
         super();
@@ -59,8 +60,15 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
 
     public loadPage(pageEvent: PageEvent | Sort): void {
         this.currentPage = pageEvent['pageIndex'] + 1 || this.currentPage;
-        this.currentSorting = pageEvent['direction'] ?
-            {sort: pageEvent['active'], direction: pageEvent['direction']} : null;
+        
+        if (pageEvent['direction']) {
+            this.sortingOptions.field = pageEvent['active'];
+            this.sortingOptions.direction = pageEvent['direction'];
+        } 
+        
+        if (this.sortingOptions.direction) {
+            this.currentSorting = { sort: this.sortingOptions.field, direction: this.sortingOptions.direction };
+        }
 
         this.findToken().subscribe((res) => this.dataSet = res);
     }
