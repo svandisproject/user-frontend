@@ -8,7 +8,6 @@ import {PageEvent, Sort} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs/internal/observable/interval';
 import {switchMap} from 'rxjs/operators';
-import {Sorting} from '../../../common/api/util/Sorting';
 import {NewIco} from '../../../common/api/dataModels/Ico';
 import * as _ from 'lodash';
 
@@ -19,16 +18,14 @@ import * as _ from 'lodash';
     encapsulation: ViewEncapsulation.None
 })
 export class IcoScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
-    private currentPage = 1;
-    private currentSorting: Sorting;
     private readonly REQUEST_INTERVAL = 10000;
     private icoSubscription: Subscription;
 
     public dataSet: Pageable<NewIco>;
     public availableDataTableColumns: GeneralDataTableColumn[] = [
-        {columnName: 'Remote ID', columnKey: 'remote_id'},
+        // {columnName: 'Remote ID', columnKey: 'remote_id'}, // TODO: uncomment when API starts again to respond with remote_id field
         {columnName: 'Title', columnKey: 'title'},
-        {columnName: 'Competitors', columnKey: 'competitors', isArray: true},
+        // {columnName: 'Competitors', columnKey: 'competitors', isArray: true},
         {columnName: 'Country', columnKey: 'country'},
         {columnName: 'Industries', columnKey: 'industries', isArray: true, arrayItemKey: 'title'},
         {columnName: 'Partners', columnKey: 'partners', isArray: true},
@@ -39,7 +36,6 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
     ];
 
     public dataTableColumns: GeneralDataTableColumn[] = _.clone(this.availableDataTableColumns);
-
 
     constructor(public icoService: IcoService) {
         super();
@@ -58,14 +54,11 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
     }
 
     public loadPage(pageEvent: PageEvent | Sort): void {
-        this.currentPage = pageEvent['pageIndex'] + 1 || this.currentPage;
-        this.currentSorting = pageEvent['direction'] ?
-            {sort: pageEvent['active'], direction: pageEvent['direction']} : null;
-
+        super.loadPage(pageEvent);
         this.findIcoItem().subscribe((res) => this.dataSet = res);
     }
 
     private findIcoItem(): Observable<Pageable<NewIco>> {
-        return this.icoService.findBy(null, this.currentPage, this.currentSorting);
+        return this.icoService.findBy(null, this.currentPage, this.sortingOptions);
     }
 }

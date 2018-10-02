@@ -90,8 +90,9 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         let str;
 
         if (column.isArray) {
+            // remove _.tpArray(columnValue) convetsion after ico.restricted_countries format is fixed
             str = column.arrayItemKey ?
-                _.map(columnValue, item => item[column.arrayItemKey]).join(', ') : columnValue.join();
+                _.map(columnValue, item => item[column.arrayItemKey]).join(', ') : _.toArray(columnValue).join();
         } else if (column.isDate) {
             str = formatDate(columnValue, 'shortTime', 'EN');
         } else if (column.isBoolean) {

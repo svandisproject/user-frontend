@@ -8,7 +8,6 @@ import {switchMap} from 'rxjs/operators';
 import {PageEvent, Sort} from '@angular/material';
 import {Subscription} from 'rxjs/Subscription';
 import {interval} from 'rxjs/internal/observable/interval';
-import {Sorting} from '../../../common/api/util/Sorting';
 import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
 
@@ -21,7 +20,6 @@ import * as _ from 'lodash';
 export class AltCoinScreenerComponent extends GeneralScreenerComponent implements OnInit, OnDestroy {
     public title = 'SCREENER.ALT.TITLE';
     public dataSet: Pageable<Token>;
-
 
     public availableDataTableColumns: GeneralDataTableColumn[] = [
         {columnName: 'Ticker', columnKey: 'ticker'},
@@ -37,9 +35,6 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
 
     private readonly REQUEST_INTERVAL = 10000;
     private tokenSubscription: Subscription;
-    private currentPage = 1;
-    private currentSorting: Sorting;
-    private sortingOptions = { field: null, direction: null };
 
     constructor(private tokenService: TokenService) {
         super();
@@ -59,21 +54,11 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
     }
 
     public loadPage(pageEvent: PageEvent | Sort): void {
-        this.currentPage = pageEvent['pageIndex'] + 1 || this.currentPage;
-        
-        if (pageEvent['direction']) {
-            this.sortingOptions.field = pageEvent['active'];
-            this.sortingOptions.direction = pageEvent['direction'];
-        } 
-        
-        if (this.sortingOptions.direction) {
-            this.currentSorting = { sort: this.sortingOptions.field, direction: this.sortingOptions.direction };
-        }
-
+        super.loadPage(pageEvent);
         this.findToken().subscribe((res) => this.dataSet = res);
     }
 
     private findToken(): Observable<Pageable<Token>> {
-        return this.tokenService.findBy(null, this.currentPage, this.currentSorting);
+        return this.tokenService.findBy(null, this.currentPage, this.sortingOptions);
     }
 }

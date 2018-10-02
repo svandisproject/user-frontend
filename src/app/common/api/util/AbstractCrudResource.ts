@@ -41,11 +41,11 @@ export class AbstractCrudResource<T> {
             page: page
         };
 
-        if (!sort) {
+        if (!sort || !sort.sort) {
             params['direction'] = 'desc';
         } else {
-            params['direction'] = sort.direction;
             params['sort'] = sort.sort;
+            params['direction'] = sort.direction || 'desc';
         }
 
         return this.httpService.get(this.URL + '/filter', {
