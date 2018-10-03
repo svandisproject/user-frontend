@@ -12,11 +12,12 @@ import {
     ViewEncapsulation
 } from '@angular/core';
 import {formatDate} from '@angular/common';
-import {MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Pageable} from '../api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from './GeneralDataTableColumn';
 import * as _ from 'lodash';
 import {merge} from 'rxjs';
+import {SortAwarePageEvent} from './SortAwarePageEvent';
 
 @Component({
     styleUrls: ['./DataTable.scss'],
@@ -41,7 +42,7 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         filter: boolean
     };
 
-    @Output() pageChange: EventEmitter<PageEvent | Sort> = new EventEmitter<PageEvent | Sort>();
+    @Output() pageChange: EventEmitter<SortAwarePageEvent> = new EventEmitter<SortAwarePageEvent>();
     @Output() rowSelected: EventEmitter<any> = new EventEmitter<any>();
 
     public dataSource: MatTableDataSource<any>;
@@ -54,7 +55,7 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         this.dataSource.sort = this.sort;
 
         merge(this.sort.sortChange, this.paginator.page)
-            .subscribe((event: PageEvent | Sort) => {
+            .subscribe((event: SortAwarePageEvent) => {
                 this.pageChange.emit(event);
             });
     }

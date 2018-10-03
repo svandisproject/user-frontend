@@ -5,11 +5,11 @@ import {TokenService} from '../../../common/api/services/TokenService';
 import {Token} from '../../../common/api/dataModels/Token';
 import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTableColumn';
 import {switchMap} from 'rxjs/operators';
-import {PageEvent, Sort} from '@angular/material';
 import {Subscription} from 'rxjs/Subscription';
 import {interval} from 'rxjs/internal/observable/interval';
 import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
+import {SortAwarePageEvent} from '../../../common/dataTable/SortAwarePageEvent';
 
 @Component({
     selector: 'app-alt-coin-screener',
@@ -53,7 +53,7 @@ export class AltCoinScreenerComponent extends GeneralScreenerComponent implement
         this.tokenSubscription.unsubscribe();
     }
 
-    public loadPage(pageEvent: PageEvent | Sort): void {
+    public loadPage(pageEvent: SortAwarePageEvent): void {
         super.loadPage(pageEvent);
         this.findToken().subscribe((res) => this.dataSet = res);
     }
