@@ -9,6 +9,7 @@ import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs/internal/observable/interval';
 import {switchMap} from 'rxjs/operators';
 import {NewIco} from '../../../common/api/dataModels/Ico';
+import {SortAwarePageEvent} from '../../../common/dataTable/SortAwarePageEvent';
 import * as _ from 'lodash';
 
 @Component({
@@ -22,8 +23,9 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
     private icoSubscription: Subscription;
 
     public dataSet: Pageable<NewIco>;
+    // TODO: uncomment remoteID and competitors fields when API starts again to respond with remote_id field
     public availableDataTableColumns: GeneralDataTableColumn[] = [
-        // {columnName: 'Remote ID', columnKey: 'remote_id'}, // TODO: uncomment when API starts again to respond with remote_id field
+        // {columnName: 'Remote ID', columnKey: 'remote_id'}, 
         {columnName: 'Title', columnKey: 'title'},
         // {columnName: 'Competitors', columnKey: 'competitors', isArray: true},
         {columnName: 'Country', columnKey: 'country'},
@@ -53,7 +55,7 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
         this.icoSubscription.unsubscribe();
     }
 
-    public loadPage(pageEvent: PageEvent | Sort): void {
+    public loadPage(pageEvent: SortAwarePageEvent): void {
         super.loadPage(pageEvent);
         this.findIcoItem().subscribe((res) => this.dataSet = res);
     }
