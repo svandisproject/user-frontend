@@ -3,6 +3,7 @@ import {Pageable} from '../dataModels/pageable/Pageable';
 import {HttpService} from '../../http/HttpService';
 import {Filter} from '../dataModels/Filter';
 import {Sorting} from './Sorting';
+import * as _ from 'lodash';
 
 export class AbstractCrudResource<T> {
 
@@ -41,11 +42,11 @@ export class AbstractCrudResource<T> {
             page: page
         };
 
-        if (!sort) {
+        if (!_.get(sort, 'sort')) {
             params['direction'] = 'desc';
         } else {
-            params['direction'] = sort.direction;
             params['sort'] = sort.sort;
+            params['direction'] = sort.direction || 'desc';
         }
 
         return this.httpService.get(this.URL + '/filter', {

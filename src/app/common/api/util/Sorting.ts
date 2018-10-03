@@ -1,4 +1,6 @@
+import {SortDirection} from '@angular/material/sort/typings/sort-direction';
+
 export interface Sorting {
-    direction: 'desc' | 'asc';
+    direction: SortDirection;
     sort: string;
 }
