@@ -21,6 +21,13 @@ export class ResearchOnboardingComponent implements OnInit {
     public returnedSigHash: string;
     public returnedSvandisSigHash: string;
 
+    public isFacebookAuthenticated = false;
+    public isGoogleAuthenticated = false;
+    public isTwitterAuthenticated = false;
+    public isKyc = false;
+
+    public recoveryAddress = '';
+    public password = '';
 
     constructor(private workerService: WorkerService, private _formBuilder: FormBuilder, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
@@ -42,11 +49,42 @@ export class ResearchOnboardingComponent implements OnInit {
     }
 
     public createNewEthResearchUser(): void {
-        this.web3Service.createNewWalletAndStoreKey();
-        this.web3Service.signNewUser(this.expertSelected, '0x0').subscribe(returnedSig => this.returnedSigHash = returnedSig);
+        this.web3Service.createNewWalletAndStoreKey(this.password);
+        this.web3Service.signNewUser(
+            this.expertSelected,
+            '0x0',
+            this.password).subscribe(returnedSig => this.returnedSigHash = returnedSig);
+        this.password = '';
     }
 
     public resetDemo(): void {
         this.web3Service.resetThis();
+    }
+
+    public authenticateFacebook(): void {
+        this.isFacebookAuthenticated = !this.isFacebookAuthenticated;
+    }
+
+    public authenticateTwitter(): void {
+        this.isTwitterAuthenticated = !this.isTwitterAuthenticated;
+    }
+
+    public authenticateGoogle(): void {
+        this.isGoogleAuthenticated = !this.isGoogleAuthenticated;
+    }
+
+    public authenticateKyc(): void {
+        this.isKyc = !this.isKyc;
+    }
+
+    public downloadKeystore(): void {
+        this.web3Service.downloadMyKeystore();
+    }
+
+    public expertSelectedAndisValidEthAddress(): boolean {
+        if (!this.expertSelected) {
+            return false;
+        }
+        return this.web3Service.isEthereumAddress(this.recoveryAddress);
     }
 }

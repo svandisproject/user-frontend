@@ -12,5 +12,8 @@ export declare class Web3Interface {
             recover(...args): any
         }
     };
+    utils: {
+        isAddress(...args): any
+    };
     constructor(args?: any)
 }

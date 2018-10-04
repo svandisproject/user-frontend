@@ -13,7 +13,7 @@
                         <div class="col-sm-12 centered-item complete-width">
                             <button complete-width mat-stroked-button matStepperNext color="accent" >CLICK HERE TO ONBOARD</button>
                             <mat-divider></mat-divider>
-                            <button complete-width mat-stroked-button color="warn" (click)="resetDemo()">Reset Onboard Demo</button>
+                            <button complete-width mat-stroked-button color="warn" (click)="resetDemo()" style="margin-left: 20px;">Reset Onboard Demo</button>
                         </div>
                     </form>
                 </mat-step>
@@ -26,14 +26,15 @@
                     </div>
                     <mat-grid-list [cols]="2" [gutterSize]="5" rowHeight="7:2">
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
-                            <mat-card>
+                            <mat-card (click)="authenticateFacebook()">
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
                                             <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                                         </div>
                                         <div class="text-card-width">
-                        <span class="add-text-color">
+                        <div *ngIf="!isFacebookAuthenticated">
+                                            <span class="add-text-color">
                         Add
                         </span><br>
                                             <span>
@@ -42,19 +43,27 @@
                                             <span class ="grey-text-color">
                         (+10 SVN)
                         </span>
+                        </div>
+                        <div *ngIf="isFacebookAuthenticated">
+                                                <span class="completed-text-color">
+                        Facebook Authentication Complete
+                        </span><br>
+                        (+10 Bonus SVN Incoming)
+                                            </div>
                                         </div>
                                     </div>
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
-                            <mat-card>
+                            <mat-card (click)="authenticateTwitter()">
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
                                             <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                                         </div>
                                         <div class="text-card-width">
+                        <div *ngIf="!isTwitterAuthenticated">
                         <span class="add-text-color">
                         Add
                         </span><br>
@@ -64,19 +73,27 @@
                                             <span class ="grey-text-color">
                         (+10 SVN)
                         </span>
+                        </div>
+                                            <div *ngIf="isTwitterAuthenticated">
+                                                <span class="completed-text-color">
+                        Twitter Authentication Complete
+                        </span><br>
+                                                (+10 Bonus SVN Incoming)
+                                            </div>
                                         </div>
                                     </div>
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
-                            <mat-card>
+                            <mat-card (click)="authenticateGoogle()">
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
                                             <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                                         </div>
                                         <div class="text-card-width">
+                        <div *ngIf="!isGoogleAuthenticated">
                         <span class="add-text-color">
                         Add
                         </span><br>
@@ -86,19 +103,27 @@
                                             <span class ="grey-text-color">
                         (+10 SVN)
                         </span>
+                        </div>
+                                            <div *ngIf="isGoogleAuthenticated">
+                                                <span class="completed-text-color">
+                        Google Authentication Complete
+                        </span><br>
+                                                (+10 Bonus SVN Incoming)
+                                            </div>
                                         </div>
                                     </div>
                                 </mat-card-content>
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
-                            <mat-card>
+                            <mat-card  (click)="authenticateKyc()">
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
                                             <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                                         </div>
                                         <div class="text-card-width">
+                        <div *ngIf="!isKyc">
                         <span class="add-text-color">
                         Add
                         </span><br>
@@ -111,6 +136,13 @@
                                             <span class ="grey-text-color">
                         (+100 SVN)
                         </span>
+                        </div>
+                                            <div *ngIf="isKyc">
+                                                <span class="completed-text-color">
+                        KYC Complete
+                        </span><br>
+                                                (+100 Bonus SVN Incoming)
+                                            </div>
                                         </div>
                                     </div>
                                 </mat-card-content>
@@ -129,10 +161,9 @@
                 <mat-step >
                     <form >
                         <ng-template matStepLabel>Key Creation</ng-template>
-                        <p>Thank you for your details. This will give you the opportunity to participate to a <br>
-                            greater extent in the research communtiy.
+                        <p>Thank you for your details. This will give you the opportunity to participate to a
+                            greater extent in the research communtiy. Please choose an option below to manage your key:
                         </p>
-                        <p>Please choose an option below to manage your key:</p>
                         <div class="centered-item"><button mat-button mat-stroked-button color="accent"
                                                            [ngClass]="[beginnerButtonStyle]"
                                                            (click)="toggleButton()">CRYPTO BEGINNER</button>
@@ -148,38 +179,39 @@
                             </p>
                             <p style="margin-bottom:0px;" *ngIf="expertSelected">You have selected Expert Hodler Mode. Your browser will create a new key which you will use to confirm the information which you submit.
                                 This is a <b>Decentralized Solution</b> as only you can hold the keys to this signing account.
-                                As we do not hold your signing key, please take time to add recovery methods below. <br><br>
+                                As we do not hold your signing key, please take time to add recovery methods below. You must add a recovery address to proceed.<br><br>
                             </p>
                         </div>
                             <div class="centered-item" *ngIf="expertSelected">
                             <mat-card style="margin:0px;">
-                                <div class="divide-horizontal-10"></div>
+                                <div class="divide-horizontal-10">
                                     <div class="row">
                                         <div>
                                             <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                                         </div>
-                                        <div class="divide-horizontal-10"></div>
-                                        <div>
+                                    </div></div>
+                                    <div class="divide-horizontal-60">
+
                         <span class="add-text-color">
-                        Add
-                        </span><br>
-                                            <span>
                         Recovery Method
                         </span><br>
                                             <span>
-                        Add an Ethereum Wallet you control
+                        Add an Ethereum Wallet you control (+200 SVN)
                         </span><br>
-                                            <span class ="grey-text-color">
-                        (+200 SVN)
-                        </span>
-                                        </div>
+                                        <mat-form-field class="complete-width">
+                                            <textarea
+                                                    [style.fontSize.px]=17
+                                                    [value]="this.recoveryAddress"
+                                                    (input)="this.recoveryAddress = $event.target.value"
+                                                    matInput placeholder="Ethereum Address"></textarea>
+                                        </mat-form-field>
                                     </div>
                             </mat-card>
                             </div>
 
                         <mat-checkbox *ngIf="!expertSelected" [checked]="acceptedTerms" (change)="acceptedTerms = $event.checked ? true : false">
                             I agree to allow Svandis to hold a key to my Blockchain Identity to safeguard my account.</mat-checkbox>
-                        <mat-checkbox *ngIf="expertSelected" [checked]="acceptedTerms" (change)="acceptedTerms = $event.checked ? true : false">
+                        <mat-checkbox *ngIf="expertSelectedAndisValidEthAddress()" [checked]="acceptedTerms" (change)="acceptedTerms = $event.checked ? true : false">
                         I agree to personally manage my key. I understand that it is my sole responsibility to safeguard my account.</mat-checkbox>
                         <div col-lg-12>
                             <br><br>
@@ -187,7 +219,31 @@
                             <button mat-button mat-stroked-button matStepperPrevious>BACK</button>
                             <button mat-button (click)="stepper.reset()">CANCEL</button>
                             <span class= "divide-horizontal-20"></span>
-                            <button mat-button mat-stroked-button color="accent" [disabled]="!acceptedTerms" (click)="createNewEthResearchUser()" matStepperNext>CONTINUE</button>
+                            <button mat-button mat-stroked-button color="accent" [disabled]="!acceptedTerms" matStepperNext>CONTINUE</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <form>
+                        <ng-template matStepLabel>Add Password</ng-template>
+                        <div class="col-sm-12 complete-width centered-item">
+                            <p>Please add a password for the key that will be generated in your browser. Minimum 6 characters length.
+                            <br>
+                            Keep this key and password safe you will need it to sign the data you research later on.</p>
+                        </div>
+                        <mat-form-field class="limited-width centered-item">
+                                            <textarea class="centered-item"
+                                                    [style.fontSize.px]=17
+                                                    [value]="this.password"
+                                                    (input)="this.password = $event.target.value"
+                                                    matInput placeholder="Password"></textarea>
+                        </mat-form-field>
+                        <div class="col-sm-12 centered-item complete-width">
+                            <span class= "divide-horizontal-20"></span>
+                            <button mat-button mat-stroked-button matStepperPrevious>BACK</button>
+                            <button mat-button (click)="stepper.reset()">CANCEL</button>
+                            <span class= "divide-horizontal-20"></span>
+                            <button [disabled]="password.length < 5" mat-button mat-stroked-button color="accent" (click)="createNewEthResearchUser()"matStepperNext>CONTINUE</button>
                         </div>
                     </form>
                 </mat-step>
@@ -196,7 +252,7 @@
                     <p style="margin-bottom: 0px">Congratulations, you have now created a local signing key on the Ethereum Blockchain! You may now change or add Recovery Mechanisms.</p>
                     <mat-grid-list  style="margin-top: 15px" [cols]="2" [gutterSize]="5" rowHeight="5:1">
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
-                            <mat-card>
+                            <mat-card (click)="downloadKeystore()">
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
@@ -210,7 +266,7 @@
                         Local Private Key File
                         </span><br>
                                             <span class ="grey-text-color">
-                        (+10 SVN)
+                        (Please keep safe)
                         </span>
                                         </div>
                                     </div>
@@ -218,7 +274,7 @@
                             </mat-card>
                         </mat-grid-tile>
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
-                            <mat-card>
+                            <mat-card *ngIf="expertSelected">
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
@@ -226,13 +282,14 @@
                                         </div>
                                         <div class="text-card-width">
                         <span class="add-text-color">
-                        Change
+                        Change Recovery Method
                         </span><br>
                                             <span>
-                        Recovery Method
+                        Recovery Address: <br>
+                        {{recoveryAddress.substr(0, 18)}}...
                         </span><br>
                                             <span class ="grey-text-color">
-                        (-10 SVN)
+                        (-10 SVN to make changes)
                         </span>
                                         </div>
                                     </div>
