@@ -21,7 +21,7 @@
                     <ng-template matStepLabel>Kyc and Personal Info</ng-template>
                     <div class="centered-item">
                         <p>In order to move through the ranks of the research community
-                            <br>and receive SVN bonus tokens, please provide more information:
+                        <br>and receive SVN bonus tokens, please provide more information (Optional):
                         </p>
                     </div>
                     <mat-grid-list [cols]="2" [gutterSize]="5" rowHeight="7:2">
@@ -299,7 +299,7 @@
                     </mat-grid-list>
                     <div>
                         <div class="col-sm-12 centered-item complete-width">
-                            <button mat-button  (click)="stepper.reset()" color="accent">DONE</button>
+                            <button mat-button mat-stroked-button color="accent" (click)="stepper.reset()" color="accent">DONE</button>
                         </div>
                     </div>
                 </mat-step>
