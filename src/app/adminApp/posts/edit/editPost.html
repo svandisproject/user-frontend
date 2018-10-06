@@ -1,8 +1,66 @@
 <div class="grid-container">
     <h1 class="mat-h1">Edit post: {{postModel.title}}</h1>
-    <mat-grid-list cols="1" rowHeight="2:1">
-        <mat-grid-tile>
-            <ng-forms-material [inputs]="getInputs()" (formSubmit)="onSave($event)"></ng-forms-material>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <mat-card>
+        <mat-card-content>
+            <mat-form-field class="w-100" color="accent">
+                <input type="text"
+                       matInput
+                       (change)="onChange()"
+                       placeholder="Title"
+                       [(ngModel)]="postModel.title">
+            </mat-form-field>
+            <mat-form-field class="w-50 pr-3" color="accent">
+                <input type="text"
+                       matInput
+                       (change)="onChange()"
+                       placeholder="Url"
+                       [(ngModel)]="postModel.url">
+            </mat-form-field>
+            <mat-form-field class="w-50 pl-3" color="accent">
+                <input type="text"
+                       matInput
+                       (change)="onChange()"
+                       placeholder="Source"
+                       [(ngModel)]="postModel.source">
+            </mat-form-field>
+
+            <mat-form-field class="w-100" color="accent" appearance="fill">
+                <mat-label>Content</mat-label>
+                <textarea matInput
+                          (change)="onChange()"
+                          placeholder="Content"
+                          [(ngModel)]="postModel.content" rows="10">
+                </textarea>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" color="accent">
+                <mat-chip-list #chipList>
+                    <mat-chip
+                            *ngFor="let tag of postModel.tags"
+                            [removable]="true"
+                            (removed)="removeTag(tag)">
+                        {{tag.title}}
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                            placeholder="Tags ..."
+                            #tagsInput
+                            [matAutocomplete]="auto"
+                            [matChipInputFor]="chipList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="true"
+                            (matChipInputTokenEnd)="addTag($event)">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete"
+                                  (optionSelected)="selectTag($event)">
+                    <mat-option *ngFor="let tag of (getExistingTags() | async)" [value]="tag">
+                        {{tag.title}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+
+        </mat-card-content>
+        <mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading"></mat-progress-bar>
+    </mat-card>
 </div>
+<app-fab-save-btn [stateChanged]="hasChange" (click)="savePost()"></app-fab-save-btn>
