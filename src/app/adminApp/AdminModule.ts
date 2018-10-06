@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AdminNavComponent} from './adminNav/AdminNavComponent';
-import {MatListModule} from '@angular/material';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatListModule} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
 import {PostListComponent} from './posts/PostListComponent';
@@ -42,6 +42,10 @@ import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
     providers: [
         EditTagResolver,
         EditWebFeedResolver,
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+            useValue: {duration: 2500}
+        },
         EditPostResolver
     ],
     exports: [
