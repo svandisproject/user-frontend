@@ -1,18 +1,6 @@
 @import "../../colors";
 
 app-tag-tool {
-    .selected.warning {
-        color: $yellow-light;
-    }
-    .selected.arrow_upward {
-        color: $green-light;
-    }
-    .selected.offline_bolt {
-        color: $violet;
-    }
-    .selected.arrow_downward {
-        color: $red-orange;
-    }
     span.selected {
         color: #fff;
         text-decoration: underline;
@@ -20,4 +8,20 @@ app-tag-tool {
     .icon-wrapper mat-icon {
         margin: 0 3px;
     }
+}
+
+.selected.warning {
+    color: $yellow-light !important;
+}
+
+.selected.arrow_upward {
+    color: $green-light !important;
+}
+
+.selected.offline_bolt {
+    color: $violet !important;
+}
+
+.selected.arrow_downward {
+    color: $red-orange !important;
 }

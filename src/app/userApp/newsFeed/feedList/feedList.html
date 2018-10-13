@@ -9,21 +9,23 @@
             <tbody>
             <tr *ngFor="let feed of posts.content; let i = index;" class="news-feed-tr">
                 <td class="py-2 text-center">
-                    <span class="news-feed-header-link-date font-weight-light">{{feed.published_at | date: 'short'}}</span>
+                    <span class="news-feed-header-date font-weight-light">
+                        {{feed.published_at | date: 'short'}}
+                    </span>
                 </td>
                 <td>
-                    <a [href]="feed.url" class="news-feed-header-link px-1 py-1" target="_blank">
-                        <span class="news-feed-header font-weight-light">{{feed.title | truncate:[75, '...']}}</span>
-                        <span class="channel-red" *ngIf="feed.tags">
-                            <app-tag-tool [(post)]="posts.content[i]" [canEdit]="false"></app-tag-tool>
-                                <!--<ng-container *ngFor="let tag of feed.tags">{{tag.title}}</ng-container>-->
+                    <a [href]="feed.url" class="news-feed-header px-1 py-1" target="_blank">
+                        <span [ngClass]="getSentimentCssClass(feed) + ' news-feed-header font-weight-light'">
+                            {{feed.title | truncate:[75, '...']}}
                         </span>
+                        <app-tag-tool [post]="posts.content[i]" [canEdit]="false"></app-tag-tool>
                     </a>
                 </td>
                 <td>
-                    <span class="channel-red sentiment {{getSentimentIconNameForPost(feed)}}">
-                        <mat-icon>{{getSentimentIconNameForPost(feed)}}</mat-icon>
-                    </span>
+                    <!--<span class="channel-red sentiment {{getSentimentCssClass(feed)}}">-->
+                    <!--<mat-icon>{{getSentimentCssClass(feed)}}</mat-icon>-->
+                    <!--</span>-->
+                    <app-tag-tool [(post)]="posts.content[i]" *ngIf="isAdmin()"></app-tag-tool>
                 </td>
             </tr>
             </tbody>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import * as _ from 'lodash';
 import {TagService} from '../../common/api/services/TagService';
 import {Tag} from '../../common/api/dataModels/Tag';
@@ -9,11 +9,12 @@ import {PostService} from '../../common/api/services/PostService';
     selector: 'app-tag-tool',
     templateUrl: './tagTool.html',
     encapsulation: ViewEncapsulation.None,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./tagTool.scss'],
 })
 export class TagToolComponent implements OnInit {
     @Input() post: Post;
-    @Input() canEdit: boolean;
+    @Input() canEdit = true;
     @Output() postChange: EventEmitter<Post> = new EventEmitter<Post>();
 
     public availableTags: any[] = [
@@ -54,7 +55,6 @@ export class TagToolComponent implements OnInit {
             } else {
                 this.currentPost.tags.push(tag);
             }
-
             this.postService.saveOrCreate(this.currentPost, this.post.id)
                 .subscribe((post) => this.postChange.emit(post));
         }

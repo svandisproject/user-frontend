@@ -3,6 +3,7 @@ import {Post} from '../../../common/api/dataModels/Post';
 import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {PageEvent} from '@angular/material';
 import * as _ from 'lodash';
+import {UserAuthService} from '../../../common/user/UserAuthService';
 
 @Component({
     selector: 'app-feed-list',
@@ -19,6 +20,13 @@ export class FeedListComponent {
 
     public pageIndexSubtractor = 1;
 
+    constructor(protected userAuth: UserAuthService) {
+    }
+
+    public isAdmin(): boolean {
+        return this.userAuth.hasRoleAdmin();
+    }
+
     public onPageChange(pageEvent: PageEvent): void {
         this.pageChange.emit(pageEvent);
     }
@@ -31,7 +39,7 @@ export class FeedListComponent {
         return this.posts.page_request.page === this.posts.page_request.size;
     }
 
-    public getSentimentIconNameForPost(post): string {
+    public getSentimentCssClass(post): string {
         if (!_.isEmpty(post.tags)) {
             const tagNames = _.map(post.tags, tag => tag.title);
             if (_.includes(tagNames, 'Bullish')) {

@@ -17,7 +17,6 @@ import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerCompon
 import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {UserAppComponent} from './UserAppComponent';
-import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 import {UserSidebarComponent} from './sidebar/UserSidebarComponent';
 import {LayoutModule} from '@angular/cdk/layout';
 import {NewsFeedResolver} from './newsFeed/NewsFeedResolver';
@@ -27,6 +26,7 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
 import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
+import {NgArrayPipesModule} from 'ngx-pipes';
 
 @NgModule({
     imports: [
@@ -35,6 +35,7 @@ import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerCo
         CommonMaterialModule,
         LayoutModule,
         CommonModule,
+        NgArrayPipesModule,
         FormsModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
@@ -54,7 +55,6 @@ import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerCo
         AltCoinScreenerComponent,
         UserSidebarComponent,
         FeedListComponent,
-        FeedListLargeComponent,
         ScreenerColumnManagerComponent
     ],
     providers: [

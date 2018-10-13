@@ -11,6 +11,7 @@ import {WebFeedListComponent} from './webFeed/WebFeedListComponent';
 import {EditTagComponent} from './tags/edit/EditTagComponent';
 import {EditTagResolver} from './tags/edit/EditTagResolver';
 
+export const AdminDefaultRoute = ['admin', 'posts'];
 export const AdminRouteConfigs: Route[] = [
     {
         path: '',
