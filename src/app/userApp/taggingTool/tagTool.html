@@ -1,26 +1,49 @@
 <ng-container *ngIf="post">
     <ng-container *ngIf="canEdit; else showTags">
-        <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Sentiments">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item
+        <ng-container *ngIf="isMenu; else buttons">
+            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Sentiments">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item
+                        *ngFor="let tag of availableTags"
+                        [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
+                        (click)="setTag(tag);">
+                    <mat-icon ngClass="selected {{tag.icon}}">{{tag.icon}}</mat-icon>
+                    <span>{{tag.title}}</span>
+                </button>
+            </mat-menu>
+        </ng-container>
+        <ng-template #buttons>
+            <button mat-flat-button
                     *ngFor="let tag of availableTags"
                     [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
                     (click)="setTag(tag);">
                 <mat-icon ngClass="selected {{tag.icon}}">{{tag.icon}}</mat-icon>
                 <span>{{tag.title}}</span>
             </button>
-        </mat-menu>
+        </ng-template>
     </ng-container>
     <ng-template #showTags>
-        <span class="icon-wrapper">
+        <ng-container *ngIf="isMenu; else buttons">
+            <span class="icon-wrapper">
             <mat-icon mat-icon-button
                       *ngFor="let tag of availableTags"
                       [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
                       matTooltip="{{tag.title}}">
             {{tag.icon}}
-        </mat-icon>
+            </mat-icon>
         </span>
+        </ng-container>
+        <ng-template #buttons>
+            <button mat-flat-button
+                    *ngFor="let tag of availableTags"
+                    [disabled]="!canEdit"
+                    [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
+                    (click)="setTag(tag);">
+                <mat-icon ngClass="selected {{tag.icon}}">{{tag.icon}}</mat-icon>
+                <span>{{tag.title}}</span>
+            </button>
+        </ng-template>
     </ng-template>
 </ng-container>

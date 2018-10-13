@@ -2,7 +2,7 @@
      *ngIf="posts; else listLoading">
 
     <div class="container-fluid">
-        <table class="uk-table uk-table-divider list-alerts news-feed-header-table"
+        <table class="list-alerts news-feed-header-table"
                id="news-feed-list"
                *ngIf="posts.content.length > 0; else noResults">
 
@@ -14,17 +14,15 @@
                     </span>
                 </td>
                 <td>
-                    <a [href]="feed.url" class="news-feed-header px-1 py-1" target="_blank">
+                    <a href="#"
+                       (click)="selectPost.emit(feed); $event.preventDefault()" class="news-feed-header px-1 py-1">
                         <span [ngClass]="getSentimentCssClass(feed) + ' news-feed-header font-weight-light'">
-                            {{feed.title | truncate:[75, '...']}}
+                            {{feed.title | truncate:[65, '...']}}
                         </span>
                         <app-tag-tool [post]="posts.content[i]" [canEdit]="false"></app-tag-tool>
                     </a>
                 </td>
                 <td>
-                    <!--<span class="channel-red sentiment {{getSentimentCssClass(feed)}}">-->
-                    <!--<mat-icon>{{getSentimentCssClass(feed)}}</mat-icon>-->
-                    <!--</span>-->
                     <app-tag-tool [(post)]="posts.content[i]" *ngIf="isAdmin()"></app-tag-tool>
                 </td>
             </tr>

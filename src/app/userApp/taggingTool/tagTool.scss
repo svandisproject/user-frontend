@@ -8,6 +8,10 @@ app-tag-tool {
     .icon-wrapper mat-icon {
         margin: 0 3px;
     }
+
+    .mat-flat-button.mat-primary[disabled] {
+        background-color: transparent;
+    }
 }
 
 .selected.warning {

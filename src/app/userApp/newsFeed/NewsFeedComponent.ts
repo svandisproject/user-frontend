@@ -25,6 +25,7 @@ export class NewsFeedComponent {
     public posts: Pageable<Post>;
     public isFeedListSmall = true;
     public isLoading = false;
+    public selectedPost: Post;
 
     private pusherChannel: Channel;
     private currentFilterSettings: SearchFilterSettings = <SearchFilterSettings> {};

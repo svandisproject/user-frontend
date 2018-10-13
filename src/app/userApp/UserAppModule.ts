@@ -27,6 +27,7 @@ import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
 import {NgArrayPipesModule} from 'ngx-pipes';
+import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent';
 
 @NgModule({
     imports: [
@@ -54,6 +55,7 @@ import {NgArrayPipesModule} from 'ngx-pipes';
         IcoScreenerComponent,
         AltCoinScreenerComponent,
         UserSidebarComponent,
+        PostDetailsComponent,
         FeedListComponent,
         ScreenerColumnManagerComponent
     ],

@@ -16,6 +16,7 @@ export class FeedListComponent {
     @Input() posts: Pageable<Post>;
     @Input() isLoading = false;
 
+    @Output() selectPost: EventEmitter<Post> = new EventEmitter<Post>();
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
     public pageIndexSubtractor = 1;
