@@ -10,17 +10,18 @@
                         [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
                         (click)="setTag(tag);">
                     <mat-icon ngClass="selected {{tag.icon}}">{{tag.icon}}</mat-icon>
-                    <span>{{tag.title}}</span>
+                    <span *ngIf="!iconOnly">{{tag.title}}</span>
                 </button>
             </mat-menu>
         </ng-container>
         <ng-template #buttons>
-            <button mat-flat-button
+            <button mat-button
                     *ngFor="let tag of availableTags"
+                    [matTooltip]="iconOnly? tag.title : ''"
                     [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
                     (click)="setTag(tag);">
                 <mat-icon ngClass="selected {{tag.icon}}">{{tag.icon}}</mat-icon>
-                <span>{{tag.title}}</span>
+                <span *ngIf="!iconOnly">{{tag.title}}</span>
             </button>
         </ng-template>
     </ng-container>
@@ -42,7 +43,7 @@
                     [ngClass]="isSelected(tag) ? 'selected ' + tag.icon : ''"
                     (click)="setTag(tag);">
                 <mat-icon ngClass="selected {{tag.icon}}">{{tag.icon}}</mat-icon>
-                <span>{{tag.title}}</span>
+                <span *ngIf="!iconOnly">{{tag.title}}</span>
             </button>
         </ng-template>
     </ng-template>

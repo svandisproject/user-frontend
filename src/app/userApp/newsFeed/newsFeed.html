@@ -27,7 +27,9 @@
             </app-feed-list>
         </div>
         <div class="col-6" *ngIf="selectedPost">
-            <app-post-details [(post)]="selectedPost"></app-post-details>
+            <app-post-details [post]="selectedPost"
+                              (postChange)="updatePost($event)"
+                              (close)="selectedPost = null"></app-post-details>
         </div>
     </div>
 </div>

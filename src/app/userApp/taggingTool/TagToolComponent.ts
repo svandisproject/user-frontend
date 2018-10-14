@@ -15,6 +15,7 @@ import {PostService} from '../../common/api/services/PostService';
 export class TagToolComponent implements OnInit, OnChanges {
     @Input() post: Post;
     @Input() isMenu = true;
+    @Input() iconOnly = false;
     @Input() canEdit = true;
     @Output() postChange: EventEmitter<Post> = new EventEmitter<Post>();
 

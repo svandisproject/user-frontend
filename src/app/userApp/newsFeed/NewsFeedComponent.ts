@@ -14,7 +14,6 @@ import {NewsFeedPusherEvent} from './dataModels/NewsFeedPusherEvent';
 import {PusherService} from '../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
 import {PageEvent} from '@angular/material';
-import {Sorting} from '../../common/api/util/Sorting';
 
 @Component({
     selector: 'app-news-feed',
@@ -27,13 +26,16 @@ export class NewsFeedComponent {
     public isFeedListSmall = true;
     public isLoading = false;
     public selectedPost: Post;
+    public readonly itemsPerPage = 20;
 
     private pusherChannel: Channel;
     private currentFilterSettings: SearchFilterSettings = <SearchFilterSettings> {};
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
-    private sortOptions: Sorting = {
+
+    private sortOptions: any = {
         sort: 'published_at',
+        per_page: this.itemsPerPage,
         direction: 'desc'
     };
 
@@ -57,6 +59,13 @@ export class NewsFeedComponent {
 
     public toggleFeedList($event: boolean) {
         this.isFeedListSmall = $event;
+    }
+
+    public updatePost(post: Post) {
+        this.selectedPost = post;
+        const index = _.findIndex(this.posts.content, (p) => p.id === post.id);
+        this.posts.content[index] = post;
+        this.posts = _.cloneDeep(this.posts);
     }
 
     private subscribeToPusherNews(): void {

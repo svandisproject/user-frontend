@@ -8,7 +8,7 @@
 
         <tbody>
         <ng-container matColumnDef="published_at">
-            <th mat-header-cell *matHeaderCellDef>Published at</th>
+            <th mat-header-cell *matHeaderCellDef>Published</th>
             <td mat-cell *matCellDef="let feed">
                 <span class="news-feed-header line-breaker">{{getPublishedAt(feed.published_at)}}</span>
             </td>
@@ -17,20 +17,14 @@
             <th mat-header-cell *matHeaderCellDef> Title</th>
             <td mat-cell *matCellDef="let feed">
                 <span class="news-feed-header py-1">
-                        <span [ngClass]="getSentimentCssClass(feed) + ' news-feed-header font-weight-light'">
-                            {{feed.title | truncate:[65, '...']}}
+                        <span [class]="getSentimentCssClass(feed) + ' news-feed-header font-weight-light'">
+                            {{feed.title | truncate: [60, '...']}}
                         </span>
                     <app-tag-tool [post]="feed" [canEdit]="false"></app-tag-tool>
                 </span>
                 <p>
                     <small>Source: {{getSource(feed.source)}}</small>
                 </p>
-            </td>
-        </ng-container>
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let feed;let i = index;" ngClass="text-right">
-                <app-tag-tool [(post)]="posts.content[i]" *ngIf="isAdmin()"></app-tag-tool>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
