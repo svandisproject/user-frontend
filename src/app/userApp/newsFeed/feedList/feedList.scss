@@ -34,6 +34,16 @@ app-feed-list {
         }
     }
 
+    .mat-column-title {
+        p {
+            margin: 0;
+            small {
+                font-weight: lighter;
+                color: grey;
+            }
+        }
+    }
+
     td.py-2 {
         width: 10%;
     }

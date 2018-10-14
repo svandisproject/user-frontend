@@ -105,6 +105,9 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         if (short) {
             str = _.truncate(str);
         }
+        if (column.isFlag) {
+            return str.toLowerCase();
+        }
         return str;
     }
 

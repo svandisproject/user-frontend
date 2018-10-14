@@ -80,6 +80,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/luxon/build/global/luxon.js",
               "node_modules/pusher-js/dist/web/pusher.min.js"
             ],
             "styles": [

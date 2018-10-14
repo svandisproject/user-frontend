@@ -1,7 +1,7 @@
 <ng-container *ngIf="post">
     <ng-container *ngIf="canEdit; else showTags">
         <ng-container *ngIf="isMenu; else buttons">
-            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Sentiments">
+            <button mat-icon-button [matMenuTriggerFor]="menu" matTooltip="Tags">
                 <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">

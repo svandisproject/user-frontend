@@ -14,6 +14,7 @@ import {NewsFeedPusherEvent} from './dataModels/NewsFeedPusherEvent';
 import {PusherService} from '../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
 import {PageEvent} from '@angular/material';
+import {Sorting} from '../../common/api/util/Sorting';
 
 @Component({
     selector: 'app-news-feed',
@@ -31,10 +32,14 @@ export class NewsFeedComponent {
     private currentFilterSettings: SearchFilterSettings = <SearchFilterSettings> {};
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
+    private sortOptions: Sorting = {
+        sort: 'published_at',
+        direction: 'desc'
+    };
 
     constructor(private postService: PostService,
                 private pusherService: PusherService) {
-        this.postService.findAll()
+        this.postService.findAll(this.sortOptions)
             .subscribe(posts => {
                 this.posts = posts;
                 this.subscribeToPusherNews();
@@ -64,7 +69,7 @@ export class NewsFeedComponent {
 
     private filterPosts(searchFilters: SearchFilterSettings, page?: number): void {
         this.isLoading = true;
-        this.postService.findBy(this.buildFilters(searchFilters), page)
+        this.postService.findBy(this.buildFilters(searchFilters), page, this.sortOptions)
             .pipe(
                 catchError((err: HttpErrorResponse) => {
                     if (err.status === 404) {

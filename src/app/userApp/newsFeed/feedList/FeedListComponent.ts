@@ -4,6 +4,7 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {PageEvent} from '@angular/material';
 import * as _ from 'lodash';
 import {UserAuthService} from '../../../common/user/UserAuthService';
+import {DateTime, Duration} from 'luxon';
 
 @Component({
     selector: 'app-feed-list',
@@ -36,6 +37,20 @@ export class FeedListComponent {
 
     public isFirstPage(): boolean {
         return this.posts.page_request.page === 1;
+    }
+
+    public getSource(url: string): string {
+        return new URL(url).hostname;
+    }
+
+    public getPublishedAt(date: string): string {
+        const duration = Duration.fromMillis(new Date().getTime() - new Date(date).getTime());
+        console.log(duration.as('hours'));
+        if (duration.as('hours') > 23) {
+            return DateTime.fromJSDate(new Date(date)).toFormat('M/d/yy, h:mm');
+        } else {
+            return duration.toFormat('h \'hours\' ago');
+        }
     }
 
     public isLastPage(): boolean {
