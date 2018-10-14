@@ -21,9 +21,7 @@ app-feed-list {
     }
 
     .icon-wrapper mat-icon {
-        margin: 0;
-        width: 15px;
-        height: 15px;
+        background-color: transparent
     }
 
     .sentiment, .news-feed-header {

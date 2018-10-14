@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import * as _ from 'lodash';
 import {TagService} from '../../common/api/services/TagService';
 import {Tag} from '../../common/api/dataModels/Tag';
@@ -12,7 +12,7 @@ import {PostService} from '../../common/api/services/PostService';
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./tagTool.scss'],
 })
-export class TagToolComponent implements OnInit {
+export class TagToolComponent implements OnInit, OnChanges {
     @Input() post: Post;
     @Input() isMenu = true;
     @Input() canEdit = true;
@@ -31,20 +31,11 @@ export class TagToolComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        _.intersectionWith(this.availableTags, this.tagService.getMainTags(), (arrVal, other) => {
-            if (arrVal.title === other.title) {
-                arrVal.id = other.id;
-            }
-        });
-        this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id) as AvailableTags[];
-        this.currentPost = _.cloneDeep(this.post);
-        if (!this.canEdit) {
+        this.initAvailableTags();
+    }
 
-            this.availableTags = _.filter(this.availableTags, (tag) => {
-                tag = _.omit(tag, ['icon']);
-                return _.some(this.currentPost.tags, tag);
-            });
-        }
+    ngOnChanges(): void {
+        this.initAvailableTags();
     }
 
     public setTag(tag: Tag): void {
@@ -64,6 +55,23 @@ export class TagToolComponent implements OnInit {
     public isSelected(tag: Tag): boolean {
         tag = _.omit(tag, ['icon']) as Tag;
         return _.some(this.currentPost.tags, tag);
+    }
+
+    private initAvailableTags() {
+        _.intersectionWith(this.availableTags, this.tagService.getMainTags(), (arrVal, other) => {
+            if (arrVal.title === other.title) {
+                arrVal.id = other.id;
+            }
+        });
+        this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id) as AvailableTags[];
+        this.currentPost = _.cloneDeep(this.post);
+        if (!this.canEdit) {
+
+            this.availableTags = _.filter(this.availableTags, (tag) => {
+                tag = _.omit(tag, ['icon']);
+                return _.some(this.currentPost.tags, tag);
+            });
+        }
     }
 }
 
