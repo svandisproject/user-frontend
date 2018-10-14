@@ -7,6 +7,7 @@ import {Filter} from '../dataModels/Filter';
 import * as _ from 'lodash';
 import {MatSnackBar} from '@angular/material';
 import {tap} from 'rxjs/operators';
+import {Sorting} from '../util/Sorting';
 
 @Injectable()
 export class PostService {
@@ -14,12 +15,12 @@ export class PostService {
                 private matSnackBar: MatSnackBar) {
     }
 
-    public findAll(): Observable<Pageable<Post>> {
-        return this.postResource.findAll();
+    public findAll(params?: any): Observable<Pageable<Post>> {
+        return this.postResource.findAll(false, params);
     }
 
-    public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Post>> {
-        return this.postResource.findBy(filters, String(page));
+    public findBy(filters: Filter[], page: number = 1, sort?: Sorting): Observable<Pageable<Post>> {
+        return this.postResource.findBy(filters, String(page), sort);
     }
 
     public findById(postId: string): Observable<Post> {

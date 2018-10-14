@@ -8,16 +8,28 @@
         </div>
         <mat-divider class="mb-4"></mat-divider>
     </div>
+</div>
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12">
-            <div app-search-form-inline="true"
-                 (termsChange)="onFilterChange($event)">
+        <div class="list" [ngClass]="{'col-6': selectedPost, 'col-12': !selectedPost}">
+            <div class="row">
+                <div class="col-12">
+                    <div app-search-form-inline="true"
+                         (termsChange)="onFilterChange($event)">
+                    </div>
+                </div>
             </div>
+            <app-feed-list [posts]="posts"
+                           [isLoading]="isLoading"
+                           (selectPost)="selectedPost = $event"
+                           (pageChange)="loadPage($event)"
+                           *ngIf="isFeedListSmall">
+            </app-feed-list>
+        </div>
+        <div class="col-6" *ngIf="selectedPost">
+            <app-post-details [post]="selectedPost"
+                              (postChange)="updatePost($event)"
+                              (close)="selectedPost = null"></app-post-details>
         </div>
     </div>
 </div>
-<app-feed-list [posts]="posts"
-               [isLoading]="isLoading"
-               (pageChange)="loadPage($event)"
-               *ngIf="isFeedListSmall">
-</app-feed-list>

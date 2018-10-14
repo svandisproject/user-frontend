@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {AuthService} from '../common/auth/AuthService';
 import {Router} from '@angular/router';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
@@ -7,7 +7,8 @@ import {UserAuthService} from '../common/user/UserAuthService';
 @Component({
     selector: 'app-user-app',
     templateUrl: './userApp.html',
-    styleUrls: ['userApp.scss']
+    styleUrls: ['userApp.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class UserAppComponent {

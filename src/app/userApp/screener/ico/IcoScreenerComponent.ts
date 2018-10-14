@@ -4,7 +4,6 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {IcoService} from '../../../common/api/services/IcoService';
 import {GeneralDataTableColumn} from '../../../common/dataTable/GeneralDataTableColumn';
 import {Subscription} from 'rxjs/Subscription';
-import {PageEvent, Sort} from '@angular/material';
 import {Observable} from 'rxjs/Observable';
 import {interval} from 'rxjs/internal/observable/interval';
 import {switchMap} from 'rxjs/operators';
@@ -28,7 +27,7 @@ export class IcoScreenerComponent extends GeneralScreenerComponent implements On
         // {columnName: 'Remote ID', columnKey: 'remote_id'}, 
         {columnName: 'Title', columnKey: 'title'},
         // {columnName: 'Competitors', columnKey: 'competitors', isArray: true},
-        {columnName: 'Country', columnKey: 'country'},
+        {columnName: 'Country', columnKey: 'country', isFlag: true},
         {columnName: 'Industries', columnKey: 'industries', isArray: true, arrayItemKey: 'title'},
         {columnName: 'Partners', columnKey: 'partners', isArray: true},
         {columnName: 'Price', columnKey: 'asset.price'},

@@ -8,7 +8,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {AppCommonProvidersModule} from './common/AppCommonProvidersModule';
 import {AppCommonModule} from './common/AppCommonModule';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatPaginatorModule, MatTableModule} from '@angular/material';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatPaginatorModule, MatTableModule} from '@angular/material';
 import {BlockUIModule} from 'ng-block-ui';
 import {AppRouting} from './AppRouting';
 
@@ -37,6 +37,12 @@ import {AppRouting} from './AppRouting';
     exports: [
         AppCommonProvidersModule,
         TranslateModule
+    ],
+    providers: [
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+            useValue: {duration: 3500}
+        }
     ],
     bootstrap: [AppComponent]
 })

@@ -20,15 +20,8 @@ app-feed-list {
         }
     }
 
-    .news-feed-header-table {
-        border-spacing: 0;
-        width: 100%;
-    }
-
     .icon-wrapper mat-icon {
-        margin: 0;
-        width: 15px;
-        height: 15px;
+        background-color: transparent
     }
 
     .sentiment, .news-feed-header {
@@ -41,7 +34,28 @@ app-feed-list {
         }
     }
 
+    .mat-column-title {
+        p {
+            margin: 0;
+            small {
+                font-weight: lighter;
+                color: grey;
+            }
+        }
+    }
+
     td.py-2 {
-        width: 15%;
+        width: 10%;
+    }
+
+    .mat-row {
+        cursor: pointer;
+    }
+
+    .line-breaker {
+        white-space: pre-line;
+    }
+    .selected {
+        background-color: #45b53f21;
     }
 }
