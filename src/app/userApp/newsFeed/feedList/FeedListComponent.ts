@@ -20,6 +20,8 @@ export class FeedListComponent {
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
     public pageIndexSubtractor = 1;
+    public displayedColumns: string[] = ['published_at', 'title', 'action'];
+    public selectedRow: Post;
 
     constructor(protected userAuth: UserAuthService) {
     }

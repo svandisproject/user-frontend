@@ -20,11 +20,6 @@ app-feed-list {
         }
     }
 
-    .news-feed-header-table {
-        border-spacing: 0;
-        width: 100%;
-    }
-
     .icon-wrapper mat-icon {
         margin: 0;
         width: 15px;
@@ -42,6 +37,17 @@ app-feed-list {
     }
 
     td.py-2 {
-        width: 15%;
+        width: 10%;
+    }
+
+    .mat-row {
+        cursor: pointer;
+    }
+
+    .line-breaker {
+        white-space: pre-line;
+    }
+    .selected {
+        background-color: #45b53f21;
     }
 }

@@ -17,6 +17,10 @@ export class PostDetailsComponent implements OnInit {
     ngOnInit() {
     }
 
+    public readMore(url: string) {
+        window.open(url, '_blank');
+    }
+
     public isAdmin(): boolean {
         return this.userAuthService.hasRoleAdmin();
     }

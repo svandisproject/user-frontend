@@ -41,6 +41,7 @@
     "jquery": "^3.3.1",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.5",
+    "luxon": "^1.4.3",
     "material-icons": "^0.2.3",
     "ng-block-ui": "^1.0.4",
     "ng-socket-io": "^0.2.4",

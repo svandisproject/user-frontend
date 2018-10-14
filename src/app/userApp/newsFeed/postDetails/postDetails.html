@@ -11,7 +11,9 @@
         <div class="col-12">
             <h4>{{post.title}}</h4>
             {{post.content | truncate: [250, '...']}}
-            <a [href]="post.url" class="news-feed-header px-1 py-1" target="_blank">Read more</a>
+        </div>
+        <div class="col-12 mt-3 text-right">
+            <button mat-button color="accent" (click)="readMore(post.url)">Read more</button>
         </div>
     </div>
 </div>
