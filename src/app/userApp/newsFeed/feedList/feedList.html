@@ -18,12 +18,12 @@
             <td mat-cell *matCellDef="let feed">
                 <span class="news-feed-header py-1">
                         <span [class]="getSentimentCssClass(feed) + ' news-feed-header font-weight-light'">
-                            {{feed.title | truncate: [60, '...']}}
+                            {{feed.title | truncate: [(layout.isMobile() | async) ? 60 : 150, '...']}}
                         </span>
                     <app-tag-tool [post]="feed" [canEdit]="false"></app-tag-tool>
                 </span>
                 <p>
-                    <small>Source: {{getSource(feed.source)}}</small>
+                    <small>{{getSource(feed.source)}}</small>
                 </p>
             </td>
         </ng-container>

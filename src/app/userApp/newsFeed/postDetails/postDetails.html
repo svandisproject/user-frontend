@@ -7,14 +7,14 @@
             <mat-icon>close</mat-icon>
         </button>
         <mat-card-title>
-            {{post.title}}
+            <h3>{{post.title}}</h3>
         </mat-card-title>
         <mat-card-subtitle>
             <small>Source: {{getSource(post.source)}}</small>
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        {{post.content | truncate: [300, ' ...']}}
+        {{post.content | truncate: [1500, ' ...']}}
     </mat-card-content>
     <mat-card-actions [align]="'end'">
         <button mat-button color="accent" (click)="readMore(post.url)">Read more</button>

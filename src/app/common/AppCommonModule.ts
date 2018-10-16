@@ -19,6 +19,7 @@ import {DataTableModule} from './dataTable/DataTableModule';
 import {CommonMaterialModule} from './material/CommonMaterialModule';
 import {CreateButtonComponent} from './buttons/CreateButtonComponent';
 import {SaveButtonComponent} from './buttons/SaveButtonComponent';
+import {LayoutService} from './layout/LayoutService';
 
 
 @NgModule({
@@ -34,6 +35,9 @@ import {SaveButtonComponent} from './buttons/SaveButtonComponent';
         CommonMaterialModule,
         DataTableModule,
         TranslateModule
+    ],
+    providers: [
+        LayoutService
     ],
     declarations: [
         ListReversePipe,

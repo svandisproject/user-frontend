@@ -23,7 +23,7 @@ export class TagToolComponent implements OnInit, OnChanges {
         {title: 'Bullish', icon: 'arrow_upward'},
         {title: 'Bearish', icon: 'arrow_downward'},
         {title: 'Important', icon: 'warning'},
-        {title: 'Toxic', icon: 'offline_bolt'}
+        // {title: 'Toxic', icon: 'offline_bolt'}
     ];
     public currentPost: Post;
 
