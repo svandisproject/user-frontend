@@ -5,6 +5,7 @@ import {PageEvent} from '@angular/material';
 import * as _ from 'lodash';
 import {UserAuthService} from '../../../common/user/UserAuthService';
 import {DateTime, Duration} from 'luxon';
+import {LayoutService} from '../../../common/layout/LayoutService';
 
 @Component({
     selector: 'app-feed-list',
@@ -24,7 +25,8 @@ export class FeedListComponent {
     public displayedColumns: string[] = ['published_at', 'title'];
     public selectedRow: Post;
 
-    constructor(protected userAuth: UserAuthService) {
+    constructor(protected userAuth: UserAuthService,
+                public layout: LayoutService) {
     }
 
     public isAdmin(): boolean {
@@ -47,11 +49,11 @@ export class FeedListComponent {
         if (hours > 23) {
             return DateTime.fromJSDate(new Date(date)).toFormat('M/d/yy, h:mm');
         } else if (hours < 1) {
-            return duration.toFormat('m\'m\' ago');
+            return duration.toFormat('m\'m\'');
         } else if (minutes < 1) {
             return '1m ago';
         } else {
-            return duration.toFormat('h\'h\' ago');
+            return duration.toFormat('h\'h\'');
         }
     }
 

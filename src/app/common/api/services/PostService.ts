@@ -30,10 +30,10 @@ export class PostService {
     public saveOrCreate(post: Post, id?: string): Observable<Post> {
         if (id) {
             return this.postResource.update(id, {post: this.postToPostUpdate(post) as any})
-                .pipe(tap(() => this.matSnackBar.open('Post Updated')));
+                .pipe(tap(() => this.matSnackBar.open('Post Updated', null, {verticalPosition: 'top'})));
         } else {
             return this.postResource.create({post: post})
-                .pipe(tap(() => this.matSnackBar.open('Post Created')));
+                .pipe(tap(() => this.matSnackBar.open('Post Created', null, {verticalPosition: 'top'})));
         }
     }
 
