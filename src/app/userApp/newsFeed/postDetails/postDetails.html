@@ -14,7 +14,9 @@
         </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        {{post.content | truncate: [1500, ' ...']}}
+        <div class="content-wrapper">
+            {{post.content | truncate: [1500, ' ...']}}
+        </div>
     </mat-card-content>
     <mat-card-actions [align]="'end'">
         <button mat-button color="accent" (click)="readMore(post.url)">Read more</button>

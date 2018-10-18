@@ -5,7 +5,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 import {AppCommonModule} from '../common/AppCommonModule';
-import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {FormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
@@ -50,7 +49,6 @@ import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent'
         NewsFeedComponent,
         UserProfileDetailsComponent,
         WorkerUIComponent,
-        SearchFilterComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,

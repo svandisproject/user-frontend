@@ -16,6 +16,7 @@ import {
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
     MatSnackBarModule,
@@ -31,6 +32,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
     imports: [
         MatListModule,
+        MatSelectModule,
         MatTabsModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
@@ -67,6 +69,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatProgressBarModule,
         MatChipsModule,
         MatTooltipModule,
+        MatSelectModule,
         MatAutocompleteModule,
         MatCheckboxModule,
         MatButtonModule,

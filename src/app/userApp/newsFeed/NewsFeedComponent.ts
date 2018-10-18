@@ -54,9 +54,9 @@ export class NewsFeedComponent {
         this.filterPosts(this.currentFilterSettings, this.currentPageIndex + 1);
     }
 
-    public onFilterChange($event: FilterItem[]): void {
-        this.currentFilterSettings['searchTerms'] = $event;
-        this.filterPosts(this.currentFilterSettings);
+    public onFilterChange($event: FilterItem): void {
+        this.currentFilterSettings['searchTerms'] = [$event];
+        this.filterPosts(this.currentFilterSettings, this.currentPageIndex + 1);
     }
 
     public updatePost(post: Post) {

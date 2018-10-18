@@ -12,19 +12,40 @@
 <div class="container-fluid">
     <div class="row">
         <div class="list" [ngClass]="{'col-6': selectedPost, 'col-12': !selectedPost}">
-            <div class="row">
-                <div class="col-12">
-                    <div app-search-form-inline="true"
-                         (termsChange)="onFilterChange($event)">
+            <mat-card>
+                <mat-card-content>
+                    <div class="row d-flex align-items-end">
+                        <div class="col-4 col-sm-12 col-md-4">
+                            <mat-form-field color="accent" class="mr-1 w-100">
+                                <mat-select placeholder="Sentiment">
+                                    <mat-option>
+                                        test
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4 col-sm-12 col-md-4">
+                            <mat-form-field color="accent" class="mr-1 w-100">
+                                <mat-select placeholder="Category">
+                                    <mat-option>
+                                        test
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4 col-sm-12 col-md-4">
+                            <app-search-form (termChange)="onFilterChange($event)" class="w-100"></app-search-form>
+
+                        </div>
                     </div>
-                </div>
-            </div>
-            <app-feed-list [posts]="posts"
-                           [isLoading]="isLoading"
-                           (selectPost)="selectedPost = $event"
-                           (pageChange)="loadPage($event)"
-                           *ngIf="isFeedListSmall">
-            </app-feed-list>
+                    <app-feed-list [posts]="posts"
+                                   [isLoading]="isLoading"
+                                   (selectPost)="selectedPost = $event"
+                                   (pageChange)="loadPage($event)"
+                                   *ngIf="isFeedListSmall">
+                    </app-feed-list>
+                </mat-card-content>
+            </mat-card>
         </div>
         <div class="col-6" *ngIf="selectedPost">
             <app-post-details [post]="selectedPost"

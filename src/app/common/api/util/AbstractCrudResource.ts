@@ -37,7 +37,7 @@ export class AbstractCrudResource<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
     }
 
-    public findBy(filters: Filter[], page: string = '1', sort?: Sorting): Observable<Pageable<T>> {
+    public findBy(filters: Filter[], page: string = '1', sort?: Sorting, perPage?: number): Observable<Pageable<T>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
         const params = {
             filter: encodedFilters,
@@ -48,6 +48,9 @@ export class AbstractCrudResource<T> {
             params['direction'] = 'desc';
         } else {
             params['sort'] = sort.sort;
+            if (perPage) {
+                params['per_page'] = perPage;
+            }
             params['direction'] = sort.direction || 'desc';
         }
 
