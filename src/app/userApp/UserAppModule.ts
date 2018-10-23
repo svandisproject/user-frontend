@@ -5,7 +5,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 import {AppCommonModule} from '../common/AppCommonModule';
-import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {FormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
@@ -28,6 +27,7 @@ import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
 import {NgArrayPipesModule} from 'ngx-pipes';
 import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent';
+import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
 
 @NgModule({
     imports: [
@@ -50,12 +50,12 @@ import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent'
         NewsFeedComponent,
         UserProfileDetailsComponent,
         WorkerUIComponent,
-        SearchFilterComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,
         UserSidebarComponent,
         PostDetailsComponent,
+        TagFilterComponent,
         FeedListComponent,
         ScreenerColumnManagerComponent
     ],

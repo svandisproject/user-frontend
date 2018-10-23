@@ -11,6 +11,7 @@ import {Sorting} from '../util/Sorting';
 
 @Injectable()
 export class PostService {
+    private readonly perPage = 50;
     constructor(private postResource: PostResource,
                 private matSnackBar: MatSnackBar) {
     }
@@ -19,8 +20,8 @@ export class PostService {
         return this.postResource.findAll(false, params);
     }
 
-    public findBy(filters: Filter[], page: number = 1, sort?: Sorting): Observable<Pageable<Post>> {
-        return this.postResource.findBy(filters, String(page), sort);
+    public findBy(filters: Filter[], page: number = 1, sort?: Sorting, perPage = this.perPage): Observable<Pageable<Post>> {
+        return this.postResource.findBy(filters, String(page), sort, perPage);
     }
 
     public findById(postId: string): Observable<Post> {

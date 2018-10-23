@@ -10,4 +10,8 @@ app-post-details {
     .mat-card-content {
         white-space: pre-wrap;
     }
+    .content-wrapper {
+        overflow: auto;
+        max-height: 25vh;
+    }
 }

@@ -18,6 +18,7 @@ export class PostDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.preProcessContent();
     }
 
     public readMore(url: string) {
@@ -31,4 +32,10 @@ export class PostDetailsComponent implements OnInit {
     public isAdmin(): boolean {
         return this.userAuthService.hasRoleAdmin();
     }
+
+    private preProcessContent() {
+        this.post.content = this.post.content.replace(/↵↵/gm, '');
+        this.post.content = this.post.content.replace(/^\s*\n/gm, '');
+    }
+
 }

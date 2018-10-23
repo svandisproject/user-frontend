@@ -16,6 +16,7 @@ import {LayoutService} from '../../../common/layout/LayoutService';
 })
 export class FeedListComponent {
     @Input() posts: Pageable<Post>;
+    @Input() pageSize = 20;
     @Input() isLoading = false;
 
     @Output() selectPost: EventEmitter<Post> = new EventEmitter<Post>();
