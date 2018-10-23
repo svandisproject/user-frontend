@@ -27,6 +27,7 @@ import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
 import {NgArrayPipesModule} from 'ngx-pipes';
 import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent';
+import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
 
 @NgModule({
     imports: [
@@ -54,6 +55,7 @@ import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent'
         AltCoinScreenerComponent,
         UserSidebarComponent,
         PostDetailsComponent,
+        TagFilterComponent,
         FeedListComponent,
         ScreenerColumnManagerComponent
     ],

@@ -25,6 +25,7 @@ export class NewsFeedComponent {
     public isFeedListSmall = true;
     public isLoading = false;
     public selectedPost: Post;
+    public currentFilter: Filter;
     public readonly itemsPerPage = 50;
 
     private pusherChannel: Channel;
@@ -32,7 +33,6 @@ export class NewsFeedComponent {
     private currentPageIndex = 0;
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
-
     private sortOptions: any = {
         sort: 'published_at',
         per_page: this.itemsPerPage,
@@ -54,9 +54,14 @@ export class NewsFeedComponent {
         this.filterPosts(this.currentFilterSettings, this.currentPageIndex + 1);
     }
 
-    public onFilterChange($event: FilterItem): void {
+    public onSearch($event: FilterItem): void {
         this.currentFilterSettings['searchTerms'] = [$event];
-        this.filterPosts(this.currentFilterSettings, this.currentPageIndex + 1);
+        this.filterPosts(this.currentFilterSettings, 1);
+    }
+
+    public onTagFilter(filter: Filter) {
+        this.currentFilter = filter;
+        this.filterPosts(this.currentFilterSettings, 1);
     }
 
     public updatePost(post: Post) {
@@ -76,8 +81,16 @@ export class NewsFeedComponent {
     }
 
     private filterPosts(searchFilters: SearchFilterSettings, page?: number): void {
+        let filters = this.buildFilters(searchFilters);
+        if (this.currentFilter) {
+            filters = _.concat(filters, [this.currentFilter]);
+        }
+        this.loadPosts(filters, page);
+    }
+
+    private loadPosts(filters: Filter[], page: number) {
         this.isLoading = true;
-        this.postService.findBy(this.buildFilters(searchFilters), page, this.sortOptions)
+        this.postService.findBy(filters, page, this.sortOptions)
             .pipe(
                 catchError((err: HttpErrorResponse) => {
                     if (err.status === 404) {

@@ -34,7 +34,7 @@
         </tbody>
     </table>
     <mat-paginator [length]="posts.total"
-                   [pageSize]="20"
+                   [pageSize]="pageSize"
                    (page)="onPageChange($event)"
                    [pageIndex]="posts.page_request.page - pageIndexSubtractor">
     </mat-paginator>
