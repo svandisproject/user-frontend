@@ -1,9 +1,6 @@
 import {Route} from '@angular/router';
 import {AdminComponent} from './AdminComponent';
-import {PostListComponent} from './posts/PostListComponent';
 import {AuthGuard} from '../common/guards/AuthGuard';
-import {EditPostComponent} from './posts/edit/EditPostComponent';
-import {EditPostResolver} from './posts/edit/EditPostResolver';
 import {TagListComponent} from './tags/TagListComponent';
 import {EditWebFeedComponent} from './webFeed/edit/EditWebFeedComponent';
 import {EditWebFeedResolver} from './webFeed/edit/EditWebFeedResolver';
@@ -18,19 +15,7 @@ export const AdminRouteConfigs: Route[] = [
         component: AdminComponent,
         canActivate: [AuthGuard],
         children: [
-            {
-                path: 'posts',
-                component: PostListComponent,
-            },
-            {
-                path: 'posts/edit/:id',
-                component: EditPostComponent,
-                resolve: {post: EditPostResolver}
-            },
-            {
-                path: 'posts/create',
-                component: EditPostComponent,
-            },
+            {path: 'posts', loadChildren: './posts/PostsModule#PostsModule'},
             {
                 path: 'tags',
                 component: TagListComponent,

@@ -3,11 +3,9 @@ import {AdminNavComponent} from './adminNav/AdminNavComponent';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatListModule} from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {CommonModule} from '@angular/common';
-import {PostListComponent} from './posts/PostListComponent';
 import {AdminComponent} from './AdminComponent';
 import {RouterModule} from '@angular/router';
 import {AdminRouteConfigs} from './AdminRouteConfig';
-import {EditPostComponent} from './posts/edit/EditPostComponent';
 import {AppCommonModule} from '../common/AppCommonModule';
 import {EditPostResolver} from './posts/edit/EditPostResolver';
 import {TagListComponent} from './tags/TagListComponent';
@@ -31,8 +29,6 @@ import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
     ],
     declarations: [
         AdminComponent,
-        PostListComponent,
-        EditPostComponent,
         WebFeedListComponent,
         EditWebFeedComponent,
         TagListComponent,
