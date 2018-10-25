@@ -1,0 +1,11 @@
+<app-data-table *ngIf="getDataSet() | async as groups; else loading"
+                [dataSet]="groups"
+                [settings]="{filter: false}"
+                [displayedColumns]="columns">
+</app-data-table>
+<ng-template #loading>
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<button mat-button mat-fab class="fab-fixed-bottom-right" matTooltip="Create new group">
+    <mat-icon>add</mat-icon>
+</button>

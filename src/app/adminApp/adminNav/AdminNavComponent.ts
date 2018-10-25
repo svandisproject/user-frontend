@@ -8,8 +8,9 @@ import {Component, ViewEncapsulation} from '@angular/core';
 })
 export class AdminNavComponent {
     public menuItems = [
-        {text: 'Tags', path: 'tags'},
         {text: 'Posts', path: 'posts'},
+        {text: 'Tags', path: 'tags'},
+        {text: 'Tag Groups', path: 'tag-groups'},
         {text: 'WebFeeds', path: 'web-feeds'},
     ];
 }
