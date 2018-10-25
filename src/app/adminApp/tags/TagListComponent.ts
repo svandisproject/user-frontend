@@ -14,6 +14,7 @@ import {PageEvent} from '@angular/material';
 
 export class TagListComponent {
     public tags: Pageable<Tag>;
+    public readonly perPage = TagService.PER_PAGE;
 
     public columns: GeneralDataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},

@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Filter} from '../../../common/api/dataModels/Filter';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {TagGroup} from '../../../common/api/dataModels/TagGroup';
-import {SvandisTagGroupService} from '../../../common/api/services/SvandisTagGroupService';
+import {TagGroupService} from '../../../common/api/services/TagGroupService';
 import {MatSelectChange} from '@angular/material';
 
 @Component({
@@ -14,7 +14,7 @@ export class TagFilterComponent implements OnInit {
     @Output() tagSelect: EventEmitter<Filter> = new EventEmitter<Filter>();
     private tagGroupSubject: BehaviorSubject<TagGroup[]> = new BehaviorSubject<TagGroup[]>(null);
 
-    constructor(private tagGroupService: SvandisTagGroupService) {
+    constructor(private tagGroupService: TagGroupService) {
     }
 
     ngOnInit() {

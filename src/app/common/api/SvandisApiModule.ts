@@ -15,8 +15,8 @@ import {TokenResource} from './resource/TokenResource';
 import {TokenService} from './services/TokenService';
 import {UserResource} from './resource/UserResource';
 import {UserService} from './services/UserService';
-import {SvandisTagGroupResource} from './resource/SvandisTagGroupResource';
-import {SvandisTagGroupService} from './services/SvandisTagGroupService';
+import {TagGroupResource} from './resource/TagGroupResource';
+import {TagGroupService} from './services/TagGroupService';
 
 @NgModule({
     imports: [HttpClientModule],
@@ -33,8 +33,8 @@ import {SvandisTagGroupService} from './services/SvandisTagGroupService';
         TokenService,
         TagResource,
         TagService,
-        SvandisTagGroupResource,
-        SvandisTagGroupService,
+        TagGroupResource,
+        TagGroupService,
         FilterResource,
         UserResource,
         UserService,

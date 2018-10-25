@@ -1,6 +1,15 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h3>Tag list</h3>
+        </div>
+    </div>
+</div>
+
 <app-data-table [dataSet]="tags"
                 *ngIf="tags; else loading"
                 [displayedColumns]="columns"
+                [settings]="{filter: false, paginationOptions: {itemsPerPage: perPage} }"
                 (pageChange)="loadPage($event)"
                 (rowSelected)="editTag($event)">
 </app-data-table>

@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{isNew ? 'Create Tag Group' : 'Edit Tag Group'}}</h2>
+<mat-form-field class="w-100" color="accent">
+    <input type="text" matInput [(ngModel)]="model.title" placeholder="Title">
+</mat-form-field>
+<div class="mb-3">
+    <mat-checkbox [(ngModel)]="model.enabled" color="accent">Enabled</mat-checkbox>
+</div>
+<mat-divider></mat-divider>
+<h5>Tags</h5>
+<mat-dialog-content>
+    <mat-selection-list *ngIf="(getTags() | async ) as tags" (selectionChange)="selectTags($event)">
+        <mat-list-option *ngFor="let tag of tags" [selected]="isTagSelected(tag)" [value]="tag.id">
+            {{tag.title}}
+        </mat-list-option>
+    </mat-selection-list>
+</mat-dialog-content>
+
+<mat-dialog-actions class="d-flex align-items-center justify-content-between">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="accent" [disabled]="!updatedModel" (click)="submit()">Submit</button>
+</mat-dialog-actions>

@@ -6,7 +6,7 @@ import {Filter} from '../dataModels/Filter';
 import {TagGroup} from '../dataModels/TagGroup';
 
 @Injectable()
-export class SvandisTagGroupResource extends AbstractCrudResource<TagGroup> {
+export class TagGroupResource extends AbstractCrudResource<TagGroup> {
     constructor(httpService: HttpService) {
         super(SvandisApiV2.API_URL + '/tag-group', httpService);
     }
