@@ -37,6 +37,10 @@ export class AbstractCrudResource<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
     }
 
+    public delete(id: string | number): Observable<void> {
+        return this.httpService.delete(this.URL + '/' + id);
+    }
+
     public findBy(filters: Filter[], page: string = '1', sort?: Sorting, perPage?: number): Observable<Pageable<T>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
         const params = {

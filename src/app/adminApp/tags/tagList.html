@@ -9,7 +9,7 @@
 <app-data-table [dataSet]="tags"
                 *ngIf="tags; else loading"
                 [displayedColumns]="columns"
-                [settings]="{filter: false}"
+                [settings]="{filter: false, paginationOptions: {itemsPerPage: perPage} }"
                 (pageChange)="loadPage($event)"
                 (rowSelected)="editTag($event)">
 </app-data-table>
