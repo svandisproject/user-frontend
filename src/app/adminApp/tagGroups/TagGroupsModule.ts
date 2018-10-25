@@ -5,6 +5,9 @@ import {CommonModule} from '@angular/common';
 import {CommonMaterialModule} from '../../common/material/CommonMaterialModule';
 import {RouterModule} from '@angular/router';
 import {TagGroupsRouteConfig} from './TagGroupsRouteConfig';
+import {FormsModule} from '@angular/forms';
+import {CreateTagGroupDialogComponent} from './dialogs/CreateTagGroupDialogComponent';
+import {TagInputModule} from '../tags/tagInput/TagInputModule';
 
 
 @NgModule({
@@ -12,11 +15,17 @@ import {TagGroupsRouteConfig} from './TagGroupsRouteConfig';
         AppCommonModule,
         CommonModule,
         CommonMaterialModule,
+        TagInputModule,
+        FormsModule,
         RouterModule.forChild(TagGroupsRouteConfig)
     ],
     exports: [],
     declarations: [
+        CreateTagGroupDialogComponent,
         TagGroupListComponent
+    ],
+    entryComponents: [
+        CreateTagGroupDialogComponent
     ],
     providers: [],
 })

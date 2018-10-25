@@ -1,0 +1,27 @@
+<mat-form-field class="w-100" color="accent">
+    <mat-chip-list #chipList>
+        <mat-chip
+                *ngFor="let tag of tags"
+                [removable]="true"
+                (removed)="removeTag(tag)">
+            {{tag.title}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input
+                placeholder="Tags"
+                #tagsInput
+                [matAutocomplete]="auto"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="true"
+                (matChipInputTokenEnd)="addTag($event)">
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete"
+                      (optionSelected)="selectTag($event)">
+        <mat-option *ngFor="let tag of (getExistingTags() | async)" [value]="tag">
+            {{tag.title}}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+
+<mat-progress-bar mode="indeterminate" color="accent" *ngIf="isLoading"></mat-progress-bar>
