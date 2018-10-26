@@ -29,12 +29,16 @@ export class AbstractCrudResource<T> {
         return this.httpService.get(this.URL + '/' + id);
     }
 
-    public create(payload: { [key: string]: T }): Observable<T> {
+    public create(payload: { [key: string]: T } | T): Observable<T> {
         return this.httpService.post(this.URL, payload);
     }
 
-    public update(id: string, payload: { [key: string]: T }): Observable<T> {
+    public update(id: string | number, payload: { [key: string]: T } | T): Observable<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
+    }
+
+    public delete(id: string | number): Observable<void> {
+        return this.httpService.delete(this.URL + '/' + id);
     }
 
     public findBy(filters: Filter[], page: string = '1', sort?: Sorting, perPage?: number): Observable<Pageable<T>> {

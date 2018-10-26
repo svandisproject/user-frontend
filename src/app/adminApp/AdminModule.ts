@@ -16,11 +16,13 @@ import {EditTagComponent} from './tags/edit/EditTagComponent';
 import {EditTagResolver} from './tags/edit/EditTagResolver';
 import {AppCommonProvidersModule} from '../common/AppCommonProvidersModule';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
+import {DialogModule} from '../common/dialogs/DialogModule';
 
 @NgModule({
     imports: [
         AppCommonModule,
         AppCommonProvidersModule,
+        DialogModule,
         CommonModule,
         CommonMaterialModule,
         TranslateModule,

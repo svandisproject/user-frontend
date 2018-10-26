@@ -8,13 +8,14 @@ import {map, tap} from 'rxjs/operators';
 
 @Injectable()
 export class TagService {
+    public static readonly PER_PAGE = 100;
     private mainTags: Tag[] = [];
 
     constructor(private tagResource: TagResource) {
     }
 
     public findAll(): Observable<Pageable<Tag>> {
-        return this.tagResource.findAll();
+        return this.tagResource.findAll(null, {per_page: TagService.PER_PAGE, page: 1});
     }
 
     public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Tag>> {
@@ -37,6 +38,10 @@ export class TagService {
 
     public getMainTags(): Tag[] {
         return this.mainTags;
+    }
+
+    public delete(id: string | number): Observable<void> {
+        return this.tagResource.delete(id);
     }
 
     public saveOrCreate(tag: Tag, id?: string): Observable<Tag> {

@@ -1,11 +1,11 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {EditTagModel} from '../models/EditTagModel';
-import {BaseInput} from '../../../common/ngForms/inputs/base/BaseInput';
-import {FormGroup} from '@angular/forms';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Tag} from '../../../common/api/dataModels/Tag';
 import {TagService} from '../../../common/api/services/TagService';
 import * as _ from 'lodash';
+import {finalize} from 'rxjs/operators';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {ConfirmationDialogComponent} from '../../../common/dialogs/confirmation/ConfirmationDialogComponent';
 
 @Component({
     selector: 'app-edit-tag',
@@ -14,37 +14,49 @@ import * as _ from 'lodash';
     encapsulation: ViewEncapsulation.None
 })
 
-export class EditTagComponent {
-    public tagModel: EditTagModel;
-
-    private tag: Tag;
-    private formFields: BaseInput[] = [];
+export class EditTagComponent implements OnInit {
+    public model: Tag;
+    public title: string;
+    public isLoading = false;
 
     constructor(private route: ActivatedRoute,
+                private router: Router,
+                private snack: MatSnackBar,
+                private matDialog: MatDialog,
                 private tagService: TagService) {
-        this.init();
     }
 
-    public getInputs(): BaseInput[] {
-        return this.formFields;
+    ngOnInit(): void {
+        this.model = this.route.snapshot.data.tag;
+        this.title = _.clone(this.model.title);
     }
 
-    public onSave(formGroup: FormGroup) {
-        this.tagModel = formGroup.value;
-        this.saveTag();
+    public saveTag() {
+        this.isLoading = true;
+        const id: string = _.get(this.model, 'id');
+        this.tagService.saveOrCreate(_.omit(this.model, 'id') as Tag, id)
+            .pipe(finalize(() => this.isLoading = false))
+            .subscribe(() => {
+                this.router.navigate(['../../'], {relativeTo: this.route})
+                    .then(() => this.snack.open('Tag updated'));
+            });
     }
 
-    private init() {
-        this.tag = this.route.snapshot.data.tag;
-        this.tagModel = new EditTagModel(this.tag);
-        this.formFields = this.tagModel.getFormFields();
-    }
+    public deleteTag() {
+        const ref = this.matDialog.open(ConfirmationDialogComponent);
+        ref.afterClosed().subscribe((confirmation) => {
+            if (confirmation) {
+                this.isLoading = true;
+                const id: string = _.get(this.model, 'id');
 
-    private saveTag() {
-        const id: string = _.get(this.tag, 'id');
-
-        this.tagService.saveOrCreate(this.tagModel, id).subscribe(() => {
-            // TODO: do some indication or go back to list
+                this.tagService.delete(id)
+                    .pipe(finalize(() => this.isLoading = false))
+                    .subscribe(() => {
+                        this.router.navigate(['../../'], {relativeTo: this.route})
+                            .then(() => this.snack.open('Tag Deleted'));
+                    });
+            }
         });
+
     }
 }

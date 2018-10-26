@@ -16,6 +16,7 @@ export const AdminRouteConfigs: Route[] = [
         canActivate: [AuthGuard],
         children: [
             {path: 'posts', loadChildren: './posts/PostsModule#PostsModule'},
+            {path: 'tag-groups', loadChildren: './tagGroups/TagGroupsModule#TagGroupsModule'},
             {
                 path: 'tags',
                 component: TagListComponent,
