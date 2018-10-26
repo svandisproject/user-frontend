@@ -16,6 +16,7 @@ import {ConfirmationDialogComponent} from '../../../common/dialogs/confirmation/
 
 export class EditTagComponent implements OnInit {
     public model: Tag;
+    public isNew = false;
     public title: string;
     public isLoading = false;
 
@@ -27,7 +28,8 @@ export class EditTagComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.model = this.route.snapshot.data.tag;
+        this.model = this.route.snapshot.data.tag || {title: ''};
+        this.isNew = !this.route.snapshot.data.tag;
         this.title = _.clone(this.model.title);
     }
 
