@@ -51,7 +51,7 @@ export class TagGroupListComponent implements OnInit {
         const ref = this.matDialog.open(CreateTagGroupDialogComponent);
         ref.afterClosed().subscribe((res) => {
             if (res) {
-                this.updateGroups(res);
+                this.updateGroups(res, true);
             }
         });
     }
