@@ -15,7 +15,7 @@
 <h5>Tags</h5>
 <mat-dialog-content>
     <mat-selection-list *ngIf="(getTags() | async ) as tags" (selectionChange)="selectTags($event)">
-        <mat-list-option *ngFor="let tag of tags" [selected]="isTagSelected(tag)" [value]="tag.id">
+        <mat-list-option *ngFor="let tag of tags" [selected]="isTagSelected(tag)" [value]="tag">
             {{tag.title}}
         </mat-list-option>
     </mat-selection-list>
