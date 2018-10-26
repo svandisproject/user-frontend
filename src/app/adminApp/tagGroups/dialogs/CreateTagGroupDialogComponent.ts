@@ -14,8 +14,8 @@ import * as _ from 'lodash';
 })
 
 export class CreateTagGroupDialogComponent implements OnInit {
-    public model: EditTagGroup | TagGroup;
-    public updatedModel: EditTagGroup;
+    public model: TagGroup;
+    public updatedModel: TagGroup;
     public isNew = true;
 
     private tagSubject = new BehaviorSubject(null);
@@ -49,9 +49,9 @@ export class CreateTagGroupDialogComponent implements OnInit {
     }
 
     public selectTags(event: MatSelectionListChange) {
-        const tagIds: number[] = _.map(event.source.selectedOptions.selected, (option) => option.value);
-        this.updatedModel = _.cloneDeep(this.model) as EditTagGroup;
-        this.updatedModel.tags = tagIds;
+        const tags: Tag[] = _.map(event.source.selectedOptions.selected, (option) => option.value);
+        this.updatedModel = _.cloneDeep(this.model);
+        this.updatedModel.tags = tags;
     }
 
     public submit() {
