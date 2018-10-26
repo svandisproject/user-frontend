@@ -28,28 +28,31 @@
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card (click)="authenticateFacebook()">
                                 <mat-card-content>
-                                    <div class="row">
+                                    <div class="row" *ngIf="!isFacebookAuthenticated">
+                                    <div class="image-card-width">
+                                        <img mat-card-sm-image src="assets/image/ic_facebook_inactive.png" alt="image">
+                                    </div>
+                                    <div class="text-card-width">
+                                            <span class="add-text-color">
+                                                Add
+                                            </span><br>
+                                            <span>
+                                                Facebook Account
+                                            </span><br>
+                                            <span class ="grey-text-color">
+                                                (+10 SVN)
+                                            </span>
+                                    </div>
+                                </div>
+                                    <div class="row" *ngIf="isFacebookAuthenticated">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_facebook_active.png" alt="image">
                                         </div>
                                         <div class="text-card-width">
-                        <div *ngIf="!isFacebookAuthenticated">
-                                            <span class="add-text-color">
-                        Add
-                        </span><br>
-                                            <span>
-                        Facebook Account
-                        </span><br>
-                                            <span class ="grey-text-color">
-                        (+10 SVN)
-                        </span>
-                        </div>
-                        <div *ngIf="isFacebookAuthenticated">
                                                 <span class="completed-text-color">
-                        Facebook Authentication Complete
-                        </span><br>
-                        (+10 Bonus SVN Incoming)
-                                            </div>
+                                                Facebook Authentication Complete
+                                                </span><br>
+                                                (+10 Bonus SVN Incoming)
                                         </div>
                                     </div>
                                 </mat-card-content>
@@ -58,28 +61,31 @@
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card (click)="authenticateTwitter()">
                                 <mat-card-content>
-                                    <div class="row">
+                                    <div class="row" *ngIf="!isTwitterAuthenticated">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_twitter_inactive.png" alt="image">
                                         </div>
                                         <div class="text-card-width">
-                        <div *ngIf="!isTwitterAuthenticated">
-                        <span class="add-text-color">
-                        Add
-                        </span><br>
+                                            <span class="add-text-color">
+                                                Add
+                                            </span><br>
                                             <span>
-                        Twitter Account
-                        </span><br>
+                                                Twitter Account
+                                            </span><br>
                                             <span class ="grey-text-color">
-                        (+10 SVN)
-                        </span>
-                        </div>
-                                            <div *ngIf="isTwitterAuthenticated">
+                                                (+10 SVN)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="isTwitterAuthenticated">
+                                        <div class="image-card-width">
+                                            <img mat-card-sm-image src="assets/image/ic_twitter_active.png" alt="image">
+                                        </div>
+                                        <div class="text-card-width">
                                                 <span class="completed-text-color">
-                        Twitter Authentication Complete
-                        </span><br>
-                                                (+10 Bonus SVN Incoming)
-                                            </div>
+                                                Twitter Authentication Complete
+                                                </span><br>
+                                            (+10 Bonus SVN Incoming)
                                         </div>
                                     </div>
                                 </mat-card-content>
@@ -88,28 +94,31 @@
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card (click)="authenticateGoogle()">
                                 <mat-card-content>
-                                    <div class="row">
+                                    <div class="row" *ngIf="!isGoogleAuthenticated">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_google_inactive.png" alt="image">
                                         </div>
                                         <div class="text-card-width">
-                        <div *ngIf="!isGoogleAuthenticated">
-                        <span class="add-text-color">
-                        Add
-                        </span><br>
+                                            <span class="add-text-color">
+                                                Add
+                                            </span><br>
                                             <span>
-                        Google Account
-                        </span><br>
+                                                Google Account
+                                            </span><br>
                                             <span class ="grey-text-color">
-                        (+10 SVN)
-                        </span>
-                        </div>
-                                            <div *ngIf="isGoogleAuthenticated">
+                                                (+10 SVN)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="isGoogleAuthenticated">
+                                        <div class="image-card-width">
+                                            <img mat-card-sm-image src="assets/image/ic_google_active.png" alt="image">
+                                        </div>
+                                        <div class="text-card-width">
                                                 <span class="completed-text-color">
-                        Google Authentication Complete
-                        </span><br>
-                                                (+10 Bonus SVN Incoming)
-                                            </div>
+                                                Google Authentication Complete
+                                                </span><br>
+                                            (+10 Bonus SVN Incoming)
                                         </div>
                                     </div>
                                 </mat-card-content>
@@ -118,31 +127,34 @@
                         <mat-grid-tile [colspan]="1" [rowspan]="1">
                             <mat-card  (click)="authenticateKyc()">
                                 <mat-card-content>
-                                    <div class="row">
+                                    <div class="row" *ngIf="!isKyc">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_id_inactive.png" alt="image">
                                         </div>
                                         <div class="text-card-width">
-                        <div *ngIf="!isKyc">
-                        <span class="add-text-color">
-                        Add
-                        </span><br>
+                                            <span class="add-text-color">
+                                                Add
+                                            </span><br>
                                             <span>
-                        Physical Identification Card
-                        </span><br>
+                                                Physical Identification Card
+                                            </span><br>
                                             <span>
-                        Confirm real life identity
-                        </span><br>
+                                                Confirm Real Life Identity
+                                            </span><br>
                                             <span class ="grey-text-color">
-                        (+100 SVN)
-                        </span>
-                        </div>
-                                            <div *ngIf="isKyc">
+                                                (+100 SVN)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row" *ngIf="isKyc">
+                                        <div class="image-card-width">
+                                            <img mat-card-sm-image src="assets/image/ic_id_active.png" alt="image">
+                                        </div>
+                                        <div class="text-card-width">
                                                 <span class="completed-text-color">
-                        KYC Complete
-                        </span><br>
-                                                (+100 Bonus SVN Incoming)
-                                            </div>
+                                                KYC Complete
+                                                </span><br>
+                                            (+100 Bonus SVN Incoming)
                                         </div>
                                     </div>
                                 </mat-card-content>
@@ -187,7 +199,7 @@
                                 <div class="divide-horizontal-10">
                                     <div class="row">
                                         <div>
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_add_active.png">
                                         </div>
                                     </div></div>
                                     <div class="divide-horizontal-60">
@@ -256,7 +268,7 @@
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_download_active.png">
                                         </div>
                                         <div class="text-card-width">
                         <span class="add-text-color">
@@ -278,7 +290,7 @@
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+                                            <img mat-card-sm-image src="assets/image/ic_add_active.png">
                                         </div>
                                         <div class="text-card-width">
                         <span class="add-text-color">
@@ -289,7 +301,7 @@
                         {{recoveryAddress.substr(0, 18)}}...
                         </span><br>
                                             <span class ="grey-text-color">
-                        (-10 SVN to make changes)
+                        (Pay 10 SVN to make changes)
                         </span>
                                         </div>
                                     </div>
