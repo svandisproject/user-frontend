@@ -17,6 +17,9 @@ import {ToggleInputComponent} from './forms/toggle/ToggleInputComponent';
 import {BlockUIModule} from 'ng-block-ui';
 import {DataTableModule} from './dataTable/DataTableModule';
 import {CommonMaterialModule} from './material/CommonMaterialModule';
+import {CreateButtonComponent} from './buttons/CreateButtonComponent';
+import {SaveButtonComponent} from './buttons/SaveButtonComponent';
+import {LayoutService} from './layout/LayoutService';
 
 
 @NgModule({
@@ -33,10 +36,15 @@ import {CommonMaterialModule} from './material/CommonMaterialModule';
         DataTableModule,
         TranslateModule
     ],
+    providers: [
+        LayoutService
+    ],
     declarations: [
         ListReversePipe,
         RangeSliderComponent,
         FilterButtonComponent,
+        CreateButtonComponent,
+        SaveButtonComponent,
         ToggleInputComponent,
         TruncatePipe,
         SearchFormComponent,
@@ -46,6 +54,8 @@ import {CommonMaterialModule} from './material/CommonMaterialModule';
         NgFormsModule,
         CommonModule,
         FormsModule,
+        CreateButtonComponent,
+        SaveButtonComponent,
         OrderModule,
         FormsModule,
         DataTableModule,

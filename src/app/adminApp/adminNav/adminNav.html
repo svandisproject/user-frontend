@@ -6,13 +6,12 @@
             [attr.role]="'navigation'"
             [mode]="'side'"
             [opened]="true">
-        <mat-toolbar color="primary">Menu</mat-toolbar>
+        <img src="assets/image/svandis-logo.png" class="img-fluid" alt="">
         <mat-nav-list>
             <ng-container *ngFor="let item of menuItems">
                 <a mat-list-item
                    [routerLink]="item.path"
-                   [routerLinkActive]="'active'"
-                   [routerLinkActiveOptions]="{exact:true}">
+                   [routerLinkActive]="'active'">
                     {{item.text}}
                 </a>
             </ng-container>

@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {
+    MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
     MatCardModule,
@@ -15,8 +16,10 @@ import {
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSidenavModule,
     MatSlideToggleModule,
+    MatSnackBarModule,
     MatSortModule,
     MatStepperModule,
     MatTableModule,
@@ -30,6 +33,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 @NgModule({
     imports: [
         MatListModule,
+        MatSelectModule,
         MatTabsModule,
         MatProgressSpinnerModule,
         MatProgressBarModule,
@@ -41,6 +45,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatIconModule,
         MatChipsModule,
         MatInputModule,
+        MatSnackBarModule,
+        MatAutocompleteModule,
         MatSlideToggleModule,
         ReactiveFormsModule,
         MatPaginatorModule,
@@ -63,6 +69,8 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatProgressBarModule,
         MatChipsModule,
         MatTooltipModule,
+        MatSelectModule,
+        MatAutocompleteModule,
         MatCheckboxModule,
         MatButtonModule,
         MatFormFieldModule,
@@ -71,6 +79,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatSlideToggleModule,
         ReactiveFormsModule,
         MatPaginatorModule,
+        MatSnackBarModule,
         MatCardModule,
         MatDividerModule,
         MatGridListModule,

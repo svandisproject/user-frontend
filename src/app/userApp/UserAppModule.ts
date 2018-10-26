@@ -5,7 +5,6 @@ import {TranslateModule} from '@ngx-translate/core';
 import {FeedListComponent} from './newsFeed/feedList/FeedListComponent';
 import {CommonModule} from '@angular/common';
 import {AppCommonModule} from '../common/AppCommonModule';
-import {SearchFilterComponent} from './newsFeed/searchFilter/SearchFilterComponent';
 import {FormsModule} from '@angular/forms';
 import {GeneralScreenerComponent} from './screener/GeneralScreenerComponent';
 import {NouisliderModule} from 'ng2-nouislider';
@@ -17,7 +16,6 @@ import {AltCoinScreenerComponent} from './screener/altCoin/AltCoinScreenerCompon
 import {IcoFilterService} from '../common/filters/IcoFilterService';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {UserAppComponent} from './UserAppComponent';
-import {FeedListLargeComponent} from './newsFeed/feedList/FeedListLargeComponent';
 import {UserSidebarComponent} from './sidebar/UserSidebarComponent';
 import {LayoutModule} from '@angular/cdk/layout';
 import {NewsFeedResolver} from './newsFeed/NewsFeedResolver';
@@ -29,6 +27,9 @@ import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
 import {ResearchOnboardingComponent} from './onboarding/researchOnboardingComponent';
 import {EthConnectionPromptComponent} from './web3/ethConnectionPromptComponent';
+import {NgArrayPipesModule} from 'ngx-pipes';
+import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent';
+import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
 
 @NgModule({
     imports: [
@@ -37,6 +38,7 @@ import {EthConnectionPromptComponent} from './web3/ethConnectionPromptComponent'
         CommonMaterialModule,
         LayoutModule,
         CommonModule,
+        NgArrayPipesModule,
         FormsModule,
         NouisliderModule,
         RouterModule.forChild(UserAppRouterConfig),
@@ -50,16 +52,17 @@ import {EthConnectionPromptComponent} from './web3/ethConnectionPromptComponent'
         NewsFeedComponent,
         UserProfileDetailsComponent,
         WorkerUIComponent,
-        SearchFilterComponent,
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,
         UserSidebarComponent,
+        PostDetailsComponent,
+        TagFilterComponent,
         FeedListComponent,
-        FeedListLargeComponent,
         ScreenerColumnManagerComponent,
         ResearchOnboardingComponent,
-        EthConnectionPromptComponent
+        EthConnectionPromptComponent,
+        ScreenerColumnManagerComponent
     ],
     providers: [
         NewsFeedResolver,

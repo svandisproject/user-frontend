@@ -1,0 +1,17 @@
+app-post-details {
+    .mat-card-header-text {
+        margin: 0;
+    }
+    .close-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .mat-card-content {
+        white-space: pre-wrap;
+    }
+    .content-wrapper {
+        overflow: auto;
+        max-height: 25vh;
+    }
+}

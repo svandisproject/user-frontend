@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {BlockUIService} from 'ng-block-ui';
 import {finalize} from 'rxjs/internal/operators';
 import {IpcService} from '../../electron/IpcService';
+import {AdminDefaultRoute} from '../../../adminApp/AdminRouteConfig';
 
 @Component({
     selector: 'app-login',
@@ -38,7 +39,7 @@ export class LoginPageComponent {
                 .subscribe(
                     (res) => {
                         if (this.userService.hasRoleAdmin()) {
-                            this.router.navigate(['admin']);
+                            this.router.navigate(AdminDefaultRoute);
                         } else {
                             this.router.navigate(['']);
                         }
@@ -46,6 +47,10 @@ export class LoginPageComponent {
                     err => this.handleFormError(form)
                 );
         }
+    }
+
+    public isDesktop(): boolean {
+        return window['require'];
     }
 
     private handleFormError(form: NgForm) {

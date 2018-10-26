@@ -11,7 +11,7 @@ app-user-sidebar {
     }
 
     .sidenav {
-        width: 312px;
+        width: 200px;
         top: 60px !important;
         background-color: #181B2B;
         box-shadow: 3px 0 6px rgba(0, 0, 0, .24);
@@ -25,7 +25,7 @@ app-user-sidebar {
             padding-top: 20px !important;
 
             a.mat-list-item-focus {
-                color: #0087F4 !important;
+                color: #45b53f !important;
             }
         }
     }

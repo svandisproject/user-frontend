@@ -5,18 +5,23 @@ import {Post, PostUpdate} from '../dataModels/Post';
 import {Pageable} from '../dataModels/pageable/Pageable';
 import {Filter} from '../dataModels/Filter';
 import * as _ from 'lodash';
+import {MatSnackBar} from '@angular/material';
+import {tap} from 'rxjs/operators';
+import {Sorting} from '../util/Sorting';
 
 @Injectable()
 export class PostService {
-    constructor(private postResource: PostResource) {
+    private readonly perPage = 50;
+    constructor(private postResource: PostResource,
+                private matSnackBar: MatSnackBar) {
     }
 
-    public findAll(): Observable<Pageable<Post>> {
-        return this.postResource.findAll();
+    public findAll(params?: any): Observable<Pageable<Post>> {
+        return this.postResource.findAll(false, params);
     }
 
-    public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Post>> {
-        return this.postResource.findBy(filters, String(page));
+    public findBy(filters: Filter[], page: number = 1, sort?: Sorting, perPage = this.perPage): Observable<Pageable<Post>> {
+        return this.postResource.findBy(filters, String(page), sort, perPage);
     }
 
     public findById(postId: string): Observable<Post> {
@@ -25,9 +30,11 @@ export class PostService {
 
     public saveOrCreate(post: Post, id?: string): Observable<Post> {
         if (id) {
-            return this.postResource.update(id, {post: this.postToPostUpdate(post) as any});
+            return this.postResource.update(id, {post: this.postToPostUpdate(post) as any})
+                .pipe(tap(() => this.matSnackBar.open('Post Updated', null, {verticalPosition: 'top'})));
         } else {
-            return this.postResource.create({post: post});
+            return this.postResource.create({post: post})
+                .pipe(tap(() => this.matSnackBar.open('Post Created', null, {verticalPosition: 'top'})));
         }
     }
 

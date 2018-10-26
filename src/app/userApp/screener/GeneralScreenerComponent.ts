@@ -1,13 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {StorageAdapter} from '../../common/localStorage/StorageAdapter';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
-import {PageEvent} from '@angular/material';
+import {Sorting} from '../../common/api/util/Sorting';
+import {SortAwarePageEvent} from '../../common/dataTable/SortAwarePageEvent';
 
 @Component({
     selector: 'app-screener',
     templateUrl: './generalScreener.html',
-    styleUrls: ['./generalScreener.scss']
+    styleUrls: ['./generalScreener.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 
 export class GeneralScreenerComponent {
@@ -20,7 +22,21 @@ export class GeneralScreenerComponent {
     public areColumnOptionsVisible = false;
     public selectedColumnsService: StorageAdapter<any>;
 
-    public loadPage(pageEvent: PageEvent): void {
+    protected currentPage = 1;
+    protected sortingOptions: Sorting = { sort: null, direction: null };
+
+    public loadPage(pageEvent: SortAwarePageEvent): void {
+        this.currentPage = pageEvent.pageIndex + 1 || this.currentPage;
+
+        if (pageEvent.active) {
+            this.sortingOptions.sort = pageEvent.active;
+            this.sortingOptions.direction = pageEvent.direction;
+        }
+        // Case when we cancel sorting by field
+        if (!pageEvent.pageIndex && (pageEvent.active && !pageEvent.direction)) {
+            this.sortingOptions.sort = null;
+            this.sortingOptions.direction = null;
+        }
     }
 
     public toggleColumnOptions(): void {

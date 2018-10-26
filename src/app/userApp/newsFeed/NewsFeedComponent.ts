@@ -10,10 +10,9 @@ import {FilterItem} from '../../common/filters/dataModels/FilterItem';
 import {HttpErrorResponse} from '@angular/common/http';
 import {catchError, finalize} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
-import {NewsFeedPusherEvent} from './dataModels/NewsFeedPusherEvent';
 import {PusherService} from '../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
-import {PageEvent} from '@angular/material';
+import {MatSnackBar, PageEvent} from '@angular/material';
 
 @Component({
     selector: 'app-news-feed',
@@ -25,45 +24,73 @@ export class NewsFeedComponent {
     public posts: Pageable<Post>;
     public isFeedListSmall = true;
     public isLoading = false;
+    public selectedPost: Post;
+    public currentFilter: Filter;
+    public readonly itemsPerPage = 50;
 
     private pusherChannel: Channel;
     private currentFilterSettings: SearchFilterSettings = <SearchFilterSettings> {};
+    private currentPageIndex = 0;
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
+    private sortOptions: any = {
+        sort: 'published_at',
+        per_page: this.itemsPerPage,
+        direction: 'desc'
+    };
 
     constructor(private postService: PostService,
+                private snack: MatSnackBar,
                 private pusherService: PusherService) {
-        this.postService.findAll()
+        this.postService.findAll(this.sortOptions)
             .subscribe(posts => {
                 this.posts = posts;
                 this.subscribeToPusherNews();
             });
     }
 
-    public loadPage(pageEvent: PageEvent): void {
-        this.filterPosts(this.currentFilterSettings, pageEvent.pageIndex + 1);
+    public loadPage(pageEvent?: PageEvent): void {
+        this.currentPageIndex = pageEvent.pageIndex || this.currentPageIndex;
+        this.filterPosts(this.currentFilterSettings, this.currentPageIndex + 1);
     }
 
-    public onFilterChange($event: FilterItem[]): void {
-        this.currentFilterSettings['searchTerms'] = $event;
-        this.filterPosts(this.currentFilterSettings);
+    public onSearch($event: FilterItem): void {
+        this.currentFilterSettings['searchTerms'] = [$event];
+        this.filterPosts(this.currentFilterSettings, 1);
     }
 
-    public toggleFeedList($event: boolean) {
-        this.isFeedListSmall = $event;
+    public onTagFilter(filter: Filter) {
+        this.currentFilter = filter;
+        this.filterPosts(this.currentFilterSettings, 1);
+    }
+
+    public updatePost(post: Post) {
+        this.selectedPost = post;
+        const index = _.findIndex(this.posts.content, (p) => p.id === post.id);
+        this.posts.content[index] = post;
+        this.posts = _.cloneDeep(this.posts);
     }
 
     private subscribeToPusherNews(): void {
         this.pusherChannel = this.pusherService.connectToChannel(this.PUSHER_CHANNEL);
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
-            .subscribe((eventData: NewsFeedPusherEvent) => {
-                this.posts.content.unshift(eventData.message);
+            .subscribe(() => {
+                this.loadPage();
+                this.snack.open('Feed updated', null, {verticalPosition: 'top'});
             });
     }
 
     private filterPosts(searchFilters: SearchFilterSettings, page?: number): void {
+        let filters = this.buildFilters(searchFilters);
+        if (this.currentFilter) {
+            filters = _.concat(filters, [this.currentFilter]);
+        }
+        this.loadPosts(filters, page);
+    }
+
+    private loadPosts(filters: Filter[], page: number) {
         this.isLoading = true;
-        this.postService.findBy(this.buildFilters(searchFilters), page)
+        this.postService.findBy(filters, page, this.sortOptions)
             .pipe(
                 catchError((err: HttpErrorResponse) => {
                     if (err.status === 404) {
@@ -76,14 +103,6 @@ export class NewsFeedComponent {
             .subscribe((posts) => {
                 this.posts = posts;
             });
-    }
-
-    private mergePosts(posts: Pageable<Post>) {
-        _.mergeWith(this.posts, posts, (objValue, srcValue) => {
-            if (_.isArray(objValue)) {
-                return objValue.concat(srcValue);
-            }
-        });
     }
 
     private resetPosts() {
@@ -107,9 +126,5 @@ export class NewsFeedComponent {
         });
 
         return factory.build();
-    }
-
-    public toggleFeedView(): void {
-        this.isFeedListSmall = !this.isFeedListSmall;
     }
 }

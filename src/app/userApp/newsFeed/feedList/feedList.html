@@ -1,45 +1,43 @@
-<div class="search-results"
-     *ngIf="posts; else listLoading">
+<div *ngIf="posts; else listLoading">
 
-    <div class="container-fluid">
-        <table class="uk-table uk-table-divider list-alerts news-feed-header-table"
-               id="news-feed-list"
-               *ngIf="posts.content.length > 0; else noResults">
+    <table id="news-feed-list"
+           class="w-100"
+           mat-table
+           [dataSource]="posts.content"
+           *ngIf="posts.content.length > 0; else noResults">
 
-            <tbody>
-            <tr *ngFor="let feed of posts.content; let i = index;" class="news-feed-tr">
-                <td class="py-2 text-center">
-                    <span class="news-feed-header-link-date font-weight-light">{{feed.created_at | date: 'short'}}</span>
-                </td>
-                <td>
-                    <a [href]="feed.url" class="news-feed-header-link px-1 py-1" target="_blank">
-                        <span class="news-feed-header font-weight-light">{{feed.title | truncate:[75, '...']}}</span>
-                        <span class="channel-red" *ngIf="feed.tags">
-                            <app-tag-tool [(post)]="posts.content[i]" [canEdit]="false"></app-tag-tool>
-                                <!--<ng-container *ngFor="let tag of feed.tags">{{tag.title}}</ng-container>-->
+        <tbody>
+        <ng-container matColumnDef="published_at">
+            <th mat-header-cell *matHeaderCellDef class="pr-1">Published</th>
+            <td mat-cell *matCellDef="let feed">
+                <span class="news-feed-header line-breaker">{{getPublishedAt(feed.published_at)}}</span>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title</th>
+            <td mat-cell *matCellDef="let feed">
+                <span class="news-feed-header py-1">
+                        <span [class]="getSentimentCssClass(feed) + ' news-feed-header font-weight-light'">
+                            {{feed.title | truncate: [(layout.isMobile() | async) ? 60 : 150, '...']}}
                         </span>
-                    </a>
-                </td>
-                <td>
-                    <span class="channel-red sentiment {{getSentimentIconNameForPost(feed)}}">
-                        <mat-icon>{{getSentimentIconNameForPost(feed)}}</mat-icon>
-                    </span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div class="row">
-            <div class="col-md my-2 mx-1">
-                <mat-paginator [length]="posts.total"
-                               [pageSize]="20"
-                               (page)="onPageChange($event)"
-                               [pageIndex]="posts.page_request.page - pageIndexSubtractor">
-                </mat-paginator>
-            </div>
-        </div>
-    </div>
-
+                    <app-tag-tool [post]="feed" [canEdit]="false"></app-tag-tool>
+                </span>
+                <p>
+                    <small>{{getSource(feed.source)}}</small>
+                </p>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+            (click)="selectPost.emit(row); selectedRow = row"
+            [ngClass]="{'selected' : selectedRow && selectedRow.id === row.id}"></tr>
+        </tbody>
+    </table>
+    <mat-paginator [length]="posts.total"
+                   [pageSize]="pageSize"
+                   (page)="onPageChange($event)"
+                   [pageIndex]="posts.page_request.page - pageIndexSubtractor">
+    </mat-paginator>
 
     <ng-template #noResults>
         <span translate>ERROR.404.RESULTS</span>

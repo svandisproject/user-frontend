@@ -16,7 +16,12 @@
                       [ngClass]="isNegative(element[column.columnKey]) ? 'negative' : 'positive'">
                 <ng-container>
                     <span [matTooltip]="stringifyColumnValue(element, column, false)">
-                        {{stringifyColumnValue(element, column)}}
+                        <ng-container *ngIf="column.isFlag; else noFlag">
+                            <span class="flag-icon flag-icon-{{stringifyColumnValue(element, column, false)}}"></span>
+                        </ng-container>
+                        <ng-template #noFlag>
+                            {{stringifyColumnValue(element, column)}}
+                        </ng-template>
                     </span>
                 </ng-container>
             </mat-cell>

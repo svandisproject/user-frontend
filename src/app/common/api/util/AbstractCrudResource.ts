@@ -3,6 +3,7 @@ import {Pageable} from '../dataModels/pageable/Pageable';
 import {HttpService} from '../../http/HttpService';
 import {Filter} from '../dataModels/Filter';
 import {Sorting} from './Sorting';
+import * as _ from 'lodash';
 
 export class AbstractCrudResource<T> {
 
@@ -10,15 +11,17 @@ export class AbstractCrudResource<T> {
                 protected httpService: HttpService) {
     }
 
-    public findAll(noParams = false): Observable<Pageable<T>> {
+    public findAll(noParams = false, params?: any): Observable<Pageable<T>> {
+        params = params || {
+            direction: 'desc'
+        };
+
         if (noParams) {
             return this.httpService.get(this.URL);
         }
 
         return this.httpService.get(this.URL, {
-            params: {
-                direction: 'desc'
-            }
+            params: params
         });
     }
 
@@ -34,18 +37,21 @@ export class AbstractCrudResource<T> {
         return this.httpService.put(this.URL + '/' + id, payload);
     }
 
-    public findBy(filters: Filter[], page: string = '1', sort?: Sorting): Observable<Pageable<T>> {
+    public findBy(filters: Filter[], page: string = '1', sort?: Sorting, perPage?: number): Observable<Pageable<T>> {
         const encodedFilters: string = btoa(JSON.stringify(filters));
         const params = {
             filter: encodedFilters,
             page: page
         };
 
-        if (!sort) {
+        if (!_.get(sort, 'sort')) {
             params['direction'] = 'desc';
         } else {
-            params['direction'] = sort.direction;
             params['sort'] = sort.sort;
+            if (perPage) {
+                params['per_page'] = perPage;
+            }
+            params['direction'] = sort.direction || 'desc';
         }
 
         return this.httpService.get(this.URL + '/filter', {

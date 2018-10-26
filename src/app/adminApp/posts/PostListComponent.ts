@@ -21,7 +21,7 @@ export class PostListComponent {
         {columnName: 'source', columnKey: 'source'},
         {columnName: 'Published At', columnKey: 'published_at', isDate: true},
         {columnName: 'Created At', columnKey: 'created_at', isDate: true},
-        {columnName: 'tags', columnKey: 'tags'},
+        {columnName: 'tags', columnKey: 'tags', isArray: true, arrayItemKey: 'title'},
     ];
 
     constructor(private postService: PostService,

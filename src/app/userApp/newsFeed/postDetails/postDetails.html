@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-header>
+        <button mat-icon-button
+                class="close-button"
+                matTooltip="Close post"
+                (click)="close.emit()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-card-title>
+            <h3>{{post.title}}</h3>
+        </mat-card-title>
+        <mat-card-subtitle>
+            <small>Source: {{getSource(post.source)}}</small>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="content-wrapper">
+            {{post.content | truncate: [1500, ' ...']}}
+        </div>
+    </mat-card-content>
+    <mat-card-actions [align]="'end'">
+        <button mat-button color="accent" (click)="readMore(post.url)">Read more</button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <app-tag-tool [post]="post"
+                      (postChange)="postChange.emit($event)"
+                      [canEdit]="isAdmin()"
+                      [isMenu]="false"></app-tag-tool>
+    </mat-card-footer>
+</mat-card>

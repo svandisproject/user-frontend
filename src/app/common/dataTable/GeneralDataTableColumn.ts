@@ -6,6 +6,7 @@ export interface GeneralDataTableColumn {
     columnKey: string;
     isDate?: boolean;
     columnClass?: string;
+    isFlag?: boolean;
     isArray?: boolean;
     arrayItemKey?: string;
     isBoolean?: boolean;

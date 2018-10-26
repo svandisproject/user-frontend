@@ -3,7 +3,7 @@
 
 $app-background-color: $primary;
 $app-header-color: #212121;
-html, body {
+body {
     height: 100%;
 }
 app-root {
@@ -48,4 +48,13 @@ app-root {
         transition: background-color 5000s ease-in-out 0s;
     }
 
+    .sidenav-container {
+        .mat-drawer.mat-drawer-push {
+            background-color: #181B2B;
+        }
+
+        .mat-drawer-backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    }
 }
