@@ -59,7 +59,6 @@ import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
         PostDetailsComponent,
         TagFilterComponent,
         FeedListComponent,
-        ScreenerColumnManagerComponent,
         ResearchOnboardingComponent,
         EthConnectionPromptComponent,
         ScreenerColumnManagerComponent
