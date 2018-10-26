@@ -36,6 +36,10 @@ export class CreateTagGroupDialogComponent implements OnInit {
         this.tagService.findAll().subscribe((res) => this.tagSubject.next(res.content));
     }
 
+    public updateModel() {
+        this.updatedModel = _.cloneDeep(this.model) as EditTagGroup;
+    }
+
     public getTags(): Observable<Tag[]> {
         return this.tagSubject.asObservable();
     }
