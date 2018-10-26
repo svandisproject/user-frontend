@@ -12,7 +12,6 @@ import {Web3Service} from '../web3/Web3Service';
 })
 
 export class ResearchOnboardingComponent implements OnInit {
-    isLinear = true;
     public secret: string;
     public acceptedTerms = false;
     public expertSelected = false;
@@ -28,6 +27,7 @@ export class ResearchOnboardingComponent implements OnInit {
 
     public recoveryAddress = '';
     public password = '';
+    isLinear = true;
 
     constructor(private workerService: WorkerService, private _formBuilder: FormBuilder, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));

@@ -1,5 +1,4 @@
-// TODO: Extend and improve while adding or working with class definition
-export declare class Web3Interface {
+export declare interface Web3Interface {
     eth: {
         accounts: {
             wallet: {
@@ -15,5 +14,4 @@ export declare class Web3Interface {
     utils: {
         isAddress(...args): any
     };
-    constructor(args?: any)
 }

@@ -1,9 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Web3Service} from './Web3Service';
 
-/**
- * @title Card with multiple sections
- */
 @Component({
     selector: 'app-eth-connection-prompt',
     templateUrl: 'ethConnectionPrompt.html',

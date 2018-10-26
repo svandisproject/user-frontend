@@ -1,25 +1,25 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 centered-item complete-width">
+        <div class="col-sm-12 d-flex justify-content-center w-100">
             <mat-horizontal-stepper [linear]="isLinear" #stepper>
-                <mat-step >
+                <mat-step>
                     <form>
                         <ng-template matStepLabel>Onboarding</ng-template>
-                        <div class="col-sm-12 complete-width centered-item">
+                        <div class="col-sm-12 w-100 d-flex justify-content-center">
                             <p>To participate in the Svandis Decentralized Research Community,
                                 you must onboard with a unique ethereum key to sign decentralized data.
                             </p>
                         </div>
-                        <div class="col-sm-12 centered-item complete-width">
-                            <button complete-width mat-stroked-button matStepperNext color="accent" >CLICK HERE TO ONBOARD</button>
+                        <div class="col-sm-12 d-flex justify-content-center w-100">
+                            <button w-100 mat-stroked-button matStepperNext color="accent" >CLICK HERE TO ONBOARD</button>
                             <mat-divider></mat-divider>
-                            <button complete-width mat-stroked-button color="warn" (click)="resetDemo()" style="margin-left: 20px;">Reset Onboard Demo</button>
+                            <button w-100 mat-stroked-button color="warn" (click)="resetDemo()" style="margin-left: 20px;">Reset Onboard Demo</button>
                         </div>
                     </form>
                 </mat-step>
                 <mat-step>
                     <ng-template matStepLabel>Kyc and Personal Info</ng-template>
-                    <div class="centered-item">
+                    <div class="d-flex justify-content-center">
                         <p>In order to move through the ranks of the research community
                         <br>and receive SVN bonus tokens, please provide more information (Optional):
                         </p>
@@ -176,7 +176,7 @@
                         <p>Thank you for your details. This will give you the opportunity to participate to a
                             greater extent in the research communtiy. Please choose an option below to manage your key:
                         </p>
-                        <div class="centered-item"><button mat-button mat-stroked-button color="accent"
+                        <div class="justify-content-center d-flex"><button mat-button mat-stroked-button color="accent"
                                                            [ngClass]="[beginnerButtonStyle]"
                                                            (click)="toggleButton()">CRYPTO BEGINNER</button>
                             <span class="divide-horizontal-10"></span>
@@ -184,7 +184,7 @@
                                     [ngClass]="[expertButtonStyle]"
                                     (click)="toggleButton()">EXPERT HODLER</button>
                         </div>
-                        <div class="centered-item">
+                        <div class="justify-content-center d-flex">
                             <p *ngIf="!expertSelected">You have selected Crypto Beginner Mode. Your browser will create a new key which you will use to confirm the information which you submit.
                                 Svandis will also hold a key as this is a <b>Centralized Solution</b>.
                                 If you have multiple devices you wish to login with you may need to pay a fee in SVN per device.
@@ -194,7 +194,7 @@
                                 As we do not hold your signing key, please take time to add recovery methods below. You must add a recovery address to proceed.<br><br>
                             </p>
                         </div>
-                            <div class="centered-item" *ngIf="expertSelected">
+                            <div class="d-flex justify-content-center" *ngIf="expertSelected">
                             <mat-card style="margin:0px;">
                                 <div class="divide-horizontal-10">
                                     <div class="row">
@@ -210,7 +210,7 @@
                                             <span>
                         Add an Ethereum Wallet you control (+200 SVN)
                         </span><br>
-                                        <mat-form-field class="complete-width">
+                                        <mat-form-field class="w-100">
                                             <textarea
                                                     [style.fontSize.px]=17
                                                     [value]="this.recoveryAddress"
@@ -238,19 +238,19 @@
                 <mat-step>
                     <form>
                         <ng-template matStepLabel>Add Password</ng-template>
-                        <div class="col-sm-12 complete-width centered-item">
+                        <div class="col-sm-12 w-100 d-flex justify-content-center">
                             <p>Please add a password for the key that will be generated in your browser. Minimum 6 characters length.
                             <br>
                             Keep this key and password safe you will need it to sign the data you research later on.</p>
                         </div>
-                        <mat-form-field class="limited-width centered-item">
-                                            <textarea class="centered-item"
+                        <mat-form-field class="limited-width d-flex justify-content-center">
+                                            <textarea class="d-flex justify-content-center"
                                                     [style.fontSize.px]=17
                                                     [value]="this.password"
                                                     (input)="this.password = $event.target.value"
                                                     matInput placeholder="Password"></textarea>
                         </mat-form-field>
-                        <div class="col-sm-12 centered-item complete-width">
+                        <div class="col-sm-12 d-flex justify-content-center w-100">
                             <span class= "divide-horizontal-20"></span>
                             <button mat-button mat-stroked-button matStepperPrevious>BACK</button>
                             <button mat-button (click)="stepper.reset()">CANCEL</button>
@@ -310,7 +310,7 @@
                         </mat-grid-tile>
                     </mat-grid-list>
                     <div>
-                        <div class="col-sm-12 centered-item complete-width">
+                        <div class="col-sm-12 d-flex justify-content-center w-100">
                             <button mat-button mat-stroked-button color="accent" (click)="stepper.reset()" color="accent">DONE</button>
                         </div>
                     </div>

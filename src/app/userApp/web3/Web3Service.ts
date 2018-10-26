@@ -4,24 +4,24 @@ import {Web3Interface} from './Web3Interface';
 import Web3 from 'web3';
 import * as FileSaver from 'file-saver';
 import {BehaviorSubject, Observable} from 'rxjs';
-import { Subject } from 'rxjs/Subject';
+
 @Injectable({
     providedIn: 'root'
 })
 export class Web3Service {
+    public walletStatus = new BehaviorSubject(false);
     private web3: Web3Interface;
-    private readonly SIGN_NEW_USER: string = 'CREATE NEW ACCOUNT';
-    private readonly SIGN_NEW_SVANDIS_DATA: string = JSON.stringify({
+    private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
+    private readonly SIGN_NEW_SVANDIS_DATA = JSON.stringify({
         token: 'SVN',
         supply: 400000000
     });
-    public walletStatus = new BehaviorSubject(false);
+
     walletStatus$ = this.walletStatus.asObservable();
+
     constructor() {
         this.web3 = new Web3(Web3Config.LOCAL_HOST_RPC);
         this.clearWallet();
-
-         // localStorage.removeItem(Web3Config.ENCRYPTED_PRV_KEY); //Use this to reset testing for encrypted prv key
         const privateKeyEncrypted = this.getKeyEncrypted();
         if (privateKeyEncrypted) {
             this.walletStatus.next(true);
