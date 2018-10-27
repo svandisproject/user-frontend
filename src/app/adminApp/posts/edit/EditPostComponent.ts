@@ -6,13 +6,15 @@ import * as _ from 'lodash';
 import {debounce, finalize, map, startWith, switchMap} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Tag} from '../../../common/api/dataModels/Tag';
-import {MatAutocompleteSelectedEvent, MatSelectChange} from '@angular/material';
+import {MatAutocompleteSelectedEvent, MatDialog, MatSelectChange} from '@angular/material';
 import {TagService} from '../../../common/api/services/TagService';
 import {BehaviorSubject, interval, Observable} from 'rxjs';
 import {TagGroupService} from '../../../common/api/services/TagGroupService';
 import {TagGroup} from '../../../common/api/dataModels/TagGroup';
 import {Filter} from '../../../common/api/dataModels/Filter';
 import {FormControl} from '@angular/forms';
+import {ConfirmationDialogComponent} from '../../../common/dialogs/confirmation/ConfirmationDialogComponent';
+import {CreateTagDialogComponent} from './dialogs/CreateTagDialogComponent';
 
 @Component({
     selector: 'app-edit-post',
@@ -39,6 +41,7 @@ export class EditPostComponent implements OnInit {
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private tagService: TagService,
+                private matDialog: MatDialog,
                 private tagGroupService: TagGroupService,
                 private postService: PostService) {
     }
@@ -64,6 +67,24 @@ export class EditPostComponent implements OnInit {
 
     public onChange() {
         this.hasChange = true;
+    }
+
+    public addNewTag() {
+        const ref = this.matDialog.open(CreateTagDialogComponent);
+        ref.afterClosed().subscribe((tag: Tag) => {
+            if (tag) {
+                this.addExistingTag(tag);
+            }
+        });
+    }
+
+    public deletePost() {
+        const ref = this.matDialog.open(ConfirmationDialogComponent);
+        ref.afterClosed().subscribe((confirmed) => {
+            if (confirmed) {
+                this.postService.deletePost(this.postModel);
+            }
+        });
     }
 
     public onGroupSelect(event: MatSelectChange) {

@@ -8,6 +8,7 @@ import {PostRouteConfig} from './PostRouteConfig';
 import {FormsModule} from '@angular/forms';
 import {AppCommonModule} from '../../common/AppCommonModule';
 import {DataTableModule} from '../../common/dataTable/DataTableModule';
+import {CreateTagDialogComponent} from './edit/dialogs/CreateTagDialogComponent';
 
 @NgModule({
     imports: [
@@ -22,6 +23,10 @@ import {DataTableModule} from '../../common/dataTable/DataTableModule';
     declarations: [
         PostListComponent,
         EditPostComponent,
+        CreateTagDialogComponent,
+    ],
+    entryComponents: [
+        CreateTagDialogComponent,
     ],
     providers: [],
 })

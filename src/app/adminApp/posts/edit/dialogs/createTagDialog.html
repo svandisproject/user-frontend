@@ -1,0 +1,12 @@
+<h3>Create New Tag</h3>
+
+<mat-dialog-content>
+    <mat-form-field class="w-100" color="accent">
+        <input type="text" required matInput placeholder="Title" [(ngModel)]="model.title">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="accent" (click)="createTag()">Submit</button>
+</mat-dialog-actions>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
