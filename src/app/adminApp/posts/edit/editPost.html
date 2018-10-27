@@ -2,6 +2,7 @@
     <h1 class="mat-h1">Edit post: {{postModel.title}}</h1>
     <mat-card>
         <mat-card-content>
+            <h3>Details</h3>
             <mat-form-field class="w-100" color="accent">
                 <input type="text"
                        matInput
@@ -33,32 +34,64 @@
                 </textarea>
             </mat-form-field>
 
-            <mat-form-field class="w-100" color="accent">
-                <mat-chip-list #chipList>
-                    <mat-chip
-                            *ngFor="let tag of postModel.tags"
-                            [removable]="true"
-                            (removed)="removeTag(tag)">
+            <mat-divider></mat-divider>
+
+            <h3>Tagging</h3>
+
+            <mat-form-field *ngIf="(getGroups() | async) as tagGroups" color="accent" class="w-50 pr-3">
+                <mat-hint>Select a Tag Group</mat-hint>
+                <mat-select placeholder="Tag group" (selectionChange)="onGroupSelect($event)">
+                    <mat-option value="all">All
+                        <mat-hint>(Select from all tags)</mat-hint>
+                    </mat-option>
+                    <mat-optgroup label="Groups">
+                        <mat-option *ngFor="let group of tagGroups" [value]="group">{{group.title}}</mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="recentTags" class="w-50 pr-3" color="accent">
+                <mat-hint>Quick add recently used tags</mat-hint>
+                <mat-select placeholder="Recent Tags">
+                    <mat-option *ngFor="let tag of recentTags"
+                                (onSelectionChange)="addExistingTag(tag)"
+                                [value]="tag">
                         {{tag.title}}
-                        <mat-icon matChipRemove>cancel</mat-icon>
-                    </mat-chip>
-                    <input
-                            placeholder="Tags ..."
-                            #tagsInput
-                            [matAutocomplete]="auto"
-                            [matChipInputFor]="chipList"
-                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                            [matChipInputAddOnBlur]="true"
-                            (matChipInputTokenEnd)="addTag($event)">
-                </mat-chip-list>
-                <mat-autocomplete #auto="matAutocomplete"
-                                  (optionSelected)="selectTag($event)">
-                    <mat-option *ngFor="let tag of (getExistingTags() | async)" [value]="tag">
-                        {{tag.title}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field class="w-100" color="accent" *ngIf="selectedGroup !== undefined">
+                <input type="text"
+                       placeholder="Select a tag"
+                       aria-label="Number"
+                       matInput
+                       [formControl]="tagSearchControl"
+                       [matAutocomplete]="auto">
+                <mat-hint>Start typing a tag title</mat-hint>
+                <mat-progress-spinner color="accent"
+                                      *ngIf="isSearching"
+                                      [diameter]="15"
+                                      matSuffix
+                                      mode="indeterminate">
+                </mat-progress-spinner>
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredTags | async"
+                                [value]="option.title"
+                                (onSelectionChange)="addExistingTag(option)">
+                        {{option.title}}
                     </mat-option>
                 </mat-autocomplete>
             </mat-form-field>
 
+            <h3>Selected Tags</h3>
+            <mat-chip-list #chipList>
+                <mat-chip *ngFor="let tag of postModel.tags"
+                          [removable]="true" (removed)="removeTag(tag)">
+                    {{tag.title}}
+                    <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
         </mat-card-content>
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     </mat-card>

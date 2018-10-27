@@ -3,12 +3,16 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PostService} from '../../../common/api/services/PostService';
 import {Post} from '../../../common/api/dataModels/Post';
 import * as _ from 'lodash';
-import {finalize, map} from 'rxjs/operators';
+import {debounce, finalize, map, startWith, switchMap} from 'rxjs/operators';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import {Tag} from '../../../common/api/dataModels/Tag';
-import {MatAutocompleteSelectedEvent} from '@angular/material';
+import {MatAutocompleteSelectedEvent, MatSelectChange} from '@angular/material';
 import {TagService} from '../../../common/api/services/TagService';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, interval, Observable} from 'rxjs';
+import {TagGroupService} from '../../../common/api/services/TagGroupService';
+import {TagGroup} from '../../../common/api/dataModels/TagGroup';
+import {Filter} from '../../../common/api/dataModels/Filter';
+import {FormControl} from '@angular/forms';
 
 @Component({
     selector: 'app-edit-post',
@@ -23,24 +27,35 @@ export class EditPostComponent implements OnInit {
     public isLoading = false;
     public readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-    private existingTagsSubject = new BehaviorSubject(null);
+    public selectedGroup: TagGroup;
+    public recentTags: Tag[];
+    public tagSearchControl = new FormControl();
+    public filteredTags: Observable<Tag[]> = new BehaviorSubject(null).asObservable();
+    public isSearching = false;
+
     private post: Post;
+    private tagGroupsSubject = new BehaviorSubject<TagGroup[]>(null);
 
     constructor(private route: ActivatedRoute,
                 private router: Router,
                 private tagService: TagService,
+                private tagGroupService: TagGroupService,
                 private postService: PostService) {
     }
 
     ngOnInit() {
-        this.post = this.route.snapshot.data.post;
-        this.postModel = _.cloneDeep(this.post);
+        this.isLoading = true;
+        this.prepareModel();
+        this.prepareTags();
 
-        this.tagService.findAll()
-            .pipe(map((pageable) => pageable.content))
-            .subscribe((tags) => {
-                this.existingTagsSubject.next(tags);
-            });
+        this.tagGroupService.findAllEnabled()
+            .pipe(finalize(() => this.isLoading = false))
+            .subscribe((res) => this.tagGroupsSubject.next(res.content));
+    }
+
+
+    public getGroups(): Observable<TagGroup[]> {
+        return this.tagGroupsSubject.asObservable();
     }
 
     public onSave() {
@@ -51,32 +66,25 @@ export class EditPostComponent implements OnInit {
         this.hasChange = true;
     }
 
-    public getExistingTags(): Observable<Tag[]> {
-        return this.existingTagsSubject.asObservable();
+    public onGroupSelect(event: MatSelectChange) {
+        if (event.value === 'all') {
+            this.selectedGroup = null;
+        } else {
+            this.selectedGroup = event.value;
+        }
+        this.loadTags();
     }
 
-    public addTag(event) {
-        const value = event.value as string;
-        if (value) {
-            const existing = this.existingTagsSubject.getValue();
-            const tag: Tag = _.find(existing, (t) => t.title === value) || {title: value};
-            if (!tag.id) {
-                this.isLoading = true;
-                this.tagService.saveOrCreate(tag)
-                    .pipe(finalize(() => this.isLoading = false))
-                    .subscribe((t) => {
-                        this.pushTag(t);
-                        event.input.value = '';
-                    });
-            } else {
-                this.pushTag(tag);
-                event.input.value = '';
-            }
-        }
+    public addExistingTag(tag: Tag) {
+        this.pushTag(tag);
+        this.recentTags = this.tagService.addTagToRecent(tag);
+        this.tagSearchControl.setValue('');
+        this.tagSearchControl.reset();
     }
 
     public selectTag(event: MatAutocompleteSelectedEvent) {
         this.postModel.tags.push(event.option.value);
+        this.recentTags = this.tagService.addTagToRecent(event.option.value);
         this.onChange();
     }
 
@@ -90,11 +98,58 @@ export class EditPostComponent implements OnInit {
         this.onChange();
     }
 
+    private prepareTags() {
+        this.filteredTags = this.getFilteredTags();
+        this.recentTags = this.tagService.getRecentTags();
+    }
+
+    private prepareModel() {
+        this.post = this.route.snapshot.data.post;
+        this.postModel = _.cloneDeep(this.post);
+    }
+
+    private getFilteredTags() {
+        return this.tagSearchControl.valueChanges
+            .pipe(
+                startWith(''),
+                debounce(() => interval(500)),
+                switchMap((value) => {
+                    this.isSearching = true;
+
+                    const filters = [
+                        new Filter('lk', 'title', value)
+                    ];
+
+                    if (this.selectedGroup) {
+                        filters.push(new Filter('eq', 'group.id', String(this.selectedGroup.id)));
+                    }
+
+                    return this.tagService.findBy(filters)
+                        .pipe(finalize(() => this.isSearching = false));
+                }),
+                map((pageable) => pageable.content),
+            );
+    }
+
+    private loadTags() {
+        const filter = this.selectedGroup ?
+            new Filter('eq', 'group.id', String(this.selectedGroup.id)) : null;
+        if (filter) {
+            this.isLoading = true;
+            this.tagService.findBy([filter])
+                .pipe(finalize(() => this.isLoading = false))
+                .subscribe((tags) => {
+                    this.tagSearchControl.reset();
+                });
+        }
+    }
+
     private savePost() {
         const id: string = _.get(this.post, 'id');
         this.isLoading = true;
         this.postModel.published_at = this.post ? this.post.published_at : new Date();
-        this.postService.saveOrCreate(this.postModel, id)
+        const model = _.omit(this.postModel, 'url');
+        this.postService.saveOrCreate(_.omit(model, 'tags_added_by'), id)
             .pipe(finalize(() => this.isLoading = false))
             .subscribe(() => {
                 this.hasChange = false;

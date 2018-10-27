@@ -15,6 +15,12 @@ export class TagGroupService {
         return this.tagGroupResource.findBy(filters);
     }
 
+    public findAllEnabled(): Observable<Pageable<TagGroup>> {
+        return this.findBy([
+            new Filter('eq', 'enabled', 'true'),
+        ]);
+    }
+
     public create(tagGroup: EditTagGroup) {
         return this.tagGroupResource.create(tagGroup);
     }
