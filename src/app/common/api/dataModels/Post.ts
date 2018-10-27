@@ -6,6 +6,7 @@ export interface Post {
     url?: string;
     content?: string;
     source?: string;
+    tags_added_by?: any;
     published_at?: Date;
     created_at?: Date;
     imageUrl?: string;

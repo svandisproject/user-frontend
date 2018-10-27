@@ -38,6 +38,10 @@ export class PostService {
         }
     }
 
+    public deletePost(post: Post): Observable<void> {
+        return this.postResource.delete(post.id);
+    }
+
     private postToPostUpdate(post: Post): PostUpdate {
         const postUpdate: any = _.omit(post, ['id', 'created_at']);
         postUpdate.tags = _.map(postUpdate.tags, tag => tag.id);
