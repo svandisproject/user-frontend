@@ -14,7 +14,7 @@
                 [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="true"
-                (matChipInputTokenEnd)="addExistingTag($event)">
+                (matChipInputTokenEnd)="addTag($event)">
     </mat-chip-list>
     <mat-autocomplete #auto="matAutocomplete"
                       (optionSelected)="selectTag($event)">
