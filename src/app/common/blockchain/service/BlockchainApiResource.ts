@@ -15,7 +15,7 @@ export class BlockchainApiResource {
             {userAddressSignature: generatedUserAddressSignature, recoveryAddress: providedRecoveryAddress},
             {
                 headers: new HttpHeaders()
-                    .set('Content-Type', 'application/x-www-form-urlencoded')
+                    .set('Content-Type', 'application/json')
             });
     }
     public blockchainCentralizedUser(generatedUserAddressSignature: string): Observable<String[]> {
@@ -23,7 +23,7 @@ export class BlockchainApiResource {
             {userAddressSignature: generatedUserAddressSignature},
             {
                 headers: new HttpHeaders()
-                    .set('Content-Type', 'application/x-www-form-urlencoded')
+                    .set('Content-Type', 'application/json')
             });
     }
 }
