@@ -5,12 +5,14 @@ import {Filter} from '../dataModels/Filter';
 import {TagResource} from '../resource/TagResource';
 import {Tag} from '../dataModels/Tag';
 import {map, tap} from 'rxjs/operators';
+import * as _ from 'lodash';
 
 @Injectable()
 export class TagService {
     public static readonly PER_PAGE = 100;
+    private readonly RECENT_STORAGE_KEY = 'RECENT_TAGS';
+    private readonly MAX_RECENT_TAGS = 5;
     private mainTags: Tag[] = [];
-
     constructor(private tagResource: TagResource) {
     }
 
@@ -49,6 +51,28 @@ export class TagService {
             return this.tagResource.update(id, {tag: tag});
         } else {
             return this.tagResource.create({tag: tag});
+        }
+    }
+
+    public addTagToRecent(tag: Tag): Tag[] {
+        let tags = this.getRecentTags() || [];
+        const isAdded = _.find(tags, (t) => t.id === tag.id);
+
+        if (isAdded) {
+            return tags;
+        }
+
+        tags.unshift(tag);
+        tags = _.take(tags, this.MAX_RECENT_TAGS);
+        localStorage.setItem(this.RECENT_STORAGE_KEY, JSON.stringify(tags));
+        return tags;
+    }
+
+    public getRecentTags(): Tag[] {
+        try {
+            return JSON.parse(localStorage.getItem(this.RECENT_STORAGE_KEY));
+        } catch {
+            return [];
         }
     }
 }
