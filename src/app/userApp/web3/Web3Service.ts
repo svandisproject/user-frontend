@@ -4,6 +4,7 @@ import {Web3Interface} from './Web3Interface';
 import Web3 from 'web3';
 import * as FileSaver from 'file-saver';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {BlockchainApiService} from '../../common/blockchain/service/BlockchainApiService';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,7 @@ export class Web3Service {
 
     walletStatus$ = this.walletStatus.asObservable();
 
-    constructor() {
+    constructor(private blockchainApiService: BlockchainApiService) {
         this.web3 = new Web3(Web3Config.LOCAL_HOST_RPC);
         this.clearWallet();
         const privateKeyEncrypted = this.getKeyEncrypted();
@@ -27,16 +28,15 @@ export class Web3Service {
             this.walletStatus.next(true);
         }
     }
-    public signNewUser(isExpert: boolean, recoveryEthAddress: string, password: string): Observable<string> {
-        if (isExpert) {
-            // This will be a variable in the call to the backend, so we know
-            // Do something with recovery Eth Address directed to backend as well
-        }
+
+    public signNewUser(password: string): Observable<string> {
         return Observable.of(this.signData(this.SIGN_NEW_USER, password));
     }
+
     public signSvandisData(password: string): Observable<string> {
         return Observable.of(this.signData(this.SIGN_NEW_SVANDIS_DATA, password));
     }
+
     public signData(dataString: string, password: string): string {
         const privateKeyEncrypted = this.getKeyEncrypted();
         const privateKey = this.decryptKey( privateKeyEncrypted, password);
@@ -51,7 +51,8 @@ export class Web3Service {
             return 'No Signature';
         }
     }
-    public createNewWalletAndStoreKey(password: string) {
+
+    public createNewWalletAndStoreKey(isExpert: boolean, password: string, recoveryAddress?: string) {
         this.web3.eth.accounts.wallet.clear();
         localStorage.removeItem(Web3Config.ENCRYPTED_PRV_KEY);
         this.web3.eth.accounts.wallet.create(1, 'entropy');
@@ -59,13 +60,28 @@ export class Web3Service {
         const walletString = JSON.stringify(encryptedPrivateKey[0]);
         localStorage.setItem(Web3Config.ENCRYPTED_PRV_KEY, walletString);
         this.walletStatus.next(true);
+        this.signNewUser(password).subscribe(returnedSig => {
+                if (isExpert) {
+                    this.blockchainApiService.blockchainUser(
+                        returnedSig, recoveryAddress
+                    ).subscribe((response) => console.log(response));
+                } else {
+                    this.blockchainApiService.blockchainCentralizedUser(
+                        returnedSig
+                    ).subscribe((response) => console.log(response));
+                }
+            }
+        );
     }
+
     private decryptKey(privateKeyEncrypted, password: string) {
         return this.web3.eth.accounts.decrypt(privateKeyEncrypted, password);
     }
+
     private getKeyEncrypted() {
         return localStorage.getItem(Web3Config.ENCRYPTED_PRV_KEY);
     }
+
     private clearWallet() {
         this.web3.eth.accounts.wallet.clear();
     }
@@ -79,8 +95,10 @@ export class Web3Service {
     public downloadMyKeystore() {
         const keystore = this.getKeyEncrypted();
         if (keystore) {
-            const data = new Blob([this.getKeyEncrypted()], { type: 'text/plain;charset=utf-8' });
-            FileSaver.saveAs(data, 'SvandisBackupKeystore_' + new Date + '.json');
+            const data = this.getKeyEncrypted();
+            const blob = new Blob([data], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            window.open(url);
         }
     }
 

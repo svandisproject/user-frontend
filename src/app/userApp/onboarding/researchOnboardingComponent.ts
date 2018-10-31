@@ -49,12 +49,7 @@ export class ResearchOnboardingComponent implements OnInit {
     }
 
     public createNewEthResearchUser(): void {
-        this.web3Service.createNewWalletAndStoreKey(this.password);
-        this.web3Service.signNewUser(
-            this.expertSelected,
-            '0x0',
-            this.password).subscribe(returnedSig => this.returnedSigHash = returnedSig);
-        this.password = '';
+        this.web3Service.createNewWalletAndStoreKey(this.expertSelected, this.password, this.recoveryAddress);
     }
 
     public resetDemo(): void {

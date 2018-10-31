@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Web3Service} from './Web3Service';
+import {Web3Service} from '../Web3Service';
 
 @Component({
     selector: 'app-eth-connection-prompt',
