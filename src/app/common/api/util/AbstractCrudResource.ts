@@ -52,10 +52,11 @@ export class AbstractCrudResource<T> {
             params['direction'] = 'desc';
         } else {
             params['sort'] = sort.sort;
-            if (perPage) {
-                params['per_page'] = perPage;
-            }
             params['direction'] = sort.direction || 'desc';
+        }
+
+        if (perPage) {
+            params['per_page'] = perPage;
         }
 
         return this.httpService.get(this.URL + '/filter', {
