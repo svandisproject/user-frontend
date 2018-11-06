@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {Web3Config} from '../../config/Web3Config';
 import {Web3Interface} from './Web3Interface';
 import Web3 from 'web3';
-import * as FileSaver from 'file-saver';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {BlockchainApiService} from '../../common/blockchain/service/BlockchainApiService';
 
