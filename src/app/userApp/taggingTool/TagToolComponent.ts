@@ -48,7 +48,7 @@ export class TagToolComponent implements OnInit, OnChanges {
             } else {
                 this.currentPost.tags.push(tag);
             }
-            this.postService.saveOrCreate(this.currentPost, this.post.id)
+            this.postService.saveOrCreate(_.omit(this.currentPost, ['tags_added_by', 'published_at']), this.post.id)
                 .subscribe((post) => this.postChange.emit(post));
         }
     }
@@ -64,7 +64,7 @@ export class TagToolComponent implements OnInit, OnChanges {
                 arrVal.id = other.id;
             }
         });
-        this.availableTags = _.filter(this.availableTags, (tag: Tag) => !_.isEmpty(tag.id)) as AvailableTags[];
+        this.availableTags = _.filter(this.availableTags, (tag: Tag) => _.isEmpty(tag.id)) as AvailableTags[];
         this.currentPost = _.cloneDeep(this.post);
         if (!this.canEdit) {
 
