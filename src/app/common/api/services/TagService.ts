@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class TagService {
-    public static readonly PER_PAGE = 100;
+    public static readonly PER_PAGE = 200;
     private readonly RECENT_STORAGE_KEY = 'RECENT_TAGS';
     private readonly MAX_RECENT_TAGS = 5;
     private mainTags: Tag[] = [];
@@ -21,7 +21,7 @@ export class TagService {
     }
 
     public findBy(filters: Filter[], page: number = 1): Observable<Pageable<Tag>> {
-        return this.tagResource.findBy(filters, String(page));
+        return this.tagResource.findBy(filters, String(page), null, 100);
     }
 
     public findById(tagId: string): Observable<Tag> {
