@@ -82,7 +82,7 @@ export class FeedListComponent {
         this.userAuth.getCurrentUser().subscribe(user => {
             if (post.isLiked) {
                 this.likeService.remove(post).subscribe(() => {
-                    user.likedArticles = user.likedArticles.filter(articleId => articleId != post.id);
+                    user.likedArticles = user.likedArticles.filter(articleId => _.toInteger(articleId) !== _.toInteger(post.id));
                     post.isLiked = false;
                 });
             } else {

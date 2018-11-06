@@ -101,13 +101,13 @@ export class NewsFeedComponent {
             )
             .subscribe((posts) => {
                 this.userAuthService.getCurrentUser().subscribe(user => {
-                    for (let post of posts.content) {
+                    for (const post of posts.content) {
                         if (user.likedArticles.includes(post.id)) {
                             post.isLiked = true;
                         }
                     }
                     this.posts = posts;
-                })
+                });
             });
     }
 

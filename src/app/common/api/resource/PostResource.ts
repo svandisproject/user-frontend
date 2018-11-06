@@ -13,6 +13,6 @@ export class PostResource extends AbstractCrudResource<Post> {
     }
 
     public findMostLiked(period: 'day' | 'week' | 'month' ): Observable<Pageable<Post>> {
-        return this.httpService.get(this.URL + '/most-liked/' + period)
+        return this.httpService.get(this.URL + '/most-liked/' + period);
     }
 }
