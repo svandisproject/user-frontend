@@ -5,7 +5,6 @@
            mat-table
            [dataSource]="posts.content"
            *ngIf="posts.content.length > 0; else noResults">
-
         <tbody>
         <ng-container matColumnDef="published_at">
             <th mat-header-cell *matHeaderCellDef class="pr-1">Published</th>
@@ -25,6 +24,14 @@
                 <p>
                     <small>{{getSource(feed.source)}}</small>
                 </p>
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="markers">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let feed">
+                <button class="like-button text-right" [ngClass]="{'liked-post': feed.isLiked}" mat-icon-button matTooltip="Like post" (click)="toggleLikePost($event, feed)">
+                    <mat-icon>thumb_up</mat-icon>
+                </button>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

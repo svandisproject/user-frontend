@@ -11,6 +11,7 @@ export interface Post {
     created_at?: Date;
     imageUrl?: string;
     tags?: Tag[];
+    isLiked?: Boolean;
 }
 
 export interface PostUpdate {

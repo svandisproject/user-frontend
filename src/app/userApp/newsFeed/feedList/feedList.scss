@@ -58,4 +58,20 @@ app-feed-list {
     .selected {
         background-color: rgba(69, 181, 63, 0.13);
     }
+
+    tr.mat-row:hover td .liked-post.like-button, .liked-post.like-button {
+        color: rgba(158,157,184,0.8);
+    }
+
+    .like-button {
+        color: rgba(158,157,184,0.01);
+    }
+
+    tr.mat-row:hover td .like-button {
+        color: rgba(158,157,184,0.1);
+    }
+
+    tr.mat-row:hover td .like-button:hover {
+        color: rgba(158,157,184,0.8);
+    }
 }

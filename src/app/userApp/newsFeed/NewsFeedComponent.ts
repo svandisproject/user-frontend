@@ -1,6 +1,7 @@
 import {Component, ViewEncapsulation} from '@angular/core';
 import {FilterFactory} from '../../common/api/util/FilterFactory';
 import {PostService} from '../../common/api/services/PostService';
+import {UserAuthService} from '../../common/user/UserAuthService';
 import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {Post} from '../../common/api/dataModels/Post';
 import {SearchFilterSettings} from '../../common/filters/dataModels/FilterSettings';
@@ -30,7 +31,7 @@ export class NewsFeedComponent {
 
     private pusherChannel: Channel;
     private currentFilterSettings: SearchFilterSettings = <SearchFilterSettings> {};
-    private currentPageIndex = 0;
+    private currentPageIndex = 1;
     private readonly PUSHER_EVENT = 'new-post';
     private readonly PUSHER_CHANNEL = 'news-feed';
     private sortOptions: any = {
@@ -41,17 +42,15 @@ export class NewsFeedComponent {
 
     constructor(private postService: PostService,
                 private snack: MatSnackBar,
-                private pusherService: PusherService) {
-        this.postService.findAll(this.sortOptions)
-            .subscribe(posts => {
-                this.posts = posts;
-                this.subscribeToPusherNews();
-            });
+                private pusherService: PusherService,
+                private userAuthService: UserAuthService) {
+        this.loadPage();
+        this.subscribeToPusherNews();
     }
 
     public loadPage(pageEvent?: PageEvent): void {
-        this.currentPageIndex = pageEvent.pageIndex || this.currentPageIndex;
-        this.filterPosts(this.currentFilterSettings, this.currentPageIndex + 1);
+        this.currentPageIndex = _.has(pageEvent, 'pageIndex') ? pageEvent.pageIndex + 1 : this.currentPageIndex;
+        this.filterPosts(this.currentFilterSettings, this.currentPageIndex);
     }
 
     public onSearch($event: FilterItem): void {
@@ -101,7 +100,14 @@ export class NewsFeedComponent {
                 finalize(() => this.isLoading = false)
             )
             .subscribe((posts) => {
-                this.posts = posts;
+                this.userAuthService.getCurrentUser().subscribe(user => {
+                    for (let post of posts.content) {
+                        if (user.likedArticles.includes(post.id)) {
+                            post.isLiked = true;
+                        }
+                    }
+                    this.posts = posts;
+                })
             });
     }
 
