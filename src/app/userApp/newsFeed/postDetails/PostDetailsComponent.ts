@@ -30,7 +30,6 @@ export class PostDetailsComponent implements OnInit {
     }
 
     public isAdmin(): boolean {
-        console.log(this.userAuthService.hasRoleAdmin());
         return this.userAuthService.hasRoleAdmin();
     }
 
