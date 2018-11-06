@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {PostResource} from '../resource/PostResource';
+import {LikeResource} from '../resource/LikeResource';
 import {Observable} from 'rxjs/Observable';
 import {Post, PostUpdate} from '../dataModels/Post';
 import {Pageable} from '../dataModels/pageable/Pageable';
@@ -8,6 +9,7 @@ import * as _ from 'lodash';
 import {MatSnackBar} from '@angular/material';
 import {tap} from 'rxjs/operators';
 import {Sorting} from '../util/Sorting';
+
 
 @Injectable()
 export class PostService {
@@ -46,5 +48,17 @@ export class PostService {
         const postUpdate: any = _.omit(post, ['id', 'created_at']);
         postUpdate.tags = _.map(postUpdate.tags, tag => tag.id);
         return postUpdate;
+    }
+
+    public getMostLikedToday(): Observable<Pageable<Post>> {
+        return this.postResource.findMostLiked('day');
+    }
+
+    public getMostLikedThisWeek(): Observable<Pageable<Post>> {
+        return this.postResource.findMostLiked('week');
+    }
+
+    public getMostLikedThisMonth(): Observable<Pageable<Post>> {
+        return this.postResource.findMostLiked('month');
     }
 }

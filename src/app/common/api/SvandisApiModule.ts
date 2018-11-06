@@ -17,6 +17,8 @@ import {UserResource} from './resource/UserResource';
 import {UserService} from './services/UserService';
 import {TagGroupResource} from './resource/TagGroupResource';
 import {TagGroupService} from './services/TagGroupService';
+import {LikeResource} from './resource/LikeResource';
+import {LikeService} from './services/LikeService';
 
 @NgModule({
     imports: [HttpClientModule],
@@ -38,6 +40,8 @@ import {TagGroupService} from './services/TagGroupService';
         FilterResource,
         UserResource,
         UserService,
+        LikeResource,
+        LikeService
     ]
 })
 export class SvandisApiModule {

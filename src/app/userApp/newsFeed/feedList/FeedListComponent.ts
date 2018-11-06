@@ -4,8 +4,11 @@ import {Pageable} from '../../../common/api/dataModels/pageable/Pageable';
 import {PageEvent} from '@angular/material';
 import * as _ from 'lodash';
 import {UserAuthService} from '../../../common/user/UserAuthService';
+import {PostService} from '../../../common/api/services/PostService';
 import {DateTime, Duration} from 'luxon';
 import {LayoutService} from '../../../common/layout/LayoutService';
+import {LikeService} from '../../../common/api/services/LikeService';
+
 
 @Component({
     selector: 'app-feed-list',
@@ -23,11 +26,12 @@ export class FeedListComponent {
     @Output() pageChange: EventEmitter<PageEvent> = new EventEmitter<PageEvent>();
 
     public pageIndexSubtractor = 1;
-    public displayedColumns: string[] = ['published_at', 'title'];
+    public displayedColumns: string[] = ['published_at', 'title', 'markers'];
     public selectedRow: Post;
 
     constructor(protected userAuth: UserAuthService,
-                public layout: LayoutService) {
+                public layout: LayoutService,
+                private likeService: LikeService) {
     }
 
     public isAdmin(): boolean {
@@ -70,6 +74,24 @@ export class FeedListComponent {
         }
 
         return 'sentiment_satisfied';
+    }
+
+    public toggleLikePost($event, post: Post): void {
+        $event.stopPropagation();
+
+        this.userAuth.getCurrentUser().subscribe(user => {
+            if (post.isLiked) {
+                this.likeService.remove(post).subscribe(() => {
+                    user.likedArticles = user.likedArticles.filter(articleId => _.toInteger(articleId) !== _.toInteger(post.id));
+                    post.isLiked = false;
+                });
+            } else {
+                this.likeService.add(post).subscribe(() => {
+                    user.likedArticles.push(post.id);
+                    post.isLiked = true;
+                });
+            }
+        });
     }
 }
 
