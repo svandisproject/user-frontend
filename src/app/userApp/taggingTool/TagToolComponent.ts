@@ -64,7 +64,7 @@ export class TagToolComponent implements OnInit, OnChanges {
                 arrVal.id = other.id;
             }
         });
-        this.availableTags = _.filter(this.availableTags, (tag: Tag) => tag.id) as AvailableTags[];
+        this.availableTags = _.filter(this.availableTags, (tag: Tag) => !_.isEmpty(tag.id)) as AvailableTags[];
         this.currentPost = _.cloneDeep(this.post);
         if (!this.canEdit) {
 
