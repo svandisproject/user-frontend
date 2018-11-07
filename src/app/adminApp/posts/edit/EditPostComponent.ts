@@ -169,7 +169,7 @@ export class EditPostComponent implements OnInit {
         const id: string = _.get(this.post, 'id');
         this.isLoading = true;
         this.postModel.published_at = this.post ? this.post.published_at : new Date();
-        const model = _.omit(this.postModel, ['url', 'tags_added_by', 'published_at']);
+        const model = _.omit(this.postModel, ['url', 'tags_added_by', 'published_at', 'source']);
         this.postService.saveOrCreate(model, id)
             .pipe(finalize(() => this.isLoading = false))
             .subscribe(() => {
