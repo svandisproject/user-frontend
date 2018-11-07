@@ -22,6 +22,7 @@ import {
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
+    MatStepperModule,
     MatTableModule,
     MatTabsModule,
     MatToolbarModule,
@@ -60,8 +61,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatToolbarModule,
         MatBadgeModule,
         MatSidenavModule,
-
-
+        MatStepperModule
     ],
     exports: [
         MatListModule,
@@ -92,6 +92,7 @@ import {ReactiveFormsModule} from '@angular/forms';
         MatSortModule,
         MatToolbarModule,
         MatSidenavModule,
+        MatStepperModule
     ],
     providers: [],
 })

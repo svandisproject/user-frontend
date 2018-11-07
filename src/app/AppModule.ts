@@ -11,6 +11,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatPaginatorModule, MatTableModule} from '@angular/material';
 import {BlockUIModule} from 'ng-block-ui';
 import {AppRouting} from './AppRouting';
+import {BlockchainApiService} from './common/blockchain/service/BlockchainApiService';
+import {BlockchainApiModule} from './common/blockchain/BlockchainApiModule';
 
 @NgModule({
     declarations: [
@@ -32,7 +34,8 @@ import {AppRouting} from './AppRouting';
                 deps: [HttpClient]
             }
         }),
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        BlockchainApiModule
     ],
     exports: [
         AppCommonProvidersModule,

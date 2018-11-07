@@ -1,0 +1,10 @@
+<mat-card class="promptcard">
+    <a routerLink="/user/profile">
+    <mat-card-content *ngIf="!connectionStatus">
+     <mat-icon>link-off</mat-icon> ETH Key Not Connected <mat-icon color="accent">info</mat-icon>
+    </mat-card-content>
+    <mat-card-content *ngIf="connectionStatus">
+        <mat-icon>link</mat-icon> ETH Key Connected <mat-icon color="accent">info</mat-icon>
+    </mat-card-content>
+    </a>
+</mat-card>

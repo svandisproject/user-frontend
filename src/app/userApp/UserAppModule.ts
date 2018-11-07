@@ -25,9 +25,14 @@ import {SvandisApiModule} from '../common/api/SvandisApiModule';
 import {WorkerUIComponent} from './worker-ui/WorkerUIComponent';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {ScreenerColumnManagerComponent} from './screener/ScreenerColumnManagerComponent';
+import {ResearchOnboardingComponent} from './onboarding/researchOnboardingComponent';
+import {EthConnectionPromptComponent} from './web3/connectionPrompt/ethConnectionPromptComponent';
 import {NgArrayPipesModule} from 'ngx-pipes';
 import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent';
 import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
+import {Web3Service} from './web3/Web3Service';
+import {BlockchainApiService} from '../common/blockchain/service/BlockchainApiService';
+import {BlockchainApiModule} from '../common/blockchain/BlockchainApiModule';
 
 @NgModule({
     imports: [
@@ -57,6 +62,8 @@ import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
         PostDetailsComponent,
         TagFilterComponent,
         FeedListComponent,
+        ResearchOnboardingComponent,
+        EthConnectionPromptComponent,
         ScreenerColumnManagerComponent
     ],
     providers: [
