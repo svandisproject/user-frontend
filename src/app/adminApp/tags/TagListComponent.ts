@@ -18,7 +18,8 @@ export class TagListComponent {
 
     public columns: GeneralDataTableColumn[] = [
         {columnName: 'id', columnKey: 'id'},
-        {columnName: 'title', columnKey: 'title'},
+        {columnName: 'Title', columnKey: 'title'},
+        {columnName: 'Group', columnKey: 'group.title'},
     ];
 
     constructor(private tagService: TagService,

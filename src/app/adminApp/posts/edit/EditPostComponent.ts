@@ -15,6 +15,7 @@ import {Filter} from '../../../common/api/dataModels/Filter';
 import {FormControl} from '@angular/forms';
 import {ConfirmationDialogComponent} from '../../../common/dialogs/confirmation/ConfirmationDialogComponent';
 import {CreateTagDialogComponent} from './dialogs/CreateTagDialogComponent';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-edit-post',
@@ -42,6 +43,7 @@ export class EditPostComponent implements OnInit {
                 private router: Router,
                 private tagService: TagService,
                 private matDialog: MatDialog,
+                private location: Location,
                 private tagGroupService: TagGroupService,
                 private postService: PostService) {
     }
@@ -59,6 +61,10 @@ export class EditPostComponent implements OnInit {
 
     public getGroups(): Observable<TagGroup[]> {
         return this.tagGroupsSubject.asObservable();
+    }
+
+    public goBack() {
+        this.location.back();
     }
 
     public onSave() {
@@ -112,6 +118,20 @@ export class EditPostComponent implements OnInit {
     public removeTag(tag: Tag) {
         _.remove(this.postModel.tags, (t) => t.id === tag.id);
         this.onChange();
+    }
+
+
+    public markAsTrash(post: Post): void {
+        const ref = this.matDialog.open(ConfirmationDialogComponent,
+            {data: {message: 'Are you sure you want to mark the post as trash ?'}});
+        ref.afterClosed().subscribe((approved) => {
+            if (approved) {
+                this.isLoading = true;
+                this.postService.markTrash(post)
+                    .pipe(finalize(() => this.isLoading = false))
+                    .subscribe((res) => this.location.back());
+            }
+        });
     }
 
     private pushTag(t) {
@@ -169,8 +189,7 @@ export class EditPostComponent implements OnInit {
         const id: string = _.get(this.post, 'id');
         this.isLoading = true;
         this.postModel.published_at = this.post ? this.post.published_at : new Date();
-        const model = _.omit(this.postModel, ['tags_added_by', 'url', 'published_at', 'liked_by', 'source']);
-        this.postService.saveOrCreate(model, id)
+        this.postService.saveOrCreate(this.postModel, id)
             .pipe(finalize(() => this.isLoading = false))
             .subscribe(() => {
                 this.hasChange = false;

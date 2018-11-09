@@ -8,6 +8,7 @@ export interface GeneralDataTableColumn {
     columnClass?: string;
     isFlag?: boolean;
     isArray?: boolean;
+    truncateSize?: number;
     arrayItemKey?: string;
     isBoolean?: boolean;
 }

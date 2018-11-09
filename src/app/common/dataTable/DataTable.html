@@ -5,7 +5,8 @@
         </mat-form-field>
     </div>
     <mat-table #table [dataSource]="dataSource" matSort>
-        <ng-container *ngFor="let column of displayedColumns; let first = first" matColumnDef="{{column.columnKey}}">
+        <ng-container *ngFor="let column of getAllDisplayableColumns(); let first = first"
+                      matColumnDef="{{column.columnKey}}">
 
             <mat-header-cell *matHeaderCellDef
                              mat-sort-header
@@ -13,6 +14,7 @@
                 {{ column.columnName | translate}}
             </mat-header-cell>
             <mat-cell *matCellDef="let element"
+                      (click)="columnSelect(element)"
                       [ngClass]="isNegative(element[column.columnKey]) ? 'negative' : 'positive'">
                 <ng-container>
                     <span [matTooltip]="stringifyColumnValue(element, column, false)">
@@ -26,7 +28,16 @@
                 </ng-container>
             </mat-cell>
         </ng-container>
-
+        <ng-container matColumnDef="action" *ngIf="settings.actionMenu">
+            <mat-header-cell *matHeaderCellDef class="align-items-center justify-content-center">
+                Edit
+            </mat-header-cell>
+            <mat-cell *matCellDef="let element" class="align-items-center justify-content-center">
+                <ng-container [ngTemplateOutletContext]="{ $implicit: element }"
+                              [ngTemplateOutlet]="actionMenuTemplate">
+                </ng-container>
+            </mat-cell>
+        </ng-container>
         <mat-header-row *matHeaderRowDef="getColumnsToDisplay()"></mat-header-row>
         <mat-row *matRowDef="let row; columns: getColumnsToDisplay();" (click)="rowSelect(row)"></mat-row>
     </mat-table>

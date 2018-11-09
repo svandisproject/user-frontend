@@ -16,10 +16,7 @@ export interface Post {
 
 export interface PostUpdate {
     title?: string;
-    url?: string;
     content?: string;
-    source?: string;
-    published_at?: Date;
     imageUrl?: string;
     tags?: string[];
 }

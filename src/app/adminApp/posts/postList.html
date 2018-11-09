@@ -6,17 +6,27 @@
     </div>
 </div>
 
-
-<app-data-table [dataSet]="posts"
-                *ngIf="posts; else loading"
-                [displayedColumns]="columns"
-                [settings]="{filter: false}"
-                (pageChange)="loadPage($event)"
-                (rowSelected)="editPost($event)">
-</app-data-table>
-<ng-template #loading>
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</ng-template>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<mat-card>
+    <app-data-table [dataSet]="posts"
+                    *ngIf="posts; else loading"
+                    [displayedColumns]="columns"
+                    [settings]="tableSettings"
+                    (pageChange)="loadPage($event)"
+                    (rowSelected)="editPost($event)">
+        <ng-template let-element>
+            <button mat-icon-button
+                    (click)="markAsTrash(element)"
+                    matTooltip="Mark post as trash">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </ng-template>
+    </app-data-table>
+    <ng-template #loading>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-template>
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+</mat-card>
 
 <!--<button mat-button mat-fab class="fab-fixed-bottom-right" (click)="addPost()">-->
 <!--<mat-icon>add</mat-icon>-->

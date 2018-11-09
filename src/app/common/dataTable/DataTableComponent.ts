@@ -2,12 +2,14 @@ import {
     AfterViewInit,
     ChangeDetectionStrategy,
     Component,
+    ContentChild,
     EventEmitter,
     Input,
     OnChanges,
     OnInit,
     Output,
     SimpleChanges,
+    TemplateRef,
     ViewChild,
     ViewEncapsulation
 } from '@angular/core';
@@ -30,6 +32,7 @@ import {SortAwarePageEvent} from './SortAwarePageEvent';
 export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
     @ViewChild(MatSort) sort: MatSort;
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ContentChild(TemplateRef) actionMenuTemplate: TemplateRef<any>;
 
     @Input() dataSet: Pageable<any>;
     @Input() displayedColumns: GeneralDataTableColumn[] = [];
@@ -39,6 +42,8 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         paginationOptions: {
             itemsPerPage: 10
         },
+        selectByColumn: false,
+        actionMenu: boolean,
         filter: boolean
     };
 
@@ -49,6 +54,7 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
 
     ngOnInit(): void {
         this.initDefaultSettings();
+        this.initColumns();
     }
 
     ngAfterViewInit(): void {
@@ -68,14 +74,25 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         return Math.sign(Number(_.replace(value, /[^\d.-]/g, ''))) === -1;
     }
 
+    public getAllDisplayableColumns(): GeneralDataTableColumn[] {
+        return this.displayedColumns.filter(column => column.columnKey && column.columnKey !== 'action');
+    }
+
     public getColumnsToDisplay(): string[] {
         return this.displayedColumns.map(column => column.columnKey);
     }
 
     public rowSelect(row: any): void {
-        this.rowSelected.emit(row);
+        if (!this.settings.selectByColumn) {
+            this.rowSelected.emit(row);
+        }
     }
 
+    public columnSelect(element) {
+        if (this.settings.selectByColumn) {
+            this.rowSelected.emit(element);
+        }
+    }
     public applyFilter(filterValue: string): void {
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }
@@ -103,7 +120,7 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
         }
 
         if (short) {
-            str = _.truncate(str);
+            str = _.truncate(str, {length: column.truncateSize || 30});
         }
         if (column.isFlag) {
             return str.toLowerCase();
@@ -120,5 +137,11 @@ export class DataTableComponent implements OnInit, OnChanges, AfterViewInit {
             },
             filter: true
         }, this.settings);
+    }
+
+    private initColumns() {
+        if (this.displayedColumns && this.settings.actionMenu) {
+            this.displayedColumns.push({columnKey: 'action', columnName: 'Action'});
+        }
     }
 }

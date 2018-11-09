@@ -12,6 +12,10 @@ app-data-table {
         padding: 8px 24px 0;
     }
 
+    .mat-column-action {
+        flex: 0 0 100px;
+    }
+
     .mat-sort-header-sorted button {
         color: color('grey', 'darken-4') !important;
     }
