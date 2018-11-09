@@ -21,6 +21,9 @@
                         <div class="col-4 col-sm-12 col-md-4">
                             <app-search-form (termChange)="onSearch($event)" class="w-100"></app-search-form>
                         </div>
+                        <div class="col-4 col-sm-12 col-md-4">
+                            <app-news-feed-like-filter (periodSelect)="loadMostLikedPosts($event)"></app-news-feed-like-filter>
+                        </div>
                     </div>
                     <app-feed-list [posts]="posts"
                                    [isLoading]="isLoading"

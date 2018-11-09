@@ -50,15 +50,7 @@ export class PostService {
         return postUpdate;
     }
 
-    public getMostLikedToday(): Observable<Pageable<Post>> {
-        return this.postResource.findMostLiked('day');
-    }
-
-    public getMostLikedThisWeek(): Observable<Pageable<Post>> {
-        return this.postResource.findMostLiked('week');
-    }
-
-    public getMostLikedThisMonth(): Observable<Pageable<Post>> {
-        return this.postResource.findMostLiked('month');
+    public findMostLikedInPeriod(period: string): Observable<Pageable<Post>> {
+        return this.postResource.findMostLiked(period);
     }
 }
