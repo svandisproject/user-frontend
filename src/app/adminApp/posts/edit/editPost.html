@@ -1,5 +1,12 @@
 <div class="grid-container">
-    <h1 class="mat-h1">Edit post: {{postModel.title}}</h1>
+    <div class="row mb-3">
+        <div class="col-12 d-flex align-items-center justify-content-start">
+            <button mat-icon-button class="mr-3" matTooltip="Go back" (click)="goBack()">
+                <mat-icon>arrow_back</mat-icon>
+            </button>
+            <h1 class="mat-h1 p-0 m-0">Edit post: {{postModel.id}}</h1>
+        </div>
+    </div>
     <mat-card>
         <mat-card-content>
             <h3>Details</h3>

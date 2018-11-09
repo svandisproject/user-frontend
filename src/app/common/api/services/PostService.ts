@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {PostResource} from '../resource/PostResource';
-import {LikeResource} from '../resource/LikeResource';
 import {Observable} from 'rxjs/Observable';
 import {Post, PostUpdate} from '../dataModels/Post';
 import {Pageable} from '../dataModels/pageable/Pageable';
@@ -14,12 +13,20 @@ import {Sorting} from '../util/Sorting';
 @Injectable()
 export class PostService {
     private readonly perPage = 50;
+    private readonly TRASH_TAG_ID = '56';
+
     constructor(private postResource: PostResource,
                 private matSnackBar: MatSnackBar) {
     }
 
     public findAll(params?: any): Observable<Pageable<Post>> {
         return this.postResource.findAll(false, params);
+    }
+
+    public markTrash(post: Post): Observable<Post> {
+        const postUpdate = this.postToPostUpdate(post);
+        postUpdate.tags.push(this.TRASH_TAG_ID);
+        return this.postResource.update(post.id, {post: postUpdate as any});
     }
 
     public findBy(filters: Filter[], page: number = 1, sort?: Sorting, perPage = this.perPage): Observable<Pageable<Post>> {
@@ -45,7 +52,7 @@ export class PostService {
     }
 
     private postToPostUpdate(post: Post): PostUpdate {
-        const postUpdate: any = _.omit(post, ['id', 'created_at']);
+        const postUpdate: any = _.omit(post, ['id', 'created_at', 'tags_added_by', 'url', 'published_at', 'liked_by', 'source']);
         postUpdate.tags = _.map(postUpdate.tags, tag => tag.id);
         return postUpdate;
     }

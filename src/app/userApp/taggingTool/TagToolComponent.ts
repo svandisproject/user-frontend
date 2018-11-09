@@ -48,10 +48,7 @@ export class TagToolComponent implements OnInit, OnChanges {
             } else {
                 this.currentPost.tags.push(tag);
             }
-            this.postService.saveOrCreate(
-                _.omit(this.currentPost, ['tags_added_by', 'url', 'published_at', 'liked_by', 'source']),
-                this.post.id
-            )
+            this.postService.saveOrCreate(this.currentPost, this.post.id)
                 .subscribe((post) => this.postChange.emit(post));
         }
     }
