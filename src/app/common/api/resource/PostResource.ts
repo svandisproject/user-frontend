@@ -12,7 +12,7 @@ export class PostResource extends AbstractCrudResource<Post> {
         super(SvandisApi.API_URL + '/post', httpService);
     }
 
-    public findMostLiked(period: 'day' | 'week' | 'month' ): Observable<Pageable<Post>> {
+    public findMostLiked(period: string): Observable<Pageable<Post>> {
         return this.httpService.get(this.URL + '/most-liked/' + period);
     }
 }

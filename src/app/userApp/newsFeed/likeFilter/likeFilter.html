@@ -1,0 +1,10 @@
+<ng-container>
+    <mat-form-field color="accent" class="mr-1 w-100">
+        <mat-select [placeholder]="'Most liked'" (selectionChange)="filterSelect($event)">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let period of periodValues" [value]="period.value">
+                {{period.title}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</ng-container>
