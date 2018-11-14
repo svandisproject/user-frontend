@@ -70,6 +70,20 @@ export class NewsFeedComponent {
         this.posts = _.cloneDeep(this.posts);
     }
 
+    public loadMostLikedPosts(period: string) {
+        if (!['day', 'week', 'month'].includes(period)) {
+            return this.filterPosts(this.currentFilterSettings, 1);
+        }
+
+        this.isLoading = true;
+        this.postService.findMostLikedInPeriod(period)
+            .pipe(
+                catchError(err => this.errorHandler(err)),
+                finalize(() => this.isLoading = false)
+            )
+            .subscribe(posts => this.afterPostsLoad(posts));
+    }
+
     private subscribeToPusherNews(): void {
         this.pusherChannel = this.pusherService.connectToChannel(this.PUSHER_CHANNEL);
         this.pusherService.getChannelEventObservable(this.PUSHER_EVENT, this.pusherChannel)
@@ -91,24 +105,28 @@ export class NewsFeedComponent {
         this.isLoading = true;
         this.postService.findBy(filters, page, this.sortOptions)
             .pipe(
-                catchError((err: HttpErrorResponse) => {
-                    if (err.status === 404) {
-                        this.resetPosts();
-                    }
-                    return of(this.posts);
-                }),
+                catchError(err => this.errorHandler(err)),
                 finalize(() => this.isLoading = false)
             )
-            .subscribe((posts) => {
-                this.userAuthService.getCurrentUser().subscribe(user => {
-                    for (const post of posts.content) {
-                        if (user.likedArticles.includes(post.id)) {
-                            post.isLiked = true;
-                        }
-                    }
-                    this.posts = posts;
-                });
-            });
+            .subscribe(posts => this.afterPostsLoad(posts));
+    }
+
+    private afterPostsLoad(posts) {
+        this.userAuthService.getCurrentUser().subscribe(user => {
+            for (const post of posts.content) {
+                if (user.likedArticles.includes(post.id)) {
+                    post.isLiked = true;
+                }
+            }
+            this.posts = posts;
+        });
+    }
+
+    private errorHandler(err: HttpErrorResponse) {
+        if (err.status === 404) {
+            this.resetPosts();
+        }
+        return of(this.posts);
     }
 
     private resetPosts() {

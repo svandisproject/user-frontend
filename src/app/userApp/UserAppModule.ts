@@ -33,6 +33,7 @@ import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
 import {Web3Service} from './web3/Web3Service';
 import {BlockchainApiService} from '../common/blockchain/service/BlockchainApiService';
 import {BlockchainApiModule} from '../common/blockchain/BlockchainApiModule';
+import {LikeFilterComponent} from './newsFeed/likeFilter/LikeFilterComponent';
 
 @NgModule({
     imports: [
@@ -61,6 +62,7 @@ import {BlockchainApiModule} from '../common/blockchain/BlockchainApiModule';
         UserSidebarComponent,
         PostDetailsComponent,
         TagFilterComponent,
+        LikeFilterComponent,
         FeedListComponent,
         ResearchOnboardingComponent,
         EthConnectionPromptComponent,
