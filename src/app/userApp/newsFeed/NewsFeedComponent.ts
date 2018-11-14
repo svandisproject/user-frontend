@@ -148,7 +148,7 @@ export class NewsFeedComponent {
                 factory.add(new Filter('lk', filterItem.property, filterItem.value));
             }
         });
-
+        factory.add(new Filter('ne', 'tags.title', 'Trash'));
         return factory.build();
     }
 }

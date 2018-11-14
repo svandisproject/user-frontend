@@ -121,13 +121,13 @@ export class EditPostComponent implements OnInit {
     }
 
 
-    public markAsTrash(post: Post): void {
+    public markAsTrash(): void {
         const ref = this.matDialog.open(ConfirmationDialogComponent,
             {data: {message: 'Are you sure you want to mark the post as trash ?'}});
         ref.afterClosed().subscribe((approved) => {
             if (approved) {
                 this.isLoading = true;
-                this.postService.markTrash(post)
+                this.postService.markTrash(this.postModel)
                     .pipe(finalize(() => this.isLoading = false))
                     .subscribe((res) => this.location.back());
             }

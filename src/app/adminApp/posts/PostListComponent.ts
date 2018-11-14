@@ -5,8 +5,9 @@ import {Post} from '../../common/api/dataModels/Post';
 import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatDialog, PageEvent} from '@angular/material';
-import {ConfirmationDialogComponent} from '../../common/dialogs/confirmation/ConfirmationDialogComponent';
 import {finalize, switchMap} from 'rxjs/operators';
+import {Filter} from '../../common/api/dataModels/Filter';
+import {ConfirmationDialogComponent} from '../../common/dialogs/confirmation/ConfirmationDialogComponent';
 
 @Component({
     selector: 'app-admin-posts',
@@ -49,7 +50,7 @@ export class PostListComponent implements OnInit {
                     if (params) {
                         this.currentPage = params.page;
                     }
-                    return this.postService.findBy(null, this.currentPage);
+                    return this.postService.findBy([new Filter('ne', 'tags.title', 'Trash')], this.currentPage);
                 })
             )
             .subscribe((res) => this.posts = res);
@@ -72,7 +73,7 @@ export class PostListComponent implements OnInit {
                 this.postService.markTrash(post)
                     .pipe(
                         finalize(() => this.isLoading = false),
-                        switchMap(() => this.postService.findBy(null, this.currentPage))
+                        switchMap(() => this.postService.findBy([new Filter('ne', 'tags.title', 'Trash')], this.currentPage))
                     )
                     .subscribe((res) => this.posts = res);
             }
@@ -83,7 +84,7 @@ export class PostListComponent implements OnInit {
         this.isLoading = true;
         this.currentPage = pageEvent.pageIndex + 1;
         this.router.navigate(['.'], {queryParams: {page: this.currentPage}, relativeTo: this.route});
-        this.postService.findBy(null, this.currentPage)
+        this.postService.findBy([new Filter('ne', 'tags.title', 'Trash')], this.currentPage)
             .pipe(finalize(() => this.isLoading = false))
             .subscribe((res) => this.posts = res);
     }
