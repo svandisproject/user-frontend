@@ -4,7 +4,10 @@ import {Pageable} from '../../common/api/dataModels/pageable/Pageable';
 import {Post} from '../../common/api/dataModels/Post';
 import {GeneralDataTableColumn} from '../../common/dataTable/GeneralDataTableColumn';
 import {ActivatedRoute, Router} from '@angular/router';
-import {PageEvent} from '@angular/material';
+import {MatDialog, PageEvent} from '@angular/material';
+import {finalize, switchMap} from 'rxjs/operators';
+import {Filter} from '../../common/api/dataModels/Filter';
+import {ConfirmationDialogComponent} from '../../common/dialogs/confirmation/ConfirmationDialogComponent';
 
 @Component({
     selector: 'app-admin-posts',
