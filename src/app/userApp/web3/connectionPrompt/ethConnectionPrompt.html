@@ -1,10 +1,12 @@
-<mat-card class="promptcard">
-    <a routerLink="/user/profile">
-    <mat-card-content *ngIf="!connectionStatus">
-     <mat-icon>link-off</mat-icon> ETH Key Not Connected <mat-icon color="accent">info</mat-icon>
-    </mat-card-content>
-    <mat-card-content *ngIf="connectionStatus">
-        <mat-icon>link</mat-icon> ETH Key Connected <mat-icon color="accent">info</mat-icon>
-    </mat-card-content>
-    </a>
-</mat-card>
+<button mat-button routerLink="/user/profile">
+    <ng-container *ngIf="!connectionStatus; else connected">
+        <mat-icon>link_off</mat-icon>
+        ETH Key Not Connected
+        <mat-icon color="accent">info</mat-icon>
+    </ng-container>
+    <ng-template #connected>
+        <mat-icon>link</mat-icon>
+        ETH Key Connected
+        <mat-icon color="accent">info</mat-icon>
+    </ng-template>
+</button>

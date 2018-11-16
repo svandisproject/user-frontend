@@ -4,17 +4,7 @@
             [fixedInViewport]="true"
             class="sidenav"
             [mode]="isMobile ? 'push' : 'side'"
-            [opened]="opened">
-        <mat-nav-list>
-            <a class="list-group-item waves-effect"
-               *ngFor="let item of items"
-               mat-list-item
-               [routerLink]="item.link"
-               routerLinkActive="mat-list-item-focus">
-                <mat-icon>{{item.icon}}</mat-icon>
-                {{item.title | translate}}
-            </a>
-        </mat-nav-list>
+            [opened]="isWebFeed()">
     </mat-sidenav>
     <mat-sidenav-content>
         <ng-content></ng-content>

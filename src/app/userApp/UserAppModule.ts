@@ -30,10 +30,8 @@ import {EthConnectionPromptComponent} from './web3/connectionPrompt/ethConnectio
 import {NgArrayPipesModule} from 'ngx-pipes';
 import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent';
 import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
-import {Web3Service} from './web3/Web3Service';
-import {BlockchainApiService} from '../common/blockchain/service/BlockchainApiService';
-import {BlockchainApiModule} from '../common/blockchain/BlockchainApiModule';
 import {LikeFilterComponent} from './newsFeed/likeFilter/LikeFilterComponent';
+import {UserAppToolbarComponent} from './toolbar/UserAppToolbarComponent';
 
 @NgModule({
     imports: [
@@ -59,6 +57,7 @@ import {LikeFilterComponent} from './newsFeed/likeFilter/LikeFilterComponent';
         GeneralScreenerComponent,
         IcoScreenerComponent,
         AltCoinScreenerComponent,
+        UserAppToolbarComponent,
         UserSidebarComponent,
         PostDetailsComponent,
         TagFilterComponent,
