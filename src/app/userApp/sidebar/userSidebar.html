@@ -5,6 +5,14 @@
             class="sidenav"
             [mode]="isMobile ? 'push' : 'side'"
             [opened]="isWebFeed()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h4>Filters</h4>
+                </div>
+            </div>
+            <app-news-feed-filter></app-news-feed-filter>
+        </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <ng-content></ng-content>
