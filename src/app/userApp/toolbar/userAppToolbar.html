@@ -2,15 +2,7 @@
     <div class="container-fluid">
         <div class="row d-flex align-items-center">
             <div class="col-4">
-                <ng-container *ngIf="!isMobile; else burger">
-                    <img src="assets/image/svandis-logo.png" alt="">
-                </ng-container>
-                <ng-template #burger>
-                    <button mat-icon-button (click)="sidebarOpen = !sidebarOpen">
-                        <mat-icon>menu</mat-icon>
-                    </button>
-                    <img src="assets/image/svandis-logo.png" alt="">
-                </ng-template>
+                <img src="assets/image/svandis-logo.png" alt="">
             </div>
             <div class="col-5">
                 <button mat-button *ngFor="let item of items"
