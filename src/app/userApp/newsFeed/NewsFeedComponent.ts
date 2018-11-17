@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FilterFactory} from '../../common/api/util/FilterFactory';
 import {PostService} from '../../common/api/services/PostService';
 import {UserAuthService} from '../../common/user/UserAuthService';
@@ -14,6 +14,7 @@ import {of} from 'rxjs/observable/of';
 import {PusherService} from '../../common/pusher/services/PusherService';
 import {Channel} from 'pusher-js';
 import {MatSnackBar, PageEvent} from '@angular/material';
+import {TagGroupService} from '../../common/api/services/TagGroupService';
 
 @Component({
     selector: 'app-news-feed',
@@ -21,12 +22,12 @@ import {MatSnackBar, PageEvent} from '@angular/material';
     styleUrls: ['./newsFeed.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class NewsFeedComponent {
+export class NewsFeedComponent implements OnInit {
     public posts: Pageable<Post>;
     public isFeedListSmall = true;
     public isLoading = false;
     public selectedPost: Post;
-    public currentFilter: Filter;
+    public currentFilters: Filter[];
     public readonly itemsPerPage = 50;
 
     private pusherChannel: Channel;
@@ -43,9 +44,15 @@ export class NewsFeedComponent {
     constructor(private postService: PostService,
                 private snack: MatSnackBar,
                 private pusherService: PusherService,
+                private tagGroupService: TagGroupService,
                 private userAuthService: UserAuthService) {
         this.loadPage();
         this.subscribeToPusherNews();
+    }
+
+    ngOnInit(): void {
+        this.tagGroupService.onFilterChange()
+            .subscribe((filters) => this.onTagFilter(filters));
     }
 
     public loadPage(pageEvent?: PageEvent): void {
@@ -58,8 +65,8 @@ export class NewsFeedComponent {
         this.filterPosts(this.currentFilterSettings, 1);
     }
 
-    public onTagFilter(filter: Filter) {
-        this.currentFilter = filter;
+    private onTagFilter(filters: Filter[]) {
+        this.currentFilters = filters;
         this.filterPosts(this.currentFilterSettings, 1);
     }
 
@@ -95,8 +102,8 @@ export class NewsFeedComponent {
 
     private filterPosts(searchFilters: SearchFilterSettings, page?: number): void {
         let filters = this.buildFilters(searchFilters);
-        if (this.currentFilter) {
-            filters = _.concat(filters, [this.currentFilter]);
+        if (this.currentFilters) {
+            filters = _.concat(filters, this.currentFilters);
         }
         this.loadPosts(filters, page);
     }

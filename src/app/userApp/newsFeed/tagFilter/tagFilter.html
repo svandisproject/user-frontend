@@ -1,6 +1,6 @@
 <ng-container *ngIf="(getTagGroups() | async) as tagGroups; else loader">
     <mat-form-field color="accent" class="mr-1 w-100" *ngFor="let group of tagGroups">
-        <mat-select [placeholder]="group.title" (selectionChange)="filterSelect($event)">
+        <mat-select [placeholder]="group.title" (selectionChange)="filterSelect($event, group)">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let tag of group.tags" [value]="tag.id">
                 {{tag.title}}

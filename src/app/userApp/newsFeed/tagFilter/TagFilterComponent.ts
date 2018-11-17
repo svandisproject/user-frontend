@@ -1,9 +1,10 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Filter} from '../../../common/api/dataModels/Filter';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {TagGroup} from '../../../common/api/dataModels/TagGroup';
 import {TagGroupService} from '../../../common/api/services/TagGroupService';
 import {MatSelectChange} from '@angular/material';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-news-feed-filter',
@@ -11,9 +12,8 @@ import {MatSelectChange} from '@angular/material';
 })
 
 export class TagFilterComponent implements OnInit {
-    @Output() tagSelect: EventEmitter<Filter> = new EventEmitter<Filter>();
     private tagGroupSubject: BehaviorSubject<TagGroup[]> = new BehaviorSubject<TagGroup[]>(null);
-
+    private selectedFilterGroups: { groupId: number, tagId: string }[] = [];
     constructor(private tagGroupService: TagGroupService) {
     }
 
@@ -21,11 +21,22 @@ export class TagFilterComponent implements OnInit {
         this.loadTagGroups();
     }
 
-    public filterSelect(event: MatSelectChange) {
-        if (!event.value) {
-            this.tagSelect.emit(null);
+    public filterSelect(event: MatSelectChange, group: TagGroup) {
+        const selectedFilterGroup = _.find(this.selectedFilterGroups, (f) => f.groupId === group.id);
+
+        if (!selectedFilterGroup) {
+            this.selectedFilterGroups.push({groupId: group.id, tagId: event.value});
+        } else {
+            selectedFilterGroup.tagId = event.value;
         }
-        this.tagSelect.emit(new Filter('eq', 'tags.id', event.value));
+
+        const filters: Filter[] = _.map(this.selectedFilterGroups, (g) => {
+            if (g.tagId) {
+                return new Filter('eq', 'tags.id', g.tagId);
+            }
+        });
+
+        this.tagGroupService.emitChange(_.compact(filters));
     }
 
     public getTagGroups(): Observable<TagGroup[]> {
@@ -34,7 +45,7 @@ export class TagFilterComponent implements OnInit {
 
     private loadTagGroups() {
         this.tagGroupService.findBy([
-            new Filter('lk', 'title', 'Sentiment'),
+            new Filter('ne', 'enabled', 'false'),
         ])
             .subscribe((res) => this.tagGroupSubject.next(res.content));
     }
