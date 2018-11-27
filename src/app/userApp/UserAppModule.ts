@@ -32,6 +32,9 @@ import {PostDetailsComponent} from './newsFeed/postDetails/PostDetailsComponent'
 import {TagFilterComponent} from './newsFeed/tagFilter/TagFilterComponent';
 import {LikeFilterComponent} from './newsFeed/likeFilter/LikeFilterComponent';
 import {UserAppToolbarComponent} from './toolbar/UserAppToolbarComponent';
+import {KeyManagementComponent} from './key-management/keyManagementComponent';
+import {BeginnerKeyManagementComponent} from './key-management/Beginner/beginnerKeyManagement';
+import {ExpertKeyManagementComponent} from './key-management/Expert/expertKeyManagement';
 
 @NgModule({
     imports: [
@@ -64,6 +67,9 @@ import {UserAppToolbarComponent} from './toolbar/UserAppToolbarComponent';
         LikeFilterComponent,
         FeedListComponent,
         ResearchOnboardingComponent,
+        KeyManagementComponent,
+        BeginnerKeyManagementComponent,
+        ExpertKeyManagementComponent,
         EthConnectionPromptComponent,
         ScreenerColumnManagerComponent
     ],

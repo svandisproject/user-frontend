@@ -1,0 +1,8 @@
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <app-rc-beginner-key-management *ngIf="isCentralized"></app-rc-beginner-key-management>
+            <app-rc-expert-key-management *ngIf="!isCentralized"></app-rc-expert-key-management>
+        </div>
+    </div>
+</div>
