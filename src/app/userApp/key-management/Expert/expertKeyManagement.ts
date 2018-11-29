@@ -4,7 +4,8 @@ import {Web3Service} from '../../web3/Web3Service';
 @Component({
     selector: 'app-rc-expert-key-management',
     templateUrl: './expertKeyManagement.html',
-    styles: ['mat-icon {cursor: pointer}']
+    styles: ['mat-icon {cursor: pointer}'],
+    styleUrls: ['./expertKeyManagement.scss']
 })
 
 export class ExpertKeyManagementComponent implements OnInit {
@@ -14,5 +15,9 @@ export class ExpertKeyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    public downloadKeystore(): void {
+        this.web3Service.downloadMyKeystore();
     }
 }

@@ -82,4 +82,8 @@ export class ResearchOnboardingComponent implements OnInit {
         }
         return this.web3Service.isEthereumAddress(this.recoveryAddress);
     }
+
+    public finalizeTour() {
+        location.reload();
+    }
 }

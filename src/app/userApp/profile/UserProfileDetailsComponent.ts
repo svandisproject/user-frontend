@@ -23,10 +23,7 @@ export class UserProfileDetailsComponent {
 
     constructor(private workerService: WorkerService) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
-        this.toggleShowOnboardingTour().pipe(
-            map((res) => {
-                this.showOnBoardingTour = res;
-            }));
+        this.showOnBoardingTour = this.toggleShowOnboardingTour();
     }
 
     public regenerateToken(): void {
@@ -38,18 +35,17 @@ export class UserProfileDetailsComponent {
     }
 
     // Activate Research Onboarding Component or the ETH key management tools at this point
-    public toggleShowOnboardingTour(): Observable<boolean> {
+    public toggleShowOnboardingTour(): boolean {
         // TODO: Start some type of spinner
-
         if (this.getKeyEncrypted()) {
             this.hasKey = true;
             // Check if the user is onboarded or not
-            return Observable.of(false);
+            return false;
         }
-        return Observable.of(true);
+        return true;
     }
 
-    private getKeyEncrypted() {
+    private getKeyEncrypted(): string {
         return localStorage.getItem(Web3Config.ENCRYPTED_PRV_KEY);
     }
 

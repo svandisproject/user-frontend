@@ -1,8 +1,12 @@
-<div class="container-fluid mt-5">
+<div class="col-sm-12">
     <div class="row">
         <div class="col-sm-12">
             <app-rc-beginner-key-management *ngIf="isCentralized"></app-rc-beginner-key-management>
             <app-rc-expert-key-management *ngIf="!isCentralized"></app-rc-expert-key-management>
         </div>
+    </div>
+    <div class="row d-flex justify-content-center w-100">
+        <button mat-stroked-button color="warn" (click)="resetDemo()" style="margin-top: 40px;">Reset Onboard Demo
+        </button>
     </div>
 </div>

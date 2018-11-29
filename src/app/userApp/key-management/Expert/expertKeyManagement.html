@@ -1,7 +1,68 @@
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-sm-12">
-            Future Expert Key Management
-        </div>
+<div class="col-sm-12">
+    <div class="row d-flex justify-content-center w-100">
+        <h2>Expert Key Management</h2>
     </div>
+    <mat-grid-list cols="2" rowHeight="100px">
+        <mat-grid-tile>
+            <mat-card (click)="downloadKeystore()">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="image-card-width">
+                            <img mat-card-sm-image src="assets/image/ic_download_active.png">
+                        </div>
+                        <div class="text-card-width">
+                        <span class="add-text-color">
+                        Download
+                        </span><br>
+                            <span>
+                        Local Private Key File
+                        </span><br>
+                            <span class="grey-text-color">
+                        (Please keep safe)
+                        </span>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card (click)="downloadKeystore()">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="text-card-width">
+                        <span class="add-text-color">
+                        Recover blockchain keystore
+                        </span><br>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card (click)="downloadKeystore()">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="text-card-width">
+                        <span class="add-text-color">
+                        Swap recovery method
+                        </span><br>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card (click)="downloadKeystore()">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="text-card-width">
+                        <span class="add-text-color">
+                        Add more verified device keys
+                        </span><br>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>

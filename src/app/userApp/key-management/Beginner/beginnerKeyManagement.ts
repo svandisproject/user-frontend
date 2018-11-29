@@ -4,7 +4,8 @@ import {Web3Service} from '../../web3/Web3Service';
 @Component({
     selector: 'app-rc-beginner-key-management',
     templateUrl: './beginnerKeyManagement.html',
-    styles: ['mat-icon {cursor: pointer}']
+    styles: ['mat-icon {cursor: pointer}'],
+    styleUrls: ['./beginnerKeyManagement.scss']
 })
 
 export class BeginnerKeyManagementComponent implements OnInit {
@@ -14,5 +15,9 @@ export class BeginnerKeyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+    }
+
+    public downloadKeystore(): void {
+        this.web3Service.downloadMyKeystore();
     }
 }

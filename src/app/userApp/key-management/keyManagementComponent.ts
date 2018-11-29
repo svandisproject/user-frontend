@@ -12,9 +12,14 @@ export class KeyManagementComponent implements OnInit {
 
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
-        this.isCentralized = true;
+        this.isCentralized = true; // Temporary as we await API call hookups
     }
 
     ngOnInit() {
+    }
+
+    resetDemo() {
+        this.web3Service.resetThis();
+        location.reload();
     }
 }
