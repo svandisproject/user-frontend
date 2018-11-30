@@ -10,6 +10,7 @@ import {Web3Service} from '../../web3/Web3Service';
 
 export class ExpertKeyManagementComponent implements OnInit {
 
+    public recoveryAddress = '0x';
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
     }

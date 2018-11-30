@@ -39,7 +39,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card (click)="downloadKeystore()">
+            <mat-card>
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">
@@ -49,6 +49,13 @@
                         <span class="add-text-color">
                         Swap recovery ETH address
                         </span><br>
+                            <mat-form-field class="w-100">
+                            <textarea
+                                    [style.fontSize.px]=16
+                                    [value]="this.recoveryAddress"
+                                    (input)="this.recoveryAddress = $event.target.value"
+                                    matInput placeholder="New Ethereum Address"></textarea>
+                            </mat-form-field>
                         </div>
                     </div>
                 </mat-card-content>
