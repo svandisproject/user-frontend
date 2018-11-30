@@ -22,4 +22,8 @@ export class KeyManagementComponent implements OnInit {
         this.web3Service.resetThis();
         location.reload();
     }
+
+    switchMode() {
+        this.isCentralized = !this.isCentralized;
+    }
 }

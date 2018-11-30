@@ -12,6 +12,7 @@ export class Web3Service {
     public walletStatus = new BehaviorSubject(false);
     private web3: Web3Interface;
     private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
+    private readonly SIGN_DECENTRALIZATION = 'CONVERT DECENTRALIZED';
     private readonly SIGN_NEW_SVANDIS_DATA = JSON.stringify({
         token: 'SVN',
         supply: 400000000
@@ -36,9 +37,14 @@ export class Web3Service {
         return Observable.of(this.signData(this.SIGN_NEW_SVANDIS_DATA, password));
     }
 
+    public convertCentralized(password: string): Observable<string> {
+        return Observable.of(this.signData(this.SIGN_DECENTRALIZATION, password));
+    }
+
+
     public signData(dataString: string, password: string): string {
         const privateKeyEncrypted = this.getKeyEncrypted();
-        const privateKey = this.decryptKey( privateKeyEncrypted, password);
+        const privateKey = this.decryptKey(privateKeyEncrypted, password);
         const signed = this.web3.eth.accounts.sign(
             dataString, privateKey.privateKey);
         const signature = signed.signature;
@@ -95,7 +101,7 @@ export class Web3Service {
         const keystore = this.getKeyEncrypted();
         if (keystore) {
             const data = this.getKeyEncrypted();
-            const blob = new Blob([data], { type: 'text/csv' });
+            const blob = new Blob([data], {type: 'text/csv'});
             const url = window.URL.createObjectURL(blob);
             window.open(url);
         }
@@ -103,5 +109,14 @@ export class Web3Service {
 
     public isEthereumAddress(address: string): boolean {
         return this.web3.utils.isAddress(address);
+    }
+
+    public convertBeginnerToExpertUser(password: string, userNewRecoveryAddress: string) {
+        this.convertCentralized(password).subscribe(returnedSig => {
+                    this.blockchainApiService.convertBlockchainBeginnerCentralizedUser(
+                        returnedSig, userNewRecoveryAddress
+                    ).subscribe((response) => console.log(response));
+            }
+        );
     }
 }

@@ -39,7 +39,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card>
+            <mat-card [class.deactive]="connectionStatus"  [disabled]="connectionStatus">
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">

@@ -13,4 +13,8 @@ export class BlockchainApiService {
     public blockchainCentralizedUser(generatedUserAddressSignature: string): Observable<String[]> {
         return this.blockchainApiResource.blockchainCentralizedUser(generatedUserAddressSignature);
     }
+
+    public convertBlockchainBeginnerCentralizedUser(userCurrentAddress: string, userNewRecoveryAddress: string): Observable<String[]> {
+        return this.blockchainApiResource.convertBlockchainBeginnerCentralizedUser(userCurrentAddress, userNewRecoveryAddress);
+    }
 }

@@ -11,6 +11,7 @@ import {Web3Service} from '../../web3/Web3Service';
 export class BeginnerKeyManagementComponent implements OnInit {
 
     public recoveryAddress = '0x';
+    public password = '';
     public connectionStatus: boolean;
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
@@ -29,10 +30,14 @@ export class BeginnerKeyManagementComponent implements OnInit {
     }
 
     public becomeExpertUser(): void {
-
+        return this.web3Service.convertBeginnerToExpertUser(this.password, this.recoveryAddress);
     }
 
     public addDeviceKey(): void {
+
+    }
+
+    public swapDeviceForCurrentBrowser(): void {
 
     }
 }
