@@ -8,14 +8,11 @@
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">
-                            <img mat-card-sm-image src="assets/image/ic_download_active.png">
+                            <mat-icon>get_app</mat-icon>
                         </div>
                         <div class="text-card-width">
                         <span class="add-text-color">
-                        Download
-                        </span><br>
-                            <span>
-                        Local Private Key File
+                        Download Local Private Key File
                         </span><br>
                             <span class="grey-text-color">
                         (Please keep safe)
@@ -29,6 +26,9 @@
             <mat-card (click)="downloadKeystore()">
                 <mat-card-content>
                     <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>vpn_key</mat-icon>
+                        </div>
                         <div class="text-card-width">
                         <span class="add-text-color">
                         Recover blockchain keystore
@@ -42,9 +42,12 @@
             <mat-card (click)="downloadKeystore()">
                 <mat-card-content>
                     <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>swap_horiz</mat-icon>
+                        </div>
                         <div class="text-card-width">
                         <span class="add-text-color">
-                        Swap recovery method
+                        Swap recovery ETH address
                         </span><br>
                         </div>
                     </div>
@@ -55,9 +58,12 @@
             <mat-card (click)="downloadKeystore()">
                 <mat-card-content>
                     <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>important_devices</mat-icon>
+                        </div>
                         <div class="text-card-width">
                         <span class="add-text-color">
-                        Add more verified device keys
+                        Add verified device key to this browser
                         </span><br>
                         </div>
                     </div>
