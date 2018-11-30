@@ -2,7 +2,7 @@
     <div class="row d-flex justify-content-center w-100">
         <h2>Expert Key Management</h2>
     </div>
-    <mat-grid-list cols="2" rowHeight="100px">
+    <mat-grid-list cols="2" rowHeight="200px">
         <mat-grid-tile>
             <mat-card (click)="downloadKeystore()">
                 <mat-card-content>
@@ -23,7 +23,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card (click)="downloadKeystore()">
+            <mat-card (click)="recoverKeyFromFile()" [class.deactive]="connectionStatus"  [disabled]="connectionStatus">
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="text-card-width">
                         <span class="add-text-color">
-                        Recover blockchain keystore
+                        Recover key with keystore file
                         </span><br>
                         </div>
                     </div>
@@ -47,22 +47,26 @@
                         </div>
                         <div class="text-card-width">
                         <span class="add-text-color">
-                        Swap recovery ETH address
+                        Swap Recovery Address
+                        </span><br>
+                            <span class="add-text-color">
+                        (Enter new ETH recovery address)
                         </span><br>
                             <mat-form-field class="w-100">
                             <textarea
                                     [style.fontSize.px]=16
                                     [value]="this.recoveryAddress"
                                     (input)="this.recoveryAddress = $event.target.value"
-                                    matInput placeholder="New Ethereum Address"></textarea>
+                                    matInput placeholder="New Ethereum Recovery Address"></textarea>
                             </mat-form-field>
-                        </div>
+                             </div>
                     </div>
+                    <button [disabled]="!isValidEthAddress()" mat-button mat-stroked-button color="accent" (click)="setRecoveryAddress()">Set Recovery</button>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card (click)="downloadKeystore()">
+            <mat-card (click)="addDeviceKey()" [class.deactive]="connectionStatus"  [disabled]="connectionStatus">
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">

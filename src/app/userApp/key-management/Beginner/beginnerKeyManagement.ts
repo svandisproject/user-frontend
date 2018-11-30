@@ -10,8 +10,11 @@ import {Web3Service} from '../../web3/Web3Service';
 
 export class BeginnerKeyManagementComponent implements OnInit {
 
+    public recoveryAddress = '0x';
+    public connectionStatus: boolean;
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
+        this.connectionStatus = this.web3Service.walletStatus.getValue();
     }
 
     ngOnInit() {
@@ -19,5 +22,17 @@ export class BeginnerKeyManagementComponent implements OnInit {
 
     public downloadKeystore(): void {
         this.web3Service.downloadMyKeystore();
+    }
+
+    public isValidEthAddress(): boolean {
+        return this.web3Service.isEthereumAddress(this.recoveryAddress);
+    }
+
+    public becomeExpertUser(): void {
+
+    }
+
+    public addDeviceKey(): void {
+
     }
 }

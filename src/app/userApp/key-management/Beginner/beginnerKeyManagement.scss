@@ -1,11 +1,15 @@
 .mat-card {
   border-color: #3b3a5c;
   margin: 3em;
-  width: calc(100% - 30px);
-  height: calc(100%- 30px);
+  width: calc(100% - 10px);
+  height: calc(100%- 10px);
 }
 
 .image-card-width {
-  margin-right: 5em;
+  margin-right: 2em;
   margin-left: 2em;
+}
+
+.deactive {
+  color: gray;
 }
