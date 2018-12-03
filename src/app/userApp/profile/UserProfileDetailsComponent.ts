@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WorkerService} from '../../common/api/services/WorkerService';
 import {ResearchOnboardingComponent} from '../onboarding/researchOnboardingComponent';
 import {Web3Config} from '../../config/Web3Config';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {Web3Service} from '../web3/Web3Service';
 
 @Component({
     selector: 'app-user-profile-details',
@@ -11,7 +12,7 @@ import {map} from 'rxjs/operators';
     styles: ['mat-icon {cursor: pointer}']
 })
 
-export class UserProfileDetailsComponent {
+export class UserProfileDetailsComponent implements OnInit {
     public secret: string;
     public isMasked = true;
     public isOnboarded = false;
@@ -21,9 +22,11 @@ export class UserProfileDetailsComponent {
     // public returnedSigHash: string;
     // public returnedSvandisSigHash: string;
 
-    constructor(private workerService: WorkerService) {
+    public connectionStatus: boolean;
+    constructor(private workerService: WorkerService, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
         this.showOnBoardingTour = this.toggleShowOnboardingTour();
+        this.connectionStatus = this.web3Service.walletStatus.getValue();
     }
 
     public regenerateToken(): void {
@@ -37,7 +40,7 @@ export class UserProfileDetailsComponent {
     // Activate Research Onboarding Component or the ETH key management tools at this point
     public toggleShowOnboardingTour(): boolean {
         // TODO: Start some type of spinner
-        if (this.getKeyEncrypted()) {
+        if (this.web3Service.isOnboarded()) {
             this.hasKey = true;
             // Check if the user is onboarded or not
             return false;
@@ -45,8 +48,10 @@ export class UserProfileDetailsComponent {
         return true;
     }
 
-    private getKeyEncrypted(): string {
-        return localStorage.getItem(Web3Config.ENCRYPTED_PRV_KEY);
+    ngOnInit() {
+        this.web3Service.walletStatus$.subscribe(
+            data => {
+                this.connectionStatus = data;
+            });
     }
-
 }

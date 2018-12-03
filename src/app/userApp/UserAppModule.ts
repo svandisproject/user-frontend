@@ -35,6 +35,7 @@ import {UserAppToolbarComponent} from './toolbar/UserAppToolbarComponent';
 import {KeyManagementComponent} from './key-management/keyManagementComponent';
 import {BeginnerKeyManagementComponent} from './key-management/Beginner/beginnerKeyManagement';
 import {ExpertKeyManagementComponent} from './key-management/Expert/expertKeyManagement';
+import {UserAuthService} from '../common/user/UserAuthService';
 
 @NgModule({
     imports: [
@@ -74,6 +75,7 @@ import {ExpertKeyManagementComponent} from './key-management/Expert/expertKeyMan
         ScreenerColumnManagerComponent
     ],
     providers: [
+        UserAuthService,
         NewsFeedResolver,
         {
             provide: APP_INITIALIZER,

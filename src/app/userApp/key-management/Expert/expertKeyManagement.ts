@@ -29,15 +29,18 @@ export class ExpertKeyManagementComponent implements OnInit {
     }
 
     public setRecoveryAddress(): void {
-
+        // Need to use web3 to interact with the contract
+        // Small amount of gas requested from server to carry out operation - limited requests available
     }
 
     public addDeviceKey(): void {
-
+        // Need to use web3 to interact with the contract
+        // Small amount of gas requested from server to carry out operation - limited requests available
     }
 
     public recoverKeyFromFile(): void {
-
+        // Upload the keystore from another browser to this browser as well and confirm that it is registered on this account
+        this.web3Service.replaceKeyWithRecovery();
     }
 
 }

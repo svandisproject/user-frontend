@@ -34,10 +34,11 @@ export class BeginnerKeyManagementComponent implements OnInit {
     }
 
     public addDeviceKey(): void {
-
+        // Check if the current device has a web3 key matching users ID. If not (this is a new browser)- Activate
     }
 
     public swapDeviceForCurrentBrowser(): void {
-
+        // Check if the current device has a web3 key matching users ID. If not (this is a new browser)- Activate
+        // This feature can be used to increase security in case users other device has been compromised.
     }
 }
