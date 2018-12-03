@@ -19,6 +19,10 @@ export class BeginnerKeyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.web3Service.walletStatus$.subscribe(
+            data => {
+                this.connectionStatus = data;
+            });
     }
 
     public downloadKeystore(): void {

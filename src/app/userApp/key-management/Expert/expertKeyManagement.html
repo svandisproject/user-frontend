@@ -23,7 +23,7 @@
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card (click)="recoverKeyFromFile()" [class.deactive]="connectionStatus"  [disabled]="connectionStatus">
+            <mat-card>
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">
@@ -32,14 +32,17 @@
                         <div class="text-card-width">
                         <span class="add-text-color">
                         Recover key with keystore file
-                        </span><br>
+                        </span><br><br>
+                            <input #fileUpload type="file" (click)="fileUpload.value = null"
+                                   (change)="importFile($event)">
                         </div>
-                    </div>
+                        </div>
+                    <button [disabled]="!recoveryModeActive" mat-button mat-stroked-button color="accent" (click)="setupRecoveredLocalKey()">Recover</button>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card [class.deactive]="connectionStatus"  [disabled]="connectionStatus">
+            <mat-card [class.deactive]="connectionStatus" [disabled]="connectionStatus">
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">
@@ -59,14 +62,16 @@
                                     (input)="this.recoveryAddress = $event.target.value"
                                     matInput placeholder="New Ethereum Recovery Address"></textarea>
                             </mat-form-field>
-                             </div>
+                        </div>
                     </div>
-                    <button [disabled]="!isValidEthAddress()" mat-button mat-stroked-button color="accent" (click)="setRecoveryAddress()">Set Recovery</button>
+                    <button [disabled]="!isValidEthAddress()" mat-button mat-stroked-button color="accent"
+                            (click)="setRecoveryAddress()">Set Recovery
+                    </button>
                 </mat-card-content>
             </mat-card>
         </mat-grid-tile>
         <mat-grid-tile>
-            <mat-card (click)="addDeviceKey()" [class.deactive]="connectionStatus"  [disabled]="connectionStatus">
+            <mat-card (click)="addDeviceKey()" [class.deactive]="connectionStatus" [disabled]="connectionStatus">
                 <mat-card-content>
                     <div class="row">
                         <div class="image-card-width">

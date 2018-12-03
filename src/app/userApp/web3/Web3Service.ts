@@ -140,7 +140,10 @@ export class Web3Service {
         );
     }
 
-    public replaceKeyWithRecovery() {
-
+    public replaceKeyWithRecovery(myRecoveryString: string): Observable<boolean> {
+        // Here we want to double check the key is in fact okay to replace whatever is currently there
+        localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
+        localStorage.setItem(this.getEncryptedPrivateAddressLocation(), myRecoveryString);
+        return Observable.of(true);
     }
 }
