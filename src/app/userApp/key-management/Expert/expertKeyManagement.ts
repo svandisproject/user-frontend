@@ -52,7 +52,7 @@ export class ExpertKeyManagementComponent implements OnInit {
         fr.onload = (e: any) => {
             console.log(e.target.result);
             this.recoveryFileString = e.target.result;
-        }
+        };
         fr.readAsText(event.target.files[0]);
         this.recoveryModeActive = true;
     }
