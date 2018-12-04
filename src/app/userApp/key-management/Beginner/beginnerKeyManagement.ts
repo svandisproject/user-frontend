@@ -37,12 +37,16 @@ export class BeginnerKeyManagementComponent implements OnInit {
         return this.web3Service.convertBeginnerToExpertUser(this.password, this.recoveryAddress);
     }
 
-    public addDeviceKey(): void {
+    // These 2 functions require API check for if user is onboarded and whether that key exists here.
+    // If not user can add trusted device, or swap all trusted devices for this one.
+    public addDeviceKey(password: string): void {
         // Check if the current device has a web3 key matching users ID. If not (this is a new browser)- Activate
+        this.web3Service.addDeviceSetupLocalKey(password);
     }
 
-    public swapDeviceForCurrentBrowser(): void {
+    public swapDeviceForCurrentBrowser(password: string): void {
         // Check if the current device has a web3 key matching users ID. If not (this is a new browser)- Activate
         // This feature can be used to increase security in case users other device has been compromised.
+        this.web3Service.swapAllDevicesAndSetupLocalKey(password);
     }
 }

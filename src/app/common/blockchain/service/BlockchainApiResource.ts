@@ -36,4 +36,22 @@ export class BlockchainApiResource {
                     .set('Content-Type', 'application/json')
             });
     }
+
+    public addDeviceCentralizedUser(userCurrentAddress: string, userNewDeviceSignature: string): Observable<String[]> {
+        return this.httpService.post(this.URL + '/add-new-recovery',
+            {currentAddress: userCurrentAddress, newKeyAddress: userNewDeviceSignature},
+            {
+                headers: new HttpHeaders()
+                    .set('Content-Type', 'application/json')
+            });
+    }
+
+    public swapDevicesCentralizedUser(userCurrentAddress: string, userNewDeviceSignature: string): Observable<String[]> {
+        return this.httpService.post(this.URL + '/swap-centralized-recovery',
+            {currentAddress: userCurrentAddress, newAddress: userNewDeviceSignature},
+            {
+                headers: new HttpHeaders()
+                    .set('Content-Type', 'application/json')
+            });
+    }
 }

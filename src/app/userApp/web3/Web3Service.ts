@@ -15,6 +15,8 @@ export class Web3Service {
     private web3: Web3Interface;
     private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
     private readonly SIGN_DECENTRALIZATION = 'CONVERT DECENTRALIZED';
+    private readonly SIGN_NEW_DEVICE = 'SIGN NEW DEVICE';
+    private readonly SIGN_SWAP_DEVICE = 'SWAP NEW DEVICE';
     private readonly SIGN_NEW_SVANDIS_DATA = JSON.stringify({
         token: 'SVN',
         supply: 400000000
@@ -47,6 +49,13 @@ export class Web3Service {
         return Observable.of(this.signData(this.SIGN_DECENTRALIZATION, password));
     }
 
+    public signToAddThisDevice(password: string): Observable<string> {
+        return Observable.of(this.signData(this.SIGN_NEW_DEVICE, password));
+    }
+
+    public signToSwapAllToThisDevice(password: string): Observable<string> {
+        return Observable.of(this.signData(this.SIGN_SWAP_DEVICE, password));
+    }
 
     public signData(dataString: string, password: string): string {
         const privateKeyEncrypted = this.getKeyEncrypted();
@@ -145,5 +154,44 @@ export class Web3Service {
         localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
         localStorage.setItem(this.getEncryptedPrivateAddressLocation(), myRecoveryString);
         return Observable.of(true);
+    }
+
+    public addDeviceSetupLocalKey(password: string) {
+        // Verify there is no key locally matching users key- make sure this device is new.
+        // Create a new wallet
+        this.web3.eth.accounts.wallet.clear();
+        localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
+        this.web3.eth.accounts.wallet.create(1, 'entropy');
+        const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(password);
+        const walletString = JSON.stringify(encryptedPrivateKey[0]);
+        localStorage.setItem(this.getEncryptedPrivateAddressLocation(), walletString);
+        this.walletStatus.next(true);
+        const currentWallet = ''; // Need this value from API
+        this.signToAddThisDevice(password).subscribe(returnedSig => {
+                    this.blockchainApiService.blockchainUser(
+                        currentWallet, returnedSig
+                    ).subscribe((response) => console.log(response));
+            }
+        );
+    }
+
+    public swapAllDevicesAndSetupLocalKey(password: string) {
+        // Verify there is no key locally matching users key- make sure this device is new.
+        // Create a new wallet
+        this.web3.eth.accounts.wallet.clear();
+        localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
+        this.web3.eth.accounts.wallet.create(1, 'entropy');
+        const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(password);
+        const walletString = JSON.stringify(encryptedPrivateKey[0]);
+        localStorage.setItem(this.getEncryptedPrivateAddressLocation(), walletString);
+        this.walletStatus.next(true);
+        const currentWallet = ''; // Need this value from API
+        this.signToSwapAllToThisDevice(password).subscribe(returnedSig => {
+                this.blockchainApiService.blockchainUser(
+                    currentWallet, returnedSig
+                ).subscribe((response) => console.log(response));
+            }
+        );
+
     }
 }
