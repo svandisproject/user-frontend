@@ -26,7 +26,7 @@ export class Web3Service {
     walletStatus$ = this.walletStatus.asObservable();
 
     constructor(private blockchainApiService: BlockchainApiService, private userAuthService: UserAuthService) {
-        this.web3 = new Web3(Web3Config.LOCAL_HOST_RPC);
+        this.web3 = new Web3(Web3Config.TEST_HOST_RPC);
         this.clearWallet();
         this.userAuthService.getCurrentUser().subscribe(user => {
             this.userId = user.id;
