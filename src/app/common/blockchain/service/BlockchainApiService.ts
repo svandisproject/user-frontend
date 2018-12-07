@@ -25,4 +25,8 @@ export class BlockchainApiService {
     public swapDevicesCentralizedUser(userCurrentAddress: string, userNewSignedAddress: string): Observable<String[]> {
         return this.blockchainApiResource.convertBlockchainBeginnerCentralizedUser(userCurrentAddress, userNewSignedAddress);
     }
+
+    public resetDemo(userId: string): Observable<String[]> {
+        return this.blockchainApiResource.resetDemo(userId);
+    }
 }

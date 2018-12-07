@@ -8,7 +8,7 @@ import {Web3Service} from '../web3/Web3Service';
 })
 
 export class KeyManagementComponent implements OnInit {
-    public isCentralized: boolean;
+    public isCentralized = true;
 
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
@@ -16,14 +16,13 @@ export class KeyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.web3Service.isCentralized$.subscribe(
+        data => {
+            this.isCentralized = data;
+        });
     }
 
     resetDemo() {
         this.web3Service.resetThis();
-        location.reload();
-    }
-
-    switchMode() {
-        this.isCentralized = !this.isCentralized;
     }
 }

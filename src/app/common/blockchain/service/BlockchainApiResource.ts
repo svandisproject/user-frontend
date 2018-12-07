@@ -3,6 +3,7 @@ import {HttpService} from '../../http/HttpService';
 import {BlockchainApi} from '../../api/config/BlockchainApi';
 import {Observable} from 'rxjs';
 import {HttpHeaders} from '@angular/common/http';
+import {SvandisApi} from '../../api/config/SvandisApi';
 
 @Injectable()
 export class BlockchainApiResource {
@@ -53,5 +54,19 @@ export class BlockchainApiResource {
                 headers: new HttpHeaders()
                     .set('Content-Type', 'application/json')
             });
+    }
+
+    public resetDemo(id: string): Observable<String[]> {
+        const userArray = {
+            onboarded : false,
+            centralized : true,
+            identity_address : '',
+            key_addresses: '',
+            recovery_addresses: ''};
+        const myObject = {user: userArray};
+        return this.httpService.put(SvandisApi.API_URL + '/user/' + id, myObject, {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+        });
     }
 }

@@ -15,18 +15,11 @@ import {Web3Service} from '../web3/Web3Service';
 export class UserProfileDetailsComponent implements OnInit {
     public secret: string;
     public isMasked = true;
-    public isOnboarded = false;
-    public isCentralized = false;
-    public hasKey = false;
-    public showOnBoardingTour: boolean;
-    // public returnedSigHash: string;
-    // public returnedSvandisSigHash: string;
+    public showOnBoardingTour = true;
 
-    public connectionStatus: boolean;
     constructor(private workerService: WorkerService, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
-        this.showOnBoardingTour = this.toggleShowOnboardingTour();
-        this.connectionStatus = this.web3Service.walletStatus.getValue();
+        this.showOnBoardingTour = this.web3Service.isOnboarded.getValue();
     }
 
     public regenerateToken(): void {
@@ -37,21 +30,10 @@ export class UserProfileDetailsComponent implements OnInit {
         this.secret = response.secret;
     }
 
-    // Activate Research Onboarding Component or the ETH key management tools at this point
-    public toggleShowOnboardingTour(): boolean {
-        // TODO: Start some type of spinner
-        if (this.web3Service.isOnboarded()) {
-            this.hasKey = true;
-            // Check if the user is onboarded or not
-            return false;
-        }
-        return true;
-    }
-
     ngOnInit() {
-        this.web3Service.walletStatus$.subscribe(
+        this.web3Service.isOnboarded$.subscribe(
             data => {
-                this.connectionStatus = data;
+                this.showOnBoardingTour = !data;
             });
     }
 }

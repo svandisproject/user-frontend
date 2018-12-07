@@ -10,11 +10,11 @@ export class EthConnectionPromptComponent implements OnInit  {
 
     public connectionStatus = false;
     constructor(private web3Service: Web3Service) {
-        this.connectionStatus = this.web3Service.walletStatus.getValue();
+        this.connectionStatus = this.web3Service.localKeyConnected.getValue();
     }
 
     ngOnInit() {
-        this.web3Service.walletStatus$.subscribe(
+        this.web3Service.localKeyConnected$.subscribe(
             data => {
                 this.connectionStatus = data;
             });

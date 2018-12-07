@@ -16,11 +16,11 @@ export class ExpertKeyManagementComponent implements OnInit {
     public recoveryModeActive = false;
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
-        this.connectionStatus = this.web3Service.walletStatus.getValue();
+        this.connectionStatus = this.web3Service.localKeyConnected.getValue();
     }
 
     ngOnInit() {
-        this.web3Service.walletStatus$.subscribe(
+        this.web3Service.localKeyConnected$.subscribe(
         data => {
             this.connectionStatus = data;
         });
