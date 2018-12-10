@@ -57,13 +57,13 @@ export class BlockchainApiResource {
     }
 
     public resetDemo(id: string): Observable<String[]> {
-        const userArray = {
+        const userPutData = {
             onboarded : false,
             centralized : true,
             identity_address : '',
             key_addresses: '',
             recovery_addresses: ''};
-        const myObject = {user: userArray};
+        const myObject = {user: userPutData};
         return this.httpService.put(SvandisApi.API_URL + '/user/' + id, myObject, {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/json')

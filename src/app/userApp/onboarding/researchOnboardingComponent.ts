@@ -7,7 +7,6 @@ import {Web3Service} from '../web3/Web3Service';
 @Component({
     selector: 'app-rc-onboarding',
     templateUrl: './researchOnboarding.html',
-    styles: ['mat-icon {cursor: pointer}'],
     styleUrls: ['./researchOnboarding.scss']
 })
 

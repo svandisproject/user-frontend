@@ -6,12 +6,12 @@ import {Observable} from 'rxjs';
 export class BlockchainApiService {
     constructor(private blockchainApiResource: BlockchainApiResource) {}
 
-    public blockchainUser(generatedUserAddressSignature: string, providedRecoveryAddress: string): Observable<String[]> {
-        return this.blockchainApiResource.blockchainUser(generatedUserAddressSignature, providedRecoveryAddress);
-    }
-
-    public blockchainCentralizedUser(generatedUserAddressSignature: string): Observable<String[]> {
-        return this.blockchainApiResource.blockchainCentralizedUser(generatedUserAddressSignature);
+    public blockchainUser(generatedUserAddressSignature: string, providedRecoveryAddress?: string): Observable<String[]> {
+        if (providedRecoveryAddress) {
+            return this.blockchainApiResource.blockchainUser(generatedUserAddressSignature, providedRecoveryAddress);
+        } else {
+            return this.blockchainApiResource.blockchainCentralizedUser(generatedUserAddressSignature);
+        }
     }
 
     public convertBlockchainBeginnerCentralizedUser(userCurrentAddress: string, userNewRecoveryAddress: string): Observable<String[]> {

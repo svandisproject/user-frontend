@@ -4,7 +4,6 @@ import {Web3Service} from '../../web3/Web3Service';
 @Component({
     selector: 'app-rc-expert-key-management',
     templateUrl: './expertKeyManagement.html',
-    styles: ['mat-icon {cursor: pointer}'],
     styleUrls: ['./expertKeyManagement.scss']
 })
 
@@ -20,8 +19,7 @@ export class ExpertKeyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.web3Service.localKeyConnected$.subscribe(
-        data => {
+        this.web3Service.localKeyConnected$.subscribe(data => {
             this.connectionStatus = data;
         });
     }

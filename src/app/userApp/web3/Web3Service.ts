@@ -14,6 +14,10 @@ export class Web3Service {
     public localKeyConnected = new BehaviorSubject(false);
     public isOnboarded = new BehaviorSubject(false);
     public isCentralized = new BehaviorSubject(false);
+    localKeyConnected$ = this.localKeyConnected.asObservable();
+    isOnboarded$ = this.isOnboarded.asObservable();
+    isCentralized$ = this.isCentralized.asObservable();
+
     private web3: Web3Interface;
     private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
     private readonly SIGN_DECENTRALIZATION = 'CONVERT DECENTRALIZED';
@@ -26,9 +30,6 @@ export class Web3Service {
 
     private userId: string;
     private user: User;
-    localKeyConnected$ = this.localKeyConnected.asObservable();
-    isOnboarded$ = this.isOnboarded.asObservable();
-    isCentralized$ = this.isCentralized.asObservable();
 
     constructor(private blockchainApiService: BlockchainApiService, private userAuthService: UserAuthService) {
         this.web3 = new Web3(Web3Config.TEST_HOST_RPC);
@@ -41,7 +42,6 @@ export class Web3Service {
             this.userId = currentUser.id;
             this.user = currentUser;
             const privateKeyEncrypted = this.getKeyEncrypted();
-            console.log(currentUser);
             if (this.user.onboarded === true) {
                 this.isOnboarded.next(true);
             } else {
@@ -50,9 +50,7 @@ export class Web3Service {
             if (this.user.centralized) {
                 this.isCentralized.next(this.user.centralized);
             }
-            if (privateKeyEncrypted && this.isOnboarded) {
-                this.localKeyConnected.next(true);
-            }
+            this.localKeyConnected.next(privateKeyEncrypted && this.isOnboarded.getValue());
         });
     }
 
@@ -97,38 +95,15 @@ export class Web3Service {
 
     public createNewWalletAndStoreKey(isExpert: boolean, password: string, recoveryAddress?: string) {
         if (this.userId) {
-            this.web3.eth.accounts.wallet.clear();
-            localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
-            this.web3.eth.accounts.wallet.create(1, 'entropy');
-            const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(password);
-            const walletString = JSON.stringify(encryptedPrivateKey[0]);
-            localStorage.setItem(this.getEncryptedPrivateAddressLocation(), walletString);
+            this.deconstructLocalWalletAndCreateNewOne(password);
             this.localKeyConnected.next(true);
             this.signNewUser(password).subscribe(returnedSig => {
-                    if (isExpert) {
                         this.blockchainApiService.blockchainUser(
                             returnedSig, recoveryAddress
                         ).subscribe((response) => this.refreshBlockchainUserState());
-                    } else {
-                        this.blockchainApiService.blockchainCentralizedUser(
-                            returnedSig
-                        ).subscribe((response) => this.refreshBlockchainUserState());
-                    }
                 }
             );
         }
-    }
-
-    private decryptKey(privateKeyEncrypted, password: string) {
-        return this.web3.eth.accounts.decrypt(privateKeyEncrypted, password);
-    }
-
-    private getKeyEncrypted() {
-        return localStorage.getItem(this.getEncryptedPrivateAddressLocation());
-    }
-
-    private clearWallet() {
-        this.web3.eth.accounts.wallet.clear();
     }
 
     public resetThis() {
@@ -212,4 +187,26 @@ export class Web3Service {
             }
         );
     }
+
+    private deconstructLocalWalletAndCreateNewOne(password: string) {
+        this.web3.eth.accounts.wallet.clear();
+        localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
+        this.web3.eth.accounts.wallet.create(1, 'entropy');
+        const encryptedPrivateKey = this.web3.eth.accounts.wallet.encrypt(password);
+        const walletString = JSON.stringify(encryptedPrivateKey[0]);
+        localStorage.setItem(this.getEncryptedPrivateAddressLocation(), walletString);
+    }
+
+    private decryptKey(privateKeyEncrypted, password: string) {
+        return this.web3.eth.accounts.decrypt(privateKeyEncrypted, password);
+    }
+
+    private getKeyEncrypted() {
+        return localStorage.getItem(this.getEncryptedPrivateAddressLocation());
+    }
+
+    private clearWallet() {
+        this.web3.eth.accounts.wallet.clear();
+    }
+
 }

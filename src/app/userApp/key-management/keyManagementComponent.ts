@@ -16,8 +16,7 @@ export class KeyManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.web3Service.isCentralized$.subscribe(
-        data => {
+        this.web3Service.isCentralized$.subscribe(data => {
             this.isCentralized = data;
         });
     }
