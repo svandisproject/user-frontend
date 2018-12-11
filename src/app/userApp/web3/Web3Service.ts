@@ -14,10 +14,6 @@ export class Web3Service {
     private localKeyConnected = new BehaviorSubject(false);
     private isOnboarded = new BehaviorSubject(false);
     private isCentralized = new BehaviorSubject(false);
-    localKeyConnected$ = this.localKeyConnected.asObservable();
-    isOnboarded$ = this.isOnboarded.asObservable();
-    isCentralized$ = this.isCentralized.asObservable();
-
     private web3: Web3Interface;
     private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
     private readonly SIGN_DECENTRALIZATION = 'CONVERT DECENTRALIZED';
@@ -28,12 +24,11 @@ export class Web3Service {
         supply: 400000000
     });
 
-    private userId: string;
     private user: User;
 
     constructor(private blockchainApiService: BlockchainApiService, private userAuthService: UserAuthService) {
         this.web3 = new Web3(Web3Config.TEST_HOST_RPC);
-        this.clearWallet();
+        this.clearWeb3Wallet();
         this.refreshBlockchainUserState();
     }
 
@@ -51,9 +46,8 @@ export class Web3Service {
 
     public refreshBlockchainUserState(): void {
         this.userAuthService.getCurrentUser().subscribe(currentUser => {
-            this.userId = currentUser.id;
             this.user = currentUser;
-            const privateKeyEncrypted = this.getKeyEncrypted();
+            const privateKeyEncrypted = this.getKeyEncryptedLocation();
             if (this.user.onboarded === true) {
                 this.isOnboarded.next(true);
             } else {
@@ -87,7 +81,7 @@ export class Web3Service {
     }
 
     public signData(dataString: string, password: string): string {
-        const privateKeyEncrypted = this.getKeyEncrypted();
+        const privateKeyEncrypted = this.getKeyEncryptedLocation();
         const privateKey = this.decryptKey(privateKeyEncrypted, password);
         const signed = this.web3.eth.accounts.sign(
             dataString, privateKey.privateKey);
@@ -102,40 +96,39 @@ export class Web3Service {
     }
 
     private getEncryptedPrivateAddressLocation(): string {
-        return Web3Config.ENCRYPTED_PRV_KEY + this.userId;
+        return Web3Config.ENCRYPTED_PRV_KEY + this.user.id;
     }
 
     public createNewWalletAndStoreKey(isExpert: boolean, password: string, recoveryAddress?: string) {
-        if (this.userId) {
+        if (this.user.id) {
             this.deconstructLocalWalletAndCreateNewOne(password);
-            this.localKeyConnected.next(true);
             this.signNewUser(password).subscribe(returnedSig => {
                         this.blockchainApiService.blockchainUser(
                             returnedSig, recoveryAddress
-                        ).subscribe((response) => this.refreshBlockchainUserState());
+                        ).subscribe((response) => this.localKeyConnected.next(true));
                 }
             );
         }
     }
 
-    public resetThis() {
+    public resetTheDemo() {
         this.web3.eth.accounts.wallet.clear();
         localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
-        if (this.userId) {
-            this.blockchainApiService.resetDemo(this.userId).subscribe((response) => this.removeApiData());
+        if (this.user.id) {
+            this.blockchainApiService.resetDemo(this.user.id).subscribe((response) => this.removeApiDataRelatedToDemoAndDisconnect());
         }
     }
 
-    public removeApiData() {
+    public removeApiDataRelatedToDemoAndDisconnect() {
         this.localKeyConnected.next(false);
         this.isOnboarded.next(false);
         location.reload();
     }
 
-    public downloadMyKeystore() {
-        const keystore = this.getKeyEncrypted();
+    public downloadMyLocalKeystore() {
+        const keystore = this.getKeyEncryptedLocation();
         if (keystore) {
-            const data = this.getKeyEncrypted();
+            const data = this.getKeyEncryptedLocation();
             const blob = new Blob([data], {type: 'text/csv'});
             const url = window.URL.createObjectURL(blob);
             window.open(url);
@@ -176,7 +169,7 @@ export class Web3Service {
         this.signToAddThisDevice(password).subscribe(returnedSig => {
                     this.blockchainApiService.blockchainUser(
                         currentWallet, returnedSig
-                    ).subscribe((response) => console.log(response));
+                    ).subscribe((response) => this.refreshBlockchainUserState());
             }
         );
     }
@@ -195,7 +188,7 @@ export class Web3Service {
         this.signToSwapAllToThisDevice(password).subscribe(returnedSig => {
                 this.blockchainApiService.blockchainUser(
                     currentWallet, returnedSig
-                ).subscribe((response) => console.log(response));
+                ).subscribe((response) => this.refreshBlockchainUserState());
             }
         );
     }
@@ -213,11 +206,11 @@ export class Web3Service {
         return this.web3.eth.accounts.decrypt(privateKeyEncrypted, password);
     }
 
-    private getKeyEncrypted() {
+    private getKeyEncryptedLocation() {
         return localStorage.getItem(this.getEncryptedPrivateAddressLocation());
     }
 
-    private clearWallet() {
+    private clearWeb3Wallet() {
         this.web3.eth.accounts.wallet.clear();
     }
 

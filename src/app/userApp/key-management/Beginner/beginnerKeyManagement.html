@@ -38,6 +38,7 @@
                         (Add your own recovery and use your password to sign)
                         </span></p>
                         </div>
+                    </div>
                             <mat-form-field>
                             <textarea
                                     [style.fontSize.px]=16
@@ -53,7 +54,6 @@
                                         matInput placeholder="Required Eth Key Password"></textarea>
                             </mat-form-field>
 
-                    </div>
                     <button *ngIf="isValidEthAddress() && this.password.length > 5" mat-button mat-stroked-button
                             color="accent" (click)="becomeExpertUser()">Sign & Convert User
                     </button>

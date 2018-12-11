@@ -13,7 +13,6 @@ export class BeginnerKeyManagementComponent {
     public password = '';
     public connectionStatus: boolean;
     constructor(private web3Service: Web3Service) {
-        // Use an observable rxjs call to API to decide if this user is centralized or not.
         this.web3Service.getLocalKey().subscribe(
             data => {
                 this.connectionStatus = data;
@@ -21,7 +20,7 @@ export class BeginnerKeyManagementComponent {
     }
 
     public downloadKeystore(): void {
-        this.web3Service.downloadMyKeystore();
+        this.web3Service.downloadMyLocalKeystore();
     }
 
     public isValidEthAddress(): boolean {

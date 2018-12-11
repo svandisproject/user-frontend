@@ -11,7 +11,6 @@ export class KeyManagementComponent {
     public isCentralized = true;
 
     constructor(private web3Service: Web3Service) {
-        // Use an observable rxjs call to API to decide if this user is centralized or not.
         this.web3Service.getIsCentralized().subscribe(
             data => {
                 this.isCentralized = data;
@@ -19,6 +18,6 @@ export class KeyManagementComponent {
     }
 
     resetDemo() {
-        this.web3Service.resetThis();
+        this.web3Service.resetTheDemo();
     }
 }

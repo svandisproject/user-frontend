@@ -14,7 +14,6 @@ export class ExpertKeyManagementComponent {
     public recoveryFileString: string;
     public recoveryModeActive = false;
     constructor(private web3Service: Web3Service) {
-        // Use an observable rxjs call to API to decide if this user is centralized or not.
         this.web3Service.getLocalKey().subscribe(
             data => {
                 this.connectionStatus = data;
@@ -22,7 +21,7 @@ export class ExpertKeyManagementComponent {
     }
 
     public downloadKeystore(): void {
-        this.web3Service.downloadMyKeystore();
+        this.web3Service.downloadMyLocalKeystore();
     }
 
     public isValidEthAddress(): boolean {
@@ -45,7 +44,6 @@ export class ExpertKeyManagementComponent {
         }
         const fr = new FileReader();
         fr.onload = (e: any) => {
-            console.log(e.target.result);
             this.recoveryFileString = e.target.result;
         };
         fr.readAsText(event.target.files[0]);
@@ -56,7 +54,7 @@ export class ExpertKeyManagementComponent {
         console.log(this.recoveryFileString);
         this.web3Service.replaceKeyWithRecovery(this.recoveryFileString).subscribe(
             data => {
-                console.log(data);
+                // Coming soon
             });
     }
 }

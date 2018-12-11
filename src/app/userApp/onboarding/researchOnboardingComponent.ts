@@ -16,8 +16,6 @@ export class ResearchOnboardingComponent {
     public expertSelected = false;
     public beginnerButtonStyle = 'highlight-button';
     public expertButtonStyle = 'unselected-button';
-    public returnedSigHash: string;
-    public returnedSvandisSigHash: string;
 
     public isFacebookAuthenticated = false;
     public isGoogleAuthenticated = false;
@@ -49,7 +47,7 @@ export class ResearchOnboardingComponent {
     }
 
     public resetDemo(): void {
-        this.web3Service.resetThis();
+        this.web3Service.resetTheDemo();
     }
 
     public authenticateFacebook(): void {
@@ -69,7 +67,7 @@ export class ResearchOnboardingComponent {
     }
 
     public downloadKeystore(): void {
-        this.web3Service.downloadMyKeystore();
+        this.web3Service.downloadMyLocalKeystore();
     }
 
     public expertSelectedAndisValidEthAddress(): boolean {
