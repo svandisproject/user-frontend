@@ -1,8 +1,8 @@
-<div class="col-sm-12">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center w-100">
         <h2>Beginner Key Management</h2>
     </div>
-    <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-list cols="2" rowHeight="250px">
         <mat-grid-tile>
             <mat-card (click)="downloadKeystore()">
                 <mat-card-content>
@@ -11,9 +11,10 @@
                             <mat-icon>get_app</mat-icon>
                         </div>
                         <div class="text-card-width">
+                            <p>
                         <span class="add-text-color">
                         Download Local Private Key File
-                        </span><br>
+                        </span></p>
                             <span class="grey-text-color">
                         (Please keep safe)
                         </span>
@@ -30,27 +31,28 @@
                             <mat-icon>offline_bolt</mat-icon>
                         </div>
                         <div class="text-card-width">
-                        <span class="add-text-color">
+                        <p><span class="add-text-color">
                         Become an expert user
-                        </span><br>
-                            <span class="add-text-color">
+                        </span></p>
+                           <p> <span class="add-text-color">
                         (Add your own recovery and use your password to sign)
-                        </span><br>
-                            <mat-form-field class="w-50">
+                        </span></p>
+                        </div>
+                            <mat-form-field>
                             <textarea
                                     [style.fontSize.px]=16
                                     [value]="this.recoveryAddress"
                                     (input)="this.recoveryAddress = $event.target.value"
                                     matInput placeholder="New Ethereum Recovery Address"></textarea>
                             </mat-form-field>
-                                <mat-form-field class="w-50">
+                                <mat-form-field style="margin-left: 3em;">
                                 <textarea
                                         [style.fontSize.px]=16
                                         [value]="this.password"
                                         (input)="this.password = $event.target.value"
                                         matInput placeholder="Required Eth Key Password"></textarea>
                             </mat-form-field>
-                        </div>
+
                     </div>
                     <button *ngIf="isValidEthAddress() && this.password.length > 5" mat-button mat-stroked-button
                             color="accent" (click)="becomeExpertUser()">Sign & Convert User
@@ -67,9 +69,10 @@
                             <mat-icon>important_devices</mat-icon>
                         </div>
                         <div class="text-card-width">
+                            <p>
                         <span class="add-text-color">
                         Add verified device key to this browser
-                        </span><br>
+                        </span></p>
                         </div>
                     </div>
                 </mat-card-content>
@@ -83,9 +86,10 @@
                             <mat-icon>swap_horiz</mat-icon>
                         </div>
                         <div class="text-card-width">
+                            <p>
                         <span class="add-text-color">
                         Swap verified device for this browser
-                        </span><br>
+                        </span></p>
                         </div>
                     </div>
                 </mat-card-content>

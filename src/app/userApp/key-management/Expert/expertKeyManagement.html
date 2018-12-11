@@ -1,8 +1,8 @@
-<div class="col-sm-12">
+<div class="container-fluid">
     <div class="row d-flex justify-content-center w-100">
         <h2>Expert Key Management</h2>
     </div>
-    <mat-grid-list cols="2" rowHeight="200px">
+    <mat-grid-list cols="2" rowHeight="230px">
         <mat-grid-tile>
             <mat-card (click)="downloadKeystore()">
                 <mat-card-content>
@@ -30,9 +30,10 @@
                             <mat-icon>vpn_key</mat-icon>
                         </div>
                         <div class="text-card-width">
+                            <p>
                         <span class="add-text-color">
                         Recover key with keystore file
-                        </span><br><br>
+                        </span></p>
                             <input #fileUpload type="file" (click)="fileUpload.value = null"
                                    (change)="importFile($event)">
                         </div>
@@ -49,12 +50,14 @@
                             <mat-icon>swap_horiz</mat-icon>
                         </div>
                         <div class="text-card-width">
+                            <p>
                         <span class="add-text-color">
                         Swap Recovery Address (Coming Soon)
-                        </span><br>
+                        </span></p>
+                            <p>
                             <span class="add-text-color">
                         (Enter new ETH recovery address)
-                        </span><br>
+                            </span></p>
                             <mat-form-field class="w-100">
                             <textarea
                                     [style.fontSize.px]=16
@@ -78,9 +81,10 @@
                             <mat-icon>important_devices</mat-icon>
                         </div>
                         <div class="text-card-width">
+                            <p>
                         <span class="add-text-color">
                         Add verified device key to this browser (Coming Soon)
-                        </span><br>
+                        </span></p>
                         </div>
                     </div>
                 </mat-card-content>
