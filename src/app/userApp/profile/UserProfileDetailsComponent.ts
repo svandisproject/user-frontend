@@ -19,7 +19,10 @@ export class UserProfileDetailsComponent implements OnInit {
 
     constructor(private workerService: WorkerService, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
-        this.showOnBoardingTour = this.web3Service.isOnboarded.getValue();
+        this.web3Service.getIsOnboarded().subscribe(
+            data => {
+                this.showOnBoardingTour = !data;
+            });
     }
 
     public regenerateToken(): void {

@@ -11,9 +11,9 @@ import {User} from '../../common/api/dataModels/User';
     providedIn: 'root'
 })
 export class Web3Service {
-    public localKeyConnected = new BehaviorSubject(false);
-    public isOnboarded = new BehaviorSubject(false);
-    public isCentralized = new BehaviorSubject(false);
+    private localKeyConnected = new BehaviorSubject(false);
+    private isOnboarded = new BehaviorSubject(false);
+    private isCentralized = new BehaviorSubject(false);
     localKeyConnected$ = this.localKeyConnected.asObservable();
     isOnboarded$ = this.isOnboarded.asObservable();
     isCentralized$ = this.isCentralized.asObservable();
@@ -35,6 +35,18 @@ export class Web3Service {
         this.web3 = new Web3(Web3Config.TEST_HOST_RPC);
         this.clearWallet();
         this.refreshBlockchainUserState();
+    }
+
+    public getLocalKey(): Observable<boolean> {
+        return this.localKeyConnected.asObservable();
+    }
+
+    public getIsOnboarded(): Observable<boolean> {
+        return this.isOnboarded.asObservable();
+    }
+
+    public getIsCentralized(): Observable<boolean> {
+        return this.isCentralized.asObservable();
     }
 
     public refreshBlockchainUserState(): void {

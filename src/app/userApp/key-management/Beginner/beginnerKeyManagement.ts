@@ -14,7 +14,10 @@ export class BeginnerKeyManagementComponent implements OnInit {
     public connectionStatus: boolean;
     constructor(private web3Service: Web3Service) {
         // Use an observable rxjs call to API to decide if this user is centralized or not.
-        this.connectionStatus = this.web3Service.localKeyConnected.getValue();
+        this.web3Service.getLocalKey().subscribe(
+            data => {
+                this.connectionStatus = data;
+            });
     }
 
     ngOnInit() {
