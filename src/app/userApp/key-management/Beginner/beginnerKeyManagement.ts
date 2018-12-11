@@ -7,7 +7,7 @@ import {Web3Service} from '../../web3/Web3Service';
     styleUrls: ['./beginnerKeyManagement.scss']
 })
 
-export class BeginnerKeyManagementComponent implements OnInit {
+export class BeginnerKeyManagementComponent {
 
     public recoveryAddress = '0x';
     public password = '';
@@ -18,12 +18,6 @@ export class BeginnerKeyManagementComponent implements OnInit {
             data => {
                 this.connectionStatus = data;
             });
-    }
-
-    ngOnInit() {
-        this.web3Service.localKeyConnected$.subscribe(data => {
-            this.connectionStatus = data;
-        });
     }
 
     public downloadKeystore(): void {

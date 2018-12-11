@@ -12,7 +12,7 @@ import {Web3Service} from '../web3/Web3Service';
     styles: ['mat-icon {cursor: pointer}']
 })
 
-export class UserProfileDetailsComponent implements OnInit {
+export class UserProfileDetailsComponent {
     public secret: string;
     public isMasked = true;
     public showOnBoardingTour = true;
@@ -31,12 +31,5 @@ export class UserProfileDetailsComponent implements OnInit {
 
     private setSecret(response: { secret: string }) {
         this.secret = response.secret;
-    }
-
-    ngOnInit() {
-        this.web3Service.isOnboarded$.subscribe(
-            data => {
-                this.showOnBoardingTour = !data;
-            });
     }
 }

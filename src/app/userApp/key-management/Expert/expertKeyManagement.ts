@@ -7,7 +7,7 @@ import {Web3Service} from '../../web3/Web3Service';
     styleUrls: ['./expertKeyManagement.scss']
 })
 
-export class ExpertKeyManagementComponent implements OnInit {
+export class ExpertKeyManagementComponent {
 
     public recoveryAddress = '0x';
     public connectionStatus: boolean;
@@ -19,12 +19,6 @@ export class ExpertKeyManagementComponent implements OnInit {
             data => {
                 this.connectionStatus = data;
             });
-    }
-
-    ngOnInit() {
-        this.web3Service.localKeyConnected$.subscribe(data => {
-            this.connectionStatus = data;
-        });
     }
 
     public downloadKeystore(): void {

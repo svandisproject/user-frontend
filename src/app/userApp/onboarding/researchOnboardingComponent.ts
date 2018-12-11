@@ -10,7 +10,7 @@ import {Web3Service} from '../web3/Web3Service';
     styleUrls: ['./researchOnboarding.scss']
 })
 
-export class ResearchOnboardingComponent implements OnInit {
+export class ResearchOnboardingComponent {
     public secret: string;
     public acceptedTerms = false;
     public expertSelected = false;
@@ -30,9 +30,6 @@ export class ResearchOnboardingComponent implements OnInit {
 
     constructor(private workerService: WorkerService, private _formBuilder: FormBuilder, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
-    }
-
-    ngOnInit() {
     }
 
     private setSecret(response: { secret: string }) {
