@@ -1,8 +1,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="container-fluid">
-            <app-rc-beginner-key-management *ngIf="isCentralized"></app-rc-beginner-key-management>
-            <app-rc-expert-key-management *ngIf="!isCentralized"></app-rc-expert-key-management>
+            <div *ngIf="isCentralized; else notCentralized">
+                <app-rc-beginner-key-management></app-rc-beginner-key-management>
+            </div>
+            <ng-template #notCentralized>
+                <app-rc-expert-key-management></app-rc-expert-key-management>
+            </ng-template>
         </div>
     </div>
     <div class="row d-flex justify-content-center w-100">

@@ -3,8 +3,7 @@ import {Web3Service} from '../web3/Web3Service';
 
 @Component({
     selector: 'app-rc-key-management',
-    templateUrl: './keyManagement.html',
-    styles: ['mat-icon {cursor: pointer}']
+    templateUrl: './keyManagement.html'
 })
 
 export class KeyManagementComponent {

@@ -63,8 +63,8 @@ export class BlockchainApiResource {
             identity_address : '',
             key_addresses: '',
             recovery_addresses: ''};
-        const myObject = {user: userPutData};
-        return this.httpService.put(SvandisApi.API_URL + '/user/' + id, myObject, {
+        const myPutObject = {user: userPutData};
+        return this.httpService.put(SvandisApi.API_URL + '/user/' + id, myPutObject, {
             headers: new HttpHeaders()
                 .set('Content-Type', 'application/json')
         });

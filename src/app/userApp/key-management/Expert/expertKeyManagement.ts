@@ -43,8 +43,8 @@ export class ExpertKeyManagementComponent {
             this.recoveryModeActive = false;
         }
         const fr = new FileReader();
-        fr.onload = (e: any) => {
-            this.recoveryFileString = e.target.result;
+        fr.onload = (e: Event) => {
+            this.recoveryFileString = fr.result;
         };
         fr.readAsText(event.target.files[0]);
         this.recoveryModeActive = true;
