@@ -1,6 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {WorkerService} from '../../common/api/services/WorkerService';
 import {ResearchOnboardingComponent} from '../onboarding/researchOnboardingComponent';
+import {Web3Config} from '../../config/Web3Config';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {Web3Service} from '../web3/Web3Service';
 
 @Component({
     selector: 'app-user-profile-details',
@@ -11,25 +15,20 @@ import {ResearchOnboardingComponent} from '../onboarding/researchOnboardingCompo
 export class UserProfileDetailsComponent {
     public secret: string;
     public isMasked = true;
-    // public returnedSigHash: string;
-    // public returnedSvandisSigHash: string;
+    public showOnBoardingTour = true;
 
-    constructor(private workerService: WorkerService) {
+    constructor(private workerService: WorkerService, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
+        this.web3Service.getIsOnboarded()
+            .subscribe((data) => {this.showOnBoardingTour = !data; });
     }
 
     public regenerateToken(): void {
-        this.workerService.regenerate().subscribe(res => this.setSecret(res));
+        this.workerService.regenerate()
+            .subscribe((res) => this.setSecret(res));
     }
 
     private setSecret(response: { secret: string }) {
         this.secret = response.secret;
     }
-    // public createNewEthResearchUser(): void {
-    //     this.web3Service.signNewUser().subscribe(returnedSig => this.returnedSigHash = returnedSig);
-    // }
-    //
-    // public createSignedSvandisData(): void {
-    //     this.web3Service.signSvandisData().subscribe(returnedSig => this.returnedSvandisSigHash = returnedSig);
-    // }
 }

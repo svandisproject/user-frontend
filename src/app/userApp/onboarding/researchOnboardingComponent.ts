@@ -7,18 +7,15 @@ import {Web3Service} from '../web3/Web3Service';
 @Component({
     selector: 'app-rc-onboarding',
     templateUrl: './researchOnboarding.html',
-    styles: ['mat-icon {cursor: pointer}'],
     styleUrls: ['./researchOnboarding.scss']
 })
 
-export class ResearchOnboardingComponent implements OnInit {
+export class ResearchOnboardingComponent {
     public secret: string;
     public acceptedTerms = false;
     public expertSelected = false;
     public beginnerButtonStyle = 'highlight-button';
     public expertButtonStyle = 'unselected-button';
-    public returnedSigHash: string;
-    public returnedSvandisSigHash: string;
 
     public isFacebookAuthenticated = false;
     public isGoogleAuthenticated = false;
@@ -30,10 +27,8 @@ export class ResearchOnboardingComponent implements OnInit {
     isLinear = true;
 
     constructor(private workerService: WorkerService, private _formBuilder: FormBuilder, private web3Service: Web3Service) {
-        this.workerService.getSecret().subscribe(res => this.setSecret(res));
-    }
-
-    ngOnInit() {
+        this.workerService.getSecret()
+            .subscribe((res) => this.setSecret(res));
     }
 
     private setSecret(response: { secret: string }) {
@@ -53,7 +48,7 @@ export class ResearchOnboardingComponent implements OnInit {
     }
 
     public resetDemo(): void {
-        this.web3Service.resetThis();
+        this.web3Service.resetTheDemo();
     }
 
     public authenticateFacebook(): void {
@@ -73,7 +68,7 @@ export class ResearchOnboardingComponent implements OnInit {
     }
 
     public downloadKeystore(): void {
-        this.web3Service.downloadMyKeystore();
+        this.web3Service.downloadMyLocalKeystore();
     }
 
     public expertSelectedAndisValidEthAddress(): boolean {
@@ -81,5 +76,9 @@ export class ResearchOnboardingComponent implements OnInit {
             return false;
         }
         return this.web3Service.isEthereumAddress(this.recoveryAddress);
+    }
+
+    public finalizeTour() {
+        location.reload();
     }
 }

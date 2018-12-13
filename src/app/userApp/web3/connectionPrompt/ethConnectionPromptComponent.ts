@@ -6,17 +6,11 @@ import {Web3Service} from '../Web3Service';
     templateUrl: 'ethConnectionPrompt.html',
     styleUrls: ['ethConnectionPrompt.scss'],
 })
-export class EthConnectionPromptComponent implements OnInit  {
+export class EthConnectionPromptComponent  {
 
     public connectionStatus = false;
     constructor(private web3Service: Web3Service) {
-        this.connectionStatus = this.web3Service.walletStatus.getValue();
-    }
-
-    ngOnInit() {
-        this.web3Service.walletStatus$.subscribe(
-            data => {
-                this.connectionStatus = data;
-            });
+        this.web3Service.getLocalKey()
+            .subscribe((data) => {this.connectionStatus = data; });
     }
 }

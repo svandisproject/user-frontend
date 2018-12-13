@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center w-100">
+        <h2>Expert Key Management</h2>
+    </div>
+    <mat-grid-list cols="2" rowHeight="230px">
+        <mat-grid-tile>
+            <mat-card (click)="downloadKeystore()">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>get_app</mat-icon>
+                        </div>
+                        <div class="text-card-width">
+                        <span class="add-text-color">
+                        Download Local Private Key File
+                        </span><br>
+                            <span class="grey-text-color">
+                        (Please keep safe)
+                        </span>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>vpn_key</mat-icon>
+                        </div>
+                        <div class="text-card-width">
+                            <p>
+                        <span class="add-text-color">
+                        Recover key with keystore file
+                        </span></p>
+                            <input #fileUpload type="file" (click)="fileUpload.value = null" (change)="importFile($event)">
+                        </div>
+                        </div>
+                    <button [disabled]="!recoveryModeActive" mat-button mat-stroked-button color="accent" (click)="setupRecoveredLocalKey()">Recover</button>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card [class.deactive]="connectionStatus" [disabled]="connectionStatus">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>swap_horiz</mat-icon>
+                        </div>
+                        <div class="text-card-width">
+                            <p>
+                            <span class="add-text-color">
+                            Swap Recovery Address (Coming Soon)
+                            </span>
+                            </p>
+                            <p>
+                                <span class="add-text-color">(Enter new ETH recovery address)</span>
+                            </p>
+                            <mat-form-field class="w-100">
+                                <textarea [style.fontSize.px]=16 [value]="this.recoveryAddress" (input)="this.recoveryAddress = $event.target.value" matInput placeholder="New Ethereum Recovery Address"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <button [disabled]="!isValidEthAddress()" mat-button mat-stroked-button color="accent" (click)="setRecoveryAddress()">Set Recovery
+                    </button>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <mat-card (click)="addDeviceKey()" [class.deactive]="connectionStatus" [disabled]="connectionStatus">
+                <mat-card-content>
+                    <div class="row">
+                        <div class="image-card-width">
+                            <mat-icon>important_devices</mat-icon>
+                        </div>
+                        <div class="text-card-width">
+                            <p>
+                        <span class="add-text-color">
+                        Add verified device key to this browser (Coming Soon)
+                        </span></p>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>

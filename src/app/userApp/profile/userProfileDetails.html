@@ -1,14 +1,17 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="container-fluid">
             <h4>User profile</h4>
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-12">
+        <div class="container-fluid">
             <mat-tab-group>
-                <mat-tab label="Research Community Onboarding">
+                <mat-tab label="Research Community Onboarding" *ngIf="showOnBoardingTour">
                     <app-rc-onboarding></app-rc-onboarding>
+                </mat-tab>
+                <mat-tab label="ETH Key Management" *ngIf="!showOnBoardingTour">
+                <app-rc-key-management></app-rc-key-management>
                 </mat-tab>
                 <mat-tab label="Auth key">
                     <div class="container-fluid mt-5">
@@ -32,22 +35,4 @@
             </mat-tab-group>
         </div>
     </div>
-    <!--<div class="row">-->
-        <!--<div class="col-sm-12">-->
-            <!--<p (click)="createNewEthResearchUser()">Click here to sign new user creation of your new web3 account</p>-->
-            <!--<p>Data Hash that will be sent to backend: {{returnedSigHash}}</p>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<div class="col-sm-12">-->
-            <!--<p (click)="createSignedSvandisData()">Click here to sign ICO/Token Screener data with your web3 account</p>-->
-            <!--<p>Data Hash that will be sent to backend: {{returnedSvandisSigHash}}</p>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="row">-->
-        <!--<div class="col-sm-12">-->
-            <!--<p>Once sent to the backend,-->
-                <!--the signatures above will be used to submit decentralized and unique information to the blockchain</p>-->
-        <!--</div>-->
-    <!--</div>-->
 </div>

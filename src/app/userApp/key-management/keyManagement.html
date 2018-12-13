@@ -1,0 +1,16 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="container-fluid">
+            <div *ngIf="isCentralized; else notCentralized">
+                <app-rc-beginner-key-management></app-rc-beginner-key-management>
+            </div>
+            <ng-template #notCentralized>
+                <app-rc-expert-key-management></app-rc-expert-key-management>
+            </ng-template>
+        </div>
+    </div>
+    <div class="row d-flex justify-content-center w-100">
+        <button mat-stroked-button color="warn" (click)="resetDemo()" style="margin-top: 40px;">Reset Onboard Demo
+        </button>
+    </div>
+</div>
