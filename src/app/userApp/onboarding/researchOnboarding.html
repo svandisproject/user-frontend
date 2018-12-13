@@ -14,8 +14,7 @@
                             <button w-100 mat-stroked-button matStepperNext color="accent">CLICK HERE TO ONBOARD
                             </button>
                             <mat-divider></mat-divider>
-                            <button w-100 mat-stroked-button color="warn" (click)="resetDemo()"
-                                    style="margin-left: 20px;">Reset Onboard Demo
+                            <button w-100 mat-stroked-button color="warn" (click)="resetDemo()" style="margin-left: 20px;">Reset Onboard Demo
                             </button>
                         </div>
                     </form>
@@ -68,8 +67,7 @@
                                 <mat-card-content>
                                     <div class="row" *ngIf="!isTwitterAuthenticated">
                                         <div class="image-card-width">
-                                            <img mat-card-sm-image src="assets/image/ic_twitter_inactive.png"
-                                                 alt="image">
+                                            <img mat-card-sm-image src="assets/image/ic_twitter_inactive.png" alt="image">
                                         </div>
                                         <div class="text-card-width">
                                             <p>
@@ -195,14 +193,12 @@
                             greater extent in the research communtiy. Please choose an option below to manage your key:
                         </p>
                         <div class="justify-content-center d-flex">
-                            <button mat-button mat-stroked-button color="accent"
-                                    [ngClass]="[beginnerButtonStyle]"
-                                    (click)="toggleButton()">CRYPTO BEGINNER
+                            <button mat-button mat-stroked-button color="accent" [ngClass]="[beginnerButtonStyle]" (click)="toggleButton()">
+                                CRYPTO BEGINNER
                             </button>
                             <span class="divide-horizontal-10"></span>
-                            <button mat-button mat-stroked-button color="accent"
-                                    [ngClass]="[expertButtonStyle]"
-                                    (click)="toggleButton()">EXPERT HODLER
+                            <button mat-button mat-stroked-button color="accent" [ngClass]="[expertButtonStyle]" (click)="toggleButton()">
+                                EXPERT HODLER
                             </button>
                         </div>
                         <div class="justify-content-center d-flex">
@@ -238,22 +234,16 @@
                                         Add an Ethereum Wallet you control (+200 SVN)
                                     </span></p>
                                     <mat-form-field class="w-100">
-                                            <textarea
-                                                    [style.fontSize.px]=17
-                                                    [value]="this.recoveryAddress"
-                                                    (input)="this.recoveryAddress = $event.target.value"
-                                                    matInput placeholder="Ethereum Address"></textarea>
+                                            <textarea [style.fontSize.px]=17 [value]="this.recoveryAddress" (input)="this.recoveryAddress = $event.target.value" matInput placeholder="Ethereum Address"></textarea>
                                     </mat-form-field>
                                 </div>
                             </mat-card>
                         </div>
 
-                        <mat-checkbox *ngIf="!expertSelected" [checked]="acceptedTerms"
-                                      (change)="acceptedTerms = $event.checked ? true : false">
+                        <mat-checkbox *ngIf="!expertSelected" [checked]="acceptedTerms" (change)="acceptedTerms = $event.checked ? true : false">
                             I agree to allow Svandis to hold a key to my Blockchain Identity to safeguard my account.
                         </mat-checkbox>
-                        <mat-checkbox *ngIf="expertSelectedAndisValidEthAddress()" [checked]="acceptedTerms"
-                                      (change)="acceptedTerms = $event.checked ? true : false">
+                        <mat-checkbox *ngIf="expertSelectedAndisValidEthAddress()" [checked]="acceptedTerms" (change)="acceptedTerms = $event.checked ? true : false">
                             I agree to personally manage my key. I understand that it is my sole responsibility to
                             safeguard my account.
                         </mat-checkbox>
@@ -263,9 +253,7 @@
                             <button mat-button mat-stroked-button matStepperPrevious>BACK</button>
                             <button mat-button (click)="stepper.reset()">CANCEL</button>
                             <span class="divide-horizontal-20"></span>
-                            <button mat-button mat-stroked-button color="accent" [disabled]="!acceptedTerms"
-                                    matStepperNext>CONTINUE
-                            </button>
+                            <button mat-button mat-stroked-button color="accent" [disabled]="!acceptedTerms" matStepperNext>CONTINUE</button>
                         </div>
                     </form>
                 </mat-step>
@@ -278,11 +266,7 @@
                             </p>
                         </div>
                         <mat-form-field class="limited-width d-flex justify-content-center">
-                                            <textarea class="d-flex justify-content-center"
-                                                      [style.fontSize.px]=17
-                                                      [value]="this.password"
-                                                      (input)="this.password = $event.target.value"
-                                                      matInput placeholder="Password"></textarea>
+                                            <textarea class="d-flex justify-content-center" [style.fontSize.px]=17 (input)="this.password = $event.target.value" matInput placeholder="Password"></textarea>
                         </mat-form-field>
                         <div class="col-sm-12 d-flex justify-content-center w-100">
                             <span class="divide-horizontal-20"></span>
@@ -350,8 +334,8 @@
                     </mat-grid-list>
                     <div>
                         <div class="col-sm-12 d-flex justify-content-center w-100">
-                            <button mat-button mat-stroked-button color="accent" (click)="finalizeTour()"
-                                    color="accent">DONE
+                            <button mat-button mat-stroked-button color="accent" (click)="finalizeTour()">
+                                DONE
                             </button>
                         </div>
                     </div>
