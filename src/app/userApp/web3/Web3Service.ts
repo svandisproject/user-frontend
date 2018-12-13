@@ -47,16 +47,13 @@ export class Web3Service {
     public refreshBlockchainUserState(): void {
         this.userAuthService.getCurrentUser().subscribe(currentUser => {
             this.user = currentUser;
-            const privateKeyEncrypted = this.getKeyEncryptedLocation();
-            if (this.user.onboarded === true) {
+            if (this.user.onboarded) {
                 this.isOnboarded.next(true);
-            } else {
-                this.isOnboarded.next(false);
             }
             if (this.user.centralized) {
-                this.isCentralized.next(this.user.centralized);
+                this.isCentralized.next(true);
             }
-            this.localKeyConnected.next(privateKeyEncrypted && this.isOnboarded.getValue());
+            this.localKeyConnected.next(this.getKeyEncryptedLocation() && this.isOnboarded.getValue());
         });
     }
 
