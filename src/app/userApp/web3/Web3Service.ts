@@ -99,7 +99,7 @@ export class Web3Service {
     public createNewWalletAndStoreKey(isExpert: boolean, password: string, recoveryAddress?: string) {
         if (this.user.id) {
             this.deconstructLocalWalletAndCreateNewOne(password);
-            this.signNewUser(password).subscribe(returnedSig => {
+            this.signNewUser(password).subscribe((returnedSig) => {
                         this.blockchainApiService.blockchainUser(
                             returnedSig,
                             recoveryAddress
@@ -166,7 +166,7 @@ export class Web3Service {
         localStorage.setItem(this.getEncryptedPrivateAddressLocation(), walletString);
         this.localKeyConnected.next(true);
         const currentWallet = ''; // Need this value from API
-        this.signToAddThisDevice(password).subscribe(returnedSig => {
+        this.signToAddThisDevice(password).subscribe((returnedSig) => {
                     this.blockchainApiService.blockchainUser(
                         currentWallet,
                         returnedSig
@@ -185,7 +185,7 @@ export class Web3Service {
         localStorage.setItem(this.getEncryptedPrivateAddressLocation(), walletString);
         this.localKeyConnected.next(true);
         const currentWallet = ''; // Need this value from API
-        this.signToSwapAllToThisDevice(password).subscribe(returnedSig => {
+        this.signToSwapAllToThisDevice(password).subscribe((returnedSig) => {
                 this.blockchainApiService.blockchainUser(
                     currentWallet,
                     returnedSig
