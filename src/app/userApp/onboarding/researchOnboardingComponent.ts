@@ -27,7 +27,8 @@ export class ResearchOnboardingComponent {
     isLinear = true;
 
     constructor(private workerService: WorkerService, private _formBuilder: FormBuilder, private web3Service: Web3Service) {
-        this.workerService.getSecret().subscribe(res => this.setSecret(res));
+        this.workerService.getSecret()
+            .subscribe((res) => this.setSecret(res));
     }
 
     private setSecret(response: { secret: string }) {

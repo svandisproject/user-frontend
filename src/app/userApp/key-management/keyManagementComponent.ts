@@ -10,10 +10,8 @@ export class KeyManagementComponent {
     public isCentralized = true;
 
     constructor(private web3Service: Web3Service) {
-        this.web3Service.getIsCentralized().subscribe(
-            data => {
-                this.isCentralized = data;
-            });
+        this.web3Service.getIsCentralized()
+            .subscribe((data) => {this.isCentralized = data; });
     }
 
     resetDemo() {

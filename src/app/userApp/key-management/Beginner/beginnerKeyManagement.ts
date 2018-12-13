@@ -13,10 +13,8 @@ export class BeginnerKeyManagementComponent {
     public password = '';
     public connectionStatus: boolean;
     constructor(private web3Service: Web3Service) {
-        this.web3Service.getLocalKey().subscribe(
-            data => {
-                this.connectionStatus = data;
-            });
+        this.web3Service.getLocalKey()
+            .subscribe((data) => {this.connectionStatus = data; });
     }
 
     public downloadKeystore(): void {

@@ -19,14 +19,13 @@ export class UserProfileDetailsComponent {
 
     constructor(private workerService: WorkerService, private web3Service: Web3Service) {
         this.workerService.getSecret().subscribe(res => this.setSecret(res));
-        this.web3Service.getIsOnboarded().subscribe(
-            data => {
-                this.showOnBoardingTour = !data;
-            });
+        this.web3Service.getIsOnboarded()
+            .subscribe((data) => {this.showOnBoardingTour = !data; });
     }
 
     public regenerateToken(): void {
-        this.workerService.regenerate().subscribe(res => this.setSecret(res));
+        this.workerService.regenerate()
+            .subscribe((res) => this.setSecret(res));
     }
 
     private setSecret(response: { secret: string }) {

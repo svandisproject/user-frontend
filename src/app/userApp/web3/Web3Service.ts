@@ -45,16 +45,16 @@ export class Web3Service {
     }
 
     public refreshBlockchainUserState(): void {
-        this.userAuthService.getCurrentUser().subscribe(currentUser => {
-            this.user = currentUser;
-            if (this.user.onboarded) {
-                this.isOnboarded.next(true);
-            }
-            if (this.user.centralized) {
-                this.isCentralized.next(true);
-            }
-            this.localKeyConnected.next(this.getKeyEncryptedLocation() && this.isOnboarded.getValue());
-        });
+        this.userAuthService.getCurrentUser()
+            .subscribe((currentUser) => {
+                this.user = currentUser;
+                if (this.user.onboarded) {
+                    this.isOnboarded.next(true);
+                }
+                if (this.user.centralized) {
+                    this.isCentralized.next(true);
+                }
+                this.localKeyConnected.next(this.getKeyEncryptedLocation() && this.isOnboarded.getValue()); });
     }
 
     public signNewUser(password: string): Observable<string> {
@@ -101,8 +101,10 @@ export class Web3Service {
             this.deconstructLocalWalletAndCreateNewOne(password);
             this.signNewUser(password).subscribe(returnedSig => {
                         this.blockchainApiService.blockchainUser(
-                            returnedSig, recoveryAddress
-                        ).subscribe((response) => this.localKeyConnected.next(true));
+                            returnedSig,
+                            recoveryAddress
+                        )
+                            .subscribe((response) => this.localKeyConnected.next(true));
                 }
             );
         }
@@ -112,7 +114,8 @@ export class Web3Service {
         this.web3.eth.accounts.wallet.clear();
         localStorage.removeItem(this.getEncryptedPrivateAddressLocation());
         if (this.user.id) {
-            this.blockchainApiService.resetDemo(this.user.id).subscribe((response) => this.removeApiDataRelatedToDemoAndDisconnect());
+            this.blockchainApiService.resetDemo(this.user.id)
+                .subscribe((response) => this.removeApiDataRelatedToDemoAndDisconnect());
         }
     }
 
@@ -139,10 +142,10 @@ export class Web3Service {
     public convertBeginnerToExpertUser(password: string, userNewRecoveryAddress: string) {
         this.convertCentralized(password).subscribe(returnedSig => {
                 this.blockchainApiService.convertBlockchainBeginnerCentralizedUser(
-                    returnedSig, userNewRecoveryAddress
-                ).subscribe((response) => this.refreshBlockchainUserState());
-            }
-        );
+                    returnedSig,
+                    userNewRecoveryAddress
+                )
+                    .subscribe((response) => this.refreshBlockchainUserState()); });
     }
 
     public replaceKeyWithRecovery(myRecoveryString: string): Observable<boolean> {
@@ -165,10 +168,10 @@ export class Web3Service {
         const currentWallet = ''; // Need this value from API
         this.signToAddThisDevice(password).subscribe(returnedSig => {
                     this.blockchainApiService.blockchainUser(
-                        currentWallet, returnedSig
-                    ).subscribe((response) => this.refreshBlockchainUserState());
-            }
-        );
+                        currentWallet,
+                        returnedSig
+                    )
+                        .subscribe((response) => this.refreshBlockchainUserState()); });
     }
 
     public swapAllDevicesAndSetupLocalKey(password: string) {
@@ -184,10 +187,10 @@ export class Web3Service {
         const currentWallet = ''; // Need this value from API
         this.signToSwapAllToThisDevice(password).subscribe(returnedSig => {
                 this.blockchainApiService.blockchainUser(
-                    currentWallet, returnedSig
-                ).subscribe((response) => this.refreshBlockchainUserState());
-            }
-        );
+                    currentWallet,
+                    returnedSig
+                )
+                    .subscribe((response) => this.refreshBlockchainUserState()); });
     }
 
     private deconstructLocalWalletAndCreateNewOne(password: string) {

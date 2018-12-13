@@ -14,10 +14,8 @@ export class ExpertKeyManagementComponent {
     public recoveryFileString: string;
     public recoveryModeActive = false;
     constructor(private web3Service: Web3Service) {
-        this.web3Service.getLocalKey().subscribe(
-            data => {
-                this.connectionStatus = data;
-            });
+        this.web3Service.getLocalKey()
+            .subscribe((data) => {this.connectionStatus = data; });
     }
 
     public downloadKeystore(): void {
@@ -52,9 +50,8 @@ export class ExpertKeyManagementComponent {
 
     public setupRecoveredLocalKey() {
         console.log(this.recoveryFileString);
-        this.web3Service.replaceKeyWithRecovery(this.recoveryFileString).subscribe(
-            data => {
-                // Coming soon
+        this.web3Service.replaceKeyWithRecovery(this.recoveryFileString)
+            .subscribe((data) => {// Coming soon
             });
     }
 }
