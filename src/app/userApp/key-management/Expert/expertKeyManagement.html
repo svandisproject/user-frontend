@@ -34,8 +34,7 @@
                         <span class="add-text-color">
                         Recover key with keystore file
                         </span></p>
-                            <input #fileUpload type="file" (click)="fileUpload.value = null"
-                                   (change)="importFile($event)">
+                            <input #fileUpload type="file" (click)="fileUpload.value = null" (change)="importFile($event)">
                         </div>
                         </div>
                     <button [disabled]="!recoveryModeActive" mat-button mat-stroked-button color="accent" (click)="setupRecoveredLocalKey()">Recover</button>
@@ -51,24 +50,19 @@
                         </div>
                         <div class="text-card-width">
                             <p>
-                        <span class="add-text-color">
-                        Swap Recovery Address (Coming Soon)
-                        </span></p>
-                            <p>
                             <span class="add-text-color">
-                        (Enter new ETH recovery address)
-                            </span></p>
+                            Swap Recovery Address (Coming Soon)
+                            </span>
+                            </p>
+                            <p>
+                                <span class="add-text-color">(Enter new ETH recovery address)</span>
+                            </p>
                             <mat-form-field class="w-100">
-                            <textarea
-                                    [style.fontSize.px]=16
-                                    [value]="this.recoveryAddress"
-                                    (input)="this.recoveryAddress = $event.target.value"
-                                    matInput placeholder="New Ethereum Recovery Address"></textarea>
+                                <textarea [style.fontSize.px]=16 [value]="this.recoveryAddress" (input)="this.recoveryAddress = $event.target.value" matInput placeholder="New Ethereum Recovery Address"></textarea>
                             </mat-form-field>
                         </div>
                     </div>
-                    <button [disabled]="!isValidEthAddress()" mat-button mat-stroked-button color="accent"
-                            (click)="setRecoveryAddress()">Set Recovery
+                    <button [disabled]="!isValidEthAddress()" mat-button mat-stroked-button color="accent" (click)="setRecoveryAddress()">Set Recovery
                     </button>
                 </mat-card-content>
             </mat-card>
