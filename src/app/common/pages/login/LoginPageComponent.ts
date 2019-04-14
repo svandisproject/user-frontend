@@ -1,7 +1,7 @@
 import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {UserAuthService} from '../../user/UserAuthService';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {BlockUIService} from 'ng-block-ui';
 import {finalize} from 'rxjs/internal/operators';
 import {IpcService} from '../../electron/IpcService';
@@ -24,6 +24,7 @@ export class LoginPageComponent {
 
     constructor(private userService: UserAuthService,
                 private blockUIService: BlockUIService,
+                private route: ActivatedRoute,
                 private ipcService: IpcService,
                 private router: Router) {
     }
@@ -41,7 +42,7 @@ export class LoginPageComponent {
                         if (this.userService.hasRoleAdmin()) {
                             this.router.navigate(AdminDefaultRoute);
                         } else {
-                            this.router.navigate(['']);
+                            this.router.navigate([this.route.snapshot.queryParams.redirect || '']);
                         }
                     },
                     err => this.handleFormError(form)

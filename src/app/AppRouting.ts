@@ -6,6 +6,7 @@ export const AppRouting: Route[] = [
     {path: 'admin', loadChildren: './adminApp/AdminModule#AdminModule'},
     // Lazy load user
     {path: 'user', loadChildren: './userApp/UserAppModule#UserAppModule'},
+    {path: 'widget', loadChildren: './widgetGeneratorApp/WidgetGeneratorModule#WidgetGeneratorModule'},
 
     {path: 'login', component: LoginPageComponent},
 
