@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Web3Config} from '../../config/Web3Config';
 import {Web3Interface} from './Web3Interface';
-import Web3 from 'web3';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {BlockchainApiService} from '../../common/blockchain/service/BlockchainApiService';
 import {UserAuthService} from '../../common/user/UserAuthService';
 import {User} from '../../common/api/dataModels/User';
+
+declare var Web3;
 
 @Injectable({
     providedIn: 'root'

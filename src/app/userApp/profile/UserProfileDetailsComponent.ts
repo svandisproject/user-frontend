@@ -1,9 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {WorkerService} from '../../common/api/services/WorkerService';
-import {ResearchOnboardingComponent} from '../onboarding/researchOnboardingComponent';
-import {Web3Config} from '../../config/Web3Config';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
 import {Web3Service} from '../web3/Web3Service';
 
 @Component({
