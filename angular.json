@@ -27,7 +27,8 @@
               "node_modules/bootstrap/scss/bootstrap-grid.scss",
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.scss",
-              "src/app/_svandis-material.scss"
+              "src/app/_svandis-material.scss",
+              "src/app/_prism-darcula.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
