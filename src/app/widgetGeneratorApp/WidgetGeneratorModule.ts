@@ -5,7 +5,9 @@ import {WidgetGeneratorRouting} from './WidgetGeneratorRouting';
 import {CommonModule} from '@angular/common';
 import {CommonMaterialModule} from '../common/material/CommonMaterialModule';
 import {PrismModule} from '@ngx-prism/core';
-import {GeneratorService} from './generator/services/generator.service';
+import {GeneratorService} from './services/GeneratorService';
+import {TagsResource} from './resource/GeneratorResource';
+import {ClipboardCopyDirective} from './directives/ClipboardCopyDirective';
 @NgModule({
     imports: [
         CommonModule,
@@ -14,8 +16,14 @@ import {GeneratorService} from './generator/services/generator.service';
         PrismModule
     ],
     exports: [],
-    declarations: [GeneratorComponent],
-    providers: [GeneratorService],
+    declarations: [
+        ClipboardCopyDirective,
+        GeneratorComponent
+    ],
+    providers: [
+        GeneratorService,
+        TagsResource
+    ],
 })
 export class WidgetGeneratorModule {
 }

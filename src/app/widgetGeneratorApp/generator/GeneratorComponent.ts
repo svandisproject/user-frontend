@@ -1,6 +1,6 @@
 import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {GeneratorService, TagGroup} from './services/generator.service';
 import {Observable} from 'rxjs/Observable';
+import {GeneratorService} from '../services/GeneratorService';
 
 @Component({
     selector: 'app-widget-generator',
@@ -10,27 +10,24 @@ import {Observable} from 'rxjs/Observable';
 
 export class GeneratorComponent implements OnInit, AfterViewChecked {
     public readonly language = 'html';
-    public content = '<app-svandis-news [filters]="{{tags}}"></app-svandis-news>';
-    public tagGroups: Observable<TagGroup[]>;
+    public content = '';
+    public tagGroups: Observable<any[]>;
     constructor(
         private generatorService: GeneratorService,
         private _changeDetectionRef: ChangeDetectorRef
     ) {
     }
 
+    ngOnInit() {
+        this.content = this.generatorService.getTagContent();
+        this.tagGroups = this.generatorService.getTags();
+    }
+
     ngAfterViewChecked(): void {
         this._changeDetectionRef.detectChanges();
     }
 
-    ngOnInit() {
-        this.tagGroups = this.generatorService.getTags();
-    }
-
-    getContent() {
-        return this.generatorService.getContent();
-    }
-
     onChipSelect($e) {
-        this.generatorService.changeTags($e);
+        this.generatorService.selectTag($e);
     }
 }

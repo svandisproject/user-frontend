@@ -2,41 +2,36 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {MatChipSelectionChange} from '@angular/material';
-
-export interface Tag {
-    id: number;
-    title: string;
-}
-export interface TagGroup {
-    id: number;
-    title: string;
-    items: Tag[];
-}
+import {AuthService} from '../../common/auth/AuthService';
+import {TagsResource} from '../resource/GeneratorResource';
 
 @Injectable()
 export class GeneratorService {
 
-    private readonly URL = 'apiUrl';
     public selectedTags: number[] = [];
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        private authService: AuthService,
+        private tagsResource: TagsResource
+    ) {
     }
 
-    changeTags(e: MatChipSelectionChange) {
-        if (e.selected) {
+    selectTag(e: MatChipSelectionChange) {
+        /*if (e.selected) {
             this.selectedTags.push(e.source.value);
         } else {
             this.selectedTags = this.selectedTags.filter(v => v !== e.source.value);
-        }
+        }*/
     }
 
-    getContent() {
-        const sorted = this.selectedTags.sort((a, b) => a - b).join(',');
-        return `<app-svandis-news [filters]="[${sorted}]"></app-svandis-news>`;
+    getTagContent() {
+        const token = this.getToken();
+        return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
     }
 
 
     // TODO: Remove mocks and add types
-    public getTags(): Observable<TagGroup[]> {
+    public getTags(): Observable<any> {
+        // return this.tagsResource.findAll();
         return of([
             {
                 id: 1,
@@ -75,5 +70,9 @@ export class GeneratorService {
                 ]
             }
         ]);
+    }
+
+    getToken(): string {
+        return this.authService.getSessionJwtToken();
     }
 }

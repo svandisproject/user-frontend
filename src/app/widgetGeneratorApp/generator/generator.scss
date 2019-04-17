@@ -1,14 +1,25 @@
 @import "../../svandis-material";
 @import "../../colors";
 
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
 .header {
   height: 50px;
 }
 h3, h4 {
   color: #fff;
 }
+
 .group-title {
-  color: #404153;
+  color: rgb(108,108,151);
 }
 
 .chip-icon {
@@ -20,6 +31,7 @@ h3, h4 {
 .chip-icon.selected {
   width: 24px;
   transition: width .1s ease-in;
+  margin-right: 5px;
 }
 
 /* chip list */
@@ -28,17 +40,20 @@ mat-form-field {
   width: 100%;
 }
 /deep/ mat-chip-list.mat-chip-list .mat-chip-list-wrapper {
-  background-color: #2b2a49;
+  /*background-color: #2b2a49;*/
+  background-color: rgb(59, 58, 92);
   padding: .5em;
 }
 
 /* chip */
 mat-chip.mat-chip.mat-standard-chip {
   cursor: pointer;
-  background-color: #1e1f35;
+  /*background-color: #1e1f35;*/
+  background-color: rgb(47,46,75);
 }
 mat-chip.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
   background-color: $green-positive;
+
 }
 /* chip underline */
 /deep/ .mat-form-field.mat-focused .mat-form-field-ripple {
@@ -52,4 +67,24 @@ mat-chip.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
 }
 .button-blue {
   background-color: $neon-blue;
+}
+
+/deep/ .token {
+  &.tag .punctuation {
+    color: #fff;
+  }
+  .tag {
+    color: rgb(123,177, 60);
+    .punctuation {
+      color: #fff;
+    }
+  }
+  .attr-name {
+    color: #fff;
+  }
+  .attr-value{
+    word-break: break-all;
+    white-space: normal;
+    color: rgb(185,72, 47);
+  }
 }
