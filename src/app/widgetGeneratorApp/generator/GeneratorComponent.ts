@@ -1,5 +1,5 @@
 import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {GeneratorService} from './services/generator.service';
+import {GeneratorService, TagGroup} from './services/generator.service';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
@@ -11,7 +11,7 @@ import {Observable} from 'rxjs/Observable';
 export class GeneratorComponent implements OnInit, AfterViewChecked {
     public readonly language = 'html';
     public content = '<app-svandis-news [filters]="{{tags}}"></app-svandis-news>';
-    public tagGroups: Observable<any[]>;
+    public tagGroups: Observable<TagGroup[]>;
     constructor(
         private generatorService: GeneratorService,
         private _changeDetectionRef: ChangeDetectorRef

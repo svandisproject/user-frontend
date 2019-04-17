@@ -13,7 +13,6 @@
                 <div class="group-title">
                     {{group.title}}
                 </div>
-                <!--<app-tag *ngFor="let tag of group.items" [id]="tag.id" (selectionChange)="tagsService.changeTags($event)">{{tag.title}}</app-tag>-->
                 <mat-form-field>
                     <mat-chip-list [multiple]="true" >
                         <mat-chip class="sv-tag" *ngFor="let tag of group.items"
@@ -34,6 +33,5 @@
         </div>
 
     </div>
-
-
+    
 </div>
