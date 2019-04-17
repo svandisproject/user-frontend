@@ -31,8 +31,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/pusher-js/dist/web/pusher.min.js",
-              "node_modules/web3/dist/web3.esm.js"
+              "node_modules/pusher-js/dist/web/pusher.min.js"
             ]
           },
           "configurations": {

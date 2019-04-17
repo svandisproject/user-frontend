@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {Web3Config} from '../../config/Web3Config';
-import {Web3Interface} from './Web3Interface';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {BlockchainApiService} from '../../common/blockchain/service/BlockchainApiService';
 import {UserAuthService} from '../../common/user/UserAuthService';
@@ -14,7 +13,7 @@ export class Web3Service {
     private localKeyConnected = new BehaviorSubject(false);
     private isOnboarded = new BehaviorSubject(false);
     private isCentralized = new BehaviorSubject(false);
-    private web3: Web3Interface;
+    private web3: any;
     private readonly SIGN_NEW_USER = 'CREATE NEW ACCOUNT';
     private readonly SIGN_DECENTRALIZATION = 'CONVERT DECENTRALIZED';
     private readonly SIGN_NEW_DEVICE = 'SIGN NEW DEVICE';
