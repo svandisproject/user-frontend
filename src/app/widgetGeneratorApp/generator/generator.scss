@@ -48,8 +48,7 @@ mat-form-field {
 /* chip */
 mat-chip.mat-chip.mat-standard-chip {
   cursor: pointer;
-  /*background-color: #1e1f35;*/
-  background-color: rgb(47,46,75);
+  background-color: rgb(47, 46, 75);
 }
 mat-chip.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
   background-color: $green-positive;
@@ -74,7 +73,7 @@ mat-chip.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
     color: #fff;
   }
   .tag {
-    color: rgb(123,177, 60);
+    color: rgb(123, 177, 60);
     .punctuation {
       color: #fff;
     }
@@ -85,6 +84,6 @@ mat-chip.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
   .attr-value{
     word-break: break-all;
     white-space: normal;
-    color: rgb(185,72, 47);
+    color: rgb(185, 72, 47);
   }
 }
