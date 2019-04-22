@@ -1,7 +1,9 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {GeneratorService} from '../services/GeneratorService';
-import {Tag} from '../dataModels/Tag';
-
+import {TagGroup} from '../dataModels/TagGroup';
+import {UserTagsRes} from '../dataModels/UserTagsRes';
+import {GetTagsRes} from '../dataModels/GetTagsRes';
+import {SaveTagsRes} from '../dataModels/SaveTagsRes';
 @Component({
     selector: 'app-widget-generator',
     templateUrl: 'generator.html',
@@ -10,28 +12,55 @@ import {Tag} from '../dataModels/Tag';
 
 export class GeneratorComponent implements OnInit, AfterViewChecked {
     public readonly language = 'html';
-    public content = '';
-    public tags: Tag[] = [];
+    public content = '<app-svandis-news [filters]="{{token}}"></app-svandis-news>';
+    public tagGroups: TagGroup[];
+    public token = '';
+    public selectedTags: {[key: string]: boolean} = {};
     constructor(
         private generatorService: GeneratorService,
-        private _changeDetectionRef: ChangeDetectorRef
+        /*private changeDetectionRef: ChangeDetectorRef*/
     ) {
     }
 
     ngOnInit() {
         this.content = this.generatorService.getTagContent();
-        this.generatorService.getTags().subscribe(v => this.afterGotTags(v));
+        this.generatorService.getAllTags().subscribe(v => this.afterGotTagsAll(v));
+        this.generatorService.getUserTags().subscribe(v => this.afterGotUserTags(v));
+    }
+
+    /*getCodeContent() {
+        this.generatorService.getTagContent(this.token);
+    }*/
+
+
+    isTagSelected(tagId: number) {
+        return this.selectedTags[tagId];
     }
 
     ngAfterViewChecked(): void {
-        this._changeDetectionRef.detectChanges();
+        /*this.changeDetectionRef.detectChanges();*/
     }
 
-    afterGotTags(tags) {
-        this.tags = tags.data;
+    afterGotTagsAll(tags: GetTagsRes) {
+        this.tagGroups = tags.data;
     }
 
-    onChipSelect($e) {
-        this.generatorService.selectTag($e);
+    selectTag(tagId: number): void {
+        this.selectedTags[tagId] = !this.selectedTags[tagId];
+        this.generatorService.saveUserTags(this.selectedTags)
+            .subscribe(this.afterSaveUserTags);
+
+    }
+
+    afterGotUserTags(res: UserTagsRes) {
+        this.token = res.data.token;
+        this.selectedTags =  {};
+        res.data.tags.forEach(v => this.selectedTags[v.id] = true);
+    }
+
+    afterSaveUserTags(res: SaveTagsRes) {
+        this.token = res.data.token;
+        this.selectedTags =  {};
+        res.data.tags.forEach(v => this.selectedTags[v.id] = true);
     }
 }

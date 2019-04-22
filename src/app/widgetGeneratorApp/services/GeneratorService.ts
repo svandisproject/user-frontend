@@ -1,21 +1,24 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {MatChipSelectionChange} from '@angular/material';
+import {Observable } from 'rxjs';
 import {AuthService} from '../../common/auth/AuthService';
 import {TagsResource} from '../resource/GeneratorResource';
+import {DashboardResource} from '../resource/DashboardResource';
+import {UserTagsRes} from '../dataModels/UserTagsRes';
+import {SaveTagsRes} from '../dataModels/SaveTagsRes';
+import {GetTagsRes} from '../dataModels/GetTagsRes';
 
 @Injectable()
 export class GeneratorService {
 
-    public selectedTags: number[] = [];
     constructor(
         private authService: AuthService,
-        private tagsResource: TagsResource
+        private tagsResource: TagsResource,
+        private dashboardResource: DashboardResource
     ) {
     }
 
-    // TODO: HANDLE TAG SELECTION.
-    selectTag(e: MatChipSelectionChange) {
+    getToken(): string {
+        return this.authService.getSessionJwtToken();
     }
 
     getTagContent() {
@@ -23,12 +26,20 @@ export class GeneratorService {
         return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
     }
 
+    /*getTagContent(token) {
+        return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
+    }*/
 
-    public getTags(): Observable<any> {
+
+    public getAllTags(): Observable<GetTagsRes> {
         return this.tagsResource.findAll();
     }
 
-    getToken(): string {
-        return this.authService.getSessionJwtToken();
+    public getUserTags(): Observable<UserTagsRes> {
+        return this.dashboardResource.getUserTags();
+    }
+
+    public saveUserTags(selectedTags: {[key: string]: boolean}): Observable<SaveTagsRes> {
+        return this.dashboardResource.saveUserTags(Object.keys(selectedTags).filter(v => selectedTags[v]));
     }
 }

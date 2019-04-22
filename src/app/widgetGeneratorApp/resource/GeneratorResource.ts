@@ -1,13 +1,15 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from '../../common/http/HttpService';
-import {AbstractCrudResource} from '../../common/api/util/AbstractCrudResource';
-import {Tag} from '../dataModels/Tag';
 import {SvandisNewsApiConfig} from '../config/SvandisNewsApiConfig';
+import {Observable} from 'rxjs/Observable';
+import {GetTagsRes} from '../dataModels/GetTagsRes';
 
 @Injectable()
-export class TagsResource extends AbstractCrudResource<Tag> {
-    constructor(httpService: HttpService) {
-        super(SvandisNewsApiConfig.API_HOST + '/dashboard/tags', httpService);
-    }
+export class TagsResource {
+    private URL = SvandisNewsApiConfig.API_HOST + '/dashboard/tags';
+    constructor(private httpService: HttpService) {}
 
+    findAll(): Observable<GetTagsRes> {
+        return this.httpService.get(this.URL);
+    }
 }

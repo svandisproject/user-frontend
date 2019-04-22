@@ -9,18 +9,35 @@
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                 aliquip ex ea commodo consequat.
             </h4>
-            <mat-form-field>
-                <mat-chip-list [multiple]="true" >
-                    <mat-chip class="sv-tag" *ngFor="let tag of tags" [value]="tag.id"
-                              [selected]="!!tag.state"
-                              (click)="tag.state = !tag.state"
-                              (selectionChange)="onChipSelect($event)">
-                        <mat-icon class="noselect chip-icon" [class.selected]="!!tag.state">done</mat-icon>
-                        <span class="noselect">{{tag.title}}</span>
-                    </mat-chip>
-                </mat-chip-list>
-            </mat-form-field>
-            <ngx-prism  [language]="language" [cd]="{code: true}" [code]="content">
+            <div *ngFor="let group of tagGroups">
+                <div class="group-title">
+                    {{group.title}}
+                </div>
+                <mat-form-field>
+                    <!--<mat-chip-list [multiple]="true" [selectable]="true">
+                        <mat-chip class="sv-tag" *ngFor="let tag of group.tags"
+                                  [value]="tag.id"
+                                  [selectable]="true"
+                                  [selected]="isTagSelected(tag.id)"
+                                  (click)="selectTag(tag.id)"
+                                  (selectionChange)="onChipSelect($event)"
+                        >
+                            <mat-icon class="noselect chip-icon" [class.selected]="isTagSelected(tag.id)">done</mat-icon>
+                            <span class="noselect">{{tag.title}}</span>
+                        </mat-chip>
+                    </mat-chip-list>-->
+                    <mat-chip-list>
+                        <mat-chip class="sv-tag" *ngFor="let tag of group.tags"
+                                  [class.selected]="isTagSelected(tag.id)"
+                                  (click)="selectTag(tag.id)">
+                            <mat-icon class="noselect chip-icon" [class.selected]="isTagSelected(tag.id)">done</mat-icon>
+                            <span class="noselect">{{tag.title}}</span>
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+
+            <<ngx-prism  [language]="language" [cd]="{ code: true}" [code]="content">
             </ngx-prism>
             <div class="d-flex justify-content-end">
                 <button class="button-blue" mat-raised-button appClipboardCopy [copy-clipboard]="content">
