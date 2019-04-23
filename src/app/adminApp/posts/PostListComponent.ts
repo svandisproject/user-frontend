@@ -50,7 +50,7 @@ export class PostListComponent implements OnInit {
                     if (params) {
                         this.currentPage = params.page;
                     }
-                    return this.postService.findBy([new Filter('ne', 'tags.title', 'Trash')], this.currentPage);
+                    return this.postService.findBy([], this.currentPage);
                 })
             )
             .subscribe((res) => this.posts = res);
