@@ -1,6 +1,6 @@
 <mat-card class="header">
 </mat-card>
-<div class="container-fluid">
+<div class="container-fluid main-container">
     <div class="row justify-content-center">
         <div class="col-8">
             <h3>Newsfeed widget settings</h3>
@@ -25,15 +25,16 @@
                 </mat-form-field>
             </div>
 
+            <span class="section-title">Code</span>
             <ngx-prism #codeHighlight  [language]="language" [cd]="{ code: true }" [code]="getCodeContent()">
             </ngx-prism>
+
             <div class="d-flex justify-content-end">
                 <button class="button-blue" mat-raised-button appClipboardCopy [copy-clipboard]="content">
                     Copy Code
                 </button>
             </div>
+
         </div>
-
     </div>
-
 </div>
