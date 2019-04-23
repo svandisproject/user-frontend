@@ -37,7 +37,7 @@ export class GeneratorComponent implements OnInit {
 
     public selectTag(tagId: number): void {
         const newVal = !(_.get(this.selectedTags, tagId));
-        _.set(this.selectedTags, tagId, newVal);
+        _.set(this.selectedTags, tagId + '', newVal);
         this.generatorService.saveUserTags(this.selectedTags)
             .subscribe(this.afterSaveUserTags);
 
@@ -46,12 +46,12 @@ export class GeneratorComponent implements OnInit {
     public afterGotUserTags(res: UserTagsRes): void {
         this.token = res.token;
         this.selectedTags = {};
-        _(res.tags).forEach(v =>  _.set(this.selectedTags, v.id, true));
+        _(res.tags).forEach(v =>  _.set(this.selectedTags, v.id + '', true));
     }
 
     public afterSaveUserTags(res: SaveTagsRes): void {
         this.token = res.token;
         this.selectedTags = {};
-        _(res.tags).forEach(v => _.set(this.selectedTags, v.id, true));
+        _(res.tags).forEach(v => _.set(this.selectedTags, v.id + '', true));
     }
 }

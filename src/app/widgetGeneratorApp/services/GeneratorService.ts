@@ -33,6 +33,7 @@ export class GeneratorService {
     }
 
     public saveUserTags(selectedTags: {[key: string]: boolean}): Observable<SaveTagsRes> {
-        return this.dashboardResource.saveUserTags(_(selectedTags).keys().filter(v => _(selectedTags).get(v)));
+        const keys = _(selectedTags).keys().filter(v => _(selectedTags).get(v + '') === true ).value();
+        return this.dashboardResource.saveUserTags(keys);
     }
 }
