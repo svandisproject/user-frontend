@@ -17,18 +17,13 @@ export class GeneratorService {
     ) {
     }
 
-    getToken(): string {
+    getAuthToken(): string {
         return this.authService.getSessionJwtToken();
     }
 
-    getTagContent() {
-        const token = this.getToken();
+    getTagContent(token) {
         return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
     }
-
-    /*getTagContent(token) {
-        return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
-    }*/
 
 
     public getAllTags(): Observable<GetTagsRes> {

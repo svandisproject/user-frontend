@@ -14,18 +14,6 @@
                     {{group.title}}
                 </div>
                 <mat-form-field>
-                    <!--<mat-chip-list [multiple]="true" [selectable]="true">
-                        <mat-chip class="sv-tag" *ngFor="let tag of group.tags"
-                                  [value]="tag.id"
-                                  [selectable]="true"
-                                  [selected]="isTagSelected(tag.id)"
-                                  (click)="selectTag(tag.id)"
-                                  (selectionChange)="onChipSelect($event)"
-                        >
-                            <mat-icon class="noselect chip-icon" [class.selected]="isTagSelected(tag.id)">done</mat-icon>
-                            <span class="noselect">{{tag.title}}</span>
-                        </mat-chip>
-                    </mat-chip-list>-->
                     <mat-chip-list>
                         <mat-chip class="sv-tag" *ngFor="let tag of group.tags"
                                   [class.selected]="isTagSelected(tag.id)"
@@ -37,7 +25,7 @@
                 </mat-form-field>
             </div>
 
-            <<ngx-prism  [language]="language" [cd]="{ code: true}" [code]="content">
+            <ngx-prism #codeHighlight  [language]="language" [cd]="{ code: true }" [code]="getCodeContent()">
             </ngx-prism>
             <div class="d-flex justify-content-end">
                 <button class="button-blue" mat-raised-button appClipboardCopy [copy-clipboard]="content">

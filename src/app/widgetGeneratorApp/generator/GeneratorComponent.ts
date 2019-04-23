@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {GeneratorService} from '../services/GeneratorService';
 import {TagGroup} from '../dataModels/TagGroup';
 import {UserTagsRes} from '../dataModels/UserTagsRes';
@@ -12,25 +12,25 @@ import {SaveTagsRes} from '../dataModels/SaveTagsRes';
 
 export class GeneratorComponent implements OnInit, AfterViewChecked {
     public readonly language = 'html';
-    public content = '<app-svandis-news [filters]="{{token}}"></app-svandis-news>';
     public tagGroups: TagGroup[];
     public token = '';
     public selectedTags: {[key: string]: boolean} = {};
+    @ViewChild ('codeHighlight') codeHighlight;
     constructor(
         private generatorService: GeneratorService,
-        /*private changeDetectionRef: ChangeDetectorRef*/
+        private changeDetectionRef: ChangeDetectorRef
     ) {
     }
 
     ngOnInit() {
-        this.content = this.generatorService.getTagContent();
         this.generatorService.getAllTags().subscribe(v => this.afterGotTagsAll(v));
         this.generatorService.getUserTags().subscribe(v => this.afterGotUserTags(v));
     }
 
-    /*getCodeContent() {
-        this.generatorService.getTagContent(this.token);
-    }*/
+
+    getCodeContent(): string {
+        return this.generatorService.getTagContent(this.token);
+    }
 
 
     isTagSelected(tagId: number) {
@@ -38,7 +38,7 @@ export class GeneratorComponent implements OnInit, AfterViewChecked {
     }
 
     ngAfterViewChecked(): void {
-        /*this.changeDetectionRef.detectChanges();*/
+        this.changeDetectionRef.detectChanges();
     }
 
     afterGotTagsAll(tags: GetTagsRes) {
