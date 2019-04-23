@@ -4,7 +4,6 @@ import {TagGroup} from '../dataModels/TagGroup';
 import {UserTagsRes} from '../dataModels/UserTagsRes';
 import {SaveTagsRes} from '../dataModels/SaveTagsRes';
 import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs';
 import * as _ from 'lodash';
 @Component({
     selector: 'app-widget-generator',
@@ -14,7 +13,7 @@ import * as _ from 'lodash';
 
 export class GeneratorComponent implements OnInit {
     public readonly language = 'html';
-    public tagGroups: Observable<TagGroup[]> = of([]);
+    public tagGroupsStream: Observable<TagGroup[]>;
     public token = '';
     public content = '';
     public selectedTags: { [key: string]: boolean } = {};
@@ -23,7 +22,7 @@ export class GeneratorComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tagGroups = this.generatorService.getAllTags();
+        this.tagGroupsStream = this.generatorService.getAllTags();
         this.generatorService.getUserTags().subscribe(v => this.afterGotUserTags(v));
     }
 

@@ -9,7 +9,7 @@
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                 aliquip ex ea commodo consequat.
             </h4>
-            <div *ngFor="let group of tagGroups | async">
+            <div *ngFor="let group of tagGroupsStream | async">
                 <div class="group-title">
                     {{group.title}}
                 </div>
