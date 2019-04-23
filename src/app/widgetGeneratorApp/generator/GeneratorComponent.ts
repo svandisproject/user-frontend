@@ -14,6 +14,7 @@ export class GeneratorComponent implements OnInit {
     public readonly language = 'html';
     public tagGroups: TagGroup[];
     public token = '';
+    public content = '';
     public selectedTags: { [key: string]: boolean } = {};
     @ViewChild ('codeHighlight') codeHighlight;
     constructor(
@@ -26,7 +27,8 @@ export class GeneratorComponent implements OnInit {
     }
 
     getCodeContent(): string {
-        return this.generatorService.getTagContent(this.token);
+        this.content = this.generatorService.getTagContent(this.token);
+        return this.content;
     }
 
     isTagSelected(tagId: number): boolean {
