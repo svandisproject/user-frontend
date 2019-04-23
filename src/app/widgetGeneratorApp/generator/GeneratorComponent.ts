@@ -1,4 +1,4 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {GeneratorService} from '../services/GeneratorService';
 import {TagGroup} from '../dataModels/TagGroup';
 import {UserTagsRes} from '../dataModels/UserTagsRes';
@@ -10,38 +10,30 @@ import {SaveTagsRes} from '../dataModels/SaveTagsRes';
     styleUrls: ['./generator.scss']
 })
 
-export class GeneratorComponent implements OnInit, AfterViewChecked {
+export class GeneratorComponent implements OnInit {
     public readonly language = 'html';
     public tagGroups: TagGroup[];
     public token = '';
-    public selectedTags: {[key: string]: boolean} = {};
+    public selectedTags: { [key: string]: boolean } = {};
     @ViewChild ('codeHighlight') codeHighlight;
     constructor(
-        private generatorService: GeneratorService,
-        private changeDetectionRef: ChangeDetectorRef
-    ) {
-    }
+        private generatorService: GeneratorService
+    ) {}
 
     ngOnInit() {
         this.generatorService.getAllTags().subscribe(v => this.afterGotTagsAll(v));
         this.generatorService.getUserTags().subscribe(v => this.afterGotUserTags(v));
     }
 
-
     getCodeContent(): string {
         return this.generatorService.getTagContent(this.token);
     }
 
-
-    isTagSelected(tagId: number) {
+    isTagSelected(tagId: number): boolean {
         return this.selectedTags[tagId];
     }
 
-    ngAfterViewChecked(): void {
-        this.changeDetectionRef.detectChanges();
-    }
-
-    afterGotTagsAll(tags: GetTagsRes) {
+    afterGotTagsAll(tags: GetTagsRes): void {
         this.tagGroups = tags.data;
     }
 
@@ -52,13 +44,13 @@ export class GeneratorComponent implements OnInit, AfterViewChecked {
 
     }
 
-    afterGotUserTags(res: UserTagsRes) {
+    afterGotUserTags(res: UserTagsRes): void {
         this.token = res.data.token;
         this.selectedTags =  {};
         res.data.tags.forEach(v => this.selectedTags[v.id] = true);
     }
 
-    afterSaveUserTags(res: SaveTagsRes) {
+    afterSaveUserTags(res: SaveTagsRes): void {
         this.token = res.data.token;
         this.selectedTags =  {};
         res.data.tags.forEach(v => this.selectedTags[v.id] = true);

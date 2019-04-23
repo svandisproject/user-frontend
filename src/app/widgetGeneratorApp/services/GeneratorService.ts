@@ -21,7 +21,7 @@ export class GeneratorService {
         return this.authService.getSessionJwtToken();
     }
 
-    getTagContent(token) {
+    getTagContent(token): string {
         return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
     }
 

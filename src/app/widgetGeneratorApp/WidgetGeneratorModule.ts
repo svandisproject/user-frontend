@@ -9,7 +9,7 @@ import {GeneratorService} from './services/GeneratorService';
 import {TagsResource} from './resource/GeneratorResource';
 import {ClipboardCopyDirective} from './directives/ClipboardCopyDirective';
 import {DashboardResource} from './resource/DashboardResource';
-import {PrismService} from "@ngx-prism/core/dist/prism.service";
+
 @NgModule({
     imports: [
         CommonModule,
@@ -25,8 +25,7 @@ import {PrismService} from "@ngx-prism/core/dist/prism.service";
     providers: [
         GeneratorService,
         TagsResource,
-        DashboardResource,
-        PrismService
+        DashboardResource
     ],
 })
 export class WidgetGeneratorModule {
