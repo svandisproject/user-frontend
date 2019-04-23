@@ -1,6 +1,5 @@
 @import "../../svandis-material";
 @import "../../colors";
-
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -12,6 +11,7 @@
 }
 .main-container {
   padding-bottom: 5em;
+  background: rgb(35, 36, 56);
 }
 .header {
   height: 50px;
@@ -103,4 +103,8 @@ mat-chip.mat-chip.mat-standard-chip.selected {
     white-space: normal;
     color: rgb(185, 72, 47);
   }
+}
+
+/deep/ pre[class*="language-html"]{
+  background: rgb(30, 32, 47);
 }
