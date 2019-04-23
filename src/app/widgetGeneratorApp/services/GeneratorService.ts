@@ -5,16 +5,14 @@ import {TagsResource} from '../resource/GeneratorResource';
 import {DashboardResource} from '../resource/DashboardResource';
 import {UserTagsRes} from '../dataModels/UserTagsRes';
 import {SaveTagsRes} from '../dataModels/SaveTagsRes';
-import {GetTagsRes} from '../dataModels/GetTagsRes';
-
+import {TagGroup} from '../dataModels/TagGroup';
+import * as _ from 'lodash';
 @Injectable()
 export class GeneratorService {
 
-    constructor(
-        private authService: AuthService,
+    constructor (private authService: AuthService,
         private tagsResource: TagsResource,
-        private dashboardResource: DashboardResource
-    ) {
+        private dashboardResource: DashboardResource) {
     }
 
     getAuthToken(): string {
@@ -26,7 +24,7 @@ export class GeneratorService {
     }
 
 
-    public getAllTags(): Observable<GetTagsRes> {
+    public getAllTags(): Observable<TagGroup[]> {
         return this.tagsResource.findAll();
     }
 
@@ -35,6 +33,6 @@ export class GeneratorService {
     }
 
     public saveUserTags(selectedTags: {[key: string]: boolean}): Observable<SaveTagsRes> {
-        return this.dashboardResource.saveUserTags(Object.keys(selectedTags).filter(v => selectedTags[v]));
+        return this.dashboardResource.saveUserTags(_(selectedTags).keys().filter(v => _(selectedTags).get(v)));
     }
 }

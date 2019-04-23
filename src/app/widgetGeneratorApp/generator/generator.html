@@ -1,5 +1,5 @@
-<mat-card class="header">
-</mat-card>
+<div class="header">
+</div>
 <div class="container-fluid main-container">
     <div class="row justify-content-center">
         <div class="col-8">
@@ -9,7 +9,7 @@
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
                 aliquip ex ea commodo consequat.
             </h4>
-            <div *ngFor="let group of tagGroups">
+            <div *ngFor="let group of tagGroups | async">
                 <div class="group-title">
                     {{group.title}}
                 </div>

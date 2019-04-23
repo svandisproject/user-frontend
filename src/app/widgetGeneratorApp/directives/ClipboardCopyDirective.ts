@@ -21,7 +21,6 @@ export class ClipboardCopyDirective {
             const clipboard = e.clipboardData || window['clipboardData'];
             clipboard.setData('text', this.payload.toString());
             e.preventDefault();
-
             this.copied.emit(this.payload);
         };
 
