@@ -1,1 +1,40 @@
-<h1>Widget generator page</h1>
+<div class="header">
+</div>
+<div class="container-fluid main-container">
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <h3>Newsfeed widget settings</h3>
+            <h4>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+            </h4>
+            <div *ngFor="let group of tagGroupsStream | async">
+                <div class="group-title">
+                    {{group.title}}
+                </div>
+                <mat-form-field>
+                    <mat-chip-list>
+                        <mat-chip class="sv-tag" *ngFor="let tag of group.tags"
+                                  [class.selected]="isTagSelected(tag.id)"
+                                  (click)="selectTag(tag.id)">
+                            <mat-icon class="noselect chip-icon" [class.selected]="isTagSelected(tag.id)">done</mat-icon>
+                            <span class="noselect">{{tag.title}}</span>
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-form-field>
+            </div>
+
+            <span class="section-title">Code</span>
+            <ngx-prism #codeHighlight  [language]="language" [cd]="{ code: true }" [code]="getCodeContent()">
+            </ngx-prism>
+
+            <div class="d-flex justify-content-end">
+                <button class="button-blue" mat-raised-button appClipboardCopy [copy-clipboard]="content">
+                    Copy Code
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
