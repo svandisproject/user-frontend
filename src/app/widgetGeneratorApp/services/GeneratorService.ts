@@ -15,10 +15,6 @@ export class GeneratorService {
         private dashboardResource: DashboardResource) {
     }
 
-    getAuthToken(): string {
-        return this.authService.getSessionJwtToken();
-    }
-
     getTagContent(token): string {
         return `<svandis-news token="${token}"></svandis-news>`;
     }
