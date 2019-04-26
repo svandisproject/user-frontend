@@ -20,7 +20,7 @@ export class GeneratorService {
     }
 
     getTagContent(token): string {
-        return `<app-svandis-news [filters]="${token}"></app-svandis-news>`;
+        return `<svandis-news filters="${token}"></svandis-news>`;
     }
 
 
