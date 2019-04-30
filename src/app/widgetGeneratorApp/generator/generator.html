@@ -1,12 +1,12 @@
 <div class="header p-3">
     <div class="container-fluid">
         <div class="row d-flex align-items-center">
-            <div class="col-4">
+            <div class="col-md-4 col-sm-12">
                 <a [routerLink]="''">
                     <img src="assets/image/svandis-logo.png" alt="">
                 </a>
             </div>
-            <div class="col-8">
+            <div class="col-md-8 col-sm-12">
                 <h2>Svandis Newsfeed Widget Generator</h2>
             </div>
         </div>
@@ -14,15 +14,20 @@
 </div>
 <div class="container-fluid main-container">
     <div class="row justify-content-center">
-        <div class="col-8">
-            <h3>Newsfeed widget settings</h3>
-
+        <div class="col-sm-12 col-md-8 mt-3">
+            <h4>Newsfeed widget settings</h4>
+            <h6>
+                <small>You can choose from a list of available filters, what news will be displayed.</small>
+            </h6>
             <ng-container *ngIf="tagGroupsStream | async as tagGroups else loader">
-                <div *ngFor="let group of tagGroups">
-                    <div class="group-title">
-                        {{group.title}}
-                    </div>
-                    <mat-form-field>
+                <div class="mt-5">
+                    <mat-expansion-panel *ngFor="let group of tagGroups">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                {{group.title}}
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+
                         <mat-chip-list>
                             <mat-chip class="sv-tag" *ngFor="let tag of group.tags"
                                       [class.selected]="isTagSelected(tag.id)"
@@ -32,30 +37,94 @@
                                 <span class="noselect">{{tag.title}}</span>
                             </mat-chip>
                         </mat-chip-list>
-                    </mat-form-field>
+                    </mat-expansion-panel>
                 </div>
 
-                <span class="section-title">Widget Script</span>
-                <ngx-prism #codeHighlight [language]="language" [cd]="{ code: true }" [code]="scriptCdn"></ngx-prism>
-                <mat-hint>Paste the widget script at the end of your <strong>body</strong> tag</mat-hint>
-                <div class="d-flex justify-content-end">
-                    <button class="button-blue" mat-raised-button appClipboardCopy [copy-clipboard]="scriptCdn">
-                        Copy Code
-                    </button>
-                </div>
+                <mat-card class="mt-5 mb-5">
+                    <mat-card-header class="d-block">
+                        <h4>Usage</h4>
+                    </mat-card-header>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            <span>Widget Script</span>
+                            <ngx-prism #codeHighlight [language]="language" [cd]="{ code: true }"
+                                       [code]="scriptCdn"></ngx-prism>
+                            <mat-hint>Paste the widget script at the end of your <strong>body</strong> tag
+                            </mat-hint>
+                            <div class="d-flex justify-content-end">
+                                <button class="button-blue" mat-raised-button appClipboardCopy
+                                        [copy-clipboard]="scriptCdn">
+                                    Copy Code
+                                </button>
+                            </div>
 
-                <span class="section-title">Widget Code</span>
-                <ngx-prism #codeHighlight [language]="language" [cd]="{ code: true }" [code]="getCodeContent()">
-                </ngx-prism>
-                <mat-hint>This is the widget component, it can be paste anywhere on you website and it will render the
-                    news-feeds
-                </mat-hint>
+                            <span>Widget Code</span>
+                            <ngx-prism #codeHighlight [language]="language" [cd]="{ code: true }"
+                                       [code]="getCodeContent()">
+                            </ngx-prism>
+                            <mat-hint>This is the widget component, it can be paste anywhere on you website and it
+                                will render the
+                                news-feeds
+                            </mat-hint>
 
-                <div class="d-flex justify-content-end">
-                    <button class="button-blue" mat-raised-button appClipboardCopy [copy-clipboard]="content">
-                        Copy Code
-                    </button>
-                </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="button-blue" mat-raised-button appClipboardCopy
+                                        [copy-clipboard]="content">
+                                    Copy Code
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>
+
+                <mat-card class="mt-5 mb-5">
+                    <mat-card-header class="d-block">
+                        <h4>Widget Demo</h4>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-12">
+                                <div [innerHtml]="widgetHtml"></div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="mt-5 mb-5">
+                    <mat-card-header class="d-block">
+                        <h4>Customization</h4>
+                        <p>
+                            You can customize the code using css, in fact the demo code you see on our site has already
+                            custom css rules
+                        </p>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-12">
+                                <small>Example:</small>
+                                <ngx-prism #codeHighlight [language]="'css'" [cd]="{ code: true }">
+                                    svandis-news .news-title {{ '{' }}
+                                    color: #2e9d29;
+                                    {{ '}' }}
+                                </ngx-prism>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="mt-5 mb-5">
+                    <mat-card-header class="d-block">
+                        <h4>Custom css for news title</h4>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="css-example" [innerHtml]="widgetHtml"></div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
             </ng-container>
             <ng-template #loader>
                 <div class="row mt-5">
