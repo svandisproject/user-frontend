@@ -5,7 +5,6 @@ import {UserTagsRes} from '../dataModels/UserTagsRes';
 import {SaveTagsRes} from '../dataModels/SaveTagsRes';
 import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
-import {DomSanitizer, SafeHtml} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-widget-generator',
@@ -18,12 +17,11 @@ export class GeneratorComponent implements OnInit {
     public tagGroupsStream: Observable<TagGroup[]>;
     public token = '';
     public content = '';
-    public widgetHtml: SafeHtml;
     public selectedTags: { [key: string]: boolean } = {};
     public scriptCdn = '<script src="https://svandis-news-widget.herokuapp.com/svandis-news.js"></script>';
     @ViewChild('codeHighlight') codeHighlight;
 
-    constructor(private generatorService: GeneratorService, private domSanitizer: DomSanitizer) {
+    constructor(private generatorService: GeneratorService) {
     }
 
     ngOnInit() {
@@ -33,7 +31,6 @@ export class GeneratorComponent implements OnInit {
 
     public getCodeContent(): string {
         this.content = this.generatorService.getTagContent(this.token);
-        this.widgetHtml = this.domSanitizer.bypassSecurityTrustHtml(this.content);
         return this.content;
     }
 

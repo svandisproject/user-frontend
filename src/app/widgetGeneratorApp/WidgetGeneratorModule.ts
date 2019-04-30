@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import {GeneratorComponent} from './generator/GeneratorComponent';
 import {RouterModule} from '@angular/router';
 import {WidgetGeneratorRouting} from './WidgetGeneratorRouting';
@@ -16,6 +16,9 @@ import {DashboardResource} from './resource/DashboardResource';
         CommonMaterialModule,
         RouterModule.forChild(WidgetGeneratorRouting),
         PrismModule
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA,
     ],
     exports: [],
     declarations: [

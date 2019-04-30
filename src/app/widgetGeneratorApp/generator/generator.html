@@ -84,7 +84,7 @@
                     <mat-card-content>
                         <div class="row">
                             <div class="col-12">
-                                <div [innerHtml]="widgetHtml"></div>
+                                <svandis-news token="{{token}}"></svandis-news>
                             </div>
                         </div>
                     </mat-card-content>
@@ -120,7 +120,9 @@
                     <mat-card-content>
                         <div class="row">
                             <div class="col-12">
-                                <div class="css-example" [innerHtml]="widgetHtml"></div>
+                                <div class="css-example">
+                                    <svandis-news token="{{token}}"></svandis-news>
+                                </div>
                             </div>
                         </div>
                     </mat-card-content>
