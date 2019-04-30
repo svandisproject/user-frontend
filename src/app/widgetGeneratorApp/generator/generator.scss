@@ -31,6 +31,10 @@ h3, h4 {
     font-weight: 500;
 }
 
+h6, small, p {
+    color: white;
+}
+
 .group-title {
     color: rgb(108, 108, 151);
 }
@@ -127,4 +131,28 @@ mat-chip.mat-chip.mat-standard-chip.selected {
 
 /deep/ pre[class*="language-html"] {
     background: rgb(30, 32, 47);
+}
+
+::ng-deep {
+    svandis-news {
+        color: white;
+
+        .news-title {
+            font-weight: normal;
+        }
+
+        .news-content-value {
+            color: #bbb;
+        }
+
+        .tag {
+            color: #2e9d29;
+        }
+    }
+
+    .css-example {
+        svandis-news .news-title {
+            color: #2e9d29;
+        }
+    }
 }
