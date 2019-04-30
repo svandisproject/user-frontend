@@ -5,6 +5,7 @@ import {UserTagsRes} from '../dataModels/UserTagsRes';
 import {SaveTagsRes} from '../dataModels/SaveTagsRes';
 import {Observable} from 'rxjs/Observable';
 import * as _ from 'lodash';
+
 @Component({
     selector: 'app-widget-generator',
     templateUrl: 'generator.html',
@@ -17,8 +18,10 @@ export class GeneratorComponent implements OnInit {
     public token = '';
     public content = '';
     public selectedTags: { [key: string]: boolean } = {};
-    @ViewChild ('codeHighlight') codeHighlight;
-    constructor (private generatorService: GeneratorService) {
+    public scriptCdn = '<script src="https://svandis-news-widget.herokuapp.com/svandis-news.js"></script>';
+    @ViewChild('codeHighlight') codeHighlight;
+
+    constructor(private generatorService: GeneratorService) {
     }
 
     ngOnInit() {
@@ -46,7 +49,7 @@ export class GeneratorComponent implements OnInit {
     public afterGotUserTags(res: UserTagsRes): void {
         this.token = res.token;
         this.selectedTags = {};
-        _(res.tags).forEach(v =>  _.set(this.selectedTags, v.id + '', true));
+        _(res.tags).forEach(v => _.set(this.selectedTags, v.id + '', true));
     }
 
     public afterSaveUserTags(res: SaveTagsRes): void {
