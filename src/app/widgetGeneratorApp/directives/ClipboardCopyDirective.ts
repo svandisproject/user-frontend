@@ -1,4 +1,5 @@
-import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/core';
+import {Directive, EventEmitter, HostListener, Input, Output} from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 
 @Directive({ selector: '[appClipboardCopy]' })
 export class ClipboardCopyDirective {
@@ -8,6 +9,9 @@ export class ClipboardCopyDirective {
 
     @Output()
     public copied: EventEmitter<string> = new EventEmitter<string>();
+
+    constructor(private matSnack: MatSnackBar) {
+    }
 
     @HostListener('click', ['$event'])
     public onClick(event: MouseEvent): void {
@@ -27,5 +31,6 @@ export class ClipboardCopyDirective {
         document.addEventListener('copy', listener, false);
         document.execCommand('copy');
         document.removeEventListener('copy', listener, false);
+        this.matSnack.open('Code copied to your Clipboard', null, {duration: 2000});
     }
 }
