@@ -134,7 +134,13 @@ mat-chip.mat-chip.mat-standard-chip.selected {
 }
 
 ::ng-deep {
-    svandis-news {
+    .css-example {
+        app-svandis-news .news-title {
+            color: #2e9d29;
+        }
+    }
+
+    app-svandis-news {
         color: white;
 
         .news-title {
@@ -146,12 +152,6 @@ mat-chip.mat-chip.mat-standard-chip.selected {
         }
 
         .tag {
-            color: #2e9d29;
-        }
-    }
-
-    .css-example {
-        svandis-news .news-title {
             color: #2e9d29;
         }
     }

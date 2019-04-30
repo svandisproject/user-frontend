@@ -84,7 +84,7 @@
                     <mat-card-content>
                         <div class="row">
                             <div class="col-12">
-                                <svandis-news token="{{token}}"></svandis-news>
+                                <app-svandis-news [token]="token"></app-svandis-news>
                             </div>
                         </div>
                     </mat-card-content>
@@ -104,7 +104,7 @@
                             <div class="col-12">
                                 <small>Example:</small>
                                 <ngx-prism #codeHighlight [language]="'css'" [cd]="{ code: true }">
-                                    svandis-news .news-title {{ '{' }}
+                                    app-svandis-news .news-title {{ '{' }}
                                     color: #2e9d29;
                                     {{ '}' }}
                                 </ngx-prism>
@@ -121,7 +121,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="css-example">
-                                    <svandis-news token="{{token}}"></svandis-news>
+                                    <app-svandis-news [token]="token"></app-svandis-news>
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {NgModule} from '@angular/core';
 import {GeneratorComponent} from './generator/GeneratorComponent';
 import {RouterModule} from '@angular/router';
 import {WidgetGeneratorRouting} from './WidgetGeneratorRouting';
@@ -9,16 +9,15 @@ import {GeneratorService} from './services/GeneratorService';
 import {TagsResource} from './resource/GeneratorResource';
 import {ClipboardCopyDirective} from './directives/ClipboardCopyDirective';
 import {DashboardResource} from './resource/DashboardResource';
+import {NewsWidgetModule} from './newsWidget/NewsWidgetModule';
 
 @NgModule({
     imports: [
         CommonModule,
         CommonMaterialModule,
         RouterModule.forChild(WidgetGeneratorRouting),
+        NewsWidgetModule,
         PrismModule
-    ],
-    schemas: [
-        CUSTOM_ELEMENTS_SCHEMA,
     ],
     exports: [],
     declarations: [
