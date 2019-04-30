@@ -53,15 +53,15 @@ export class AuthService {
     }
 
     public getSessionJwtToken(): string {
-        return sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY);
+        return localStorage.getItem(AuthService.SESSION_STORAGE_KEY);
     }
 
     public setSessionToken(token: string): void {
-        sessionStorage.setItem(AuthService.SESSION_STORAGE_KEY, token);
+        localStorage.setItem(AuthService.SESSION_STORAGE_KEY, token);
     }
 
     public removeToken(): void {
-        sessionStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
+        localStorage.removeItem(AuthService.SESSION_STORAGE_KEY);
     }
 
     public refreshToken(): Observable<AuthResponse> {

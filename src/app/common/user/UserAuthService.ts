@@ -54,7 +54,7 @@ export class UserAuthService {
     }
 
     public isUserSignedIn(): boolean {
-        return !_.isEmpty(sessionStorage.getItem(AuthService.SESSION_STORAGE_KEY));
+        return !_.isEmpty(localStorage.getItem(AuthService.SESSION_STORAGE_KEY));
     }
 
     public hasRoleAdmin(): boolean {
