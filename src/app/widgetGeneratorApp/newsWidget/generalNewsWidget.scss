@@ -111,6 +111,29 @@ html {
     min-width: 72px;
 }
 
+.svan-logo {
+    height: 30px;
+}
+
+.dark-theme {
+    .news-title {
+        color: #fff;
+    }
+
+    .news-origin, .news-published-at, .powered-by-svandis {
+        color: #e4e4e4
+    }
+}
+
+.light-theme {
+    .news-title {
+        color: #000;
+    }
+
+    .news-origin, .news-published-at, .powered-by-svandis {
+        color: #6a6a6a
+    }
+}
 @media (min-width: 768px) {
     .icon-col {
         text-align: right;

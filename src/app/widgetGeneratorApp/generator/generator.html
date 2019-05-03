@@ -127,6 +127,42 @@
                         </div>
                     </mat-card-content>
                 </mat-card>
+
+                <mat-card class="mt-5 mb-5">
+                    <mat-card-header class="d-block">
+                        <h4>Themes</h4>
+                        <p>
+                            We have 2 available themes a light theme and a dark theme, the default is set to
+                            <code>dark</code>
+                            In order to change them just add a attribute to your code snippet
+                        </p>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-12">
+                                <small>Example:</small>
+                                <ngx-prism #codeHighlight [language]="'html'" [cd]="{ code: true }" [code]="darkTheme">
+                                </ngx-prism>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+
+                <mat-card class="mt-5 mb-5 white-card">
+                    <mat-card-header class="d-block">
+                        <h4>Light Theme</h4>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col-12">
+                                <div>
+                                    <app-svandis-news [token]="token" theme="light"></app-svandis-news>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
             </ng-container>
             <ng-template #loader>
                 <div class="row mt-5">

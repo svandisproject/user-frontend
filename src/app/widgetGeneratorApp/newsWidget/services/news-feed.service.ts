@@ -8,21 +8,16 @@ import * as _ from 'lodash';
 
 @Injectable()
 export class NewsFeedService {
-    private page = 0;
-    private readonly PER_PAGE = 10;
     private readonly URL = SvandisNewsApiConfig.API_HOST + '/news';
 
     constructor(private httpClient: HttpClient) {
     }
 
-    public fetchNewsPage(token): Observable<News[]> {
+    public fetchNewsPage(token, params): Observable<News[]> {
         if (!token) {
             return EMPTY;
         }
-        const params = {
-            page: (++this.page).toString(),
-            perPage: (this.PER_PAGE).toString()
-        };
+
         return this.httpClient.get(this.URL + '/' + token, {params})
             .pipe(
                 map((res: { data: News[] }) => res.data),
@@ -32,6 +27,4 @@ export class NewsFeedService {
                 }))
             );
     }
-
-
 }

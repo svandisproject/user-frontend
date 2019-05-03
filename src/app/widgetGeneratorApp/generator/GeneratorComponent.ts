@@ -19,6 +19,7 @@ export class GeneratorComponent implements OnInit {
     public content = '';
     public selectedTags: { [key: string]: boolean } = {};
     public scriptCdn = '<script src="https://svandis-news-widget.herokuapp.com/svandis-news.js"></script>';
+    public darkTheme = '<svandis-news token="YOUR_GENERATED_TOKEN" theme="light"></svandis-news>';
     @ViewChild('codeHighlight') codeHighlight;
 
     constructor(private generatorService: GeneratorService) {
